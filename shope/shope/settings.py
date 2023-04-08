@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shope.authapp.apps.AuthappConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'authapp.User'
+LOGIN_URL = '/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
