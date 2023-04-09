@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shope.authapp.apps.AuthappConfig',
+    'shope.productsapp.apps.ProductsappConfig'
 ]
 
 MIDDLEWARE = [
