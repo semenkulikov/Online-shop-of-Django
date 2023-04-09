@@ -1,4 +1,4 @@
-stages:
-  - build-pytest
-  - сode-analysis
-  - build-backend
+#stages:
+#  - build-pytest
+#  - сode-analysis
+#  - build-backend
