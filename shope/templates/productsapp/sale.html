@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Megano
@@ -8,17 +9,17 @@
     <meta name="description" content="Описание страницы">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <link href="favicon.ico" rel="shortcut icon">
-    <link rel="preload" href="assets/fonts/Roboto/Roboto-Regular.woff" as="font">
-    <link rel="preload" href="assets/fonts/Roboto/Roboto-Italic.woff" as="font">
-    <link rel="preload" href="assets/fonts/Roboto/Roboto-Bold.woff" as="font">
-    <link rel="preload" href="assets/fonts/Roboto/Roboto-Bold_Italic.woff" as="font">
-    <link rel="preload" href="assets/fonts/Roboto/Roboto-Light.woff" as="font">
-    <link rel="preload" href="assets/fonts/Roboto/Roboto-Light_Italic.woff" as="font">
-    <link rel="stylesheet" href="assets/css/fonts.css?v=41161370">
-    <link rel="stylesheet" href="assets/css/basic.css?v=41161370">
-    <link rel="stylesheet" href="assets/css/extra.css?v=41161370">
-    <script src="assets/plg/CountDown/countdown.js"></script>
+    <link href="{% static 'favicon.ico' %}" rel="shortcut icon">
+    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Regular.woff' %}" as="font">
+    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Italic.woff' %}" as="font">
+    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Bold.woff' %}" as="font">
+    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Bold_Italic.woff' %}" as="font">
+    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Light.woff' %}" as="font">
+    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Light_Italic.woff' %}" as="font">
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css?v=41161370' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/basic.css?v=41161370' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/extra.css?v=41161370' %}">
+    <script src="{% static 'assets/plg/CountDown/countdown.js' %}"></script>
     <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 {% endblock %}
@@ -33,7 +34,7 @@
                 <div class="Middle-header">
 
                     <ul class="breadcrumbs Middle-breadcrumbs">
-                        <li class="breadcrumbs-item"><a href="index.html">Главная</a>
+                        <li class="breadcrumbs-item"><a href="#">Главная</a>
                         </li>
                         <li class="breadcrumbs-item breadcrumbs-item_current"><span>Блог</span>
                         </li>
@@ -44,7 +45,7 @@
         <div class="Section">
             <div class="wrap">
                 <div class="Cards Cards_blog">
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">24
                             </strong><span class="Card-date-month">nov</span>
@@ -58,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-content">
                             <strong class="Card-title"><a href="#">Music Playing Featured Technologies For Children</a>
                             </strong>
@@ -66,7 +67,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">26
                             </strong><span class="Card-date-month">nov</span>
@@ -78,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">27
                             </strong><span class="Card-date-month">nov</span>
@@ -94,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">28
                             </strong><span class="Card-date-month">nov</span>
@@ -122,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">30
                             </strong><span class="Card-date-month">nov</span>
@@ -134,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">31
                             </strong><span class="Card-date-month">nov</span>
@@ -146,7 +147,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">01
                             </strong><span class="Card-date-month">dec</span>
@@ -158,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">02
                             </strong><span class="Card-date-month">dec</span>
@@ -170,7 +171,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">01
                             </strong><span class="Card-date-month">dec</span>
@@ -182,7 +183,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                    <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/sale/product.png' %}" alt="product.png" /></a>
                         <div class="Card-date">
                             <strong class="Card-date-number">02
                             </strong><span class="Card-date-month">dec</span>
@@ -199,9 +200,7 @@
         </div>
     </div>
     <div class="Pagination">
-        <div class="Pagination-ins"><a class="Pagination-element Pagination-element_prev" href="#"><img src="assets/img/icons/prevPagination.svg" alt="prevPagination.svg" /></a><a class="Pagination-element Pagination-element_current" href="#"><span class="Pagination-text">1</span></a><a class="Pagination-element" href="#"><span class="Pagination-text">2</span></a><a class="Pagination-element" href="#"><span class="Pagination-text">3</span></a><a class="Pagination-element Pagination-element_prev" href="#"><img src="assets/img/icons/nextPagination.svg" alt="nextPagination.svg" /></a>
+        <div class="Pagination-ins"><a class="Pagination-element Pagination-element_prev" href="#"><img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg" /></a><a class="Pagination-element Pagination-element_current" href="#"><span class="Pagination-text">1</span></a><a class="Pagination-element" href="#"><span class="Pagination-text">2</span></a><a class="Pagination-element" href="#"><span class="Pagination-text">3</span></a><a class="Pagination-element Pagination-element_prev" href="#"><img src="{% static 'assets/img/icons/nextPagination.svg' %}" alt="nextPagination.svg" /></a>
         </div>
     </div>
 {% endblock %}
-
-
