@@ -1,0 +1,3 @@
+profile,account,Отображение ФИО и истории заказов,GET,/profile/account/
+profile,profile,Страница подтверждения успешного изменения профиля,GET,/profile/update_success
+profile,Profile-avatar,Изменение информации о профиле,GET POST,profile/update_profile
