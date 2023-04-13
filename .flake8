@@ -5,3 +5,4 @@ exclude =
     venv
     fmt.py
     setup.cfg
+    *urls.py
