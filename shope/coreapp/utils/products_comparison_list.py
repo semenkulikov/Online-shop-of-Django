@@ -1,0 +1,2 @@
+class ProductsComparisonList:
+    pass
