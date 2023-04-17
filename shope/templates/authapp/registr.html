@@ -18,6 +18,8 @@
 </div>
 {% endblock %}
 {% block content %}
+
+
 <div class="wrapper wrap-reg">
     <div class="header">
         <h3 class="sign-in">Регистрация</h3>
@@ -44,12 +46,13 @@
             <div>
                 <input type="password" name="pass2" id="name" placeholder="Подтверждение пароля"/>
             </div>
-            <input type="submit" value="Зарегистрироваться"/>
+            <input class="input-reg" type="submit" value="Зарегистрироваться"/>
+            <div class="clear"></div>
             <a class="registr" href="login.html">
                 Вход
             </a>
-            <div class="clear"></div>
         </div>
+        <div class="clear"></div>
     </form>
 </div>
 {% endblock %}
