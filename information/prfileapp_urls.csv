@@ -1,3 +1,23 @@
 profile,account,Отображение ФИО и истории заказов,GET,/profile/account/
+profile,account,Отображение ФИО и истории заказов,GET,/profile/profile/
+
 profile,profile,Страница подтверждения успешного изменения профиля,GET,/profile/update_success
-profile,Profile-avatar,Изменение информации о профиле,GET POST,profile/update_profile
+profile,Profile-avatar,Изменение информации о профиле,GET POST, profile/update_profile
+
+
+
+
+
+
+
+продукт |каталог |сортировка по новизне| GET |product/catalog/sort_/
+продукт | каталог | сортируем по популярности |GET |product/catalog/sort_POPULAR/
+
+продукт | каталог | фильтрация по параметрам| GET |  produfc/catalog/str:arange_amount/<str:name>/int:delivery/int:only/
+продукт | каталог | фильтрация по тэгу |  produfc/catalog/str:tags/
+
+
+
+login/
+chage/
+wrong/
