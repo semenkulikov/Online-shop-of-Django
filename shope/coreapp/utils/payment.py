@@ -1,2 +1,3 @@
 class Payment:
+    """Оплата"""
     pass
