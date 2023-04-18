@@ -6494,3 +6494,28 @@ input[type="radio"] {
     bottom: 0rem;
     right: 0;
 }
+.wrap-reg {
+    width: 50%;
+}
+
+.form-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    padding: auto;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+
+.input-reg {
+    max-width: 270px;
+    margin-top: 15px;
+}
+
+.registr {
+    margin: 0 25%;
+}
+
+.sign-in {
+    text-align: center;
+}
