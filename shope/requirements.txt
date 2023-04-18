@@ -3,3 +3,4 @@ Pillow==9.3.0
 flake8==6.0.0
 pre-commit==3.2.2
 python-dotenv==1.0.0
+django-taggit==3.1.0
