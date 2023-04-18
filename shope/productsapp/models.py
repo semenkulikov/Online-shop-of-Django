@@ -66,7 +66,7 @@ class Comment(BaseModel):
     """
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
-                             related_name="user")
+                             related_name="comments")
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
                                 related_name="comments")
