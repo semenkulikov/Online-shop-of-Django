@@ -8,7 +8,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
+
 """
+
+# flake8: noqa
 
 from pathlib import Path
 import os
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
     'paymentapp.apps.PaymentappConfig',
     'orderapp.apps.OrderappConfig',
     'coreapp.apps.CoreappConfig',
+    'cartapp.apps.CartappConfig',
 ]
 
 MIDDLEWARE = [
@@ -65,13 +69,14 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cartapp.context_processor.cart_block'
             ],
         },
     },
