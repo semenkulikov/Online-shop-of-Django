@@ -1,5 +1,5 @@
 from django.db import models
-
+from phonenumber_field.modelfields import PhoneNumberField
 from authapp.models import User
 
 
@@ -19,8 +19,8 @@ class Profile(models.Model):
         upload_to='profile_avatars/',
         verbose_name='аватар'
     )
-    phone_number = models.CharField(
-        max_length=15,
+    phone_number = PhoneNumberField(
+        blank=True,
         verbose_name='номер телефона'
     )
 
