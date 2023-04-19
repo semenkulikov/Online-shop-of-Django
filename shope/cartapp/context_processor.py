@@ -4,11 +4,12 @@ def cart_block(request):
     """
     if request.user.is_authenticated:
         return {
-            'cart': request.user.cart.get(is_active=True),
+            'cart': request.user.cart.filter(
+                is_active=True
+            ).order_by('created_at').first(),
             # сюда добавить миниатюру аватарки, если есть. и тоже передать.
         }
     # переписать, когда будут сделаны сессии
     return {
-        'cart_amount': 0,
-        'quantity_cart_items': 0
+        'cart': None,
     }

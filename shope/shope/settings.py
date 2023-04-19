@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'coreapp.apps.CoreappConfig',
     'cartapp.apps.CartappConfig',
     'taggit',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

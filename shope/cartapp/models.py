@@ -26,11 +26,9 @@ class Cart(BaseModel):
 
     @property
     def total_amount(self):
-        return self.items.annotate(
-            cart_item_total=F('product__price') * F('quantity')
-        ).aggregate(
-            Sum('cart_item_total')
-        )['cart_item_total__sum']
+        return self.items.aggregate(
+            total_amount=Sum(F('product__price') * F('quantity'))
+        )['total_amount']
 
     @property
     def count_items(self):
@@ -44,7 +42,7 @@ class CartItem(BaseModel):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        related_name='cart_item',
+        related_name='cartitems',
         verbose_name='продукт'
     )
     quantity = models.PositiveIntegerField(
