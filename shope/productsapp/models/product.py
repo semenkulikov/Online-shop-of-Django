@@ -23,8 +23,7 @@ class Product(BaseModel):
                                    verbose_name="archived")
     is_delivered = models.BooleanField(default=False,
                                        verbose_name="is_delivered")
-    # category = models.ForeignKey()
-    # specifics = models.ForeignKey()
+    # specific = models.ForeignKey()
 
     class Meta:
         verbose_name = "продукт"
