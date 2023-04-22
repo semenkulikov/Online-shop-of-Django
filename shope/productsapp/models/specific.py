@@ -5,6 +5,9 @@ from productsapp.models.type_spec import TypeSpecific
 
 
 class Specific(BaseModel):
+    """
+    Класс-модель для характеристики продукта
+    """
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
                                 related_name="specific")

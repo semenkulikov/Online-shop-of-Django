@@ -2,7 +2,7 @@ from django.db import models
 
 from authapp.models import User
 from coreapp.models import BaseModel
-from productsapp.models import Product
+from productsapp.models.product import Product
 
 from django.db.models import Sum, F
 

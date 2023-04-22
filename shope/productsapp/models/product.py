@@ -23,11 +23,10 @@ class Product(BaseModel):
                                    verbose_name="archived")
     is_delivered = models.BooleanField(default=False,
                                        verbose_name="is_delivered")
-    # specific = models.ForeignKey()
 
     class Meta:
-        verbose_name = "продукт"
-        verbose_name_plural = "продукты"
+        verbose_name = "product"
+        verbose_name_plural = "products"
         ordering = "-price", "name", "archived", "is_delivered"
 
     def __str__(self):
