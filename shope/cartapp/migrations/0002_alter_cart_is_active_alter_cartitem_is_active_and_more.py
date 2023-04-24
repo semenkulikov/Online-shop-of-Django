@@ -7,7 +7,8 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('productsapp', '0002_alter_category_is_active_alter_comment_is_active_and_more'), # noqa
+        ('productsapp',
+         '0002_alter_category_is_active_alter_comment_is_active_and_more'),
         ('cartapp', '0001_initial'),
     ]
 
@@ -29,6 +30,6 @@ class Migration(migrations.Migration):
                 on_delete=django.db.models.deletion.CASCADE,
                 related_name='cartitems',
                 to='productsapp.product',
-                verbose_name='продукт'),
+                verbose_name='product'),
         ),
     ]

@@ -27,7 +27,6 @@ class Product(BaseModel):
     class Meta:
         verbose_name = "product"
         verbose_name_plural = "products"
-        ordering = "-price", "name", "archived", "is_delivered"
 
     def __str__(self):
         return self.name

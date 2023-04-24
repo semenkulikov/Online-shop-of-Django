@@ -1,6 +1,6 @@
-from . import product  # noqa
-from . import discount  # noqa
-from . import comment  # noqa
-from . import category  # noqa
-from . import type_spec  # noqa
-from . import specific  # noqa
+from .product import Product  # noqa
+from .discount import Discount  # noqa
+from .comment import Comment # noqa
+from .category import Category  # noqa
+from .type_spec import TypeSpecific  # noqa
+from .specific import Specific  # noqa
