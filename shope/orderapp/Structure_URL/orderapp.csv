@@ -1,4 +1,0 @@
-
-1 | order | basket | Корзина товаров | POST GET PUT DELETE | order/basket |
-2 | order | checkout | Оформление новых заказов | POST | order/checkout |
-3 | order | payment | Оплата картой | POST | order/payment |

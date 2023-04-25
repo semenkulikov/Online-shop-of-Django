@@ -1,0 +1,4 @@
+
+1 | order | historyorder | Корзина товаров | POST GET PUT DELETE | order/historyorder |
+2 | order | oneorder | Оформление новых заказов | POST | order/oneorder |
+3 | order | order | Оплата картой | POST | order/ |
