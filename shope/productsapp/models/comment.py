@@ -24,8 +24,8 @@ class Comment(BaseModel):
                             verbose_name="text")
 
     class Meta:
-        verbose_name = "отзыв"
-        verbose_name_plural = "отзывы"
+        verbose_name = "review"
+        verbose_name_plural = "reviews"
 
     def __str__(self):
         return self.name

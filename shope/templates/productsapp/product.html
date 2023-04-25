@@ -5,25 +5,6 @@
     Megano
 {% endblock %}
 
-{#{% block links %}#}
-{#    <meta name="description" content="Описание страницы">#}
-{#    <meta charset="utf-8">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">#}
-{#    <link href="{% static 'favicon.ico' %}" rel="shortcut icon">#}
-{#    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Regular.woff' %}" as="font">#}
-{#    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Italic.woff' %}" as="font">#}
-{#    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Bold.woff' %}" as="font">#}
-{#    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Bold_Italic.woff' %}" as="font">#}
-{#    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Light.woff' %}" as="font">#}
-{#    <link rel="preload" href="{% static 'assets/fonts/Roboto/Roboto-Light_Italic.woff' %}" as="font">#}
-{#    <link rel="stylesheet" href="{% static 'assets/css/fonts.css?v=90329703' %}">#}
-{#    <link rel="stylesheet" href="{% static 'assets/css/basic.css?v=90329703' %}">#}
-{#    <link rel="stylesheet" href="{% static 'assets/css/extra.css?v=90329703' %}">#}
-{#    <script src="{% static 'assets/plg/CountDown/countdown.js' %}"></script>#}
-{#    <!--[if lt IE 9]>#}
-{#  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->#}
-{##}
-{#{% endblock %}#}
 
 {% block Header-slider %}
 {% endblock %}
@@ -72,7 +53,11 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="ProductCard-cartElement"><a class="btn btn_primary" href="#modal_open"><img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" /><span class="btn-content">Купить</span></a>
+                                <div class="ProductCard-cartElement">
+                                    <a class="btn btn_primary" href="#modal_open">
+                                        <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
+                                        <span class="btn-content">Купить</span>
+                                    </a>
                                 </div>
                                 <div id="modal_open" class="my_modal">
                                     <div class="my_modal-dialog">
@@ -97,7 +82,19 @@
                         </div>
                     </div>
                     <div class="Tabs Tabs_default">
-                        <div class="Tabs-links"><a class="Tabs-link_ACTIVE Tabs-link" href="#description"><span>Описание</span></a><a class="Tabs-link" href="#addit"><span>Характеристика</span></a><a class="Tabs-link" href="#reviews"><span>Отзывы (3)</span></a>
+                        <div class="Tabs-links">
+                            <a class="Tabs-link_ACTIVE Tabs-link" href="#description">
+                                <span>Описание</span>
+                            </a>
+                            <a class="Tabs-link" href="#sellers">
+                                <span>Продавцы</span>
+                            </a>
+                            <a class="Tabs-link" href="#addit">
+                                <span>Характеристика</span>
+                            </a>
+                            <a class="Tabs-link" href="#reviews">
+                                <span>Отзывы (3)</span>
+                            </a>
                         </div>
                         <div class="Tabs-wrap">
                             <div class="Tabs-block" id="description">
@@ -141,7 +138,120 @@
                                 </div>
                             </div>
                             <div class="Tabs-block" id="sellers">
-                                <div class="Categories Categories_product">
+                                <div class="Section-content">
+                                    <div class="Orders">
+                                        <div class="Order Order_anons">
+                                            <div class="Order-personal">
+                                                <div class="row">
+                                                    <div class="row-block">
+                                                        <a class="Order-title" href="oneorder.html">
+                                                            Ситилинк
+                                                        </a>
+                                                        <div class="ProductCard-cartElement" style="margin-top: 10px;">
+                                                            <a class="btn btn_primary" href="#modal_open">
+                                                                <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
+                                                                <span class="btn-content">Купить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-block">
+                                                        <div class="Order-info Order-info_delivery">
+                                                            <div class="Order-infoType">Тип доставки:
+                                                            </div>
+                                                            <div class="Order-infoContent">Обычная доставка
+                                                            </div>
+                                                        </div>
+                                                        <div class="Order-info Order-info_pay">
+                                                            <div class="Order-infoType">Оплата:
+                                                            </div>
+                                                            <div class="Order-infoContent">Онлайн картой
+                                                            </div>
+                                                        </div>
+                                                        <div class="Order-info">
+                                                            <div class="Order-infoType">Стоимость:
+                                                            </div>
+                                                            <div class="Order-infoContent"><span class="Order-price">200.99$</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Order Order_anons">
+                                            <div class="Order-personal">
+                                                <div class="row">
+                                                    <div class="row-block">
+                                                        <a class="Order-title" href="oneorder.html">
+                                                            ДНС
+                                                        </a>
+                                                        <div class="ProductCard-cartElement" style="margin-top: 10px;">
+                                                            <a class="btn btn_primary" href="#modal_open">
+                                                                <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
+                                                                <span class="btn-content">Купить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-block">
+                                                        <div class="Order-info Order-info_delivery">
+                                                            <div class="Order-infoType">Тип доставки:
+                                                            </div>
+                                                            <div class="Order-infoContent">Обычная доставка
+                                                            </div>
+                                                        </div>
+                                                        <div class="Order-info Order-info_pay">
+                                                            <div class="Order-infoType">Оплата:
+                                                            </div>
+                                                            <div class="Order-infoContent">Онлайн картой
+                                                            </div>
+                                                        </div>
+                                                        <div class="Order-info">
+                                                            <div class="Order-infoType">Стоимость:
+                                                            </div>
+                                                            <div class="Order-infoContent"><span class="Order-price">100.99$</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Order Order_anons">
+                                            <div class="Order-personal">
+                                                <div class="row">
+                                                    <div class="row-block">
+                                                        <a class="Order-title" href="oneorder.html">
+                                                            Эльдорадо
+                                                        </a>
+                                                        <div class="ProductCard-cartElement" style="margin-top: 10px;">
+                                                            <a class="btn btn_primary" href="#modal_open">
+                                                                <img class="btn-icon" src="a{% static 'ssets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
+                                                                <span class="btn-content">Купить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-block">
+                                                        <div class="Order-info Order-info_delivery">
+                                                            <div class="Order-infoType">Тип доставки:
+                                                            </div>
+                                                            <div class="Order-infoContent">Обычная доставка
+                                                            </div>
+                                                        </div>
+                                                        <div class="Order-info Order-info_pay">
+                                                            <div class="Order-infoType">Оплата:
+                                                            </div>
+                                                            <div class="Order-infoContent">Онлайн картой
+                                                            </div>
+                                                        </div>
+                                                        <div class="Order-info">
+                                                            <div class="Order-infoType">Стоимость:
+                                                            </div>
+                                                            <div class="Order-infoContent"><span class="Order-price">20.00$</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="Tabs-block" id="addit">
