@@ -23,13 +23,22 @@
         <h3 class="sign-in">Вход</h3>
     </div>
     <div class="clear"></div>
-    <form action="#">
+    <form action="{% url 'authapp:login' %}" method="post">{% csrf_token %}
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+        {% for mes in messages %}
+            {{ mes }}
+        {% endfor %}
         <div>
-            <input class="user-input" type="text" name="name" id="name" placeholder="E-mail"/>
+            {{ form.label_tag }}
+            {{ form.username }}
+            <!--            <input type="text" name="name" id="name" placeholder="E-mail"/>-->
         </div>
         <div>
-
-            <input type="password" name="pass" id="name" placeholder="*********"/>
+            {{ form.label_tag }}
+            {{ form.password }}
+            <!--            <input type="password" name="pass" id="name" placeholder="*********"/>-->
         </div>
         <div>
             <input type="submit" value="Войти"/>
