@@ -6,12 +6,10 @@ from productsapp.models import Product
 
 class Price(BaseModel):
     """ Класс-модель для цены """
-    min_price = models.DecimalField(max_digits=10,
-                                    decimal_places=2,
-                                    verbose_name="min_price")
-    max_price = models.DecimalField(max_digits=10,
-                                    decimal_places=2,
-                                    verbose_name="max_price")
+    price = models.DecimalField(max_digits=10,
+                                decimal_places=2,
+                                verbose_name="price")
+
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
                                 related_name="price")
