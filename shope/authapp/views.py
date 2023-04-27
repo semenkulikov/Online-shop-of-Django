@@ -1,16 +1,13 @@
-import secrets
-import string
-from django.shortcuts import render
-from django.contrib.auth.views import LoginView, LogoutView
-from authapp.forms import UserLoginForm, UserSignUpForm
-from django.http import HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
 from authapp.models import User
-from django.conf import settings
-from django.core.mail import send_mail
+from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import login
+from django.views.generic import CreateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
+from authapp.forms import UserLoginForm, UserSignUpForm
+from django.contrib.auth.views import LoginView, LogoutView
+from coreapp.utils.verified_user import send_verif_link, generate_random_string
 
 
 class UserLoginView(LoginView):
@@ -28,18 +25,6 @@ class UserLoginView(LoginView):
 
 class UserLogoutView(LogoutView):
     next_page = '../'
-
-
-def generate_random_string():
-    """
-    Метод, который генерирует случайный ключ активации из 13 символов
-    return: rand_string
-    rtype: string
-    """
-    letters_and_digits = string.ascii_letters + string.digits
-    rand_string = ''.join(secrets.choice(
-        letters_and_digits) for i in range(13))
-    return rand_string
 
 
 class UserSignUpView(CreateView):
@@ -64,7 +49,7 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
-            if self.send_verif_link(user):
+            if send_verif_link(user):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, 'Вы успешно зарегистрировались.'
                                           ' \nСсылка для активации '
@@ -73,28 +58,6 @@ class UserSignUpView(CreateView):
         else:
             messages.error(request, form.errors)  # при наличии ошибок в форме
         return render(request, self.template_name, {'form': form})
-
-    def send_verif_link(self, user):
-        """
-        Метод создания и отправки сообщения на e-mail
-        :return: send_mail
-        :rtype: bool
-        """
-        verif_link = reverse('authapp:verified',
-                             kwargs={'email': user.email,
-                                     'key': user.activation_key
-                                     }
-                             )  # ссылка для активации
-        subject = 'Активация аккаунта'
-        message = f'Для подтверждения электронной почты' \
-                  f' {user.email} на портале \n ' \
-                  f'Megano Shop пройдите по ссылке \n' \
-                  f'http://127.0.0.1:8000{verif_link}'
-        # позже добавлю {settings.DOMAIN_NAME}
-        # вместо "Megano Shop"
-        return send_mail(subject, message,
-                         settings.EMAIL_HOST_USER,
-                         [user.email])  # отправка mail
 
 
 def verify_user(request, *args, **kwargs):
@@ -108,13 +71,12 @@ def verify_user(request, *args, **kwargs):
             email = kwargs.get('email')  # мейл из запроса
             activate_key = kwargs.get('key')  # ключ из запроса
             user = User.objects.get(email=email)
-            print(user.is_activation_key_expires)
             if user and user.activation_key == activate_key and \
                     not user.is_activation_key_expires:
                 # если еще не прошло 72 часа
                 # с момента регистрации и ключи одинаковые
                 user.activation_key = ""
-                user.is_active = True
+                user.is_active = True  # активация пользователя
                 user.activation_key_expires = None
                 user.save()
                 login(request, user)  # вход в учетную запись

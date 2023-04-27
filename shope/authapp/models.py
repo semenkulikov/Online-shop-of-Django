@@ -1,7 +1,7 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from datetime import datetime, timedelta
 import pytz
+from django.db import models
+from datetime import datetime, timedelta
+from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
@@ -18,6 +18,7 @@ class User(AbstractUser):
     activation_key_expires = models.DateTimeField(auto_now=True,
                                                   blank=True,
                                                   null=True)
+    # формируется при создании экземпляра модели
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username']
@@ -31,6 +32,8 @@ class User(AbstractUser):
         """
         if datetime.now().replace(tzinfo=pytz.utc) \
                 <= (self.activation_key_expires + timedelta(hours=72)):
+            # если текущая дата не превышает даты создания ключа активации
+            # более чем на 72 часа
             return False
         else:
             return True
