@@ -2,7 +2,6 @@ from django.db import models
 
 from coreapp.models import BaseModel
 from productsapp.models import Seller, Product
-from productsapp.models.price import Price
 
 
 class SellerItem(BaseModel):
@@ -16,13 +15,6 @@ class SellerItem(BaseModel):
         verbose_name='seller'
     )
 
-    price = models.ForeignKey(
-        Price,
-        on_delete=models.CASCADE,
-        related_name='items',
-        verbose_name='price'
-    )
-
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
@@ -31,7 +23,7 @@ class SellerItem(BaseModel):
     )
 
     def __str__(self):
-        return f'{self.seller} {self.product} {self.price}'
+        return f'{self.seller} {self.product} '
 
     class Meta:
         verbose_name = "seller's item"

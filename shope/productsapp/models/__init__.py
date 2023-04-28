@@ -6,3 +6,4 @@ from .type_spec import TypeSpecific  # noqa
 from .specific import Specific  # noqa
 from .seller import Seller # noqa
 from .seller_items import SellerItem # noqa
+from .price import SlicePrice # noqa

@@ -4,3 +4,6 @@ from .discount import Discount  # noqa
 from .product import Product  # noqa
 from .specific import Specific  # noqa
 from .type_spec import TypeSpecific  # noqa
+from .seller import Seller # noqa
+from .seller_item import SellerItem # noqa
+from .slice_price import SlicePrice # noqa
