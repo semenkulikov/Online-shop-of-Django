@@ -6494,6 +6494,7 @@ input[type="radio"] {
     bottom: 0rem;
     right: 0;
 }
+
 .wrap-reg {
     width: 50%;
 }
@@ -6506,16 +6507,15 @@ input[type="radio"] {
     column-gap: 10px;
 }
 
-
 .input-reg {
     max-width: 270px;
     margin-top: 15px;
 }
 
-.registr {
-    margin: 0 25%;
-}
-
 .sign-in {
     text-align: center;
+}
+
+.form-wrap input[type='email'] {
+    color: rgb(0, 99, 209);
 }

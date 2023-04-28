@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+# flake8: noqa
 
 
 class AuthappConfig(AppConfig):
