@@ -26,25 +26,37 @@
 
     </div>
     <div class="clear"></div>
-    <form action="#">
+    <form action="{% url 'authapp:signup' %}" method="post">{% csrf_token %}
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+        {% for mes in messages %}
+            {{ mes }}
+        {% endfor %}
         <div class="form-wrap">
             <div>
-                <input class="user-input" type="text" name="first_name" id="name" placeholder="Имя"/>
+                {{ form.first_name }}
+                <!--                <input class="user-input" type="text" name="first_name" id="name" placeholder="Имя"/>-->
             </div>
             <div>
-                <input class="user-input" type="text" name="last_name" id="name" placeholder="Фамилия"/>
+                {{ form.last_name }}
+                <!--                <input class="user-input" type="text" name="last_name" id="name" placeholder="Фамилия"/>-->
             </div>
             <div>
-                <input class="user-input" type="text" name="middle_name" id="name" placeholder="Отчество"/>
+                {{ form.middle_name }}
+                <!--                <input class="user-input" type="text" name="middle_name" id="name" placeholder="Отчество"/>-->
             </div>
             <div>
-                <input class="user-input" type="email" name="email" id="name" placeholder="E-mail"/>
+                {{ form.email }}
+                <!--                <input class="user-input" type="email" name="email" id="name" placeholder="E-mail"/>-->
             </div>
             <div>
-                <input type="password" name="pass" id="name" placeholder="Пароль"/>
+                {{ form.password1 }}
+                <!--                <input type="password" name="pass" id="name" placeholder="Пароль"/>-->
             </div>
             <div>
-                <input type="password" name="pass2" id="name" placeholder="Подтверждение пароля"/>
+                {{ form.password2 }}
+                <!--                <input type="password" name="pass2" id="name" placeholder="Подтверждение пароля"/>-->
             </div>
             <input class="input-reg" type="submit" value="Зарегистрироваться"/>
             <div class="clear"></div>
