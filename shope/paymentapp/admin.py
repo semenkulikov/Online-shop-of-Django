@@ -1,3 +1,5 @@
 from django.contrib import admin
+from paymentapp.models import Card, Payment
 
-# Register your models here.
+admin.site.register(Card)
+admin.site.register(Payment)
