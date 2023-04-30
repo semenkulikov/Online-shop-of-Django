@@ -1,7 +1,7 @@
 from django.db import models
 from coreapp.models import BaseModel
-from productsapp.models.product import Product
-from productsapp.models.type_spec import TypeSpecific
+from .product import Product
+from .type_spec import TypeSpecific
 
 
 class Specific(BaseModel):
