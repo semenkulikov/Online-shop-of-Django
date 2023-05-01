@@ -12,7 +12,7 @@ class Slider(BaseModel):
         Product,
         on_delete=models.CASCADE,
         verbose_name='product',
-        related_name='slider'
+        related_name='product_on_slider'
     )
 
     description = models.CharField(

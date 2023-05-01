@@ -1,8 +1,9 @@
-from .category import Category  # noqa
-from .comment import Comment  # noqa
-from .discount import Discount  # noqa
-from .product import Product  # noqa
-from .specific import Specific  # noqa
-from .type_spec import TypeSpecific  # noqa
-from .slider import Slider # noqa
-from .banner import Banner # noqa
+# flake8: noqa
+from .category import Category
+from .comment import Comment
+from .discount import Discount
+from .product import Product
+from .specific import Specific
+from .type_spec import TypeSpecific
+from .slider import Slider
+from .banner import Banner

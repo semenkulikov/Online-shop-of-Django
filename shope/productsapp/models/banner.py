@@ -11,7 +11,7 @@ class Banner(BaseModel):
         Category,
         on_delete=models.CASCADE,
         verbose_name='category',
-        related_name='banner'
+        related_name='category_on_banner'
     )
 
     image = models.ImageField(
