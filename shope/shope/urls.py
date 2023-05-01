@@ -30,7 +30,7 @@ urlpatterns = [
     path('profile/', include('profileapp.urls')),
     path('product/', include('productsapp.urls')),
     path('payment/', include('paymentapp.urls')),
-    path('auth', include('authapp.urls')),
+    path('auth/', include('authapp.urls')),
 ]
 
 if settings.DEBUG:
