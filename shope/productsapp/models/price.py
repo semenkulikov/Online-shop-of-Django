@@ -5,7 +5,9 @@ from productsapp.models import Product, Seller
 
 
 class SlicePrice(BaseModel):
-    """ Класс-модель для цены """
+    """
+    Класс-модель для цены
+    """
     value = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -15,7 +17,7 @@ class SlicePrice(BaseModel):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        related_name='price',
+        related_name='product_price',
         verbose_name='product'
     )
 

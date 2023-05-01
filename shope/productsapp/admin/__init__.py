@@ -1,9 +1,10 @@
-from .category import Category  # noqa
-from .comment import Comment  # noqa
-from .discount import Discount  # noqa
-from .product import Product  # noqa
-from .specific import Specific  # noqa
-from .type_spec import TypeSpecific  # noqa
-from .seller import Seller # noqa
-from .seller_item import SellerItem # noqa
-from .slice_price import SlicePrice # noqa
+# flake8: noqa
+from .category import Category
+from .comment import Comment
+from .discount import Discount
+from .product import Product
+from .specific import Specific
+from .type_spec import TypeSpecific
+from .seller import Seller
+from .seller_item import SellerItem
+from .slice_price import SlicePrice

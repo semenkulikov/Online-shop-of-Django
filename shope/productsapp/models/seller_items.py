@@ -11,14 +11,14 @@ class SellerItem(BaseModel):
     seller = models.ForeignKey(
         Seller,
         on_delete=models.CASCADE,
-        related_name='items',
+        related_name='seller_items',
         verbose_name='seller'
     )
 
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        related_name='items',
+        related_name='seller_items',
         verbose_name='product'
     )
 
