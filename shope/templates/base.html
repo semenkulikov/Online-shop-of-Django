@@ -84,8 +84,8 @@
                         </div>
                         <nav class="row-block">
                             <div class="row ControlPanel-rowSplit">
-                                <div class="row-block"><a class="ControlPanel-title" href="1/login.html">Вход</a>
-                                    <a class="ControlPanel-title" href="1/registr.html">Регистрация</a>
+                                <div class="row-block"><a class="ControlPanel-title" href="{% url 'authapp:login' %}">Вход</a>
+                                    <a class="ControlPanel-title" href="{% url 'authapp:signup' %}">Регистрация</a>
                                 </div>
                             </div>
                         </nav>

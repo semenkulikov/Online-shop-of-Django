@@ -1,7 +1,8 @@
-from django.contrib.auth.forms import AuthenticationForm, \
-    UserCreationForm, UsernameField
-from authapp.models import User
 from django import forms
+from authapp.models import User
+from django.contrib.auth.forms import AuthenticationForm, \
+    UserCreationForm, UsernameField, SetPasswordForm, \
+    PasswordResetForm
 
 
 class UserLoginForm(AuthenticationForm):
@@ -43,3 +44,17 @@ class UserSignUpForm(UserCreationForm):
         self.fields['middle_name'].widget.attrs['placeholder'] = 'Отчество'
         for name_field, field in self.fields.items():
             field.widget.attrs['class'] = 'user-input'
+
+
+class UserResetPasswordForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs['placeholder'] = 'E-mail'
+
+
+class UserSetPasswordForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['new_password1'].widget.attrs['placeholder'] = 'Пароль'
+        self.fields['new_password2'].widget. \
+            attrs['placeholder'] = 'Подтверждение пароля'

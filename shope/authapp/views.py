@@ -1,11 +1,16 @@
 from authapp.models import User
 from django.shortcuts import render
 from django.contrib import messages
+from django.conf import settings
 from django.contrib.auth import login
+from django.contrib.auth.views import PasswordResetView, \
+    PasswordResetConfirmView
 from django.views.generic import CreateView
 from django.http import HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
-from authapp.forms import UserLoginForm, UserSignUpForm
+from django.urls import reverse_lazy, \
+    reverse
+from authapp.forms import UserLoginForm, UserSignUpForm, \
+    UserResetPasswordForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, LogoutView
 from coreapp.utils.verified_user import send_verif_link, generate_random_string
 
@@ -84,3 +89,25 @@ def verify_user(request, *args, **kwargs):
         except Exception:
             return HttpResponseRedirect("index.html")
     return render(request, 'authapp/verified.html')
+
+
+class UserPassResetView(PasswordResetView):
+    """
+    Класс для отработки отправки токена для смены пароля на
+    электронную почту.
+    """
+    form_class = UserResetPasswordForm
+    template_name = "authapp/forgot_password.html"
+    from_email = settings.EMAIL_HOST_USER
+    html_email_template_name = "authapp/reset_confim.html"
+    success_url = '/'
+    subject_template_name = "authapp/password_reset_subject.html"
+
+
+class UserPassChangeView(PasswordResetConfirmView):
+    """
+    Класс для смены пароля
+    """
+    form_class = UserSetPasswordForm
+    template_name = "authapp/set_password.html"
+    success_url = '/'
