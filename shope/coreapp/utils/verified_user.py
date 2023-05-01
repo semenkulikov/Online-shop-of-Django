@@ -19,7 +19,7 @@ def send_verif_link(user):
     subject = 'Активация аккаунта'  # тема
     message = f'Для подтверждения электронной почты' \
               f' {user.email} на портале \n ' \
-              f'Megano Shop пройдите по ссылке \n' \
+              f'{settings.DOMAIN_NAME} пройдите по ссылке \n' \
               f'{settings.DOMAIN_NAME}{verif_link}'
     # сообщение
     return send_mail(subject, message,

@@ -24,7 +24,7 @@ class UserLoginView(LoginView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('authapp:index'))
         return render(request, self.template_name, {'form': self.form_class})
 
 
@@ -44,7 +44,7 @@ class UserSignUpView(CreateView):
     def get(self, request, *args, **kwargs):
         form = self.form_class(data=request.GET)
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('authapp:index'))
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
@@ -58,7 +58,9 @@ class UserSignUpView(CreateView):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, 'Вы успешно зарегистрировались.'
                                           ' \nСсылка для активации '
-                                          'аккаунта отправлена на email')
+                                          'аккаунта отправлена на email.\n'
+                                          'В течение 72 часов Вам необходимо '
+                                          'подтвердить свою учетную запись.')
                 return HttpResponseRedirect(reverse('authapp:login'))
         else:
             messages.error(request, form.errors)  # при наличии ошибок в форме
@@ -85,10 +87,11 @@ def verify_user(request, *args, **kwargs):
                 user.activation_key_expires = None
                 user.save()
                 login(request, user)  # вход в учетную запись
-                return render(request, 'authapp/verified.html')
+                return HttpResponseRedirect(reverse('authapp:index'))
         except Exception:
-            return HttpResponseRedirect("index.html")
-    return render(request, 'authapp/verified.html')
+            messages.error(request, 'Произошла ошибка. Истёк срок активации\n'
+                                    'Попробуйте регистрацию заново.')
+            return HttpResponseRedirect(reverse('authapp:index'))
 
 
 class UserPassResetView(PasswordResetView):

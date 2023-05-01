@@ -42,6 +42,8 @@ class UserSignUpForm(UserCreationForm):
         self.fields['first_name'].widget.attrs['placeholder'] = 'Имя'
         self.fields['last_name'].widget.attrs['placeholder'] = 'Фамилия'
         self.fields['middle_name'].widget.attrs['placeholder'] = 'Отчество'
+        self.fields['last_name'].required = True
+        self.fields['first_name'].required = True
         for name_field, field in self.fields.items():
             field.widget.attrs['class'] = 'user-input'
 
