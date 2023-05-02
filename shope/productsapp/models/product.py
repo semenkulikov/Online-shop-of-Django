@@ -12,10 +12,6 @@ class Product(BaseModel):
     description = models.TextField(verbose_name="description",
                                    null=False,
                                    blank=True)
-    price = models.DecimalField(default=0,
-                                max_digits=8,
-                                decimal_places=2,
-                                verbose_name="price")
     image = models.ImageField(upload_to="products",
                               verbose_name="image")
     tags = TaggableManager()

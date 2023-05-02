@@ -5,20 +5,16 @@ from authapp.models import User
 from productsapp.models.product import Product
 
 
-class Comment(BaseModel):
+class Review(BaseModel):
     """
-    Класс-модель для комментариев
+    Класс-модель для комментария
     """
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
-                             related_name="comments")
+                             related_name="reviews")
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
-                                related_name="comments")
-    name = models.CharField(max_length=100,
-                            blank=True,
-                            null=False,
-                            verbose_name="name")
+                                related_name="reviews")
     text = models.TextField(blank=True,
                             null=False,
                             verbose_name="text")
