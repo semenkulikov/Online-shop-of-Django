@@ -1,29 +1,25 @@
 import requests
-import base64
 import uuid
-from dotenv import load_dotenv
 import os
+from coreapp.utils.encode_decode import encode_auth_value
 
 
 class Payment:
     """
     Сервис работы с платежами через ЮKassa
     """
-    api_url = 'https://api.yookassa.ru/v3/payments/'
+    _api_url = 'https://api.yookassa.ru/v3/payments/'
+    _shop_id = os.getenv("SHOP_ID")
+    _api_key = os.getenv("YOOKASSA_API_KEY")
+    _auth_data = f'{_shop_id}:{_api_key}'
 
-    @staticmethod
-    def base_auth_header():
+    @classmethod
+    def base_auth_header(cls):
         """
         Формирование заголовка для HTTP Basic Auth
         :return: Словарь с ключом-значением для заголовка Basic Auth
         """
-        load_dotenv()
-        shop_id = os.getenv("SHOP_ID")
-        api_key = os.getenv("YOOKASSA_API_KEY")
-
-        auth_data = f'{shop_id}:{api_key}'
-        coded_auth_data = base64.b64encode(auth_data.encode()).decode()
-
+        coded_auth_data = encode_auth_value(cls._auth_data)
         return {'Authorization': f'Basic {coded_auth_data}'}
 
     @classmethod
@@ -33,7 +29,7 @@ class Payment:
         :param payment_id: str Идентификатор платежа
         :return: Ответ сервера со статусом платежа
         """
-        response = requests.get(url=f'{cls.api_url}{payment_id}',
+        response = requests.get(url=f'{cls._api_url}{payment_id}',
                                 headers=cls.base_auth_header())
         return response
 
@@ -79,7 +75,7 @@ class Payment:
             if save_payment_method:
                 payment_object['save_payment_method'] = True
 
-        response = requests.post(url=cls.api_url,
+        response = requests.post(url=cls._api_url,
                                  headers=headers,
                                  json=payment_object)
         return response
