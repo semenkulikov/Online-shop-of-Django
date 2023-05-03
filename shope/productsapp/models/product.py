@@ -25,7 +25,7 @@ class Product(BaseModel):
         'productsapp.Category',
         on_delete=models.DO_NOTHING,
         verbose_name='category',
-        related_name='product'
+        related_name='category_products'
     )
 
     class Meta:
