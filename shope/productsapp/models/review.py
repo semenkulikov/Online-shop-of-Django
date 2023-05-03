@@ -11,10 +11,10 @@ class Review(BaseModel):
     """
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
-                             related_name="reviews")
+                             related_name="review")
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
-                                related_name="reviews")
+                                related_name="review")
     text = models.TextField(blank=True,
                             null=False,
                             verbose_name="text")
@@ -24,4 +24,4 @@ class Review(BaseModel):
         verbose_name_plural = "reviews"
 
     def __str__(self):
-        return self.name
+        return f"Reviews from {self.user.first_name}"
