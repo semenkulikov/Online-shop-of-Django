@@ -82,6 +82,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% if not user.is_authenticated %}
                         <nav class="row-block">
                             <div class="row ControlPanel-rowSplit">
                                 <div class="row-block"><a class="ControlPanel-title" href="{% url 'authapp:login' %}">Вход</a>
@@ -89,6 +90,7 @@
                                 </div>
                             </div>
                         </nav>
+                        {% endif %}
                     </div>
                 </div>
                 <!--+div.menuModal#navigate
@@ -124,12 +126,14 @@
 
                         <div class="CartBlock">
                             <div class="dropdown">
+                                {% if user.is_authenticated %}
                                 <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                 <div class="dropdown-content">
                                     <a class="dropdown-content-a" href="account.html">Личный кабинет</a>
                                     <a class="dropdown-content-a" href="account.html">Административный раздел</a>
-                                    <a class="dropdown-content-a" href="account.html">Выход</a>
+                                    <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">Выход</a>
                                 </div>
+                                {% endif %}
                             </div>
                             <a class="CartBlock-block" href="cart.html"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof cart.total_count '0' %}</span></a>
                             <div class="CartBlock-block"><span class="CartBlock-price">{% firstof cart.total_amount '0' %}$</span>

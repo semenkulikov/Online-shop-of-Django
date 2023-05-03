@@ -29,7 +29,7 @@ class UserLoginView(LoginView):
 
 
 class UserLogoutView(LogoutView):
-    next_page = '../'
+    next_page = '/'
 
 
 class UserSignUpView(CreateView):
@@ -87,11 +87,12 @@ def verify_user(request, *args, **kwargs):
                 user.activation_key_expires = None
                 user.save()
                 login(request, user)  # вход в учетную запись
-                return HttpResponseRedirect(reverse('authapp:index'))
+                messages.set_level(request, messages.SUCCESS)
+                messages.success(request, 'Ваша учётная запись подтверждена')
         except Exception:
             messages.error(request, 'Произошла ошибка. Истёк срок активации\n'
                                     'Попробуйте регистрацию заново.')
-            return HttpResponseRedirect(reverse('authapp:index'))
+    return HttpResponseRedirect(reverse('authapp:index'))
 
 
 class UserPassResetView(PasswordResetView):
@@ -103,7 +104,7 @@ class UserPassResetView(PasswordResetView):
     template_name = "authapp/forgot_password.html"
     from_email = settings.EMAIL_HOST_USER
     html_email_template_name = "authapp/reset_confim.html"
-    success_url = '/'
+    success_url = reverse_lazy('index')
     subject_template_name = "authapp/password_reset_subject.html"
 
 
@@ -113,4 +114,4 @@ class UserPassChangeView(PasswordResetConfirmView):
     """
     form_class = UserSetPasswordForm
     template_name = "authapp/set_password.html"
-    success_url = '/'
+    success_url = reverse_lazy('index')
