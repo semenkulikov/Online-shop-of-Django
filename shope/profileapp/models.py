@@ -17,7 +17,8 @@ class Profile(models.Model):
     fio = models.CharField(max_length=100, verbose_name='ФИО')
     avatar_image = models.ImageField(
         upload_to='profile_avatars/',
-        verbose_name='аватар'
+        verbose_name='аватар',
+        null=True
     )
     phone_number = PhoneNumberField(
         blank=True,

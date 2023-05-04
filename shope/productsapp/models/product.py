@@ -12,7 +12,7 @@ class Product(BaseModel):
     description = models.TextField(verbose_name="description",
                                    null=False,
                                    blank=True)
-    image = models.ImageField(upload_to="products",
+    image = models.ImageField(upload_to="products", null=True,
                               verbose_name="image")
     tags = TaggableManager()
     archived = models.BooleanField(default=False,

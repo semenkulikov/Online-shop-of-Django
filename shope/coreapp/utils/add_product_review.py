@@ -1,5 +1,5 @@
-from authapp.models import User
 from productsapp.models import Product, Review
+from profileapp.models import Profile
 
 
 class AddProductReview:
@@ -9,7 +9,7 @@ class AddProductReview:
 
     @classmethod
     def add_product_review(cls,
-                           user: User,
+                           user: Profile,
                            product: Product,
                            text: str):
         """
@@ -18,16 +18,15 @@ class AddProductReview:
         :param user: объект User, который дает отзыв
         :param product: объект Product, которому адресован отзыв
         :param text: текст отзыва
-        :return: str
+        :return: bool
         """
-        if user.is_anonymous:
-            return "Чтобы оставить отзыв, " \
-                   "вам нужно авторизоваться - http://localhost:8000/signup/"
+        if user.user.is_anonymous:
+            return False
 
         Review.objects.create(user=user,
                               product=product,
                               text=text)
-        return "Отзыв успешно добавлен"
+        return True
 
     @classmethod
     def product_reviews_list(cls, product: Product):
