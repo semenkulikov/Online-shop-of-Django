@@ -24,7 +24,7 @@ class UserLoginView(LoginView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('authapp:index'))
+            return HttpResponseRedirect(reverse('index'))
         return render(request, self.template_name, {'form': self.form_class})
 
 
@@ -44,7 +44,7 @@ class UserSignUpView(CreateView):
     def get(self, request, *args, **kwargs):
         form = self.form_class(data=request.GET)
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('authapp:index'))
+            return HttpResponseRedirect(reverse('index'))
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
@@ -92,7 +92,7 @@ def verify_user(request, *args, **kwargs):
         except Exception:
             messages.error(request, 'Произошла ошибка. Истёк срок активации\n'
                                     'Попробуйте регистрацию заново.')
-    return HttpResponseRedirect(reverse('authapp:index'))
+    return HttpResponseRedirect(reverse('index'))
 
 
 class UserPassResetView(PasswordResetView):
