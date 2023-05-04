@@ -2,6 +2,8 @@ from django.db import models
 from coreapp.models import BaseModel
 from taggit.managers import TaggableManager
 
+from productsapp.models import Category
+
 
 class Product(BaseModel):
     """
@@ -19,6 +21,8 @@ class Product(BaseModel):
                                    verbose_name="archived")
     is_delivered = models.BooleanField(default=False,
                                        verbose_name="is_delivered")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 related_name="product", null=True)
 
     class Meta:
         verbose_name = "product"
