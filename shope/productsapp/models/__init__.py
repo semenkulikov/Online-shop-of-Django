@@ -7,3 +7,6 @@ from .type_spec import TypeSpecific
 from .specific import Specific
 from .banner import Banner
 from .slider import Slider
+from .seller import Seller
+from .seller_items import SellerItem
+from .price import SlicePrice
