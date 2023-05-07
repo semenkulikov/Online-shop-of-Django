@@ -12,20 +12,20 @@ class Profile(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='profile',
-        verbose_name='пользователь'
+        verbose_name='user'
     )
     fio = models.CharField(max_length=100, verbose_name='ФИО')
     avatar_image = models.ImageField(
         upload_to='profile_avatars/',
-        verbose_name='аватар'
+        verbose_name='avatar'
     )
     phone_number = PhoneNumberField(
         blank=True,
-        verbose_name='номер телефона'
+        verbose_name='phone'
     )
 
     def __str__(self):
-        return self.fio
+        return f'{self.fio} - {self.user.email}'
 
     class Meta:
         verbose_name = 'профиль'
