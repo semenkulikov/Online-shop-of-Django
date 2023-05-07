@@ -21,6 +21,13 @@ class Product(BaseModel):
     is_delivered = models.BooleanField(default=False,
                                        verbose_name="is_delivered")
 
+    category = models.ForeignKey(
+        'productsapp.Category',
+        on_delete=models.DO_NOTHING,
+        verbose_name='category',
+        related_name='category_products'
+    )
+
     class Meta:
         verbose_name = "product"
         verbose_name_plural = "products"

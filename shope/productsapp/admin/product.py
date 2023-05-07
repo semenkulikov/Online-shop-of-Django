@@ -10,11 +10,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ["pk",
                     "name",
                     "description",
-                    "price",
                     "image",
                     "tags",
                     "archived",
                     "is_delivered",
+                    "category",
                     ]
 
-    ordering = "-price", "name", "archived", "is_delivered"
+    ordering = "name", "archived", "is_delivered"
