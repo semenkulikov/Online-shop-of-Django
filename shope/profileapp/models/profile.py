@@ -14,7 +14,7 @@ class Profile(models.Model):
         related_name='profile',
         verbose_name='user'
     )
-    fio = models.CharField(max_length=100, verbose_name='ФИО')
+    fio = models.CharField(max_length=100, verbose_name='FIO')
     avatar_image = models.ImageField(
         upload_to='profile_avatars/',
         verbose_name='avatar'
@@ -28,5 +28,5 @@ class Profile(models.Model):
         return f'{self.fio} - {self.user.email}'
 
     class Meta:
-        verbose_name = 'профиль'
-        verbose_name_plural = 'профили'
+        verbose_name = 'profile'
+        verbose_name_plural = 'profiles'
