@@ -7,3 +7,4 @@ django-phonenumber-field==7.0.2
 django-taggit==3.1.0
 pytz==2023.3
 requests==2.29.0
+pymemcache==4.0.0
