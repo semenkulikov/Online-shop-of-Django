@@ -12,7 +12,9 @@ class Order(BaseModel):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name='user')
+        verbose_name='user',
+        related_name='orders'
+    )
     status = models.CharField(
         max_length=20,
         verbose_name='status',
