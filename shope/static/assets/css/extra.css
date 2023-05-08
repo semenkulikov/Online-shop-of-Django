@@ -6496,7 +6496,7 @@ input[type="radio"] {
 }
 
 .wrap-reg {
-    width: 50%;
+    min-width: 40%;
 }
 
 .form-wrap {
@@ -6509,6 +6509,7 @@ input[type="radio"] {
 
 .input-reg {
     max-width: 270px;
+    margin: 0 30%;
     margin-top: 15px;
 }
 
@@ -6516,6 +6517,14 @@ input[type="radio"] {
     text-align: center;
 }
 
+.form-wrap div {
+    min-width: 40%;
+}
+
+.log-in {
+    margin: 0 40%;
+    margin-top: 10px;
+}
 .form-wrap input[type='email'] {
     color: rgb(0, 99, 209);
 }

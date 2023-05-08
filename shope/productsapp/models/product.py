@@ -2,7 +2,7 @@ from django.db import models
 from coreapp.models import BaseModel
 from taggit.managers import TaggableManager
 
-from productsapp.models import Category
+from .category import Category
 
 
 class Product(BaseModel):
@@ -19,10 +19,14 @@ class Product(BaseModel):
     tags = TaggableManager()
     archived = models.BooleanField(default=False,
                                    verbose_name="archived")
-    is_delivered = models.BooleanField(default=False,
-                                       verbose_name="is_delivered")
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 related_name="product", null=True)
+    free_delivery = models.BooleanField(default=False,
+                                        verbose_name="free_delivery")
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.DO_NOTHING,
+        verbose_name='category',
+        related_name='category_products'
+    )
 
     class Meta:
         verbose_name = "product"

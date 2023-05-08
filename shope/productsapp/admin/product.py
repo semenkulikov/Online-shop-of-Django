@@ -13,7 +13,8 @@ class ProductAdmin(admin.ModelAdmin):
                     "image",
                     "tags",
                     "archived",
-                    "is_delivered",
+                    "free_delivery",
+                    "category",
                     ]
 
-    ordering = "name", "archived", "is_delivered"
+    ordering = "name", "archived", "free_delivery"
