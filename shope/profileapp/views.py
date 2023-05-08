@@ -1,20 +1,20 @@
-from django.views.generic import View
+from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile
 from repositories import OrderRepository
-from django.shortcuts import render
 
 
 order_rep = OrderRepository()
 
 
-class ProfileView(View, LoginRequiredMixin):
+class ProfileDetailView(DetailView, LoginRequiredMixin):
+    queryset = Profile
+    template_name = 'profileapp/account.html'
 
-    def get(self, request, *args, **kwargs):
-        account = Profile.objects.get(user=self.request.user)
-        order = order_rep.get_last_activ(user=self.request.user)
-        context = {
-            'account': account,
-            'order': order,
-        }
-        return render(request, 'profileapp/account.html', context=context)
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order'] = order_rep.get_last_activ(user=self.request.user)
+        return context

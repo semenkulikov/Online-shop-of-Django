@@ -36,11 +36,11 @@
                     <div class="Account">
                         <div class="Account-group">
                             <div class="Account-column">
-                                <div class="Account-avatar"><img src="{{ account.avatar_image.url }}" alt="card.jpg" />
+                                <div class="Account-avatar"><img src="{{ object.avatar_image.url }}" alt="card.jpg" />
                                 </div>
                             </div>
                             <div class="Account-column">
-                                <div class="Account-name">{{ account.fio }}</div>
+                                <div class="Account-name">{{ object.fio }}</div>
                                 <a class="Account-editLink" href="{% url 'profileapp:profile_update' %}">Редактировать профиль</a>
                             </div>
                         </div>
