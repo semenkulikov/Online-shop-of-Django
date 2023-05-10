@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('productsapp', '0004_price_seller_selleritem'),
     ]
-
     operations = [
         migrations.CreateModel(
             name='Banner',
