@@ -41,8 +41,13 @@
                     </div>
                     <nav class="row-block">
                         <div class="row ControlPanel-rowSplit">
-                            <div class="row-block"><a class="ControlPanel-title" href="1/login.html">Вход</a>
-                                <a class="ControlPanel-title" href="1/registr.html">Регистрация</a>
+                            <div class="row-block">
+                                {% if not user.is_authenticated %}
+                                <a class="ControlPanel-title" href="{% url 'authapp:login' %}">Вход</a>
+                                <a class="ControlPanel-title" href="{% url 'authapp:signup' %}">Регистрация</a>
+                                {% else %}
+                                <a class="ControlPanel-title" href="{% url 'profileapp:account' %}">Личный кабинет</a>
+                                {% endif %}
                             </div>
                         </div>
                     </nav>
@@ -79,12 +84,14 @@
 
                     <div class="CartBlock">
                         <div class="dropdown">
+                            {% if user.is_authenticated %}
                             <button class="dropbtn"><img class="CartBlock-img" src="assets/img/icons/loon-icon.svg" alt="loon-icon.svg" /></button>
                             <div class="dropdown-content">
-                                <a class="dropdown-content-a" href="account.html">Личный кабинет</a>
+                                <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">Личный кабинет</a>
                                 <a class="dropdown-content-a" href="account.html">Административный раздел</a>
                                 <a class="dropdown-content-a" href="account.html">Выход</a>
                             </div>
+                            {% endif %}
                         </div>
                         <a class="CartBlock-block" href="cart.html"><img class="CartBlock-img" src="assets/img/icons/cart.svg" alt="cart.svg" /><span class="CartBlock-amount">0</span></a>
                         <div class="CartBlock-block"><span class="CartBlock-price">0.00$</span>
