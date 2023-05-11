@@ -1,24 +1,20 @@
 from django.db import models
 from coreapp.models import BaseModel
 
-from authapp.models import User
 from productsapp.models.product import Product
+from profileapp.models import Profile
 
 
-class Comment(BaseModel):
+class Review(BaseModel):
     """
-    Класс-модель для комментариев
+    Класс-модель для комментария
     """
-    user = models.ForeignKey(User,
+    user = models.ForeignKey(Profile,
                              on_delete=models.CASCADE,
-                             related_name="comments")
+                             related_name="review")
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
-                                related_name="comments")
-    name = models.CharField(max_length=100,
-                            blank=True,
-                            null=False,
-                            verbose_name="name")
+                                related_name="review")
     text = models.TextField(blank=True,
                             null=False,
                             verbose_name="text")
@@ -28,4 +24,4 @@ class Comment(BaseModel):
         verbose_name_plural = "reviews"
 
     def __str__(self):
-        return self.name
+        return f"Reviews from {self.user.user.first_name}"

@@ -2,6 +2,8 @@ from django.db import models
 from coreapp.models import BaseModel
 from taggit.managers import TaggableManager
 
+from .category import Category
+
 
 class Product(BaseModel):
     """
@@ -12,17 +14,15 @@ class Product(BaseModel):
     description = models.TextField(verbose_name="description",
                                    null=False,
                                    blank=True)
-
-    image = models.ImageField(upload_to="products",
+    image = models.ImageField(upload_to="products", null=True,
                               verbose_name="image")
     tags = TaggableManager()
     archived = models.BooleanField(default=False,
                                    verbose_name="archived")
-    is_delivered = models.BooleanField(default=False,
-                                       verbose_name="is_delivered")
-
+    free_delivery = models.BooleanField(default=False,
+                                        verbose_name="free_delivery")
     category = models.ForeignKey(
-        'productsapp.Category',
+        Category,
         on_delete=models.DO_NOTHING,
         verbose_name='category',
         related_name='category_products'
