@@ -1,28 +1,62 @@
+from django.db.models import QuerySet
+from django.http import HttpRequest
+
+from productsapp.models import Product
+
+
 class ProductsComparisonList:
     """
     Сервис сравнения товаров
     """
-    def add_to_comparison(self):
+
+    @classmethod
+    def add_to_comparison(cls, request: HttpRequest, product_id: int) -> None:
         """
         Добавить товар в список сравнения
-        """
-        pass
 
-    def remove_from_comparison(self):
+        :param request: запрос
+        :param product_id: id товара, добавляемого в список сравнения
+
+        :return: None
+        """
+        comparison_list: list = request.session.get("comparison_list", [])
+        if product_id not in comparison_list and len(comparison_list) <= 4:
+            comparison_list.append(product_id)
+        request.session["comparison_list"] = comparison_list
+
+    @classmethod
+    def remove_from_comparison(cls,
+                               request: HttpRequest,
+                               product_id: int) -> None:
         """
         Убрать товар из списка сравнения
-        """
-        pass
 
-    def comparison_list(self):
+        :param request: запрос
+        :param product_id: id товара, который надо убрать из списка сравнения
+
+        :return: None
+        """
+        if product_id in request.session["comparison_list"]:
+            request.session["comparison_list"].remove(product_id)
+
+    @classmethod
+    def get_comparison_list(cls, request: HttpRequest) -> QuerySet[Product]:
         """
         Получение списка товаров, добавленных к сравнению (с возможностью
-        ограничить количество, по умолчанию максимум - три первых добавленных)
-        """
-        pass
+        ограничить количество, по умолчанию максимум — три первых)
 
-    def comparison_list_size(self):
+        :param request: запрос
+        :return: QuerySet[Product]
+        """
+        products_id = request.session.get("comparison_list")
+        return Product.objects.filter(id__in=products_id)
+
+    @classmethod
+    def comparison_list_size(cls, request: HttpRequest) -> int:
         """
         Получение количества товаров в списке сравнения
+
+        :param request: запрос
+        :return: int
         """
-        pass
+        return len(request.session.get("comparison_list", []))

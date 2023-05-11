@@ -4,11 +4,12 @@ from django.views import View
 from productsapp.models import Product
 from productsapp.forms import AddReviewForm
 from coreapp.utils.add_product_review import AddProductReview
+from profileapp.models import Profile
 
 
-class ProductDetailView(View):
+class AddReviewView(View):
     """
-    Класс-view для отображения детальной страницы продукта
+    Класс-view для добавления отзыва к продукту
     """
     form_class = AddReviewForm
     service = AddProductReview()
@@ -35,7 +36,7 @@ class ProductDetailView(View):
             # Если форма валидна, берем отзыв и добавляем к продукту
             text = form.cleaned_data.get("text")
             result = self.service.add_product_review(
-                user=self.request.user,
+                user=Profile.objects.get(user=self.request.user),
                 product=product,
                 text=text
             )

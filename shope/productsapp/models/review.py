@@ -7,14 +7,14 @@ from profileapp.models import Profile
 
 class Review(BaseModel):
     """
-    Класс-модель для комментария
+    Класс-модель для комментариев
     """
     user = models.ForeignKey(Profile,
                              on_delete=models.CASCADE,
-                             related_name="review")
+                             related_name="reviews")
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
-                                related_name="review")
+                                related_name="reviews")
     text = models.TextField(blank=True,
                             null=False,
                             verbose_name="text")
