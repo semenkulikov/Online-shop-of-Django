@@ -1,14 +1,17 @@
 from productsapp.models import Product, Review
 from profileapp.models import Profile
+from repositories.reviews_select_repository import ReviewSelectRepository
+from repositories.reviews_update_repository import ReviewUpdateRepository
 
 
 class AddProductReview:
     """
     Сервис добавления отзыва к товару
     """
+    select_repository = ReviewSelectRepository()
+    update_repository = ReviewUpdateRepository()
 
-    @classmethod
-    def add_product_review(cls,
+    def add_product_review(self,
                            user: Profile,
                            product: Product,
                            text: str):
@@ -23,23 +26,22 @@ class AddProductReview:
         if user.user.is_anonymous:
             return False
 
-        Review.objects.create(user=user,
-                              product=product,
-                              text=text)
+        review = Review(user=user,
+                        product=product,
+                        text=text)
+        self.update_repository.update_review(review=review)
         return True
 
-    @classmethod
-    def product_reviews_list(cls, product: Product):
+    def product_reviews_list(self, product: Product):
         """
         Получение списка отзывов к товару
 
         :param product: объект Product, у которого берем отзывы
         :return: QuerySet
         """
-        return product.review.all()
+        return self.select_repository.get_all_reviews(product=product)
 
-    @classmethod
-    def product_reviews_amount(cls, product: Product):
+    def product_reviews_amount(self, product: Product) -> int:
         """
         Получение количества отзывов для товара
 
@@ -48,4 +50,4 @@ class AddProductReview:
         :return: int
         """
 
-        return product.review.count()
+        return self.select_repository.get_amount_reviews(product=product)
