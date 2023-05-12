@@ -20,8 +20,10 @@ class Profile(models.Model):
         verbose_name='avatar'
     )
     phone_number = PhoneNumberField(
+        region='RU',
         blank=True,
-        verbose_name='phone'
+        verbose_name='phone',
+        unique=True
     )
 
     def __str__(self):
