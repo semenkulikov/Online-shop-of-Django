@@ -13,6 +13,8 @@ from authapp.forms import UserLoginForm, UserSignUpForm, \
     UserResetPasswordForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, LogoutView
 from coreapp.utils.verified_user import send_verif_link, generate_random_string
+from coreapp.utils.add_to_cart import AddToCart
+from cartapp.models.cart import Cart
 
 
 class UserLoginView(LoginView):
@@ -26,6 +28,15 @@ class UserLoginView(LoginView):
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse('index'))
         return render(request, self.template_name, {'form': self.form_class})
+
+    def form_valid(self, form):
+        super().form_valid(form)
+        if self.request.user.is_authenticated and self.request.\
+                session.get('products'):
+            # если в сессии есть продукты
+            AddToCart().move_from_session(self.request, self.request.user)
+            # добавление товаров в продукты
+        return HttpResponseRedirect(reverse('index'))
 
 
 class UserLogoutView(LogoutView):
@@ -54,6 +65,9 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
+            Cart.objects.create(user=user)
+            if request.session['products']:  # если в сессии есть продукты
+                AddToCart().move_from_session(request, user)
             if send_verif_link(user):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, 'Вы успешно зарегистрировались.'
