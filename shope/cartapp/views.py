@@ -1,9 +1,8 @@
 from django.views import View
-from cartapp.models.cart import Cart
 from django.shortcuts import render
 from coreapp.utils.add_to_cart import AddToCart
 from django.http import HttpResponseRedirect
-from productsapp.models.price import SlicePrice
+from repositories.cart_repository import RepCart
 
 
 class CartItemListView(View):
@@ -14,12 +13,11 @@ class CartItemListView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:  # пользователь авторизован
-            cart_items = AddToCart. \
-                cart_items_list(cart=Cart.objects.get(user=request.user))
+            cart = RepCart().get_cart(user=request.user)
+            cart_items = AddToCart.cart_items_list(cart=cart)
             #  все товары в корзине
 
-            context = {'items': cart_items,
-                       'price': SlicePrice, }
+            context = {'items': cart_items}
             return render(request, self.template_name, context)
         else:  # пользователь не авторизован
             if request.session.get('products', False):  # есть товары в сессии

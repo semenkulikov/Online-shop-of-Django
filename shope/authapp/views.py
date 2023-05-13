@@ -14,7 +14,7 @@ from authapp.forms import UserLoginForm, UserSignUpForm, \
 from django.contrib.auth.views import LoginView, LogoutView
 from coreapp.utils.verified_user import send_verif_link, generate_random_string
 from coreapp.utils.add_to_cart import AddToCart
-from cartapp.models.cart import Cart
+from repositories.cart_repository import RepCart
 
 
 class UserLoginView(LoginView):
@@ -31,7 +31,7 @@ class UserLoginView(LoginView):
 
     def form_valid(self, form):
         super().form_valid(form)
-        if self.request.user.is_authenticated and self.request.\
+        if self.request.user.is_authenticated and self.request. \
                 session.get('products'):
             # если в сессии есть продукты
             AddToCart().move_from_session(self.request, self.request.user)
@@ -65,7 +65,7 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
-            Cart.objects.create(user=user)
+            RepCart().save(user=user)
             if request.session['products']:  # если в сессии есть продукты
                 AddToCart().move_from_session(request, user)
             if send_verif_link(user):
