@@ -18,6 +18,6 @@ class ReviewInterface(ABC):
         pass
 
     @abstractmethod
-    def update_review(self, review: Review, force=None) -> None:
+    def save(self, review: Review, force=None) -> None:
         """ Обновление или создание отзыва """
         pass

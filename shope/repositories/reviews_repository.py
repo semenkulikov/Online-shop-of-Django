@@ -12,7 +12,7 @@ class ReviewRepository(ReviewInterface):
     def get_amount_reviews(self, product: Product) -> int:
         return product.reviews.count()
 
-    def update_review(self, review: Review, force=None) -> None:
+    def save(self, review: Review, force=None) -> None:
         if force:
             review.save(force)
         review.save()
