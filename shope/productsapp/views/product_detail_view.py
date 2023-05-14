@@ -4,6 +4,7 @@ from django.views import View
 from productsapp.models import Product
 from productsapp.forms import AddReviewForm
 from coreapp.utils.add_product_review import AddProductReview
+from repositories import SellerSelectRepository, SpecificSelectRepository
 
 
 class ProductDetailView(View):
@@ -12,6 +13,8 @@ class ProductDetailView(View):
     """
     form_class = AddReviewForm
     service = AddProductReview()
+    select_seller_repo = SellerSelectRepository()
+    select_specifics_repo = SpecificSelectRepository()
 
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)
@@ -20,11 +23,20 @@ class ProductDetailView(View):
         # количество отзывов
         reviews_list = self.service.product_reviews_list(product=product)
         # список отзывов
+        sellers = self.select_seller_repo.get_seller_by_product(
+            product=product
+        )
+        specifics = self.select_specifics_repo.get_specific_by_product(
+            product=product
+        )
+
         return render(request, "productsapp/product.html",
                       context={"form": self.form_class,
                                "product": product,
                                "amount_review": amount_review,
-                               "reviews_list": reviews_list})
+                               "reviews_list": reviews_list,
+                               'sellers': sellers,
+                               'specifics': specifics})
 
     def post(self, request: HttpRequest, product_id: int) -> HttpResponse:
         form = self.form_class(data=request.POST)  # форма с отзывом
