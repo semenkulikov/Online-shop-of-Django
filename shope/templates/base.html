@@ -138,7 +138,7 @@
                                 </div>
                                 {% endif %}
                             </div>
-                            <a class="CartBlock-block" href="{% url 'cartapp:cart' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof cart.total_count '0' %}</span></a>
+                            <a class="CartBlock-block" href="{% url 'cartapp:cart' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof cart '0' %}</span></a>
                             <div class="CartBlock-block"><span class="CartBlock-price">{% firstof cart.total_amount '0' %}$</span>
 
 

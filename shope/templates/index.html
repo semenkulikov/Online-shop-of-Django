@@ -94,7 +94,7 @@
                             {% endif %}
                         </div>
                         <a class="CartBlock-block" href="{% url 'cartapp:cart' %}"><img class="CartBlock-img" src="assets/img/icons/cart.svg" alt="cart.svg" /><span class="CartBlock-amount">0</span></a>
-                        <div class="CartBlock-block"><span class="CartBlock-price">0.00$</span>
+                        <div class="CartBlock-block"><span class="CartBlock-price">{% firstof cart '0' %}</span>
 
 
                         </div>

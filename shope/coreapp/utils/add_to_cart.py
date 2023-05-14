@@ -33,7 +33,7 @@ class AddToCart:
         else:  # если анонимный пользователь
             if request.session.get('products', False) is not False:
                 #  если есть в сессиях уже какие-либо товары
-                if request.session['products'].\
+                if request.session['products']. \
                         get(str(product_id), False) is not False:
                     # если позиция с конкретным товаром уже есть и count != 1
                     # изменить количество на count
@@ -62,7 +62,13 @@ class AddToCart:
                 RepCartItem().delete(cart_item)
             else:  # уменьшение количества товара на 1
                 cart_item.update(quantity=F('quantity') - 1)
-        pass
+        else:
+            if request.session.get('products', False) is not False:
+                if full is not False:  # удаление товара из корзины
+                    request.session['products'].pop(str(product_id), False)
+                else:  # уменьшение количества на 1
+                    request.session['products'][str(product_id)] -= 1
+                request.session.modified = True
 
     @classmethod
     def change_amount(cls, request, product_id, count=1):
@@ -106,11 +112,11 @@ class AddToCart:
         for product_id in request.session['products']:
             # цикл по product_id в сессии
             product = get_object_or_404(Product, pk=product_id)
-            cart_item = RepCartItem().\
+            cart_item = RepCartItem(). \
                 get_cart_item(cart=cart, product=product)
             if cart_item:
-                cart_item.\
-                    update(quanity=F('quantity') + request.
+                cart_item. \
+                    update(quantity=F('quantity') + request.
                            session['products'][product_id])
             else:
                 RepCartItem().save(

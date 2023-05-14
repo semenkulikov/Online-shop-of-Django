@@ -102,7 +102,6 @@ def verify_user(request, *args, **kwargs):
                 user.save()
                 login(request, user)  # вход в учетную запись
                 messages.set_level(request, messages.SUCCESS)
-                messages.success(request, 'Ваша учётная запись подтверждена')
         except Exception:
             messages.error(request, 'Произошла ошибка. Истёк срок активации\n'
                                     'Попробуйте регистрацию заново.')

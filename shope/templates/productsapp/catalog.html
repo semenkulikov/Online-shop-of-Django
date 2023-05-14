@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="Middle Middle_top">
+<div class="Middle Middle_top">
         <div class="Section Section_column Section_columnLeft">
             <div class="wrap">
                 <div class="Section-column">
@@ -72,20 +72,23 @@
                         </div>
                     </div>
                     <div class="Cards">
-                        <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/home/card.jpg' %}" alt="card.jpg" /></a>
+                        {% for product in products %}
+                        <div class="Card"><a class="Card-picture" href="#"><img src="{{product.image.url}}" alt="card.jpg" /></a>
                             <div class="Card-content">
-                                <strong class="Card-title"><a href="product.html">Corsair Carbide Series Arctic White Steel</a>
+                                <strong class="Card-title"><a href="product.html">{{product.name}}</a>
                                 </strong>
                                 <div class="Card-description">
                                     <div class="Card-cost"><span class="Card-price">$85.00</span>
                                     </div>
                                     <div class="Card-category">Игры / xbox
                                     </div>
-                                    <div class="Card-hover"><a class="Card-btn" href="#"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
+                                    <div class="Card-hover">
+                                            <a class="Card-btn" href="{% url 'cartapp:add_product' product.pk %}"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                         <div class="Card"><a class="Card-picture" href="#"><img src="{% static 'assets/img/content/home/card.jpg' %}" alt="card.jpg" /></a>
                             <div class="Card-content">
                                 <strong class="Card-title"><a href="product.html">Barand New Phone Smart Business</a>

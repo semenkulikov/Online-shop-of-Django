@@ -41,12 +41,12 @@ class RepCart(CartInterface):
     # )['total_amount']
     def count_items(self, cart: Cart) -> int:
         """
-        Количество позиций
+        Количество товаров в корзине
         """
-        # Доделать позже
-        return cart.cartitems.count()
+        total_products = cart.items. \
+            aggregate(Sum('quantity'))['quantity__sum']
+        return total_products
 
-    #     return self.items.count()
     def save(self, force=None, **kwargs) -> Cart:
         """
         Создание или обновление корзины
@@ -74,7 +74,7 @@ class RepCartItem(CartItemInterface):
         """
         Метод возвращает все товары в корзине
         """
-        cart_items = CartItem.objects.filter(cart=cart).\
+        cart_items = CartItem.objects.filter(cart=cart). \
             select_related('product')
         return cart_items
 
