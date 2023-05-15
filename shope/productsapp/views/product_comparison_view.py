@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 from coreapp.utils.products_comparison_list import ProductsComparisonList
+from repositories import SpecificSelectRepository
 from repositories.price_repository import PriceRepository
 
 
@@ -11,6 +12,7 @@ class ProductComparisonView(View):
     """
     _service = ProductsComparisonList()
     _price_repository = PriceRepository()
+    _specific_repository = SpecificSelectRepository()
 
     def get(self, request: HttpRequest) -> HttpResponse:
         request.session["comparison_list"] = [1, 2]
@@ -21,7 +23,17 @@ class ProductComparisonView(View):
                 product=product
             )
             product.product_price_avg = product_price
-
+            specifics = self._specific_repository.get_specific_by_product(
+                product=product
+            )
+            for specific in specifics:
+                if specific.type_spec.name in [
+                    "Тип",
+                    "Операционная система",
+                    "Плотность пикселей"
+                ]:
+                    specific.is_comparis = True
+            product.specifics = specifics
         return render(request=request,
                       template_name="productsapp/comparison.html",
                       context={

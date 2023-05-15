@@ -132,15 +132,19 @@
                                                             <th>Характеристика</th>
                                                             <th>Значение</th>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="comparis">Категория</td>
-                                                            <td class="comparis">{{ product.category }}</td>
-                                                        </tr>
-                                                        {% for specific in product.specific.all %}
-                                                            <tr>
-                                                                <td>{{ specific.type_spec.name }}</td>
-                                                                <td>{{ specific.description }}</td>
-                                                            </tr>
+                                                        {% for specific in product.specifics %}
+                                                            {% if specific.is_comparis %}
+                                                                <tr>
+                                                                    <td class="comparis">{{ specific.type_spec.name }}</td>
+                                                                    <td class="comparis">{{ specific.description }}</td>
+                                                                </tr>
+                                                            {% else %}
+                                                                <tr>
+                                                                    <td>{{ specific.type_spec.name }}</td>
+                                                                    <td>{{ specific.description }}</td>
+                                                                </tr>
+                                                            {% endif %}
+
                                                         {% endfor %}
 
     {#                                                    <tr>#}
@@ -204,7 +208,7 @@
                                 <div class="ProductCard-cart">
 
                                     <div class="ProductCard-cartElement">
-                                        <a class="btn btn_primary" href="cart.html">
+                                        <a class="btn btn_primary" href="{% url 'cartapp:add_product' product.pk %}">
                                             <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
                                             <span class="btn-content">Добавить в корзину</span>
                                         </a>

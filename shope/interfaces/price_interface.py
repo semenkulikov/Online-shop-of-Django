@@ -4,9 +4,8 @@ from productsapp.models import Product
 
 class PriceInterface(ABC):
 
-    @classmethod
     @abstractmethod
-    def get_avg_prices(cls, product: Product) -> int:
+    def get_avg_prices(self, product: Product) -> int:
         """
         Получить среднее значение цен конкретного продукта
 
