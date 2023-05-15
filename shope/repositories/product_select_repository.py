@@ -52,7 +52,7 @@ class ProductSelectRepository(ProductSelectInterface):
         if reverse:
             prefix = '-'
         sorted_products = products.annotate(
-            reviews_amount=Count('review')).order_by(
+            reviews_amount=Count('reviews')).order_by(
             f'{prefix}reviews_amount')
         return sorted_products
 
