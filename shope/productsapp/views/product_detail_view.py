@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from productsapp.models import Product
 from coreapp.utils.add_product_review import AddProductReview
+from repositories.price_repository import PriceRepository
 from repositories.profile_repository import ProfileRepository
 from repositories import SellerSelectRepository, SpecificSelectRepository
 
@@ -15,10 +16,12 @@ class ProductDetailView(View):
     _profile_repository = ProfileRepository()
     select_seller_repo = SellerSelectRepository()
     select_specifics_repo = SpecificSelectRepository()
+    _price_repository = PriceRepository()
 
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)
         # получаем конкретный продукт
+        product_price = self._price_repository.get_avg_prices(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
         # количество отзывов
         reviews_list = self._service.product_reviews_list(product=product)
@@ -32,6 +35,7 @@ class ProductDetailView(View):
 
         return render(request, "productsapp/product.html",
                       context={"product": product,
+                               "product_price": product_price,
                                "amount_review": amount_review,
                                "reviews_list": reviews_list,
                                'sellers': sellers,
@@ -40,9 +44,11 @@ class ProductDetailView(View):
 
     def post(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)
+        product_price = self._price_repository.get_avg_prices(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
         reviews_list = self._service.product_reviews_list(product=product)
         return render(request, "productsapp/product.html",
                       context={"product": product,
+                               "product_price": product_price,
                                "amount_review": amount_review,
                                "reviews_list": reviews_list})
