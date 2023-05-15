@@ -5,8 +5,6 @@ from productsapp.views import ProductListView, AddReviewView, ProductComparisonV
 app_name = 'productsapp'
 
 urlpatterns = [
-    path('cart/',
-         TemplateView.as_view(template_name="productsapp/cart.html")),
     path('catalog/', ProductListView.as_view(), name="catalog"),
     path('catalog/<int:product_id>/',
          TemplateView.as_view(template_name="productsapp/product.html")),
