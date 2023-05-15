@@ -1,15 +1,13 @@
 from productsapp.models import Product, Review
 from profileapp.models import Profile
-from repositories.reviews_select_repository import ReviewSelectRepository
-from repositories.reviews_update_repository import ReviewUpdateRepository
+from repositories.reviews_repository import ReviewRepository
 
 
 class AddProductReview:
     """
     Сервис добавления отзыва к товару
     """
-    select_repository = ReviewSelectRepository()
-    update_repository = ReviewUpdateRepository()
+    _repository = ReviewRepository()
 
     def add_product_review(self,
                            user: Profile,
@@ -29,7 +27,7 @@ class AddProductReview:
         review = Review(user=user,
                         product=product,
                         text=text)
-        self.update_repository.update_review(review=review)
+        self._repository.save(review=review)
         return True
 
     def product_reviews_list(self, product: Product):
@@ -39,7 +37,7 @@ class AddProductReview:
         :param product: объект Product, у которого берем отзывы
         :return: QuerySet
         """
-        return self.select_repository.get_all_reviews(product=product)
+        return self._repository.get_all_reviews(product=product)
 
     def product_reviews_amount(self, product: Product) -> int:
         """
@@ -50,4 +48,4 @@ class AddProductReview:
         :return: int
         """
 
-        return self.select_repository.get_amount_reviews(product=product)
+        return self._repository.get_amount_reviews(product=product)
