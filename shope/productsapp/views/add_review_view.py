@@ -52,27 +52,32 @@ class AddReviewView(View):
         product_price = self._price_repository.get_avg_prices(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
         reviews_list = self._service.product_reviews_list(product=product)
-        print(request.POST)
+        is_show_more = False  # Нажата ли кнопка "Показать еще"
         if "show_more" in request.POST:
             reviews_list = self._service.product_reviews_list(product=product)
+            is_show_more = True
         else:
             reviews_list = self._service.product_reviews_list(
                 product=product
             )[:1]
-        if form.is_valid():
-            # Если форма валидна, берем отзыв и добавляем к продукту
-            text = form.cleaned_data.get("text")
-            result = self._service.add_product_review(
-                user=self._profile_repository.get_profile(request.user),
-                product=product,
-                text=text
-            )
+        if request.user.is_authenticated:
+            if form.is_valid():
+                # Если форма валидна, берем отзыв и добавляем к продукту
+                text = form.cleaned_data.get("text")
+                result = self._service.add_product_review(
+                    user=self._profile_repository.get_profile(request.user),
+                    product=product,
+                    text=text
+                )
+            else:
+                result = "Введены некорректные данные!"
         else:
-            result = "Введены некорректные данные!"
+            result = False
         return render(request, self.template_name,
                       context={"form": self.form_class,
                                "product": product,
                                "product_price": product_price,
                                "result": result,
                                "amount_review": amount_review,
-                               "reviews_list": reviews_list})
+                               "reviews_list": reviews_list,
+                               "is_show": is_show_more})

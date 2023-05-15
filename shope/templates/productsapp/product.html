@@ -211,11 +211,14 @@
                                     </div>
                                 {% endfor %}
 
-                                {% if amount_review > 1 %}
+                                {% if amount_review > 1 and not is_show %}
                                     <div class="form-group" style="margin-top: 2em">
-                                        <button class="btn btn_primary" type="submit" name="show_more">
-                                            Показать ещё
-                                        </button>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <button class="btn btn_primary" type="submit" name="show_more">
+                                                Показать ещё
+                                            </button>
+                                        </form>
                                     </div>
                                 {% endif %}
 
