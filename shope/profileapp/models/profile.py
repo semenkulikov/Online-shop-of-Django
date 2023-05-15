@@ -1,6 +1,6 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from authapp.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Profile(models.Model):
@@ -19,11 +19,22 @@ class Profile(models.Model):
         upload_to='profile_avatars/',
         verbose_name='avatar'
     )
-    phone_number = PhoneNumberField(
-        region='RU',
+
+    phone_number = models.PositiveBigIntegerField(
         blank=True,
-        verbose_name='phone',
-        unique=True
+        unique=True,
+        validators=[
+            MaxValueValidator(
+                9999999999,
+                message="Phone number must be entered "
+                        "in the format '+71234567890'. 10 digits allowed."
+            ),
+            MinValueValidator(
+                1000000000,
+                message="Phone number must be entered "
+                        "in the format '+71234567890'. 10 digits allowed."
+            )
+        ],
     )
 
     def __str__(self):

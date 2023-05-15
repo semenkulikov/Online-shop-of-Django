@@ -1,15 +1,12 @@
 from django import forms
 from profileapp.models import Profile
 from django.core.exceptions import ValidationError
-from phonenumber_field.formfields import PhoneNumberField
-
-max_avatar_image_size = 2 * 1024 * 1024
+from django.conf import settings
 
 
 class ProfileForm(forms.ModelForm):
-
     avatar_image = forms.ImageField(widget=forms.widgets.ClearableFileInput)
-    phone_number = PhoneNumberField()
+    phone_number = forms.CharField()
 
     class Meta:
         model = Profile
@@ -19,11 +16,15 @@ class ProfileForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['avatar_image'].required = False
         self.fields['fio'].required = True
-        self.fields['phone_number'].required = False
+        self.fields['phone_number'].required = True
 
     def clean_avatar_image(self):
         data = self.cleaned_data["avatar_image"]
-        if data.size > max_avatar_image_size:
+        if data.size > settings.MAX_AVATAR_IMAGE_SIZE:
             raise ValidationError("Maximum avatar size is 2 Mb")
-
         return data
+
+    def clean_phone_number(self):
+        phone_number_str = self.cleaned_data['phone_number']
+        phone_number_int = int(phone_number_str[2:])
+        return phone_number_int

@@ -3,8 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .models import Profile
 from repositories import OrderRepository
-from .forms import ProfileForm, UserForm
-from django.contrib.auth.forms import SetPasswordForm
+from .forms import ProfileForm, UserForm, UserPasswordSetForm
 from django.shortcuts import render, redirect
 
 order_rep = OrderRepository()
@@ -34,17 +33,15 @@ class ProfileUpdateView(View, LoginRequiredMixin):
     success_message = 'Profile is updated successfully'
 
     def get(self, request):
-
         context = {
             'user_form': UserForm(instance=self.request.user),
             'profile_form': ProfileForm(instance=self.request.user.profile),
-            'password_form': SetPasswordForm(user=self.request.user)
+            'password_form': UserPasswordSetForm(user=self.request.user)
         }
 
         return render(request, self.template_name, context)
 
     def post(self, request):
-
         profile_form = ProfileForm(request.POST,
                                    request.FILES,
                                    instance=self.request.user.profile)
@@ -52,35 +49,18 @@ class ProfileUpdateView(View, LoginRequiredMixin):
         user_form = UserForm(request.POST,
                              instance=self.request.user)
 
-        password_form = SetPasswordForm(data=request.POST,
-                                        user=request.user)
+        password_form = UserPasswordSetForm(data=request.POST,
+                                            user=request.user)
 
-        if not password_form.has_changed():
+        if all([profile_form.is_valid(),
+                user_form.is_valid(),
+                password_form.is_valid()]):
 
-            password_form.errors['new_password1'] = ''
-            password_form.errors['new_password2'] = ''
-
-            if profile_form.is_valid() and user_form.is_valid():
-                profile_form.save()
-                print(profile_form['phone_number'].value())
-
-                user_form.save()
-                messages.success(request, self.success_message)
-
-                return redirect(self.request.path)
-
-        if password_form.has_changed():
-            if all([profile_form.is_valid(),
-                    user_form.is_valid(),
-                    password_form.is_valid(),
-                    ]
-                   ):
-                profile_form.save()
-                user_form.save()
-                password_form.save()
-                messages.success(request, self.success_message)
-
-                return redirect(self.request.path)
+            profile_form.save()
+            user_form.save()
+            password_form.save()
+            messages.success(request, self.success_message)
+            return redirect(self.request.path)
 
         context = {
             'user_form': user_form,
