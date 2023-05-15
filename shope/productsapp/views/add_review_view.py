@@ -26,7 +26,7 @@ class AddReviewView(View):
         # получаем конкретный продукт
         amount_review = self._service.product_reviews_amount(product=product)
         # количество отзывов
-        reviews_list = self._service.product_reviews_list(product=product)
+        reviews_list = self._service.product_reviews_list(product=product)[:1]
         # список отзывов
         sellers = self.select_seller_repo.get_seller_by_product(
             product=product
@@ -51,6 +51,13 @@ class AddReviewView(View):
         product_price = self._price_repository.get_avg_prices(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
         reviews_list = self._service.product_reviews_list(product=product)
+        print(request.POST)
+        if "show_more" in request.POST:
+            reviews_list = self._service.product_reviews_list(product=product)
+        else:
+            reviews_list = self._service.product_reviews_list(
+                product=product
+            )[:1]
         if form.is_valid():
             # Если форма валидна, берем отзыв и добавляем к продукту
             text = form.cleaned_data.get("text")

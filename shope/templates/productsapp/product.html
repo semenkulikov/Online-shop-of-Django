@@ -185,7 +185,7 @@
                                         <div class="Comment">
                                             <div class="Comment-column Comment-column_pict">
                                                 <div class="Comment-avatar">
-                                                    {% firstof review.user.avatar_image "" %}
+                                                    {{ review.user.avatar_image.url }}
                                                 </div>
                                             </div>
                                             <div class="Comment-column">
@@ -212,8 +212,9 @@
                                 {% endfor %}
 
                                 {% if amount_review > 1 %}
-                                    <div class="form-group">
-                                        <button class="btn btn_primary" type="submit">Показать ещё
+                                    <div class="form-group" style="margin-top: 2em">
+                                        <button class="btn btn_primary" type="submit" name="show_more">
+                                            Показать ещё
                                         </button>
                                     </div>
                                 {% endif %}
@@ -227,9 +228,6 @@
                                         <div>
                                             {% if result == True %}
                                                 Отзыв успешно добавлен
-                                            {% elif result == False %}
-                                                Чтобы оставить отзыв, вам нужно
-                                                <a href="{% url 'authapp:signup' %} ">авторизоваться</a>
                                             {% else %}
                                                 {{ result }}
                                             {% endif %}
@@ -245,6 +243,11 @@
                                                 </button>
                                             </div>
                                         </form>
+                                    </div>
+                                {% else %}
+                                    <div class="ProductCard-text">
+                                        Чтобы оставить отзыв, вам нужно
+                                        <a href="{% url 'authapp:login' %} ">авторизоваться</a>
                                     </div>
                                 {% endif %}
                             </div>
