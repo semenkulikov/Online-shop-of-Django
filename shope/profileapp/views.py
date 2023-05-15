@@ -5,7 +5,7 @@ from .models import Profile
 from repositories import OrderRepository
 from .forms import ProfileForm, UserForm, UserPasswordSetForm
 from django.shortcuts import render, redirect
-
+from django.urls import reverse_lazy
 order_rep = OrderRepository()
 
 
@@ -25,12 +25,13 @@ class ProfileDetailView(DetailView, LoginRequiredMixin):
         return context
 
 
-class ProfileUpdateView(View, LoginRequiredMixin):
+class ProfileUpdateView(LoginRequiredMixin, View):
     """
     View-класс для обновления информации о пользователе
     """
     template_name = 'profileapp/profile.html'
     success_message = 'Profile is updated successfully'
+    login_url = reverse_lazy('authapp:login')
 
     def get(self, request):
         context = {

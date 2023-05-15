@@ -69,7 +69,7 @@
                                 <div class="row-block">
                                     <div class="form-group" >
                                         <label class="form-label" for="phone_number">{{ profile_form.phone_number.label_tag }}</label>
-                                        <input class="form-input" id="phone_number" name="phone_number" type="text" value="+7{{ profile_form.phone_number.value }}"/>
+                                        <input class="form-input" id="phone_number" name="phone_number" type="text" value="{{ profile_form.phone_number.value }}"/>
                                         <div style="color: red; font-size:50%">{{profile_form.phone_number.errors }}</div>
                                     </div>
                                     <div class="form-group">

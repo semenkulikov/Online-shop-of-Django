@@ -35,7 +35,7 @@ class UserPasswordSetForm(SetPasswordForm):
                     code="password_mismatch",
                 )
             password_validation.validate_password(password2, self.user)
-            return password2
+        return password2
 
     def save(self, commit=True):
         password = self.cleaned_data["new_password1"]
@@ -43,4 +43,4 @@ class UserPasswordSetForm(SetPasswordForm):
             self.user.set_password(password)
             if commit:
                 self.user.save()
-            return self.user
+        return self.user

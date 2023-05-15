@@ -23,8 +23,3 @@ class ProfileForm(forms.ModelForm):
         if data.size > settings.MAX_AVATAR_IMAGE_SIZE:
             raise ValidationError("Maximum avatar size is 2 Mb")
         return data
-
-    def clean_phone_number(self):
-        phone_number_str = self.cleaned_data['phone_number']
-        phone_number_int = int(phone_number_str[2:])
-        return phone_number_int
