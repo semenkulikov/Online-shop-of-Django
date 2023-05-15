@@ -45,8 +45,6 @@ class AddProductCartView(View):
     Класс для добавления продукта в корзину
     """
     def get(self, request, **kwargs):
-        print(self.kwargs)
-        print(request.META)
         product_id = kwargs.get('product_id')
         AddToCart.add_to_cart(request, product_id)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
