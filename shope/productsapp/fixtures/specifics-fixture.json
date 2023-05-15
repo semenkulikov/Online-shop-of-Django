@@ -55,7 +55,7 @@
       "updated_at": "2023-05-12 12:12:33.000",
       "is_active": true,
       "product": 1,
-      "description": "�����������",
+      "description": "Отсутствуют",
       "type_spec": 5
     }
   },
@@ -175,7 +175,7 @@
       "updated_at": "2023-05-12 12:12:33.000",
       "is_active": true,
       "product": 2,
-      "description": "�����������",
+      "description": "Отсутствуют",
       "type_spec": 5
     }
   },
@@ -247,7 +247,7 @@
       "updated_at": "2023-05-12 12:12:33.000",
       "is_active": true,
       "product": 1,
-      "description": "�������",
+      "description": "Ноутбук",
       "type_spec": 11
     }
   },
@@ -259,7 +259,7 @@
       "updated_at": "2023-05-12 12:12:33.000",
       "is_active": true,
       "product": 2,
-      "description": "�������",
+      "description": "Ноутбук",
       "type_spec": 11
     }
   }

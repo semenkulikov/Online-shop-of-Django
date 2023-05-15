@@ -3,140 +3,140 @@
     "model": "productsapp.category",
     "pk": 1,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "����������"
+      "name": "Телевизоры"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 2,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "��������"
+      "name": "Наушники"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 3,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "���������� ������"
+      "name": "Стиральные машины"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 4,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "����������"
+      "name": "Аксессуары"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 5,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "�����"
+      "name": "Чехлы"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 6,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "�����������"
+      "name": "Электроника"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 7,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "������!"
+      "name": "Скидки!"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 8,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "������������"
+      "name": "Фотоаппараты"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 9,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "���������"
+      "name": "Фурнитура"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 10,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "��������� ��������"
+      "name": "Мобильные телефоны"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 11,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "�����"
+      "name": "Сумки"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 12,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "������������� ����"
+      "name": "Микроволновые печи"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 13,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "�������� �������"
+      "name": "Кухонная техника"
     }
   },
   {
     "model": "productsapp.category",
     "pk": 14,
     "fields": {
-      "created_at": "2023-05-12 12:12:33.000",
-      "updated_at": "2023-05-12 12:12:33.000",
+      "created_at": null,
+      "updated_at": null,
       "is_active": true,
-      "name": "�������"
+      "name": "Торшеры"
     }
   }
 ]

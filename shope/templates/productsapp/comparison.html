@@ -118,7 +118,7 @@
                                     <div class="ProductCard-look">
                                         <div class="ProductCard-photo">
     {#                                        <img src="{% static 'assets/img/content/home/bigGoods2.jpg' %}" alt="bigGoods2.jpg" />#}
-                                            <img src="{{ product.image }}">
+                                            <img src="{{ product.image.url }}">
                                         </div>
                                     </div>
 
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="ProductCard-info">
                                     <div class="ProductCard-cost">
-                                        <div class="ProductCard-price">${{ product.product_price.count }}
+                                        <div class="ProductCard-price">${{ product.product_price }}
                                         </div>
                                     </div>
                                 </div>
