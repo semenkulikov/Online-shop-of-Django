@@ -14,7 +14,7 @@ class Review(BaseModel):
                              related_name="reviews")
     product = models.ForeignKey(Product,
                                 on_delete=models.CASCADE,
-                                related_name="reviews")
+                                related_name="review")
     text = models.TextField(blank=True,
                             null=False,
                             verbose_name="text")
