@@ -1,15 +1,29 @@
+from repositories.cart_repository import RepCart
+
+
 def cart_block(request):
     """
-    Context-processor for cart block in header.
+    Контекстный процессор для передачи
+    количества товаров в корзине
     """
     if request.user.is_authenticated:
-        return {
-            'cart': request.user.cart.filter(
-                is_active=True
-            ).order_by('created_at').first(),
-            # сюда добавить миниатюру аватарки, если есть. и тоже передать.
+        user = request.user
+        cart = RepCart().get_cart(user=user)
+        context = {
+            'cart': RepCart().count_items(cart=cart),
         }
-    # переписать, когда будут сделаны сессии
-    return {
-        'cart': None,
-    }
+        return context
+
+        # сюда добавить миниатюру аватарки, если есть. и тоже передать.
+
+    else:
+        if request.session.get('products', False) is not False:
+            context = {
+                'cart': sum([value for value in
+                             request.session['products'].values()])
+            }
+            return context
+        else:
+            return {
+                'cart': 0
+            }

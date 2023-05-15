@@ -12,4 +12,4 @@ class AddReviewForm(forms.ModelForm):
         self.fields["text"].widget.attrs["class"] = "form-textarea"
         self.fields["text"].widget.attrs["name"] = "review"
         self.fields["text"].widget.attrs["id"] = "review"
-        self.fields["text"].widget.attrs["placeholder"] = "Отзыв"
+        self.fields["text"].widget.attrs["placeholder"] = "Review"

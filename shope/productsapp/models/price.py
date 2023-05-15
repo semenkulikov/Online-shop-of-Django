@@ -29,7 +29,7 @@ class SlicePrice(BaseModel):
     )
 
     def __str__(self):
-        return f"{self.product} - {self.seller} - {self.value}"
+        return f"{self.product.name} - {self.seller.name} - {self.value}"
 
     class Meta:
         verbose_name = "price slice"

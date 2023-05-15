@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Cart, CartItem
+from cartapp.models.cart import Cart
+from cartapp.models.cartitem import CartItem
 
 admin.site.register(Cart)
 admin.site.register(CartItem)

@@ -5,7 +5,7 @@ from django.db.models import QuerySet
 from productsapp.models import Product, Review
 
 
-class ReviewSelectInterface(ABC):
+class ReviewInterface(ABC):
 
     @abstractmethod
     def get_all_reviews(self, product: Product) -> QuerySet[Review]:
@@ -15,4 +15,9 @@ class ReviewSelectInterface(ABC):
     @abstractmethod
     def get_amount_reviews(self, product: Product) -> int:
         """ Получить количество отзывов к продукту """
+        pass
+
+    @abstractmethod
+    def save(self, review: Review, force=None) -> None:
+        """ Обновление или создание отзыва """
         pass
