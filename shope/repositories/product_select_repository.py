@@ -2,6 +2,7 @@ from interfaces.product_select_interface import ProductSelectInterface
 from productsapp.models.product import Product
 from productsapp.models.specific import Specific
 from django.db.models import QuerySet, Min, Sum, Count, Subquery, OuterRef
+from coreapp.enums import SORT_TYPES
 
 
 class ProductSelectRepository(ProductSelectInterface):
@@ -78,3 +79,22 @@ class ProductSelectRepository(ProductSelectInterface):
         if reverse:
             prefix = '-'
         return products.order_by(f'{prefix}price')
+
+    def get_sorted(self,
+                   products: QuerySet,
+                   sort: str) -> QuerySet[Product]:
+        """ Выбор метода сортировки в зависимости от параметра """
+        sort_methods = {
+            'new': self.sort_by_new,
+            'popular': self.sort_by_popular,
+            'reviews': self.sort_by_reviews,
+            'price': self.sort_by_price
+        }
+        if sort in SORT_TYPES:
+            reverse = False
+            if sort[0] == '-':
+                reverse = True
+                sort = sort[1:]
+            return sort_methods[sort](products, reverse)
+        else:  # при некорректном параметре сортировка не применяется
+            return products

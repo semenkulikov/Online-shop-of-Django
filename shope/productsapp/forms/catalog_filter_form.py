@@ -1,5 +1,6 @@
 from django import forms
 import re
+from coreapp.enums import SORT_TYPES
 
 
 class CatalogFilterForm(forms.Form):
@@ -35,8 +36,7 @@ class CatalogFilterForm(forms.Form):
         в противном случае применяется значение по умолчанию
         """
         sort = self.cleaned_data.get('sort')
-        if sort in ('new', '-new', 'popular', '-popular',
-                    'price', '-price', 'reviews', '-reviews'):
+        if sort in SORT_TYPES:
             return sort
         else:  # параметр sort отуствтует или некорректен
             return '-reviews'

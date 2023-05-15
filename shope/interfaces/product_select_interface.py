@@ -57,3 +57,10 @@ class ProductSelectInterface(ABC):
                       reverse: bool) -> QuerySet[Product]:
         """ Cортировка по цене """
         pass
+
+    @abstractmethod
+    def get_sorted(self,
+                   products: QuerySet,
+                   sort: str) -> QuerySet[Product]:
+        """ Выбор метода сортировки в зависимости от параметра """
+        pass

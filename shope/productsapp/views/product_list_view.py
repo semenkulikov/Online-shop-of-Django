@@ -14,23 +14,6 @@ class ProductListView(ListView):
     queryset = Product.objects.all()
     select_repo = ProductSelectRepository()
 
-    @classmethod
-    def get_sorted(self, products, sort):
-        """ Вызывает метод сортировки в зависимости от параметра """
-        reverse = False
-        if sort[0] == '-':
-            reverse = True
-        if sort in ('new', '-new'):
-            return self.select_repo.sort_by_new(products, reverse)
-        if sort in ('popular', '-popular'):
-            return self.select_repo.sort_by_popular(products, reverse)
-        if sort in ('reviews', '-reviews'):
-            return self.select_repo.sort_by_reviews(products, reverse)
-        if sort in ('price', '-price'):
-            return self.select_repo.sort_by_price(products, reverse)
-        else:  # при некорректном параметре сортировка не применяется
-            return products
-
     def get_queryset(self):
         form = CatalogFilterForm(self.request.GET)
         if form.is_valid():
@@ -52,6 +35,7 @@ class ProductListView(ListView):
             if price_min and price_max:
                 queryset = queryset.filter(
                     price__range=(price_min, price_max))
-            return self.get_sorted(queryset, sort)
+            return self.select_repo.get_sorted(products=queryset,
+                                               sort=sort)
         else:
             return self.queryset
