@@ -34,7 +34,7 @@ class UserLoginView(LoginView):
         if self.request.user.is_authenticated and self.request. \
                 session.get('products'):
             # если в сессии есть продукты
-            AddToCart().move_from_session(self.request, self.request.user)
+            AddToCart.move_from_session(self.request, self.request.user)
             # добавление товаров в продукты
         return HttpResponseRedirect(reverse('index'))
 
@@ -65,9 +65,9 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
-            RepCart().save(user=user)
+            RepCart.save(user=user)
             if request.session['products']:  # если в сессии есть продукты
-                AddToCart().move_from_session(request, user)
+                AddToCart.move_from_session(request, user)
             if send_verif_link(user):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, 'Вы успешно зарегистрировались.'

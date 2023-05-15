@@ -20,10 +20,10 @@ class AddToCart:
         if request.user.is_authenticated:  # если пользователь авторизован
             product = get_object_or_404(Product, pk=product_id)
             user = request.user
-            cart = RepCart().get_cart(user=user)
-            cart_item = RepCartItem().get_cart_item(cart=cart, product=product)
+            cart = RepCart.get_cart(user=user)
+            cart_item = RepCartItem.get_cart_item(cart=cart, product=product)
             if not cart_item:  # товара нет в корзине
-                RepCartItem().save(cart=cart, product=product, quantity=count)
+                RepCartItem.save(cart=cart, product=product, quantity=count)
 
             else:  # товар есть в корзине
                 if count != 1:  # изменение количества
@@ -31,7 +31,7 @@ class AddToCart:
                 else:  # увеличение количества на 1
                     cart_item.update(quantity=F('quantity') + 1)
         else:  # если анонимный пользователь
-            if request.session.get('products', False) is not False:
+            if request.session.get('products'):
                 #  если есть в сессиях уже какие-либо товары
                 if request.session['products']. \
                         get(str(product_id), False) is not False:
@@ -56,14 +56,14 @@ class AddToCart:
         product = get_object_or_404(Product, pk=product_id)
         if request.user.is_authenticated:  # если пользователь авторизован
             user = request.user
-            cart = RepCart().get_cart(user=user)
-            cart_item = RepCartItem().get_cart_item(cart=cart, product=product)
+            cart = RepCart.get_cart(user=user)
+            cart_item = RepCartItem.get_cart_item(cart=cart, product=product)
             if full is not False:  # удаление товара из корзины
-                RepCartItem().delete(cart_item)
+                RepCartItem.delete(cart_item)
             else:  # уменьшение количества товара на 1
                 cart_item.update(quantity=F('quantity') - 1)
         else:
-            if request.session.get('products', False) is not False:
+            if request.session.get('products'):
                 if full is not False:  # удаление товара из корзины
                     request.session['products'].pop(str(product_id), False)
                 else:  # уменьшение количества на 1
@@ -77,9 +77,9 @@ class AddToCart:
         """
         product = get_object_or_404(Product, pk=product_id)
         user = request.user
-        cart = RepCart().get_cart(user=user)
+        cart = RepCart.get_cart(user=user)
         cart_item = CartItem.objects.get(cart=cart, product=product)
-        RepCartItem().save(force=cart_item, quantity=count)
+        RepCartItem.save(force=cart_item, quantity=count)
 
     @classmethod
     def cart_items_list(cls, cart=None, list_product_id=None):
@@ -90,7 +90,7 @@ class AddToCart:
             items_list = [Product.objects.get(pk=product_id)
                           for product_id in list_product_id]
         else:
-            items_list = RepCartItem().get_all_items(cart)
+            items_list = RepCartItem.get_all_items(cart)
         return items_list
 
     @classmethod
@@ -98,7 +98,7 @@ class AddToCart:
         """
         Получение общего количества товаров в корзине
         """
-        count = RepCart().count_items(cart)
+        count = RepCart.count_items(cart)
         return count
 
     @classmethod
@@ -108,18 +108,18 @@ class AddToCart:
         из сессии
         """
 
-        cart = RepCart().get_cart(user)
+        cart = RepCart.get_cart(user)
         for product_id in request.session['products']:
             # цикл по product_id в сессии
             product = get_object_or_404(Product, pk=product_id)
-            cart_item = RepCartItem(). \
+            cart_item = RepCartItem. \
                 get_cart_item(cart=cart, product=product)
             if cart_item:
                 cart_item. \
                     update(quantity=F('quantity') + request.
                            session['products'][product_id])
             else:
-                RepCartItem().save(
+                RepCartItem.save(
                     cart=cart,
                     product=product,
                     quantity=request.session['products'][product_id]
