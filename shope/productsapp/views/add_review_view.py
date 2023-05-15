@@ -14,6 +14,7 @@ class AddReviewView(View):
     Класс-view для добавления отзыва к продукту
     """
     form_class = AddReviewForm
+    template_name = "productsapp/product.html"
     _service = AddProductReview()
     _profile_repository = ProfileRepository()
     select_seller_repo = SellerSelectRepository()
@@ -35,7 +36,7 @@ class AddReviewView(View):
             product=product
         )
 
-        return render(request, "productsapp/product.html",
+        return render(request, self.template_name,
                       context={"form": self.form_class,
                                "product": product,
                                "product_price": product_price,
@@ -68,7 +69,7 @@ class AddReviewView(View):
             )
         else:
             result = "Введены некорректные данные!"
-        return render(request, "productsapp/product.html",
+        return render(request, self.template_name,
                       context={"form": self.form_class,
                                "product": product,
                                "product_price": product_price,

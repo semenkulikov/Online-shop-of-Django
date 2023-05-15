@@ -17,6 +17,7 @@ class ProductDetailView(View):
     select_seller_repo = SellerSelectRepository()
     select_specifics_repo = SpecificSelectRepository()
     _price_repository = PriceRepository()
+    template_name = "productsapp/product.html"
 
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)
@@ -33,7 +34,7 @@ class ProductDetailView(View):
             product=product
         )
 
-        return render(request, "productsapp/product.html",
+        return render(request, self.template_name,
                       context={"product": product,
                                "product_price": product_price,
                                "amount_review": amount_review,
@@ -47,7 +48,7 @@ class ProductDetailView(View):
         product_price = self._price_repository.get_avg_prices(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
         reviews_list = self._service.product_reviews_list(product=product)
-        return render(request, "productsapp/product.html",
+        return render(request, self.template_name,
                       context={"product": product,
                                "product_price": product_price,
                                "amount_review": amount_review,

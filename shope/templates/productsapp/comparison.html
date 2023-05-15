@@ -17,11 +17,15 @@
             {% else %}
                 <div class="form-group">
                     <form method="post">
+                        {% csrf_token %}
                         <label class="toggle">
                             <input type="checkbox" name="is_different"/>
                             <span class="toggle-box"></span>
                             <span class="toggle-text">Только различающиеся характеристики</span>
                         </label>
+                        <div class="buttons" style="margin-top: 1em">
+                            <button type="submit" class="btn btn_square btn_dark btn_narrow">Применить</button>
+                        </div>
                     </form>
                 </div>
                 <div class="Product">
