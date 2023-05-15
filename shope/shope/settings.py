@@ -165,3 +165,8 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+# Задачи, которые Celery будет выполнять
+CELERY_IMPORTS = (
+    'shope.tasks.py',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
+)
