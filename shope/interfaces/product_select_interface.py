@@ -11,6 +11,11 @@ class ProductSelectInterface(ABC):
         pass
 
     @abstractmethod
+    def get_all_tags(self) -> QuerySet[Product]:
+        """Получить список всех тегов"""
+        pass
+
+    @abstractmethod
     def get_products_with_filter(self,
                                  name: str,
                                  free_shipping: bool,
@@ -28,6 +33,14 @@ class ProductSelectInterface(ABC):
     def get_product_prices(self,
                            products: QuerySet) -> QuerySet[Product]:
         """Получить цены на список продуктов"""
+        pass
+
+    @abstractmethod
+    def set_price_range(self,
+                        products: QuerySet,
+                        price_min: int,
+                        price_max: int) -> QuerySet[Product]:
+        """Выбрать диапазон цен"""
         pass
 
     @abstractmethod

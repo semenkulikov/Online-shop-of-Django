@@ -1,5 +1,6 @@
 from interfaces.product_select_interface import ProductSelectInterface
 from productsapp.models.product import Product
+from taggit.models import Tag
 from productsapp.models.specific import Specific
 from django.db.models import QuerySet, Min, Sum, Count, Subquery, OuterRef
 from coreapp.enums import SORT_TYPES
@@ -10,6 +11,10 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_all_products(self) -> QuerySet[Product]:
         """Получить все продукты"""
         return Product.objects.all()
+
+    def get_all_tags(self) -> QuerySet[Product]:
+        """Получить список всех тегов"""
+        return Tag.objects.all()
 
     def get_products_with_filter(self,
                                  name: str,
@@ -32,6 +37,13 @@ class ProductSelectRepository(ProductSelectInterface):
         prices = products.select_related('category').annotate(
             price=Min('product_price__value'))
         return prices
+
+    def set_price_range(self,
+                        products: QuerySet,
+                        price_min: int,
+                        price_max: int) -> QuerySet[Product]:
+        """Выбрать диапазон цен"""
+        return products.filter(price__range=(price_min, price_max))
 
     def sort_by_popular(self,
                         products: QuerySet,
