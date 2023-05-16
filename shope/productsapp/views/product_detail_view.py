@@ -14,8 +14,8 @@ class ProductDetailView(View):
     """
     _service = AddProductReview()
     _profile_repository = ProfileRepository()
-    select_seller_repo = SellerSelectRepository()
-    select_specifics_repo = SpecificSelectRepository()
+    _select_seller_repo = SellerSelectRepository()
+    _select_specifics_repo = SpecificSelectRepository()
     _price_repository = PriceRepository()
     template_name = "productsapp/product.html"
 
@@ -27,10 +27,10 @@ class ProductDetailView(View):
         # количество отзывов
         reviews_list = self._service.product_reviews_list(product=product)
         # список отзывов
-        sellers = self.select_seller_repo.get_seller_by_product(
+        sellers = self._select_seller_repo.get_seller_by_product(
             product=product
         )
-        specifics = self.select_specifics_repo.get_specific_by_product(
+        specifics = self._select_specifics_repo.get_specific_by_product(
             product=product
         )
 
