@@ -13,13 +13,16 @@ class ProfileForm(forms.ModelForm):
         widget=forms.widgets.ClearableFileInput
     )
     phone_number = PhoneNumberField(
-        region='RU',
+        initial='+7',
         widget=forms.TextInput(
             attrs={
-                "class": 'form-input'
+                "class": 'form-input',
+                'placeholder': '+71231231212'
             }
         )
     )
+    phone_number.error_messages['invalid'] = 'Enter a valid phone number' \
+                                             ' (e.g. +79998887766)'
 
     class Meta:
         model = Profile
