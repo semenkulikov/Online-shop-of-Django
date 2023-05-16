@@ -28,7 +28,7 @@
                                 </h2>
                                 <div class="ProductCard-info">
                                     <div class="ProductCard-cost">
-                                        <div class="ProductCard-price">$55.00
+                                        <div class="ProductCard-price">${{ product_price }}
                                         </div>
                                     </div>
                                 </div>
@@ -47,9 +47,9 @@
                                     </div>
                                 </div>
                                 <div class="ProductCard-cartElement">
-                                    <a class="btn btn_primary" href="#modal_open">
+                                    <a class="btn btn_primary" href="{% url 'cartapp:add_product' product.pk %}">
                                         <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
-                                        <span class="btn-content">Купить</span>
+                                        <span class="btn-content">Добавить в корзину</span>
                                     </a>
                                 </div>
                                 <div id="modal_open" class="my_modal">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="ProductCard-footer">
                                 <div class="ProductCard-tags">
-                                    <strong class="ProductCard-tagsTitle">Тэги:{{ product.tags }}</strong>
+                                    <strong class="ProductCard-tagsTitle">Тэги: {{ product.tags }}</strong>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                                         <div class="Comment">
                                             <div class="Comment-column Comment-column_pict">
                                                 <div class="Comment-avatar">
-                                                    {% firstof review.user.avatar_image "" %}
+                                                    {{ review.user.avatar_image.url }}
                                                 </div>
                                             </div>
                                             <div class="Comment-column">
@@ -211,40 +211,48 @@
                                     </div>
                                 {% endfor %}
 
-                                <header class="Section-header Section-header_product">
-                                    <h3 class="Section-title">Добавить отзыв
-                                    </h3>
-                                </header>
-                                <div class="Tabs-addComment">
-                                    <div>
-                                        {% if result == True %}
-                                            Отзыв успешно добавлен
-                                        {% elif result == False %}
-                                            Чтобы оставить отзыв, вам нужно
-                                            <a href="{% url 'authapp:signup' %} ">авторизоваться</a>
-                                        {% else %}
-                                            {{ result }}
-                                        {% endif %}
-                                    </div>
-                                    <form class="form" method="post">
-                                        <div class="form-group">
+                                {% if amount_review > 1 and not is_show %}
+                                    <div class="form-group" style="margin-top: 2em">
+                                        <form method="post">
                                             {% csrf_token %}
-                                            {{ form.text }}
-{#                                             <textarea class="form-textarea" name="review" id="review" placeholder="Отзыв"></textarea>#}
-                                        </div>
-
-                                        <div class="form-group">
-                                            <button class="btn btn_muted" type="submit">Отправить отзыв
+                                            <button class="btn btn_primary" type="submit" name="show_more">
+                                                Показать ещё
                                             </button>
+                                        </form>
+                                    </div>
+                                {% endif %}
+
+                                {% if user.is_authenticated %}
+                                    <header class="Section-header Section-header_product">
+                                        <h3 class="Section-title">Добавить отзыв
+                                        </h3>
+                                    </header>
+                                    <div class="Tabs-addComment">
+                                        <div>
+                                            {% if result == True %}
+                                                Отзыв успешно добавлен
+                                            {% else %}
+                                                {{ result }}
+                                            {% endif %}
                                         </div>
-                                        {% if amount_review > 1 %}
+                                        <form class="form" method="post">
                                             <div class="form-group">
-                                                <button class="btn btn_primary" type="submit">Показать ещё
+                                                {% csrf_token %}
+                                                {{ form.text }}
+    {#                                             <textarea class="form-textarea" name="review" id="review" placeholder="Отзыв"></textarea>#}
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn_muted" type="submit">Отправить отзыв
                                                 </button>
                                             </div>
-                                        {% endif %}
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
+                                {% else %}
+                                    <div class="ProductCard-text">
+                                        Чтобы оставить отзыв, вам нужно
+                                        <a href="{% url 'authapp:login' %} ">авторизоваться</a>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

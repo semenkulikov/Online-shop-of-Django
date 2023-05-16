@@ -6496,7 +6496,7 @@ input[type="radio"] {
 }
 
 .wrap-reg {
-    min-width: 40%;
+    width: 40%;
 }
 
 .form-wrap {
@@ -6527,4 +6527,9 @@ input[type="radio"] {
 }
 .form-wrap input[type='email'] {
     color: rgb(0, 99, 209);
+}
+
+.empty-cart {
+    text-align: center;
+    margin-bottom: 20%;
 }
