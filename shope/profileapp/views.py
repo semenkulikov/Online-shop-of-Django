@@ -61,9 +61,9 @@ class ProfileUpdateView(LoginRequiredMixin, View):
 
             profile_form.save()
             user_form.save()
-            password_form.save()
 
             if password_form.has_changed():
+                password_form.save()
                 update_session_auth_hash(request, password_form.user)
 
             messages.success(request, self.success_message)
