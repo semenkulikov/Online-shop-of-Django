@@ -120,7 +120,7 @@
                                 </li>
                                 <li class="menu-item"><span class="menu-label menu-label_success">Скидки</span><a class="menu-link" href="{% url 'productsapp:catalog' %}">Каталог</a>
                                 </li>
-                                <li class="menu-item"><a class="menu-link" href="comparison.html">Сравнение</a>
+                                <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">Сравнение</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,7 +139,7 @@
                                 {% endif %}
                             </div>
                             <a class="CartBlock-block" href="{% url 'cartapp:cart' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof cart '0' %}</span></a>
-                            <div class="CartBlock-block"><span class="CartBlock-price">{% firstof cart.total_amount '0' %}$</span>
+                            <div class="CartBlock-block"><span class="CartBlock-price">{% firstof cart '0' %}</span>
 
 
                             </div>
@@ -708,11 +708,11 @@
                         <ul class="menu menu_vt Footer-menu">
                             <li class="menu-item"><a class="menu-link" href="{% url 'index' %}">Главная</a>
                             </li>
-                            <li class="menu-item"><a class="menu-link" href="catalog.html">Каталог</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:catalog' %}">Каталог</a>
                             </li>
-                            <li class="menu-item"><a class="menu-link" href="comparison.html">Сравнение</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">Сравнение</a>
                             </li>
-                            <li class="menu-item"><a class="menu-link" href="account.html">Профиль</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'profileapp:account' %}">Профиль</a>
                             </li>
 
                         </ul>

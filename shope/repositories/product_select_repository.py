@@ -1,3 +1,5 @@
+from typing import List
+
 from interfaces.product_select_interface import ProductSelectInterface
 from productsapp.models.product import Product
 from taggit.models import Tag
@@ -15,6 +17,14 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_all_tags(self) -> QuerySet[Product]:
         """Получить список всех тегов"""
         return Tag.objects.all()
+
+    def get_product_by_id(self, product_id: int) -> Product:
+        """ Получить продукт по id """
+        return Product.objects.get(id=product_id)
+
+    def get_products_with_these_id(self, products_id: List[int])\
+            -> QuerySet[Product]:
+        return Product.objects.filter(id__in=products_id)
 
     def get_products_with_filter(self,
                                  name: str,

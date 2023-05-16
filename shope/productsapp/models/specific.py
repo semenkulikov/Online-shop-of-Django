@@ -17,3 +17,6 @@ class Specific(BaseModel):
     type_spec = models.ForeignKey(TypeSpecific,
                                   on_delete=models.CASCADE,
                                   related_name="specific")
+
+    def __str__(self):
+        return f'{self.type_spec.name} - {self.description}'

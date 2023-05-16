@@ -17,11 +17,15 @@
             {% else %}
                 <div class="form-group">
                     <form method="post">
+                        {% csrf_token %}
                         <label class="toggle">
                             <input type="checkbox" name="is_different"/>
                             <span class="toggle-box"></span>
                             <span class="toggle-text">Только различающиеся характеристики</span>
                         </label>
+                        <div class="buttons" style="margin-top: 1em">
+                            <button type="submit" class="btn btn_square btn_dark btn_narrow">Применить</button>
+                        </div>
                     </form>
                 </div>
                 <div class="Product">
@@ -118,7 +122,7 @@
                                     <div class="ProductCard-look">
                                         <div class="ProductCard-photo">
     {#                                        <img src="{% static 'assets/img/content/home/bigGoods2.jpg' %}" alt="bigGoods2.jpg" />#}
-                                            <img src="{{ product.image }}">
+                                            <img src="{{ product.image.url }}">
                                         </div>
                                     </div>
 
@@ -132,15 +136,19 @@
                                                             <th>Характеристика</th>
                                                             <th>Значение</th>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="comparis">Категория</td>
-                                                            <td class="comparis">{{ product.category }}</td>
-                                                        </tr>
-                                                        {% for specific in product.specific.all %}
-                                                            <tr>
-                                                                <td>{{ specific.type_spec.name }}</td>
-                                                                <td>{{ specific.description }}</td>
-                                                            </tr>
+                                                        {% for specific in product.specifics %}
+                                                            {% if specific.is_comparis %}
+                                                                <tr>
+                                                                    <td class="comparis">{{ specific.type_spec.name }}</td>
+                                                                    <td class="comparis">{{ specific.description }}</td>
+                                                                </tr>
+                                                            {% else %}
+                                                                <tr>
+                                                                    <td>{{ specific.type_spec.name }}</td>
+                                                                    <td>{{ specific.description }}</td>
+                                                                </tr>
+                                                            {% endif %}
+
                                                         {% endfor %}
 
     {#                                                    <tr>#}
@@ -197,14 +205,14 @@
                                 </div>
                                 <div class="ProductCard-info">
                                     <div class="ProductCard-cost">
-                                        <div class="ProductCard-price">${{ product.product_price.count }}
+                                        <div class="ProductCard-price">${{ product.product_price_avg }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ProductCard-cart">
 
                                     <div class="ProductCard-cartElement">
-                                        <a class="btn btn_primary" href="cart.html">
+                                        <a class="btn btn_primary" href="{% url 'cartapp:add_product' product.pk %}">
                                             <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
                                             <span class="btn-content">Добавить в корзину</span>
                                         </a>

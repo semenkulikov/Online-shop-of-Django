@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from typing import List
+
 from django.db.models import QuerySet
 from productsapp.models.product import Product
 
@@ -13,6 +15,16 @@ class ProductSelectInterface(ABC):
     @abstractmethod
     def get_all_tags(self) -> QuerySet[Product]:
         """Получить список всех тегов"""
+        pass
+
+    def get_product_by_id(self, product_id: int) -> Product:
+        """ Получить продукт по id """
+        pass
+
+    @abstractmethod
+    def get_products_with_these_id(self, products_id: List[int])\
+            -> QuerySet[Product]:
+        """ Метод для получения продуктов с заданными id """
         pass
 
     @abstractmethod
