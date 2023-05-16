@@ -1,0 +1,1805 @@
+[
+  {
+    "model": "productsapp.category",
+    "pk": 1,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Телевизоры"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 2,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Наушники"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 3,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Стиральные машины"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 4,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Аксессуары"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 5,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Чехлы"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 6,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Электроника"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 7,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Скидки!"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 8,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Фотоаппараты"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 9,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Фурнитура"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 10,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Мобильные телефоны"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 11,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Сумки"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 12,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Микроволновые печи"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 13,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Кухонная техника"
+    }
+  },
+  {
+    "model": "productsapp.category",
+    "pk": 14,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Торшеры"
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-05-16T16:48:05.805Z",
+      "updated_at": "2023-05-16T16:48:05.805Z",
+      "is_active": true,
+      "name": "Vityaz 50LU1221",
+      "description": "Телевизор в хорошем качестве. диагональ: 32\"-39\", диагональ (точно): 32 \", Поддержка цифрового ТВ: нет, беспроводная связь: Wi-Fi",
+      "image": "products/televizor.webp",
+      "archived": false,
+      "free_delivery": false,
+      "category": 1
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 2,
+    "fields": {
+      "created_at": "2023-05-16T16:50:13.434Z",
+      "updated_at": "2023-05-16T16:50:13.434Z",
+      "is_active": true,
+      "name": "Микронаушник Mxmedia",
+      "description": "Модель с микрофоном, встроенным в корпус передатчика (без кнопки пищалки и выносного микрофона).\nМикронаушник Magnet Bluetooth является отличной моделью в среднем ценовом сегменте, занимает 3 место по объему продаж из всей линейки микронаушников производителя Mxmedia.\nМодель популярна за счет доступной цены, но при этом обладает достойными характеристиками. В комплекте передатчик bluetooth 4.0, аккумулятора 50 мАч хватает до 3-4 часов разговора.\nМикрофон встроен в передатчик и средне улавливает тихий голос. Если требуется передавать много информации шепотом, то советуем выбрать модель Mxmedia Magnet Bluetooth с выносным микрофоном и кнопкой пищалкой (другой товар, ищите на маркете).\nВ качестве динамиков используются невидимые в ухе магнитные микронаушники, которые забрасываются на барабанную перепонку, становясь совершенно незаметными для окружающих.\nОбращаем внимание, что при использовании магнитного типа микронаушников может возникать дискомфорт в ушах, по возможности рекомендуем пользоваться капсульными аналогами.",
+      "image": "products/Headphones.webp",
+      "archived": false,
+      "free_delivery": true,
+      "category": 2
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 3,
+    "fields": {
+      "created_at": "2023-05-16T16:52:48.116Z",
+      "updated_at": "2023-05-16T16:52:48.117Z",
+      "is_active": true,
+      "name": "Стиральная машина Candy GS4 1063D1, белый",
+      "description": "Особенности: Б/У\nРаньше принадлежал другому человеку.\nСтиральная машина в отличном техническом состоянии. Произведена замена подшипников и протестирована нашим техническим центром.\nВнешний вид: Отличный",
+      "image": "products/washing_machine.webp",
+      "archived": false,
+      "free_delivery": false,
+      "category": 3
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 9,
+    "fields": {
+      "created_at": "2023-05-16T16:57:50.790Z",
+      "updated_at": "2023-05-16T16:57:50.790Z",
+      "is_active": true,
+      "name": "Крючки декоративные бронза / крючок для ключницы / крючок настенный / 5шт.",
+      "description": "Характеристики\nБренд - Багемот\nТип - крючок\nНазначение - мелочи, аксессуары\nМатериал - металл\nКрепление - шурупы",
+      "image": "products/Accessories.webp",
+      "archived": false,
+      "free_delivery": true,
+      "category": 4
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 10,
+    "fields": {
+      "created_at": "2023-05-16T17:02:03.446Z",
+      "updated_at": "2023-05-16T17:02:03.446Z",
+      "is_active": true,
+      "name": "Premium чехол «Свирепый доберман» на iPhone SE 2022",
+      "description": "Красивый чехол, недорого",
+      "image": "products/case.jpg",
+      "archived": false,
+      "free_delivery": true,
+      "category": 5
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 11,
+    "fields": {
+      "created_at": "2023-05-16T17:28:46.945Z",
+      "updated_at": "2023-05-16T17:59:01.810Z",
+      "is_active": true,
+      "name": "Игровой компьютер GAMER PRO",
+      "description": "Новая серия карт nVidia 4ххх уже здесь! В связке с десятиядерным процессором i5 12600KF вы получаете беспрецедентную производительность за разумные деньги.\n4К гейминг в любых играх без тормозов, запуск фото и видеоредакторов со сверхсложными проектами - с этими и любыми другими задачами ваш новый компьютер справиться без труда!\nСборка выполнена в корпусе известного бренда Zalman с блоком питания 1000W, которого хватит для любых последующих модернизаций.",
+      "image": "products/comp_1.webp",
+      "archived": false,
+      "free_delivery": true,
+      "category": 6
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 12,
+    "fields": {
+      "created_at": "2023-05-16T17:35:39.250Z",
+      "updated_at": "2023-05-16T17:35:39.250Z",
+      "is_active": true,
+      "name": "Топовый игровой компьютер GAMER PRO Core i9 13900F 24x5800MHz / 64GB DDR5/ 3000GB HDD +1TB SSD/ RTX4",
+      "description": "Прекрасный ПК для всех игр в разрешениях вплоть до 4К.\nВидеокарта RTX4070Ti на 25% производительнее чем nVidia RTX3080 и при этом меньше греется.\nТоповый процессор i9 11900F 10 ядер 20 потоков 5200МГц.\nБесшумное водяное охлаждение.\nПредустановленная и настроенная Windows 10 PRO.",
+      "image": "products/comp_2.webp",
+      "archived": false,
+      "free_delivery": false,
+      "category": 6
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 13,
+    "fields": {
+      "created_at": "2023-05-16T17:52:07.997Z",
+      "updated_at": "2023-05-16T17:52:07.997Z",
+      "is_active": true,
+      "name": "Персональный компьютер Atomic Heart с водяным охлаждением 5950x/16/3090/1TbSSD/1000W/ Thermaltake To",
+      "description": "Авторский проект от нашей компании по игре Atomic Heart на базе уникального корпуса Thermaltake 500\nКонфигурация:\nПроцессор AMD Ryzen 9 5950X AM4\nМатеринская плата GIGABYTE X570S UD (AM4, ATX)\nОперативная память TeamGroup NightHawk White 16Gb PC4-25600\nВидеокарта GIGABYTE GeForce 3090 Gaming OC\nSSD диск ADATA M.2 XPG SX6000 1000GB\nКорпус Thermaltake Tower 500\nPSU 1000W\nВентиляторы DeepCool FC120",
+      "image": "products/comp_3.webp",
+      "archived": true,
+      "free_delivery": true,
+      "category": 6
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 14,
+    "fields": {
+      "created_at": "2023-05-16T17:56:35.440Z",
+      "updated_at": "2023-05-16T17:56:35.440Z",
+      "is_active": true,
+      "name": "ПЭВМ OLDI Game PC 770 0801899 > Intel Core i5-13600KF 3.5GHz/Z690/DDR5-128GB 5200MHz/SSD M.2-2TB/HDD",
+      "description": "Компьютер OLDI Computers ПЭВМ OLDI Game PC 770 0801899",
+      "image": "products/comp_4.webp",
+      "archived": false,
+      "free_delivery": true,
+      "category": 6
+    }
+  },
+  {
+    "model": "productsapp.review",
+    "pk": 11,
+    "fields": {
+      "created_at": "2023-05-16T18:07:16.954Z",
+      "updated_at": "2023-05-16T18:07:16.954Z",
+      "is_active": true,
+      "user": 5,
+      "product": 10,
+      "text": "Хороший чехол, отличное качество"
+    }
+  },
+  {
+    "model": "productsapp.review",
+    "pk": 12,
+    "fields": {
+      "created_at": "2023-05-16T18:07:32.439Z",
+      "updated_at": "2023-05-16T18:07:32.439Z",
+      "is_active": true,
+      "user": 6,
+      "product": 1,
+      "text": "Прекрасный телевизор, дешевый"
+    }
+  },
+  {
+    "model": "productsapp.review",
+    "pk": 13,
+    "fields": {
+      "created_at": "2023-05-16T18:07:54.002Z",
+      "updated_at": "2023-05-16T18:07:54.002Z",
+      "is_active": true,
+      "user": 5,
+      "product": 11,
+      "text": "Отличный игровой компьютер, очень мощный"
+    }
+  },
+  {
+    "model": "productsapp.review",
+    "pk": 14,
+    "fields": {
+      "created_at": "2023-05-16T18:08:09.363Z",
+      "updated_at": "2023-05-16T18:08:09.363Z",
+      "is_active": true,
+      "user": 5,
+      "product": 9,
+      "text": "Хорошие крючки"
+    }
+  },
+  {
+    "model": "productsapp.review",
+    "pk": 15,
+    "fields": {
+      "created_at": "2023-05-16T18:08:40.346Z",
+      "updated_at": "2023-05-16T18:08:40.346Z",
+      "is_active": true,
+      "user": 5,
+      "product": 12,
+      "text": "Очень мощный игровой компьютер, мне понравился"
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 1,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Модель",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 2,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Тип экрана",
+      "category": [
+        1,
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 3,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Емкость аккумулятора",
+      "category": [
+        2,
+        3,
+        6,
+        8,
+        10,
+        12
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 4,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Диагональ экрана (дюйм)",
+      "category": [
+        1,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 5,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Общие параметры",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 6,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Год релиза",
+      "category": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        8,
+        10,
+        11,
+        12,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 7,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Операционная система",
+      "category": [
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 8,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Версия ОС",
+      "category": [
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 9,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Разрешение экрана",
+      "category": [
+        1,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 10,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Плотность пикселей",
+      "category": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 11,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Тип",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 12,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Цвет",
+      "category": []
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 13,
+    "fields": {
+      "created_at": "2023-05-16T17:02:58.942Z",
+      "updated_at": "2023-05-16T17:02:58.942Z",
+      "is_active": true,
+      "name": "Материал",
+      "category": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 14,
+    "fields": {
+      "created_at": "2023-05-16T17:03:13.459Z",
+      "updated_at": "2023-05-16T17:03:13.459Z",
+      "is_active": true,
+      "name": "Метод нанесения",
+      "category": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 15,
+    "fields": {
+      "created_at": "2023-05-16T17:03:30.088Z",
+      "updated_at": "2023-05-16T17:03:30.088Z",
+      "is_active": true,
+      "name": "Модель телефона",
+      "category": [
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 16,
+    "fields": {
+      "created_at": "2023-05-16T17:08:57.163Z",
+      "updated_at": "2023-05-16T17:08:57.163Z",
+      "is_active": true,
+      "name": "Крепление",
+      "category": [
+        1,
+        3,
+        4,
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 17,
+    "fields": {
+      "created_at": "2023-05-16T17:11:20.824Z",
+      "updated_at": "2023-05-16T17:11:20.824Z",
+      "is_active": true,
+      "name": "Класс энергопотребления",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 18,
+    "fields": {
+      "created_at": "2023-05-16T17:11:46.578Z",
+      "updated_at": "2023-05-16T17:11:46.579Z",
+      "is_active": true,
+      "name": "Защита",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 19,
+    "fields": {
+      "created_at": "2023-05-16T17:12:14.489Z",
+      "updated_at": "2023-05-16T17:12:14.489Z",
+      "is_active": true,
+      "name": "Тип дисплея",
+      "category": [
+        1,
+        3,
+        6,
+        8,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 20,
+    "fields": {
+      "created_at": "2023-05-16T17:12:30.754Z",
+      "updated_at": "2023-05-16T17:12:30.754Z",
+      "is_active": true,
+      "name": "Высота",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 21,
+    "fields": {
+      "created_at": "2023-05-16T17:13:34.338Z",
+      "updated_at": "2023-05-16T17:13:34.338Z",
+      "is_active": true,
+      "name": "Глубина",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 22,
+    "fields": {
+      "created_at": "2023-05-16T17:16:33.265Z",
+      "updated_at": "2023-05-16T17:16:33.265Z",
+      "is_active": true,
+      "name": "Ширина",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 23,
+    "fields": {
+      "created_at": "2023-05-16T17:20:22.313Z",
+      "updated_at": "2023-05-16T17:20:22.313Z",
+      "is_active": true,
+      "name": "Тип беспроводного соединения",
+      "category": [
+        1,
+        2,
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 24,
+    "fields": {
+      "created_at": "2023-05-16T17:22:12.168Z",
+      "updated_at": "2023-05-16T17:22:12.168Z",
+      "is_active": true,
+      "name": "Производитель",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 25,
+    "fields": {
+      "created_at": "2023-05-16T17:25:10.385Z",
+      "updated_at": "2023-05-16T17:25:10.385Z",
+      "is_active": true,
+      "name": "Звук",
+      "category": [
+        1,
+        2,
+        6,
+        8,
+        10,
+        12,
+        13,
+        14
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 26,
+    "fields": {
+      "created_at": "2023-05-16T17:30:47.937Z",
+      "updated_at": "2023-05-16T17:30:47.937Z",
+      "is_active": true,
+      "name": "Процессор",
+      "category": [
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 27,
+    "fields": {
+      "created_at": "2023-05-16T17:31:13.056Z",
+      "updated_at": "2023-05-16T17:31:13.056Z",
+      "is_active": true,
+      "name": "Оперативная память",
+      "category": [
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 28,
+    "fields": {
+      "created_at": "2023-05-16T17:31:39.449Z",
+      "updated_at": "2023-05-16T17:31:39.449Z",
+      "is_active": true,
+      "name": "Тип памяти",
+      "category": [
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 29,
+    "fields": {
+      "created_at": "2023-05-16T17:32:28.834Z",
+      "updated_at": "2023-05-16T17:32:28.834Z",
+      "is_active": true,
+      "name": "SSD",
+      "category": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "productsapp.typespecific",
+    "pk": 30,
+    "fields": {
+      "created_at": "2023-05-16T17:33:02.813Z",
+      "updated_at": "2023-05-16T17:33:02.813Z",
+      "is_active": true,
+      "name": "HDD",
+      "category": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 25,
+    "fields": {
+      "created_at": "2023-05-16T17:04:05.951Z",
+      "updated_at": "2023-05-16T17:04:05.951Z",
+      "is_active": true,
+      "product": 10,
+      "description": "силикон Soft Touch",
+      "type_spec": 13
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 26,
+    "fields": {
+      "created_at": "2023-05-16T17:04:22.538Z",
+      "updated_at": "2023-05-16T17:04:22.538Z",
+      "is_active": true,
+      "product": 10,
+      "description": "iPhone SE 2022",
+      "type_spec": 15
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 27,
+    "fields": {
+      "created_at": "2023-05-16T17:05:09.875Z",
+      "updated_at": "2023-05-16T17:05:09.875Z",
+      "is_active": true,
+      "product": 10,
+      "description": "Черный",
+      "type_spec": 12
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 29,
+    "fields": {
+      "created_at": "2023-05-16T17:06:14.072Z",
+      "updated_at": "2023-05-16T17:06:26.561Z",
+      "is_active": true,
+      "product": 9,
+      "description": "крючок",
+      "type_spec": 11
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 30,
+    "fields": {
+      "created_at": "2023-05-16T17:06:44.251Z",
+      "updated_at": "2023-05-16T17:06:44.251Z",
+      "is_active": true,
+      "product": 9,
+      "description": "Металл",
+      "type_spec": 13
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 31,
+    "fields": {
+      "created_at": "2023-05-16T17:09:30.357Z",
+      "updated_at": "2023-05-16T17:09:30.357Z",
+      "is_active": true,
+      "product": 9,
+      "description": "Шурупы",
+      "type_spec": 16
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 32,
+    "fields": {
+      "created_at": "2023-05-16T17:10:30.854Z",
+      "updated_at": "2023-05-16T17:10:30.854Z",
+      "is_active": true,
+      "product": 3,
+      "description": "Стиральная машина",
+      "type_spec": 11
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 33,
+    "fields": {
+      "created_at": "2023-05-16T17:14:20.938Z",
+      "updated_at": "2023-05-16T17:14:20.938Z",
+      "is_active": true,
+      "product": 3,
+      "description": "A+",
+      "type_spec": 17
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 34,
+    "fields": {
+      "created_at": "2023-05-16T17:14:34.756Z",
+      "updated_at": "2023-05-16T17:14:34.756Z",
+      "is_active": true,
+      "product": 3,
+      "description": "от протечек",
+      "type_spec": 18
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 35,
+    "fields": {
+      "created_at": "2023-05-16T17:14:49.005Z",
+      "updated_at": "2023-05-16T17:14:49.005Z",
+      "is_active": true,
+      "product": 3,
+      "description": "Белый",
+      "type_spec": 12
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 36,
+    "fields": {
+      "created_at": "2023-05-16T17:15:10.122Z",
+      "updated_at": "2023-05-16T17:15:10.122Z",
+      "is_active": true,
+      "product": 3,
+      "description": "Цифровой (символьный)",
+      "type_spec": 19
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 37,
+    "fields": {
+      "created_at": "2023-05-16T17:15:27.189Z",
+      "updated_at": "2023-05-16T17:15:44.078Z",
+      "is_active": true,
+      "product": 3,
+      "description": "85 см",
+      "type_spec": 20
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 38,
+    "fields": {
+      "created_at": "2023-05-16T17:16:01.423Z",
+      "updated_at": "2023-05-16T17:16:01.423Z",
+      "is_active": true,
+      "product": 3,
+      "description": "40 см",
+      "type_spec": 21
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 39,
+    "fields": {
+      "created_at": "2023-05-16T17:16:44.908Z",
+      "updated_at": "2023-05-16T17:16:44.908Z",
+      "is_active": true,
+      "product": 3,
+      "description": "60 см",
+      "type_spec": 22
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 40,
+    "fields": {
+      "created_at": "2023-05-16T17:17:08.637Z",
+      "updated_at": "2023-05-16T17:17:08.637Z",
+      "is_active": true,
+      "product": 3,
+      "description": "Пластик",
+      "type_spec": 13
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 41,
+    "fields": {
+      "created_at": "2023-05-16T17:17:57.158Z",
+      "updated_at": "2023-05-16T17:17:57.158Z",
+      "is_active": true,
+      "product": 2,
+      "description": "2023",
+      "type_spec": 6
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 42,
+    "fields": {
+      "created_at": "2023-05-16T17:18:16.090Z",
+      "updated_at": "2023-05-16T17:18:16.090Z",
+      "is_active": true,
+      "product": 2,
+      "description": "Микронаушник",
+      "type_spec": 11
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 43,
+    "fields": {
+      "created_at": "2023-05-16T17:18:28.268Z",
+      "updated_at": "2023-05-16T17:18:28.268Z",
+      "is_active": true,
+      "product": 2,
+      "description": "Черный",
+      "type_spec": 12
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 44,
+    "fields": {
+      "created_at": "2023-05-16T17:18:53.160Z",
+      "updated_at": "2023-05-16T17:18:53.160Z",
+      "is_active": true,
+      "product": 2,
+      "description": "50 мА·ч",
+      "type_spec": 3
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 45,
+    "fields": {
+      "created_at": "2023-05-16T17:19:22.951Z",
+      "updated_at": "2023-05-16T17:19:22.951Z",
+      "is_active": true,
+      "product": 2,
+      "description": "Пластик",
+      "type_spec": 13
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 46,
+    "fields": {
+      "created_at": "2023-05-16T17:19:44.779Z",
+      "updated_at": "2023-05-16T17:19:44.779Z",
+      "is_active": true,
+      "product": 2,
+      "description": "2 мм",
+      "type_spec": 22
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 47,
+    "fields": {
+      "created_at": "2023-05-16T17:20:33.256Z",
+      "updated_at": "2023-05-16T17:20:33.256Z",
+      "is_active": true,
+      "product": 2,
+      "description": "Bluetooth",
+      "type_spec": 23
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 48,
+    "fields": {
+      "created_at": "2023-05-16T17:22:21.348Z",
+      "updated_at": "2023-05-16T17:22:21.348Z",
+      "is_active": true,
+      "product": 1,
+      "description": "Витязь",
+      "type_spec": 24
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 49,
+    "fields": {
+      "created_at": "2023-05-16T17:22:36.747Z",
+      "updated_at": "2023-05-16T17:22:36.747Z",
+      "is_active": true,
+      "product": 1,
+      "description": "32\"-39\"",
+      "type_spec": 4
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 50,
+    "fields": {
+      "created_at": "2023-05-16T17:22:52.628Z",
+      "updated_at": "2023-05-16T17:22:52.628Z",
+      "is_active": true,
+      "product": 1,
+      "description": "Wi-Fi",
+      "type_spec": 23
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 51,
+    "fields": {
+      "created_at": "2023-05-16T17:24:14.974Z",
+      "updated_at": "2023-05-16T17:24:14.974Z",
+      "is_active": true,
+      "product": 1,
+      "description": "LED",
+      "type_spec": 19
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 52,
+    "fields": {
+      "created_at": "2023-05-16T17:24:37.086Z",
+      "updated_at": "2023-05-16T17:24:37.086Z",
+      "is_active": true,
+      "product": 1,
+      "description": "1920x1080",
+      "type_spec": 9
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 53,
+    "fields": {
+      "created_at": "2023-05-16T17:25:27.956Z",
+      "updated_at": "2023-05-16T17:25:27.956Z",
+      "is_active": true,
+      "product": 1,
+      "description": "16 Вт",
+      "type_spec": 25
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 54,
+    "fields": {
+      "created_at": "2023-05-16T17:29:35.569Z",
+      "updated_at": "2023-05-16T17:29:35.569Z",
+      "is_active": true,
+      "product": 11,
+      "description": "Настольный компьютер",
+      "type_spec": 11
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 55,
+    "fields": {
+      "created_at": "2023-05-16T17:29:53.020Z",
+      "updated_at": "2023-05-16T17:29:53.020Z",
+      "is_active": true,
+      "product": 11,
+      "description": "Gamer PRO",
+      "type_spec": 24
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 56,
+    "fields": {
+      "created_at": "2023-05-16T17:30:14.742Z",
+      "updated_at": "2023-05-16T17:30:14.742Z",
+      "is_active": true,
+      "product": 11,
+      "description": "Windows 10 Pro",
+      "type_spec": 7
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 57,
+    "fields": {
+      "created_at": "2023-05-16T17:30:49.611Z",
+      "updated_at": "2023-05-16T17:30:49.611Z",
+      "is_active": true,
+      "product": 11,
+      "description": "Intel Core i5-12600KF",
+      "type_spec": 26
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 58,
+    "fields": {
+      "created_at": "2023-05-16T17:31:14.581Z",
+      "updated_at": "2023-05-16T17:31:14.581Z",
+      "is_active": true,
+      "product": 11,
+      "description": "64 ГБ",
+      "type_spec": 27
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 59,
+    "fields": {
+      "created_at": "2023-05-16T17:31:42.120Z",
+      "updated_at": "2023-05-16T17:31:42.121Z",
+      "is_active": true,
+      "product": 11,
+      "description": "DDR4",
+      "type_spec": 28
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 60,
+    "fields": {
+      "created_at": "2023-05-16T17:32:45.717Z",
+      "updated_at": "2023-05-16T17:32:45.718Z",
+      "is_active": true,
+      "product": 11,
+      "description": "1 ТБ",
+      "type_spec": 29
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 61,
+    "fields": {
+      "created_at": "2023-05-16T17:33:08.948Z",
+      "updated_at": "2023-05-16T17:33:08.948Z",
+      "is_active": true,
+      "product": 11,
+      "description": "2 ТБ",
+      "type_spec": 30
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 62,
+    "fields": {
+      "created_at": "2023-05-16T17:36:15.439Z",
+      "updated_at": "2023-05-16T17:36:15.439Z",
+      "is_active": true,
+      "product": 12,
+      "description": "Gamer Pro",
+      "type_spec": 24
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 63,
+    "fields": {
+      "created_at": "2023-05-16T17:36:27.346Z",
+      "updated_at": "2023-05-16T17:36:27.346Z",
+      "is_active": true,
+      "product": 12,
+      "description": "настольный компьютер",
+      "type_spec": 11
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 64,
+    "fields": {
+      "created_at": "2023-05-16T17:36:44.787Z",
+      "updated_at": "2023-05-16T17:36:44.787Z",
+      "is_active": true,
+      "product": 12,
+      "description": "Windows 10 Pro",
+      "type_spec": 7
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 65,
+    "fields": {
+      "created_at": "2023-05-16T17:37:23.685Z",
+      "updated_at": "2023-05-16T17:37:23.685Z",
+      "is_active": true,
+      "product": 12,
+      "description": "Intel Core i9 13900KF",
+      "type_spec": 26
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 66,
+    "fields": {
+      "created_at": "2023-05-16T17:37:42.455Z",
+      "updated_at": "2023-05-16T17:37:42.455Z",
+      "is_active": true,
+      "product": 12,
+      "description": "64 ГБ",
+      "type_spec": 27
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 67,
+    "fields": {
+      "created_at": "2023-05-16T17:37:57.962Z",
+      "updated_at": "2023-05-16T17:37:57.962Z",
+      "is_active": true,
+      "product": 12,
+      "description": "DDR5",
+      "type_spec": 28
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 68,
+    "fields": {
+      "created_at": "2023-05-16T17:38:11.659Z",
+      "updated_at": "2023-05-16T17:38:11.660Z",
+      "is_active": true,
+      "product": 12,
+      "description": "1 ТБ",
+      "type_spec": 29
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 69,
+    "fields": {
+      "created_at": "2023-05-16T17:38:22.116Z",
+      "updated_at": "2023-05-16T17:38:22.116Z",
+      "is_active": true,
+      "product": 12,
+      "description": "3 ТБ",
+      "type_spec": 30
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 70,
+    "fields": {
+      "created_at": "2023-05-16T17:38:33.609Z",
+      "updated_at": "2023-05-16T17:38:33.609Z",
+      "is_active": true,
+      "product": 12,
+      "description": "Черный",
+      "type_spec": 12
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 71,
+    "fields": {
+      "created_at": "2023-05-16T17:53:07.868Z",
+      "updated_at": "2023-05-16T17:53:07.868Z",
+      "is_active": true,
+      "product": 13,
+      "description": "Не определен",
+      "type_spec": 24
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 72,
+    "fields": {
+      "created_at": "2023-05-16T17:53:20.013Z",
+      "updated_at": "2023-05-16T17:53:20.013Z",
+      "is_active": true,
+      "product": 13,
+      "description": "настольный компьютер",
+      "type_spec": 11
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 73,
+    "fields": {
+      "created_at": "2023-05-16T17:53:33.019Z",
+      "updated_at": "2023-05-16T17:53:33.019Z",
+      "is_active": true,
+      "product": 13,
+      "description": "AMD Ryzen 9 5950X",
+      "type_spec": 26
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 74,
+    "fields": {
+      "created_at": "2023-05-16T17:53:42.984Z",
+      "updated_at": "2023-05-16T17:53:42.984Z",
+      "is_active": true,
+      "product": 13,
+      "description": "16 ГБ",
+      "type_spec": 27
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 75,
+    "fields": {
+      "created_at": "2023-05-16T17:53:52.248Z",
+      "updated_at": "2023-05-16T17:53:52.248Z",
+      "is_active": true,
+      "product": 13,
+      "description": "DDR4",
+      "type_spec": 28
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 76,
+    "fields": {
+      "created_at": "2023-05-16T17:54:04.143Z",
+      "updated_at": "2023-05-16T17:54:04.143Z",
+      "is_active": true,
+      "product": 13,
+      "description": "1 ТБ",
+      "type_spec": 29
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 77,
+    "fields": {
+      "created_at": "2023-05-16T17:57:17.124Z",
+      "updated_at": "2023-05-16T17:57:17.124Z",
+      "is_active": true,
+      "product": 14,
+      "description": "OLDI Computers",
+      "type_spec": 24
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 78,
+    "fields": {
+      "created_at": "2023-05-16T17:57:28.186Z",
+      "updated_at": "2023-05-16T17:57:28.186Z",
+      "is_active": true,
+      "product": 14,
+      "description": "Intel Core i5 13600KF",
+      "type_spec": 26
+    }
+  },
+  {
+    "model": "productsapp.specific",
+    "pk": 79,
+    "fields": {
+      "created_at": "2023-05-16T17:57:37.022Z",
+      "updated_at": "2023-05-16T17:57:37.022Z",
+      "is_active": true,
+      "product": 14,
+      "description": "DDR5",
+      "type_spec": 28
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 1,
+    "fields": {
+      "created_at": null,
+      "updated_at": null,
+      "is_active": true,
+      "name": "Яндекс"
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 2,
+    "fields": {
+      "created_at": "2023-05-16T16:30:27.503Z",
+      "updated_at": "2023-05-16T16:30:27.503Z",
+      "is_active": true,
+      "name": "Asus"
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 3,
+    "fields": {
+      "created_at": "2023-05-16T16:30:59.327Z",
+      "updated_at": "2023-05-16T16:30:59.327Z",
+      "is_active": true,
+      "name": "Магнит"
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 4,
+    "fields": {
+      "created_at": "2023-05-16T17:43:51.460Z",
+      "updated_at": "2023-05-16T17:43:51.460Z",
+      "is_active": true,
+      "name": "Gamer PRO"
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 5,
+    "fields": {
+      "created_at": "2023-05-16T17:45:25.356Z",
+      "updated_at": "2023-05-16T17:45:25.356Z",
+      "is_active": true,
+      "name": "Витязь"
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 6,
+    "fields": {
+      "created_at": "2023-05-16T17:46:17.085Z",
+      "updated_at": "2023-05-16T17:46:17.085Z",
+      "is_active": true,
+      "name": "Candy"
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 7,
+    "fields": {
+      "created_at": "2023-05-16T17:47:46.031Z",
+      "updated_at": "2023-05-16T17:47:46.031Z",
+      "is_active": true,
+      "name": "Mxmedia"
+    }
+  },
+  {
+    "model": "productsapp.seller",
+    "pk": 8,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "name": "OLDI Computers"
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 5,
+    "fields": {
+      "created_at": "2023-05-16T17:42:15.246Z",
+      "updated_at": "2023-05-16T17:42:15.246Z",
+      "is_active": true,
+      "value": "339550.00",
+      "product": 12,
+      "seller": 1
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 6,
+    "fields": {
+      "created_at": "2023-05-16T17:42:30.882Z",
+      "updated_at": "2023-05-16T17:42:30.882Z",
+      "is_active": true,
+      "value": "320500.00",
+      "product": 12,
+      "seller": 2
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 7,
+    "fields": {
+      "created_at": "2023-05-16T17:42:45.691Z",
+      "updated_at": "2023-05-16T17:42:45.691Z",
+      "is_active": true,
+      "value": "300000.00",
+      "product": 12,
+      "seller": 3
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 8,
+    "fields": {
+      "created_at": "2023-05-16T17:42:58.220Z",
+      "updated_at": "2023-05-16T17:42:58.220Z",
+      "is_active": true,
+      "value": "150000.00",
+      "product": 11,
+      "seller": 1
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 9,
+    "fields": {
+      "created_at": "2023-05-16T17:43:10.052Z",
+      "updated_at": "2023-05-16T17:43:10.052Z",
+      "is_active": true,
+      "value": "200450.00",
+      "product": 11,
+      "seller": 2
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 10,
+    "fields": {
+      "created_at": "2023-05-16T17:43:18.179Z",
+      "updated_at": "2023-05-16T17:43:18.179Z",
+      "is_active": true,
+      "value": "500.00",
+      "product": 10,
+      "seller": 1
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 11,
+    "fields": {
+      "created_at": "2023-05-16T17:43:35.171Z",
+      "updated_at": "2023-05-16T17:43:35.171Z",
+      "is_active": true,
+      "value": "399.00",
+      "product": 10,
+      "seller": 3
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 12,
+    "fields": {
+      "created_at": "2023-05-16T17:45:38.713Z",
+      "updated_at": "2023-05-16T17:45:38.713Z",
+      "is_active": true,
+      "value": "16820.00",
+      "product": 1,
+      "seller": 5
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 13,
+    "fields": {
+      "created_at": "2023-05-16T17:45:52.987Z",
+      "updated_at": "2023-05-16T17:45:52.987Z",
+      "is_active": true,
+      "value": "20550.00",
+      "product": 1,
+      "seller": 1
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 14,
+    "fields": {
+      "created_at": "2023-05-16T17:46:34.210Z",
+      "updated_at": "2023-05-16T17:46:34.210Z",
+      "is_active": true,
+      "value": "12400.00",
+      "product": 3,
+      "seller": 6
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 15,
+    "fields": {
+      "created_at": "2023-05-16T17:46:51.714Z",
+      "updated_at": "2023-05-16T17:46:51.714Z",
+      "is_active": true,
+      "value": "22000.00",
+      "product": 3,
+      "seller": 1
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 16,
+    "fields": {
+      "created_at": "2023-05-16T17:47:56.983Z",
+      "updated_at": "2023-05-16T17:47:56.983Z",
+      "is_active": true,
+      "value": "2863.00",
+      "product": 2,
+      "seller": 7
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 17,
+    "fields": {
+      "created_at": "2023-05-16T17:48:06.402Z",
+      "updated_at": "2023-05-16T17:48:06.402Z",
+      "is_active": true,
+      "value": "3000.00",
+      "product": 2,
+      "seller": 3
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 18,
+    "fields": {
+      "created_at": "2023-05-16T17:48:25.530Z",
+      "updated_at": "2023-05-16T17:48:25.531Z",
+      "is_active": true,
+      "value": "290.00",
+      "product": 9,
+      "seller": 3
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 19,
+    "fields": {
+      "created_at": "2023-05-16T17:52:38.042Z",
+      "updated_at": "2023-05-16T17:52:38.042Z",
+      "is_active": true,
+      "value": "420000.00",
+      "product": 13,
+      "seller": 4
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 20,
+    "fields": {
+      "created_at": "2023-05-16T17:57:00.560Z",
+      "updated_at": "2023-05-16T17:57:00.560Z",
+      "is_active": true,
+      "value": "308126.00",
+      "product": 14,
+      "seller": 8
+    }
+  }
+]
