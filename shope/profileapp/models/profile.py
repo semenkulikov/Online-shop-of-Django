@@ -1,12 +1,11 @@
 from django.db import models
 from authapp.models import User
-from django.core.validators import MaxValueValidator, MinValueValidator
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Profile(models.Model):
     """
     Profile models.
-    Пока номер телефона так. Потом переделать с регуляркой и валидатором.
     """
     user = models.OneToOneField(
         User,
@@ -14,27 +13,22 @@ class Profile(models.Model):
         related_name='profile',
         verbose_name='user'
     )
-    fio = models.CharField(max_length=100, verbose_name='FIO')
-    avatar_image = models.ImageField(
-        upload_to='profile_avatars/',
-        verbose_name='avatar'
+    fio = models.CharField(
+        max_length=100,
+        verbose_name='FIO'
     )
 
-    phone_number = models.PositiveBigIntegerField(
+    avatar_image = models.ImageField(
+        upload_to='profile_avatars/',
+        verbose_name='avatar',
+        null=True,
+        blank=True
+    )
+
+    phone_number = PhoneNumberField(
         blank=True,
         unique=True,
-        validators=[
-            MaxValueValidator(
-                9999999999,
-                message="Phone number must be entered "
-                        "in the format '+71234567890'. 10 digits allowed."
-            ),
-            MinValueValidator(
-                1000000000,
-                message="Phone number must be entered "
-                        "in the format '+71234567890'. 10 digits allowed."
-            )
-        ],
+        verbose_name='phone number'
     )
 
     def __str__(self):

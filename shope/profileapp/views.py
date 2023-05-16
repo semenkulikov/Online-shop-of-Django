@@ -6,10 +6,12 @@ from repositories import OrderRepository
 from .forms import ProfileForm, UserForm, UserPasswordSetForm
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.contrib.auth import update_session_auth_hash
+
 order_rep = OrderRepository()
 
 
-class ProfileDetailView(DetailView, LoginRequiredMixin):
+class ProfileDetailView(LoginRequiredMixin, DetailView):
     """
     View класс для отображения информации об аккаунте
     """
@@ -60,6 +62,10 @@ class ProfileUpdateView(LoginRequiredMixin, View):
             profile_form.save()
             user_form.save()
             password_form.save()
+
+            if password_form.has_changed():
+                update_session_auth_hash(request, password_form.user)
+
             messages.success(request, self.success_message)
             return redirect(self.request.path)
 

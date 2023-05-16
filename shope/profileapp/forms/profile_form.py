@@ -2,11 +2,24 @@ from django import forms
 from profileapp.models import Profile
 from django.core.exceptions import ValidationError
 from django.conf import settings
+from phonenumber_field.formfields import PhoneNumberField
+from repositories.profile_repository import ProfileRepository
+
+profile_rep = ProfileRepository()
 
 
 class ProfileForm(forms.ModelForm):
-    avatar_image = forms.ImageField(widget=forms.widgets.ClearableFileInput)
-    phone_number = forms.CharField()
+    avatar_image = forms.ImageField(
+        widget=forms.widgets.ClearableFileInput
+    )
+    phone_number = PhoneNumberField(
+        region='RU',
+        widget=forms.TextInput(
+            attrs={
+                "class": 'form-input'
+            }
+        )
+    )
 
     class Meta:
         model = Profile
@@ -16,7 +29,7 @@ class ProfileForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['avatar_image'].required = False
         self.fields['fio'].required = True
-        self.fields['phone_number'].required = True
+        self.fields['phone_number'].required = False
 
     def clean_avatar_image(self):
         data = self.cleaned_data["avatar_image"]
