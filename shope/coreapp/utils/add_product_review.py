@@ -30,13 +30,18 @@ class AddProductReview:
         self._repository.save(review=review)
         return True
 
-    def product_reviews_list(self, product: Product):
+    def product_reviews_list(self, product: Product, count=None):
         """
         Получение списка отзывов к товару
 
+        :param count: количество отзывов
         :param product: объект Product, у которого берем отзывы
         :return: QuerySet
         """
+        if count is not None:
+            return self._repository.get_all_reviews(
+                product=product,
+                count=count)
         return self._repository.get_all_reviews(product=product)
 
     def product_reviews_amount(self, product: Product) -> int:

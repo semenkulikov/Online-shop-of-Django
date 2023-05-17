@@ -1,3 +1,5 @@
+from typing import List
+
 from interfaces.product_select_interface import ProductSelectInterface
 from productsapp.models.product import Product
 from productsapp.models.specific import Specific
@@ -9,6 +11,14 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_all_products(self) -> QuerySet[Product]:
         """Получить все продукты"""
         return Product.objects.all()
+
+    def get_product_by_id(self, product_id: int) -> Product:
+        """ Получить продукт по id """
+        return Product.objects.get(id=product_id)
+
+    def get_products_with_these_id(self, products_id: List[int])\
+            -> QuerySet[Product]:
+        return Product.objects.filter(id__in=products_id)
 
     def get_products_with_filter(self,
                                  name: str,
@@ -51,7 +61,7 @@ class ProductSelectRepository(ProductSelectInterface):
         if reverse:
             prefix = '-'
         sorted_products = products.annotate(
-            reviews_amount=Count('review')).order_by(
+            reviews_amount=Count('reviews')).order_by(
             f'{prefix}reviews_amount')
         return sorted_products
 

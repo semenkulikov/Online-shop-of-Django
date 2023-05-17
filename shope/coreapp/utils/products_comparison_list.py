@@ -2,14 +2,14 @@ from django.db.models import QuerySet
 from django.http import HttpRequest
 
 from productsapp.models import Product
-from repositories.product_repository import ProductRepository
+from repositories.product_select_repository import ProductSelectRepository
 
 
 class ProductsComparisonList:
     """
     Сервис сравнения товаров
     """
-    _repository = ProductRepository()
+    _repository = ProductSelectRepository()
 
     @classmethod
     def add_to_comparison(cls, request: HttpRequest, product_id: int) -> None:
