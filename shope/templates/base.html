@@ -89,7 +89,7 @@
                                     <a class="ControlPanel-title" href="{% url 'authapp:login' %}">Вход</a>
                                     <a class="ControlPanel-title" href="{% url 'authapp:signup' %}">Регистрация</a>
                                     {% else %}
-                                    <a class="ControlPanel-title" href="account.html">Личный кабинет</a>
+                                    <a class="ControlPanel-title" href="{% url 'profileapp:account' %}">Личный кабинет</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -132,8 +132,8 @@
                                 {% if user.is_authenticated %}
                                 <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                 <div class="dropdown-content">
-                                    <a class="dropdown-content-a" href="account.html">Личный кабинет</a>
-                                    <a class="dropdown-content-a" href="account.html">Административный раздел</a>
+                                    <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">Личный кабинет</a>
+                                    <a class="dropdown-content-a" href="#">Административный раздел</a>
                                     <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">Выход</a>
                                 </div>
                                 {% endif %}
