@@ -2,8 +2,10 @@ from typing import List
 
 from interfaces.product_select_interface import ProductSelectInterface
 from productsapp.models.product import Product
+from taggit.models import Tag
 from productsapp.models.specific import Specific
 from django.db.models import QuerySet, Min, Sum, Count, Subquery, OuterRef
+from coreapp.enums import SORT_TYPES
 
 
 class ProductSelectRepository(ProductSelectInterface):
@@ -11,6 +13,10 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_all_products(self) -> QuerySet[Product]:
         """Получить все продукты"""
         return Product.objects.all()
+
+    def get_all_tags(self) -> QuerySet[Product]:
+        """Получить список всех тегов"""
+        return Tag.objects.all()
 
     def get_product_by_id(self, product_id: int) -> Product:
         """ Получить продукт по id """
@@ -41,6 +47,13 @@ class ProductSelectRepository(ProductSelectInterface):
         prices = products.select_related('category').annotate(
             price=Min('product_price__value'))
         return prices
+
+    def set_price_range(self,
+                        products: QuerySet,
+                        price_min: int,
+                        price_max: int) -> QuerySet[Product]:
+        """Выбрать диапазон цен"""
+        return products.filter(price__range=(price_min, price_max))
 
     def sort_by_popular(self,
                         products: QuerySet,
@@ -88,3 +101,22 @@ class ProductSelectRepository(ProductSelectInterface):
         if reverse:
             prefix = '-'
         return products.order_by(f'{prefix}price')
+
+    def get_sorted(self,
+                   products: QuerySet,
+                   sort: str) -> QuerySet[Product]:
+        """ Выбор метода сортировки в зависимости от параметра """
+        sort_methods = {
+            'new': self.sort_by_new,
+            'popular': self.sort_by_popular,
+            'reviews': self.sort_by_reviews,
+            'price': self.sort_by_price
+        }
+        if sort in SORT_TYPES:
+            reverse = False
+            if sort[0] == '-':
+                reverse = True
+                sort = sort[1:]
+            return sort_methods[sort](products, reverse)
+        else:  # при некорректном параметре сортировка не применяется
+            return products

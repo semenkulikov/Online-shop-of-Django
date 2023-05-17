@@ -4678,6 +4678,7 @@ input {
 }
 
 input[type="text"]:focus,
+input[type="tel"]:focus,
 input[type="password"]:focus {
     border: 1px solid rgb(0, 99, 209);
     box-shadow: none;
@@ -4687,7 +4688,8 @@ input[type="password"]:focus {
     background: white !important;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="tel"] {
     background: transparent;
     color: rgb(0, 99, 209);
 }

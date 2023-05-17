@@ -13,6 +13,10 @@ class ProductSelectInterface(ABC):
         pass
 
     @abstractmethod
+    def get_all_tags(self) -> QuerySet[Product]:
+        """Получить список всех тегов"""
+        pass
+
     def get_product_by_id(self, product_id: int) -> Product:
         """ Получить продукт по id """
         pass
@@ -44,6 +48,14 @@ class ProductSelectInterface(ABC):
         pass
 
     @abstractmethod
+    def set_price_range(self,
+                        products: QuerySet,
+                        price_min: int,
+                        price_max: int) -> QuerySet[Product]:
+        """Выбрать диапазон цен"""
+        pass
+
+    @abstractmethod
     def sort_by_popular(self,
                         products: QuerySet,
                         reverse: bool) -> QuerySet[Product]:
@@ -69,4 +81,11 @@ class ProductSelectInterface(ABC):
                       products: QuerySet,
                       reverse: bool) -> QuerySet[Product]:
         """ Cортировка по цене """
+        pass
+
+    @abstractmethod
+    def get_sorted(self,
+                   products: QuerySet,
+                   sort: str) -> QuerySet[Product]:
+        """ Выбор метода сортировки в зависимости от параметра """
         pass
