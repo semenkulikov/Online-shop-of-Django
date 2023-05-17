@@ -8,7 +8,7 @@ select_repo = ProductSelectRepository()
 class ProductListView(ListView):
     """ Класс-view для каталога """
     template_name = 'productsapp/catalog.html'
-    paginate_by = 8
+    paginate_by = 3
     extra_context = {'tags_list': select_repo.get_all_tags()}
 
     def get_queryset(self):

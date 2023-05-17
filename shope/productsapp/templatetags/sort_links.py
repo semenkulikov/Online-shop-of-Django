@@ -21,5 +21,11 @@ def sortquery(path, mode):
     if last_sort:
         if last_sort.group() == new_sort:
             new_sort = f'&sort=-{mode}'
-    result = re.sub(r'(&?sort=.*&)|(&?sort=.*$)', '', path)
+    result = re.sub(r'(&?sort=.*(?=&))|(&?sort=.*$)', '', path)
     return result + new_sort
+
+
+@register.filter(name="cleanquery")
+def cleanquery(path):
+    """Удаляет повторяющийся get-параметр page"""
+    return re.sub(r'(&?page=.*(?=&))|(&?page=.*$)', '', path)
