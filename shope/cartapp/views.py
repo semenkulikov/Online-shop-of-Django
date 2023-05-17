@@ -10,10 +10,11 @@ class CartItemListView(View):
     Класс для отображения всех продуктов в корзине
     """
     template_name = 'cartapp/cart.html'
+    rep_cart = RepCart()
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:  # пользователь авторизован
-            cart = RepCart().get_cart(user=request.user)
+            cart = self.rep_cart.get_cart(user=request.user)
             cart_items = AddToCart.cart_items_list(cart=cart)
             #  все товары в корзине
 

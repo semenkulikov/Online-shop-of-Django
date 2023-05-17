@@ -6,6 +6,9 @@ from django.db.models import F
 
 from repositories.cart_repository import RepCart, RepCartItem
 
+rep_cart = RepCart()
+rep_cart_item = RepCartItem()
+
 
 class AddToCart:
     """
@@ -20,10 +23,10 @@ class AddToCart:
         if request.user.is_authenticated:  # если пользователь авторизован
             product = get_object_or_404(Product, pk=product_id)
             user = request.user
-            cart = RepCart.get_cart(user=user)
-            cart_item = RepCartItem.get_cart_item(cart=cart, product=product)
+            cart = rep_cart.get_cart(user=user)
+            cart_item = rep_cart_item.get_cart_item(cart=cart, product=product)
             if not cart_item:  # товара нет в корзине
-                RepCartItem.save(cart=cart, product=product, quantity=count)
+                rep_cart_item.save(cart=cart, product=product, quantity=count)
 
             else:  # товар есть в корзине
                 if count != 1:  # изменение количества
@@ -34,7 +37,7 @@ class AddToCart:
             if request.session.get('products'):
                 #  если есть в сессиях уже какие-либо товары
                 if request.session['products']. \
-                        get(str(product_id), False) is not False:
+                        get(str(product_id)):
                     # если позиция с конкретным товаром уже есть и count != 1
                     # изменить количество на count
                     if count != 1:
@@ -49,22 +52,22 @@ class AddToCart:
             request.session.modified = True
 
     @classmethod
-    def delete_from_cart(cls, request, product_id, full=False):
+    def delete_from_cart(cls, request, product_id, full=None):
         """
         Удаление товара из корзины
         """
         product = get_object_or_404(Product, pk=product_id)
         if request.user.is_authenticated:  # если пользователь авторизован
             user = request.user
-            cart = RepCart.get_cart(user=user)
-            cart_item = RepCartItem.get_cart_item(cart=cart, product=product)
-            if full is not False:  # удаление товара из корзины
-                RepCartItem.delete(cart_item)
+            cart = rep_cart.get_cart(user=user)
+            cart_item = rep_cart_item.get_cart_item(cart=cart, product=product)
+            if full:  # удаление товара из корзины
+                rep_cart_item.delete(cart_item)
             else:  # уменьшение количества товара на 1
                 cart_item.update(quantity=F('quantity') - 1)
         else:
             if request.session.get('products'):
-                if full is not False:  # удаление товара из корзины
+                if full:  # удаление товара из корзины
                     request.session['products'].pop(str(product_id), False)
                 else:  # уменьшение количества на 1
                     request.session['products'][str(product_id)] -= 1
@@ -77,9 +80,9 @@ class AddToCart:
         """
         product = get_object_or_404(Product, pk=product_id)
         user = request.user
-        cart = RepCart.get_cart(user=user)
+        cart = rep_cart.get_cart(user=user)
         cart_item = CartItem.objects.get(cart=cart, product=product)
-        RepCartItem.save(force=cart_item, quantity=count)
+        rep_cart_item.save(force=cart_item, quantity=count)
 
     @classmethod
     def cart_items_list(cls, cart=None, list_product_id=None):
@@ -90,7 +93,7 @@ class AddToCart:
             items_list = [Product.objects.get(pk=product_id)
                           for product_id in list_product_id]
         else:
-            items_list = RepCartItem.get_all_items(cart)
+            items_list = rep_cart_item.get_all_items(cart)
         return items_list
 
     @classmethod
@@ -98,7 +101,7 @@ class AddToCart:
         """
         Получение общего количества товаров в корзине
         """
-        count = RepCart.count_items(cart)
+        count = rep_cart.count_items(cart)
         return count
 
     @classmethod
@@ -108,18 +111,18 @@ class AddToCart:
         из сессии
         """
 
-        cart = RepCart.get_cart(user)
+        cart = rep_cart.get_cart(user)
         for product_id in request.session['products']:
             # цикл по product_id в сессии
             product = get_object_or_404(Product, pk=product_id)
-            cart_item = RepCartItem. \
+            cart_item = rep_cart_item. \
                 get_cart_item(cart=cart, product=product)
             if cart_item:
                 cart_item. \
                     update(quantity=F('quantity') + request.
                            session['products'][product_id])
             else:
-                RepCartItem.save(
+                rep_cart_item.save(
                     cart=cart,
                     product=product,
                     quantity=request.session['products'][product_id]

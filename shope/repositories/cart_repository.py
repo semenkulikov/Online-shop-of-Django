@@ -12,24 +12,22 @@ from interfaces.cart_interface import CartInterface, CartItemInterface
 
 
 class RepCart(CartInterface):
-    @classmethod
-    def get_cart(cls, user: User) -> Cart:
+
+    def get_cart(self, user: User) -> Cart:
         """
         Возвращает корзину пользователя user
         """
         cart = get_object_or_404(Cart, user=user)
         return cart
 
-    @classmethod
-    def get_all_carts(cls) -> QuerySet[Cart]:
+    def get_all_carts(self) -> QuerySet[Cart]:
         """
         Возвращает все корзины
         """
         carts = Cart.objects.all()
         return carts
 
-    @classmethod
-    def get_total_amount(cls, cart: Cart) -> float:
+    def get_total_amount(self, cart: Cart) -> float:
         """
         Общая стоимость
         """
@@ -42,8 +40,8 @@ class RepCart(CartInterface):
     # return self.items.aggregate(
     #     total_amount=Sum(F('product__price') * F('quantity'))
     # )['total_amount']
-    @classmethod
-    def count_items(cls, cart: Cart) -> int:
+
+    def count_items(self, cart: Cart) -> int:
         """
         Количество товаров в корзине
         """
@@ -51,8 +49,7 @@ class RepCart(CartInterface):
             aggregate(Sum('quantity'))['quantity__sum']
         return total_products
 
-    @classmethod
-    def save(cls, force=None, **kwargs) -> Cart:
+    def save(self, force=None, **kwargs) -> Cart:
         """
         Создание или обновление корзины
         """
@@ -66,8 +63,7 @@ class RepCart(CartInterface):
             cart = Cart.objects.create(**kwargs)
             return cart
 
-    @classmethod
-    def delete(cls, cart: Cart) -> None:
+    def delete(self, cart: Cart) -> None:
         """
         Удаление корзины
         """
@@ -75,8 +71,8 @@ class RepCart(CartInterface):
 
 
 class RepCartItem(CartItemInterface):
-    @classmethod
-    def get_all_items(cls, cart: Cart) -> QuerySet[CartItem]:
+
+    def get_all_items(self, cart: Cart) -> QuerySet[CartItem]:
         """
         Метод возвращает все товары в корзине
         """
@@ -84,8 +80,7 @@ class RepCartItem(CartItemInterface):
             select_related('product')
         return cart_items
 
-    @classmethod
-    def get_cart_item(cls, cart: Cart, product: Product) \
+    def get_cart_item(self, cart: Cart, product: Product) \
             -> QuerySet[CartItem]:
         """
         Возвращает одну позицию товара
@@ -95,8 +90,7 @@ class RepCartItem(CartItemInterface):
             filter(cart=cart, product=product)
         return cart_item
 
-    @classmethod
-    def save(cls, force=None, **kwargs) -> CartItem:
+    def save(self, force=None, **kwargs) -> CartItem:
         """
         Создание или обновление позиции с товаром
         """
@@ -110,8 +104,7 @@ class RepCartItem(CartItemInterface):
             cart_item = CartItem.objects.create(**kwargs)
             return cart_item
 
-    @classmethod
-    def delete(cls, cart_item: QuerySet[CartItem]) -> None:
+    def delete(self, cart_item: QuerySet[CartItem]) -> None:
         """
         Удаление всей позиции с товаром
         """
