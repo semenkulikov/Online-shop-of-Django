@@ -1,12 +1,11 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from authapp.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Profile(models.Model):
     """
     Profile models.
-    Пока номер телефона так. Потом переделать с регуляркой и валидатором.
     """
     user = models.OneToOneField(
         User,
@@ -14,14 +13,22 @@ class Profile(models.Model):
         related_name='profile',
         verbose_name='user'
     )
-    fio = models.CharField(max_length=100, verbose_name='FIO')
+    fio = models.CharField(
+        max_length=100,
+        verbose_name='FIO'
+    )
+
     avatar_image = models.ImageField(
         upload_to='profile_avatars/',
-        verbose_name='avatar'
+        verbose_name='avatar',
+        null=True,
+        blank=True
     )
+
     phone_number = PhoneNumberField(
         blank=True,
-        verbose_name='phone'
+        unique=True,
+        verbose_name='phone number'
     )
 
     def __str__(self):
