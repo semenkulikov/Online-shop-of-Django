@@ -66,7 +66,6 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
-            self.rep_cart.save(user=user)
             if request.session.get('products'):  # если в сессии есть продукты
                 AddToCart.move_from_session(request, user)
             if send_verif_link(user):
