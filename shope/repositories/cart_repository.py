@@ -12,6 +12,7 @@ from interfaces.cart_interface import CartInterface, CartItemInterface
 
 
 class RepCart(CartInterface):
+
     def get_cart(self, user: User) -> Cart:
         """
         Возвращает корзину пользователя user
@@ -39,6 +40,7 @@ class RepCart(CartInterface):
     # return self.items.aggregate(
     #     total_amount=Sum(F('product__price') * F('quantity'))
     # )['total_amount']
+
     def count_items(self, cart: Cart) -> int:
         """
         Количество товаров в корзине

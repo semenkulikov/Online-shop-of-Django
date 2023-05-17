@@ -34,7 +34,7 @@ class UserLoginView(LoginView):
         if self.request.user.is_authenticated and self.request. \
                 session.get('products'):
             # если в сессии есть продукты
-            AddToCart().move_from_session(self.request, self.request.user)
+            AddToCart.move_from_session(self.request, self.request.user)
             # добавление товаров в продукты
         return HttpResponseRedirect(reverse('index'))
 
@@ -51,6 +51,7 @@ class UserSignUpView(CreateView):
     template_name = 'authapp/registr.html'
     form_class = UserSignUpForm
     success_url = reverse_lazy('authapp:login')
+    rep_cart = RepCart()
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(data=request.GET)
@@ -65,9 +66,9 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
-            RepCart().save(user=user)
-            if request.session['products']:  # если в сессии есть продукты
-                AddToCart().move_from_session(request, user)
+            self.rep_cart.save(user=user)
+            if request.session.get('products'):  # если в сессии есть продукты
+                AddToCart.move_from_session(request, user)
             if send_verif_link(user):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, 'Вы успешно зарегистрировались.'
@@ -101,7 +102,6 @@ def verify_user(request, *args, **kwargs):
                 user.activation_key_expires = None
                 user.save()
                 login(request, user)  # вход в учетную запись
-                messages.set_level(request, messages.SUCCESS)
         except Exception:
             messages.error(request, 'Произошла ошибка. Истёк срок активации\n'
                                     'Попробуйте регистрацию заново.')
