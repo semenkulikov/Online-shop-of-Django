@@ -6,6 +6,9 @@ from django.contrib.auth.forms import AuthenticationForm, \
 
 
 class UserLoginForm(AuthenticationForm):
+    """
+    Форма для авторизации пользователя
+    """
     username = UsernameField(
         widget=forms.TextInput(
             attrs={"autofocus": True,
@@ -28,6 +31,9 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserSignUpForm(UserCreationForm):
+    """
+    Форма для регистрации пользователя
+    """
     class Meta:
         model = User
         fields = ('email', 'first_name',
@@ -49,12 +55,18 @@ class UserSignUpForm(UserCreationForm):
 
 
 class UserResetPasswordForm(PasswordResetForm):
+    """
+    Форма для ввода email
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['placeholder'] = 'E-mail'
 
 
 class UserSetPasswordForm(SetPasswordForm):
+    """
+    Форма для ввода нового пароля
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['new_password1'].widget.attrs['placeholder'] = 'Пароль'

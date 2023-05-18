@@ -66,9 +66,11 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
+            protocol = request.scheme
+            domain = request.META['HTTP_HOST']
             if request.session.get('products'):  # если в сессии есть продукты
                 AddToCart.move_from_session(request, user)
-            if send_verif_link(user):
+            if send_verif_link(user, protocol, domain):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, 'Вы успешно зарегистрировались.'
                                           ' \nСсылка для активации '
@@ -115,9 +117,8 @@ class UserPassResetView(PasswordResetView):
     form_class = UserResetPasswordForm
     template_name = "authapp/forgot_password.html"
     from_email = settings.EMAIL_HOST_USER
-    html_email_template_name = "authapp/reset_confim.html"
+    html_email_template_name = "authapp/email/reset_confirm.html"
     success_url = reverse_lazy('index')
-    subject_template_name = "authapp/password_reset_subject.html"
 
 
 class UserPassChangeView(PasswordResetConfirmView):

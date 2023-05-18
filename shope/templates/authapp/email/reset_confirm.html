@@ -1,0 +1,17 @@
+{% extends 'authapp/email/base-for-messages.html' %}
+{% load static %}
+{% autoescape off %}
+{% block content %}
+{% block container %}
+<h1>Уважаемый {{user.first_name}} {{user.last_name}}</h1>
+<p>Мы получили запрос на создание нового пароля для вашего личного кабинета на портале
+    <a href="{{ protocol }}://{{ domain }}{% url 'index' %}">Megano</a>
+</p>
+<p>Чтобы изменить пароль, нажмите, пожалуйста, на кнопку.</p>
+<a class="pass" href="{{ protocol }}://{{ domain }}{% url 'authapp:set_pass' uidb64=uid token=token %}">Изменить пароль</a>
+<p>Если вы не отправляли такой запрос, просто проигнорируйте это письмо.</p>
+<p>С уважением,</p>
+<p>Megano</p>
+{% endblock %}
+{% endblock %}
+{% endautoescape %}
