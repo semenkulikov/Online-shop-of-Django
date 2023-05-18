@@ -78,8 +78,9 @@ class UserSignUpView(CreateView):
                                           'В течение 72 часов Вам необходимо '
                                           'подтвердить свою учетную запись.')
                 return HttpResponseRedirect(reverse('authapp:login'))
-        else:
-            messages.error(request, form.errors)  # при наличии ошибок в форме
+        else:  # при наличии ошибок в форме
+            messages.set_level(request, messages.ERROR)
+            messages.error(request, *list(form.errors.values()))
         return render(request, self.template_name, {'form': form})
 
 

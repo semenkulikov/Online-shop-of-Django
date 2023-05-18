@@ -6535,3 +6535,9 @@ input[type="radio"] {
     text-align: center;
     margin-bottom: 20%;
 }
+
+.wrap-reg .errorlist, .error-login {
+    text-align:center;
+    color: #9b2626;
+    margin-bottom: 20px;
+}
