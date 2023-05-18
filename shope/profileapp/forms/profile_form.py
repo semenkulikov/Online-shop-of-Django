@@ -43,6 +43,9 @@ class ProfileForm(forms.ModelForm):
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
-        if profile_rep.get_profile_by_phone_number(phone_number=phone_number):
+        saved_profile = profile_rep.get_profile_by_phone_number(
+            phone_number=phone_number
+        )
+        if saved_profile and phone_number != self.instance.phone_number:
             raise ValidationError('This phone number is already in use')
         return phone_number
