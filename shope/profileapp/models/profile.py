@@ -27,7 +27,6 @@ class Profile(models.Model):
 
     phone_number = PhoneNumberField(
         blank=True,
-        unique=True,
         verbose_name='phone number'
     )
 

@@ -36,6 +36,16 @@ class ProfileForm(forms.ModelForm):
 
     def clean_avatar_image(self):
         data = self.cleaned_data["avatar_image"]
-        if data.size > settings.MAX_AVATAR_IMAGE_SIZE:
-            raise ValidationError("Maximum avatar size is 2 Mb")
+        if data:
+            if data.size > settings.MAX_AVATAR_IMAGE_SIZE:
+                raise ValidationError("Maximum avatar size is 2 Mb")
         return data
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        saved_profile = profile_rep.get_profile_by_phone_number(
+            phone_number=phone_number
+        )
+        if saved_profile and phone_number != self.instance.phone_number:
+            raise ValidationError('This phone number is already in use')
+        return phone_number
