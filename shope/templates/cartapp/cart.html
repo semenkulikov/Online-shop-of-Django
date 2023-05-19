@@ -29,7 +29,7 @@
                                 </a>
                             </div>
                             {% if count_list %}
-                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">{{item.name}}</a>
+                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'productsapp:product_detail' item.pk %}">{{item.name}}</a>
                                 <div class="Cart-desc">{{item.description}}
                                 </div>
                             </div>
@@ -38,12 +38,12 @@
                                 </div>
                             </div>
                             {% else %}
-                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">{{item.product.name}}</a>
+                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'productsapp:product_detail' item.product.pk %}">{{item.product.name}}</a>
                                 <div class="Cart-desc">{{item.product.description}}
                                 </div>
                             </div>
                             <div class="Cart-block Cart-block_price">
-                                <div class="Cart-price">$$$
+                                <div class="Cart-price">{{item.product.product_price.value}}
                                 </div>
                             </div>
                             {% endif %}

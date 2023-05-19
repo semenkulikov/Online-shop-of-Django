@@ -76,8 +76,8 @@ class RepCartItem(CartItemInterface):
         """
         Метод возвращает все товары в корзине
         """
-        cart_items = CartItem.objects.filter(cart=cart). \
-            select_related('product')
+        cart_items = CartItem.objects.filter(cart=cart).\
+            prefetch_related('product', 'product__product_price')
         return cart_items
 
     def get_cart_item(self, cart: Cart, product: Product) \

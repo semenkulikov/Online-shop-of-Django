@@ -1,4 +1,0 @@
-{% autoescape off %}
-Для восстановления пароля от аккаунта {{ email }} пройдите по ссылке: <br>
-{{ protocol }}://{{ domain }}{% url 'authapp:set_pass' uidb64=uid token=token %}
-{% endautoescape %}
