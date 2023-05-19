@@ -1,12 +1,24 @@
+from typing import List, Dict
+
+from django.db.models import QuerySet
+from productsapp.models import Product, Discount
+
+from repositories.product_select_repository import ProductSelectRepository
+
+
 class ProductDiscounts:
     """
     Сервис получения скидок на товары
     """
-    def all_discounts(self):
+    product_repository = ProductSelectRepository()
+
+    def all_discounts(self, products_id: List[int]) -> \
+            Dict[Product, QuerySet[Discount]]:
         """
-        Получение всех скидок на указанный список товаров или на один товар
+        Получение всех скидок на указанный список товаров или на один товар.
         """
-        pass
+        discounts = self.product_repository.get_all_discounts(products_id)
+        return discounts
 
     def priority_discount(self):
         """
