@@ -28,4 +28,3 @@ def process_image_view(request):
 
     # Ответ пользователю
     return HttpResponse('Изображение отправлено на обработку.')
-
