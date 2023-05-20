@@ -18,3 +18,9 @@ ORDER_STATUSES = (
     (PAID_STATUS, 'Оплачен'),
     (NOT_PAID_STATUS, 'Не оплачен')
 )
+
+# Способы сортировки
+SORT_TYPES = ('new', '-new',
+              'popular', '-popular',
+              'price', '-price',
+              'reviews', '-reviews')

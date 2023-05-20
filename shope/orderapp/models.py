@@ -41,7 +41,8 @@ class OrderItem(BaseModel):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        verbose_name='product')
+        verbose_name='product',
+        related_name='ordered')
     count = models.PositiveSmallIntegerField(
         verbose_name='count')
     price = models.DecimalField(

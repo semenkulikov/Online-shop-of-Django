@@ -10,29 +10,23 @@
 {% block wrap %}
 <div class="wrap">
     <div class="row Header-rowMain">
-        <div class="row-block Header-logo"><a class="logo" href="../index.html"><img class="logo-image"
-                                                                                     src="{% static 'assets/img/logo.png' %}"
-                                                                                     alt="logo.png"/></a>
+        <div class="row-block Header-logo"><a class="logo" href="{% url 'index' %}"><img class="logo-image"
+                                                                                         src="{% static 'assets/img/logo.png' %}"
+                                                                                         alt="logo.png"/></a>
         </div>
     </div>
 </div>
 {% endblock %}
 {% block content %}
-
-
 <div class="wrapper wrap-reg">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
     <div class="header">
         <h3 class="sign-in">Регистрация</h3>
-
     </div>
     <div class="clear"></div>
     <form action="{% url 'authapp:signup' %}" method="post">{% csrf_token %}
-        {% for error in form.non_field_errors %}
-            {{ error }}
-        {% endfor %}
-        {% for mes in messages %}
-            {{ mes }}
-        {% endfor %}
         <div class="form-wrap">
             <div>
                 {{ form.first_name }}

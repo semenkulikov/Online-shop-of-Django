@@ -13,6 +13,8 @@ from authapp.forms import UserLoginForm, UserSignUpForm, \
     UserResetPasswordForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, LogoutView
 from coreapp.utils.verified_user import send_verif_link, generate_random_string
+from coreapp.utils.add_to_cart import AddToCart
+from repositories.cart_repository import RepCart
 
 
 class UserLoginView(LoginView):
@@ -27,6 +29,15 @@ class UserLoginView(LoginView):
             return HttpResponseRedirect(reverse('index'))
         return render(request, self.template_name, {'form': self.form_class})
 
+    def form_valid(self, form):
+        super().form_valid(form)
+        if self.request.user.is_authenticated and self.request. \
+                session.get('products'):
+            # если в сессии есть продукты
+            AddToCart.move_from_session(self.request, self.request.user)
+            # добавление товаров в продукты
+        return HttpResponseRedirect(reverse('index'))
+
 
 class UserLogoutView(LogoutView):
     next_page = '/'
@@ -40,6 +51,7 @@ class UserSignUpView(CreateView):
     template_name = 'authapp/registr.html'
     form_class = UserSignUpForm
     success_url = reverse_lazy('authapp:login')
+    rep_cart = RepCart()
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(data=request.GET)
@@ -54,7 +66,11 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
-            if send_verif_link(user):
+            protocol = request.scheme
+            domain = request.META['HTTP_HOST']
+            if request.session.get('products'):  # если в сессии есть продукты
+                AddToCart.move_from_session(request, user)
+            if send_verif_link(user, protocol, domain):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, 'Вы успешно зарегистрировались.'
                                           ' \nСсылка для активации '
@@ -62,8 +78,9 @@ class UserSignUpView(CreateView):
                                           'В течение 72 часов Вам необходимо '
                                           'подтвердить свою учетную запись.')
                 return HttpResponseRedirect(reverse('authapp:login'))
-        else:
-            messages.error(request, form.errors)  # при наличии ошибок в форме
+        else:  # при наличии ошибок в форме
+            messages.set_level(request, messages.ERROR)
+            messages.error(request, *list(form.errors.values()))
         return render(request, self.template_name, {'form': form})
 
 
@@ -87,8 +104,6 @@ def verify_user(request, *args, **kwargs):
                 user.activation_key_expires = None
                 user.save()
                 login(request, user)  # вход в учетную запись
-                messages.set_level(request, messages.SUCCESS)
-                messages.success(request, 'Ваша учётная запись подтверждена')
         except Exception:
             messages.error(request, 'Произошла ошибка. Истёк срок активации\n'
                                     'Попробуйте регистрацию заново.')
@@ -103,9 +118,8 @@ class UserPassResetView(PasswordResetView):
     form_class = UserResetPasswordForm
     template_name = "authapp/forgot_password.html"
     from_email = settings.EMAIL_HOST_USER
-    html_email_template_name = "authapp/reset_confim.html"
+    html_email_template_name = "authapp/email/reset_confirm.html"
     success_url = reverse_lazy('index')
-    subject_template_name = "authapp/password_reset_subject.html"
 
 
 class UserPassChangeView(PasswordResetConfirmView):

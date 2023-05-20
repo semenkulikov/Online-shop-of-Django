@@ -1,0 +1,15 @@
+{% extends 'authapp/email/base-for-messages.html' %}
+{% load static %}
+{% autoescape off %}
+{% block content %}
+{% block container %}
+<h1>Регистрация</h1>
+<h3>Уважаемый {{first_name}} {{last_name}}</h3>
+<p>Для подтверждения регистрации на сайте Megano нажмите на кнопку</p>
+<a class="pass" href="{{link}}">Подтвердить</a>
+<p>Если это не Вы регистрировались на сайте, то проигнорируйте это письмо.</p>
+<p>С уважением,</p>
+<p>Megano</p>
+{% endblock %}
+{% endblock %}
+{% endautoescape %}
