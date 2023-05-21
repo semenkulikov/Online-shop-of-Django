@@ -89,7 +89,7 @@
                                     <a class="ControlPanel-title" href="{% url 'authapp:login' %}">Вход</a>
                                     <a class="ControlPanel-title" href="{% url 'authapp:signup' %}">Регистрация</a>
                                     {% else %}
-                                    <a class="ControlPanel-title" href="account.html">Личный кабинет</a>
+                                    <a class="ControlPanel-title" href="{% url 'profileapp:account' %}">Личный кабинет</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -111,16 +111,16 @@
         {% block wrap %}
             <div class="wrap">
                 <div class="row Header-rowMain">
-                    <div class="row-block Header-logo"><a class="logo" href="index.html"><img class="logo-image" src="{% static 'assets/img/logo.png' %}" alt="logo.png" /></a>
+                    <div class="row-block Header-logo"><a class="logo" href="{% url 'index' %}"><img class="logo-image" src="{% static 'assets/img/logo.png' %}" alt="logo.png" /></a>
                     </div>
                     <nav class="row-block row-block_right Header-menu">
                         <div class="menuModal" id="navigate">
                             <ul class="menu menu_main">
-                                <li class="menu-item"><a class="menu-link" href="index.html">Главная</a>
+                                <li class="menu-item"><a class="menu-link" href="{% url 'index' %}">Главная</a>
                                 </li>
-                                <li class="menu-item"><span class="menu-label menu-label_success">Скидки</span><a class="menu-link" href="catalog.html">Каталог</a>
+                                <li class="menu-item"><span class="menu-label menu-label_success">Скидки</span><a class="menu-link" href="{% url 'productsapp:catalog' %}">Каталог</a>
                                 </li>
-                                <li class="menu-item"><a class="menu-link" href="comparison.html">Сравнение</a>
+                                <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">Сравнение</a>
                                 </li>
                             </ul>
                         </div>
@@ -132,14 +132,14 @@
                                 {% if user.is_authenticated %}
                                 <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                 <div class="dropdown-content">
-                                    <a class="dropdown-content-a" href="account.html">Личный кабинет</a>
-                                    <a class="dropdown-content-a" href="account.html">Административный раздел</a>
+                                    <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">Личный кабинет</a>
+                                    <a class="dropdown-content-a" href="#">Административный раздел</a>
                                     <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">Выход</a>
                                 </div>
                                 {% endif %}
                             </div>
-                            <a class="CartBlock-block" href="cart.html"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof cart.total_count '0' %}</span></a>
-                            <div class="CartBlock-block"><span class="CartBlock-price">{% firstof cart.total_amount '0' %}$</span>
+                            <a class="CartBlock-block" href="{% url 'cartapp:cart' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof cart '0' %}</span></a>
+                            <div class="CartBlock-block"><span class="CartBlock-price">0$</span>
 
 
                             </div>
@@ -700,19 +700,19 @@
         <footer class="Footer">
             <div class="wrap">
                 <div class="row Footer-main">
-                    <div class="row-block"><a class="logo Footer-logo" href="index.html"><img class="logo-image" src="{% static 'assets/img/logo_footer.png' %}" alt="logo_footer.png" /></a>
+                    <div class="row-block"><a class="logo Footer-logo" href="{% url 'index' %}"><img class="logo-image" src="{% static 'assets/img/logo_footer.png' %}" alt="logo_footer.png" /></a>
                     </div>
                     <div class="row-block">
                         <strong class="Footer-title">Навигация
                         </strong>
                         <ul class="menu menu_vt Footer-menu">
-                            <li class="menu-item"><a class="menu-link" href="index.html">Главная</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'index' %}">Главная</a>
                             </li>
-                            <li class="menu-item"><a class="menu-link" href="catalog.html">Каталог</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:catalog' %}">Каталог</a>
                             </li>
-                            <li class="menu-item"><a class="menu-link" href="comparison.html">Сравнение</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">Сравнение</a>
                             </li>
-                            <li class="menu-item"><a class="menu-link" href="account.html">Профиль</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'profileapp:account' %}">Профиль</a>
                             </li>
 
                         </ul>
