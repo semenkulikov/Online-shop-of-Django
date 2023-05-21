@@ -207,7 +207,7 @@
                     </div>
                     <div class="Pagination">
                         <div class="Pagination-ins">
-                            {% with query=request.META.QUERY_STRING|cleanquery %}
+                            {% with query=request.META.QUERY_STRING %}
                             <a class="Pagination-element"
                                href="{% url 'productsapp:catalog' %}?{{query}}&page=1">
                                 <span class="Pagination-text">1</span>

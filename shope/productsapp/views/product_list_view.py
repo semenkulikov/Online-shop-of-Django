@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from productsapp.forms.catalog_filter_form import CatalogFilterForm
 from repositories.product_select_repository import ProductSelectRepository
+from django.http import HttpResponseRedirect
 
 select_repo = ProductSelectRepository()
 
@@ -10,6 +11,16 @@ class ProductListView(ListView):
     template_name = 'productsapp/catalog.html'
     paginate_by = 3
     extra_context = {'tags_list': select_repo.get_all_tags()}
+
+    def get(self, request, **kwargs):
+        query = request.GET.copy()
+        for key in query:  # удаление повторяющихся get-параметров
+            query[key] = query.get(key)
+        # редирект, когда есть повторяющиеся параметры
+        if request.GET != query:
+            return HttpResponseRedirect(f'{request.path}?{query.urlencode()}')
+
+        return super().get(request, **kwargs)
 
     def get_queryset(self):
         queryset = select_repo.get_all_products()
