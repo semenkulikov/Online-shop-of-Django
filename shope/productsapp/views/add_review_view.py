@@ -8,6 +8,7 @@ from repositories.price_repository import PriceRepository
 from repositories.product_select_repository import ProductSelectRepository
 from repositories.profile_repository import ProfileRepository
 from repositories import SellerSelectRepository, SpecificSelectRepository
+from django.utils.translation import gettext as _
 
 
 class AddReviewView(View):
@@ -85,7 +86,7 @@ class AddReviewView(View):
                     text=text
                 )
             else:
-                result = "Введены некорректные данные!"
+                result = _("Incorrect data entered!")
         else:
             result = False
         return render(request, self.template_name,
