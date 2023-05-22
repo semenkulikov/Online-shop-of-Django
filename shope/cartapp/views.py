@@ -68,7 +68,7 @@ class RemoveProductCartView(View):
 
 class DeleteItemCartView(View):
     """
-    Класс для удаления товаров из корзины
+    Класс для позиции с товаром из корзины
     """
 
     def get(self, request, **kwargs):
