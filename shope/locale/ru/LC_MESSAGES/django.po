@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 15:33+0300\n"
+"POT-Creation-Date: 2023-05-22 18:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,10 +25,14 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: .\authapp\forms.py:46 .\authapp\forms.py:73
+#: .\templates\orderapp\order.html:38
+#: .\templates\profileapp\profileAvatar.html:82
 msgid "Password"
 msgstr "Пароль"
 
 #: .\authapp\forms.py:48 .\authapp\forms.py:75
+#: .\templates\orderapp\order.html:43
+#: .\templates\profileapp\profileAvatar.html:87
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
@@ -52,7 +56,7 @@ msgstr "имя пользователя"
 msgid "middle name"
 msgstr "отчество"
 
-#: .\authapp\models.py:15
+#: .\authapp\models.py:17
 msgid "email address"
 msgstr "адрес электронной почты"
 
@@ -71,8 +75,8 @@ msgid ""
 "An error has occurred. The activation period has expired\n"
 "Try registering again."
 msgstr ""
-"Произошла ошибка. Срок активации истек\n."
-"Попробуйте зарегистрироваться еще раз."
+"Произошла ошибка. Срок активации истек\n"
+".Попробуйте зарегистрироваться еще раз."
 
 #: .\cartapp\models\cart.py:16 .\orderapp\models.py:16
 #: .\paymentapp\models.py:15 .\paymentapp\models.py:43
@@ -126,7 +130,7 @@ msgstr "Успешно завершен"
 msgid "Paid"
 msgstr "Оплачено"
 
-#: .\coreapp\enums.py:21
+#: .\coreapp\enums.py:21 .\templates\orderapp\historyorder.html:48
 msgid "Not paid for"
 msgstr "Не оплачено"
 
@@ -158,7 +162,16 @@ msgstr "цена"
 msgid "order items"
 msgstr "предметы заказа"
 
-#: .\paymentapp\apps.py:7
+#: .\paymentapp\apps.py:8 .\templates\orderapp\historyorder.html:34
+#: .\templates\orderapp\order.html:153 .\templates\paymentapp\payment.html:6
+#: .\templates\paymentapp\payment.html:18
+#: .\templates\paymentapp\payment.html:23
+#: .\templates\paymentapp\paymentsomeone.html:6
+#: .\templates\paymentapp\paymentsomeone.html:18
+#: .\templates\paymentapp\paymentsomeone.html:23
+#: .\templates\paymentapp\progressPayment.html:6
+#: .\templates\productsapp\product.html:145
+#: .\templates\profileapp\account.html:72
 msgid "Payment"
 msgstr "Оплата"
 
@@ -306,15 +319,15 @@ msgstr "слайдеры"
 msgid "Incorrect data entered!"
 msgstr "Введены неверные данные!"
 
-#: .\profileapp\forms\profile_form.py:25
+#: .\profileapp\forms\profile_form.py:26
 msgid "Enter a valid phone number (e.g. +79998887766)"
 msgstr "Введите действительный номер телефона (например, +79998887766)"
 
-#: .\profileapp\forms\profile_form.py:41
+#: .\profileapp\forms\profile_form.py:43
 msgid "Maximum avatar size is 2 Mb"
 msgstr "Максимальный размер аватара - 2 Мб"
 
-#: .\profileapp\forms\profile_form.py:50
+#: .\profileapp\forms\profile_form.py:52
 msgid "This phone number is already in use"
 msgstr "Этот номер телефона уже используется"
 
@@ -326,7 +339,9 @@ msgstr "Новый пароль"
 msgid "New password confirmation"
 msgstr "Подтверждение нового пароля"
 
-#: .\profileapp\models\profile.py:19
+#: .\profileapp\models\profile.py:19 .\templates\orderapp\order.html:21
+#: .\templates\orderapp\order.html:115
+#: .\templates\profileapp\profileAvatar.html:65
 msgid "FIO"
 msgstr "ФИО"
 
@@ -365,3 +380,574 @@ msgstr ""
 #: .\shope\settings.py:139
 msgid "Russian"
 msgstr "Русский"
+
+#: .\templates\authapp\email\email_confirm.html:7
+#: .\templates\authapp\login.html:44 .\templates\authapp\registr.html:27
+#: .\templates\base.html:91
+#, fuzzy
+#| msgid "description"
+msgid "Registration"
+msgstr "Регистрация"
+
+#: .\templates\authapp\email\email_confirm.html:8
+#: .\templates\authapp\email\reset_confirm.html:7
+msgid "Dear"
+msgstr "Уважаемый"
+
+#: .\templates\authapp\email\email_confirm.html:9
+msgid "To confirm registration on the Megano website, click on"
+msgstr "Чтобы подтвердить регистрацию на сайте Megano, нажмите на кнопку"
+
+#: .\templates\authapp\email\email_confirm.html:10
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: .\templates\authapp\email\email_confirm.html:11
+msgid ""
+"If you were not the one who registered on the website, ignore this email."
+msgstr "Если вы не были зарегистрированы на сайте, проигнорируйте это письмо."
+
+#: .\templates\authapp\email\email_confirm.html:12
+#: .\templates\authapp\email\reset_confirm.html:14
+msgid "Respectfully,"
+msgstr "С уважением,"
+
+#: .\templates\authapp\email\reset_confirm.html:8
+msgid ""
+"We have received a request to create a new password for your personal "
+"account on the portal"
+msgstr ""
+"Мы получили запрос на создание нового пароля для вашего личного кабинета на "
+"портале"
+
+#: .\templates\authapp\email\reset_confirm.html:11
+msgid "To change your password, please click on the button"
+msgstr "Чтобы изменить пароль, пожалуйста, нажмите на кнопку"
+
+#: .\templates\authapp\email\reset_confirm.html:12
+#, fuzzy
+#| msgid "New password"
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: .\templates\authapp\email\reset_confirm.html:13
+msgid "If you have not sent such a request, simply ignore the letter."
+msgstr "Если вы не отправляли такой запрос, просто проигнорируйте это письмо."
+
+#: .\templates\authapp\forgot_password.html:24
+msgid "Password recovery (1/2)"
+msgstr "Восстановление пароля (1/2)"
+
+#: .\templates\authapp\forgot_password.html:25
+msgid ""
+"To retrieve your password, enter the e-mail address where your account is "
+"registered account"
+msgstr ""
+"Чтобы восстановить пароль, введите адрес электронной почты, на который "
+"зарегистрирован ваш аккаунт"
+
+#: .\templates\authapp\forgot_password.html:39
+#: .\templates\authapp\login.html:29 .\templates\authapp\registr.html:58
+#: .\templates\base.html:90
+msgid "Log in"
+msgstr "Войти"
+
+#: .\templates\authapp\login.html:42
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+#: .\templates\base.html:93 .\templates\base.html:136
+#: .\templates\profileapp\account.html:25
+#: .\templates\profileapp\profile.html:27
+#: .\templates\profileapp\profileAvatar.html:36
+msgid "Private Office"
+msgstr "Личный кабинет"
+
+#: .\templates\base.html:120 .\templates\base.html:710
+#: .\templates\paymentapp\paymentsomeone.html:21
+#: .\templates\paymentapp\progressPayment.html:21
+#: .\templates\productsapp\sale.html:20
+#: .\templates\profileapp\profileAvatar.html:17
+msgid "Home"
+msgstr "Главная"
+
+#: .\templates\base.html:122 .\templates\base.html:194
+#, fuzzy
+#| msgid "count"
+msgid "Discounts"
+msgstr "Скидки"
+
+#: .\templates\base.html:122 .\templates\base.html:712
+msgid "Catalog"
+msgstr "Каталог"
+
+#: .\templates\base.html:124 .\templates\base.html:714
+msgid "Comparison"
+msgstr "Сравнение"
+
+#: .\templates\base.html:137
+msgid "Administrative section"
+msgstr "Административный раздел"
+
+#: .\templates\base.html:138
+msgid "Output"
+msgstr "Выйти"
+
+#: .\templates\base.html:150
+#, fuzzy
+#| msgid "Navigation"
+msgid "Show navigation"
+msgstr "Навигация"
+
+#: .\templates\base.html:164
+#, fuzzy
+#| msgid "categories"
+msgid "All categories"
+msgstr "Все категории"
+
+#: .\templates\base.html:171
+msgid "Televisions"
+msgstr "Телевизоры"
+
+#: .\templates\base.html:176
+msgid "Headphones"
+msgstr "Наушники"
+
+#: .\templates\base.html:181
+msgid "Washing machines"
+msgstr "Стиральные машины"
+
+#: .\templates\base.html:185 .\templates\base.html:241
+#, fuzzy
+#| msgid "categories"
+msgid "Accessories"
+msgstr "Аксессуары"
+
+#: .\templates\base.html:188
+msgid "Covers"
+msgstr "Чехлы"
+
+#: .\templates\base.html:199
+msgid "Electronics"
+msgstr "Электроника"
+
+#: .\templates\base.html:204
+msgid "Cameras"
+msgstr "Фотоаппараты"
+
+#: .\templates\base.html:209
+msgid "Fittings"
+msgstr "Фурнитура"
+
+#: .\templates\base.html:213 .\templates\base.html:222
+msgid "Mobile phones"
+msgstr "Мобильные телефоны"
+
+#: .\templates\base.html:216 .\templates\base.html:244
+msgid "Bags"
+msgstr "Сумки"
+
+#: .\templates\base.html:227
+msgid "Microwave ovens"
+msgstr "Микроволновые печи"
+
+#: .\templates\base.html:232
+msgid "Kitchen appliances"
+msgstr "Кухонная техника"
+
+#: .\templates\base.html:237
+msgid "Floor lamps"
+msgstr "Напольные лампы"
+
+#: .\templates\base.html:370 .\templates\index.html:109
+msgid "LIMITED OFFER"
+msgstr "ОГРАНИЧЕННОЕ ПРЕДЛОЖЕНИЕ"
+
+#: .\templates\base.html:415 .\templates\index.html:154
+#, fuzzy
+#| msgid "products"
+msgid "Popular products"
+msgstr "Популярные товары"
+
+#: .\templates\base.html:540 .\templates\index.html:279
+msgid "Limited edition"
+msgstr ""
+
+#: .\templates\base.html:707 .\templates\profileapp\account.html:19
+#: .\templates\profileapp\profile.html:21
+#: .\templates\profileapp\profileAvatar.html:30
+msgid "Navigation"
+msgstr "Навигация"
+
+#: .\templates\base.html:716 .\templates\profileapp\account.html:27
+#: .\templates\profileapp\profile.html:5 .\templates\profileapp\profile.html:29
+#: .\templates\profileapp\profileAvatar.html:14
+#: .\templates\profileapp\profileAvatar.html:19
+#: .\templates\profileapp\profileAvatar.html:38
+#, fuzzy
+#| msgid "profile"
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\templates\base.html:722
+msgid "Contact"
+msgstr "Контакты"
+
+#: .\templates\cartapp\cart.html:90 .\templates\orderapp\order.html:218
+msgid "Total"
+msgstr "Итого"
+
+#: .\templates\cartapp\cart.html:93
+msgid "Place an order"
+msgstr "Разместить заказ"
+
+#: .\templates\cartapp\cart.html:98
+#, fuzzy
+#| msgid "items in cart"
+msgid "No products in cart"
+msgstr "Нет товаров в корзине"
+
+#: .\templates\orderapp\historyorder.html:24
+#: .\templates\profileapp\account.html:60
+#, fuzzy
+#| msgid "order item"
+msgid "Order from"
+msgstr "Заказ"
+
+#: .\templates\orderapp\historyorder.html:28
+#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:139
+#: .\templates\profileapp\account.html:66
+#, fuzzy
+#| msgid "free_delivery"
+msgid "Type of delivery"
+msgstr "Тип доставки"
+
+#: .\templates\orderapp\historyorder.html:30 .\templates\orderapp\order.html:62
+#: .\templates\orderapp\order.html:137 .\templates\productsapp\product.html:141
+#: .\templates\profileapp\account.html:68
+#, fuzzy
+#| msgid "free_delivery"
+msgid "Ordinary delivery"
+msgstr "Обычная доставка"
+
+#: .\templates\orderapp\historyorder.html:36 .\templates\orderapp\order.html:92
+#: .\templates\orderapp\order.html:155 .\templates\productsapp\product.html:147
+#: .\templates\profileapp\account.html:74
+msgid "Online map"
+msgstr "Онлайн карта"
+
+#: .\templates\orderapp\historyorder.html:40
+#: .\templates\profileapp\account.html:78
+msgid "Total cost"
+msgstr "Общая стоимость"
+
+#: .\templates\orderapp\historyorder.html:46
+#: .\templates\profileapp\account.html:84
+#, fuzzy
+#| msgid "status"
+msgid "Status"
+msgstr "Статус"
+
+#: .\templates\orderapp\order.html:15
+msgid "Step 1: User settings"
+msgstr "Шаг 1: Настройки пользователя"
+
+#: .\templates\orderapp\order.html:26 .\templates\orderapp\order.html:121
+#: .\templates\profileapp\profileAvatar.html:72
+msgid "Phone"
+msgstr "Телефон"
+
+#: .\templates\orderapp\order.html:40 .\templates\profileapp\profile.html:86
+#: .\templates\profileapp\profileAvatar.html:84
+msgid "You can change your password here"
+msgstr "Вы можете изменить свой пароль здесь"
+
+#: .\templates\orderapp\order.html:45 .\templates\profileapp\profile.html:93
+#: .\templates\profileapp\profileAvatar.html:89
+#, fuzzy
+#| msgid "New password"
+msgid "Re-enter the password"
+msgstr "Повторно введите пароль"
+
+#: .\templates\orderapp\order.html:47
+msgid "I am already registered"
+msgstr "Я уже зарегистрирован"
+
+#: .\templates\orderapp\order.html:51 .\templates\orderapp\order.html:81
+#: .\templates\orderapp\order.html:101
+msgid "Next"
+msgstr "Дальше"
+
+#: .\templates\orderapp\order.html:56
+msgid "Step 2: Method of delivery"
+msgstr "Шаг 2: Способ доставки"
+
+#: .\templates\orderapp\order.html:67
+#, fuzzy
+#| msgid "free_delivery"
+msgid "Express delivery"
+msgstr "Экспресс-доставка"
+
+#: .\templates\orderapp\order.html:72 .\templates\orderapp\order.html:141
+msgid "City"
+msgstr "Город"
+
+#: .\templates\orderapp\order.html:77 .\templates\orderapp\order.html:147
+#, fuzzy
+#| msgid "email address"
+msgid "The address is"
+msgstr "Адрес"
+
+#: .\templates\orderapp\order.html:86
+#, fuzzy
+#| msgid "payment method id"
+msgid "Step 3: Payment method"
+msgstr "Шаг 3: Способ оплаты"
+
+#: .\templates\orderapp\order.html:97
+msgid "Online from a random stranger's account"
+msgstr "Онлайн со счета случайного незнакомца"
+
+#: .\templates\orderapp\order.html:106
+msgid "Step 4: Confirm order"
+msgstr "Шаг 4: Подтвердить заказ"
+
+#: .\templates\orderapp\order.html:143
+msgid "Moscow"
+msgstr "Москва"
+
+#: .\templates\orderapp\order.html:166 .\templates\productsapp\product.html:112
+msgid "Notebook"
+msgstr "Ноутбук"
+
+#: .\templates\orderapp\order.html:222 .\templates\paymentapp\payment.html:39
+#: .\templates\paymentapp\paymentsomeone.html:41
+#, fuzzy
+#| msgid "Payment"
+msgid "Pay"
+msgstr "Оплатить"
+
+#: .\templates\paymentapp\payment.html:34
+#, fuzzy
+#| msgid "card number"
+msgid "Card number"
+msgstr "Номер карты"
+
+#: .\templates\paymentapp\paymentsomeone.html:34
+#, fuzzy
+#| msgid "phone number"
+msgid "Account number"
+msgstr "Номер счета"
+
+#: .\templates\paymentapp\paymentsomeone.html:38
+msgid "Generate a random account"
+msgstr "Сгенерировать случайный счет"
+
+#: .\templates\paymentapp\progressPayment.html:18
+#: .\templates\paymentapp\progressPayment.html:23
+msgid "Waiting for payment"
+msgstr "Ожидание платежа"
+
+#: .\templates\paymentapp\progressPayment.html:32
+msgid "Waiting for confirmation of payment by the payment system"
+msgstr "Ожидание подтверждения платежа со стороны платежной системы"
+
+#: .\templates\productsapp\catalog.html:21
+#: .\templates\productsapp\catalog.html:52
+msgid "Filter"
+msgstr "Фильтр"
+
+#: .\templates\productsapp\catalog.html:29
+msgid "Price (RUB)"
+msgstr "Цена (руб.)"
+
+#: .\templates\productsapp\catalog.html:36
+#, fuzzy
+#| msgid "product"
+msgid "Product name"
+msgstr "Название товара"
+
+#: .\templates\productsapp\catalog.html:43
+msgid "Items in stock only"
+msgstr "Товары в наличии"
+
+#: .\templates\productsapp\catalog.html:48
+#, fuzzy
+#| msgid "free_delivery"
+msgid "With free delivery"
+msgstr "С бесплатной доставкой"
+
+#: .\templates\productsapp\catalog.html:60
+msgid "Popular tags"
+msgstr "Популярные теги"
+
+#: .\templates\productsapp\catalog.html:74
+msgid "Sort by"
+msgstr "Сортировать по"
+
+#: .\templates\productsapp\catalog.html:80
+msgid "Popularity"
+msgstr "Популярность"
+
+#: .\templates\productsapp\catalog.html:82
+#, fuzzy
+#| msgid "price"
+msgid "Price"
+msgstr "Цена"
+
+#: .\templates\productsapp\catalog.html:84
+#: .\templates\productsapp\product.html:89
+#: .\templates\productsapp\product.html:181
+#, fuzzy
+#| msgid "Review"
+msgid "Reviews"
+msgstr "Отзывы"
+
+#: .\templates\productsapp\catalog.html:86
+msgid "Novelty"
+msgstr "Новизна"
+
+#: .\templates\productsapp\comparison.html:17
+msgid "Insufficient data for comparison"
+msgstr "Недостаточно данных для сравнения"
+
+#: .\templates\productsapp\comparison.html:25
+msgid "Only different characteristics"
+msgstr "Только разные характеристики"
+
+#: .\templates\productsapp\comparison.html:28
+msgid "Apply"
+msgstr "Применить"
+
+#: .\templates\productsapp\comparison.html:137
+#: .\templates\productsapp\product.html:86
+#: .\templates\productsapp\product.html:104
+msgid "Characteristic"
+msgstr "Характеристика"
+
+#: .\templates\productsapp\comparison.html:138
+#: .\templates\productsapp\product.html:106
+#, fuzzy
+#| msgid "value"
+msgid "Value"
+msgstr "Значение"
+
+#: .\templates\productsapp\comparison.html:218
+#: .\templates\productsapp\product.html:53
+msgid "Add to cart"
+msgstr "Добавить в корзину"
+
+#: .\templates\productsapp\product.html:60
+msgid "Congratulations"
+msgstr "Поздравляем"
+
+#: .\templates\productsapp\product.html:64
+msgid "Product successfully added to cart"
+msgstr "Продукт успешно добавлен в корзину"
+
+#: .\templates\productsapp\product.html:72
+msgid "Tags"
+msgstr "Теги"
+
+#: .\templates\productsapp\product.html:80
+#, fuzzy
+#| msgid "description"
+msgid "Description"
+msgstr "Описание"
+
+#: .\templates\productsapp\product.html:83
+#, fuzzy
+#| msgid "sellers"
+msgid "Sellers"
+msgstr "Продавцы"
+
+#: .\templates\productsapp\product.html:110
+#, fuzzy
+#| msgid "card type"
+msgid "Device type"
+msgstr "Тип устройства"
+
+#: .\templates\productsapp\product.html:133
+msgid "Buy"
+msgstr "Купить"
+
+#: .\templates\productsapp\product.html:151
+msgid "Cost"
+msgstr "Стоимость"
+
+#: .\templates\productsapp\product.html:220
+msgid "Show more"
+msgstr "Показать больше"
+
+#: .\templates\productsapp\product.html:228
+#, fuzzy
+#| msgid "review"
+msgid "Add review"
+msgstr "Добавить отзыв"
+
+#: .\templates\productsapp\product.html:234
+msgid "Review has been successfully added"
+msgstr "Отзыв успешно добавлен"
+
+#: .\templates\productsapp\product.html:246
+#, fuzzy
+#| msgid "review"
+msgid "Send review"
+msgstr "Отправить отзыв"
+
+#: .\templates\productsapp\product.html:253
+msgid "To leave a review you need to"
+msgstr "Чтобы оставить отзыв, вам необходимо"
+
+#: .\templates\productsapp\product.html:254
+msgid "log on"
+msgstr "авторизоваться"
+
+#: .\templates\productsapp\sale.html:22
+msgid "Blog"
+msgstr "Блог"
+
+#: .\templates\profileapp\account.html:5
+#, fuzzy
+#| msgid "count"
+msgid "Account"
+msgstr "Аккаунт"
+
+#: .\templates\profileapp\account.html:29
+#: .\templates\profileapp\account.html:61
+#: .\templates\profileapp\profile.html:31
+#: .\templates\profileapp\profileAvatar.html:40
+#, fuzzy
+#| msgid "order item"
+msgid "Order history"
+msgstr "История заказов"
+
+#: .\templates\profileapp\account.html:47
+#, fuzzy
+#| msgid "profile"
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+#: .\templates\profileapp\account.html:94
+msgid "You have not yet placed any orders"
+msgstr "Вы еще не сделали ни одного заказа"
+
+#: .\templates\profileapp\profileAvatar.html:6
+#, fuzzy
+#| msgid "profile"
+msgid "Change profile"
+msgstr "Изменить профиль"
+
+#: .\templates\profileapp\profileAvatar.html:54
+#, fuzzy
+#| msgid "avatar"
+msgid "Avatar"
+msgstr "Аватар"
+
+#: .\templates\profileapp\profileAvatar.html:59
+msgid "Choose an avatar"
+msgstr "Выберите аватар"
+
+#: .\templates\profileapp\profileAvatar.html:93
+msgid "Save"
+msgstr "Сохранить"

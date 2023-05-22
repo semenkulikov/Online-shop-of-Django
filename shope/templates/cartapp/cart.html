@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
@@ -86,15 +87,15 @@
                     {% endfor %}
                     <div class="Cart-total">
                         <div class="Cart-block Cart-block_total">
-                            <strong class="Cart-title">Итого:
+                            <strong class="Cart-title">{% translate 'Total' %}:
                             </strong><span class="Cart-price">200.99$</span>
                         </div>
-                        <div class="Cart-block"><a class="btn btn_success btn_lg" href="order.html">Оформить заказ</a>
+                        <div class="Cart-block"><a class="btn btn_success btn_lg" href="order.html">{% translate 'Place an order' %}</a>
                         </div>
                     </div>
                 </form>
                 {% else %}
-                <h2 class="empty-cart">Товары в корзине отсутствуют</h2>
+                <h2 class="empty-cart">{% translate 'No products in cart' %}</h2>
                 <div></div>
                 {% endif %}
             </div>

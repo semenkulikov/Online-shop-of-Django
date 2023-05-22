@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load sort_links %}
+{% load i18n %}
 
 {% block title %}
     Megano
@@ -17,7 +18,7 @@
                 <div class="Section-column">
                     <div class="Section-columnSection">
                         <header class="Section-header">
-                            <strong class="Section-title">Фильтр
+                            <strong class="Section-title">{% translate 'Filter' %}
                             </strong>
                         </header>
                         <div class="Section-columnContent">
@@ -25,30 +26,30 @@
                                 <div class="form-group">
                                     <div class="range Section-columnRange">
                                         <input class="range-line" id="price" name="price_range" type="text" data-type="double" data-min="1" data-max="200000" data-from="1" data-to="200000" />
-                                        <div class="range-price">Цена (руб.):&#32;
+                                        <div class="range-price">{% translate 'Price (RUB)' %}:&#32;
                                             <div class="rangePrice">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-input form-input_full" id="title" name="name" type="text" placeholder="Название" />
+                                    <input class="form-input form-input_full" id="title" name="name" type="text" placeholder="{% translate 'Product name' %}" />
                                 </div>
                                 <div class="form-group">
                                     <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
                                 </div>
                                 <div class="form-group">
                                     <label class="toggle">
-                                        <input type="checkbox" name="in_stock"/><span class="toggle-box"></span><span class="toggle-text">Только товары в наличии</span>
+                                        <input type="checkbox" name="in_stock"/><span class="toggle-box"></span><span class="toggle-text">{% translate 'Items in stock only' %}</span>
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label class="toggle">
-                                        <input type="checkbox" name="free_delivery"/><span class="toggle-box"></span><span class="toggle-text">С бесплатной доставкой</span>
+                                        <input type="checkbox" name="free_delivery"/><span class="toggle-box"></span><span class="toggle-text">{% translate 'With free delivery' %}</span>
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <div class="buttons"><button type="submit" class="btn btn_square btn_dark btn_narrow">Фильтр</button>
+                                    <div class="buttons"><button type="submit" class="btn btn_square btn_dark btn_narrow">{% translate 'Filter' %}</button>
                                     </div>
                                 </div>
                             </form>
@@ -56,7 +57,7 @@
                     </div>
                     <div class="Section-columnSection">
                         <header class="Section-header">
-                            <strong class="Section-title">Популярные тэги
+                            <strong class="Section-title">{% translate 'Popular tags' %}
                             </strong>
                         </header>
                         <div class="Section-columnContent">
@@ -70,19 +71,19 @@
                 </div>
                 <div class="Section-content">
                     <div class="Sort">
-                        <div class="Sort-title">Сортировать по:
+                        <div class="Sort-title">{% translate 'Sort by' %}:
                         </div>
                         <div class="Sort-variants">
 
                         {% with sort=request.GET.sort query=request.META.QUERY_STRING%}
                         <a class="Sort-sortBy {{ sort|sortclass:'popular' }}"
-                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'popular'}}">Популярности</a>
+                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'popular'}}">{% translate 'Popularity' %}</a>
                         <a class="Sort-sortBy {{ sort|sortclass:'price' }}"
-                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'price'}}">Цене</a>
+                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'price'}}">{% translate 'Price' %}</a>
                         <a class="Sort-sortBy {{ sort|sortclass:'reviews' }}"
-                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'reviews'}}">Отзывам</a>
+                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'reviews'}}">{% translate 'Reviews' %}</a>
                         <a class="Sort-sortBy {{ sort|sortclass:'new' }}"
-                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'new'}}">Новизне</a>
+                           href="{% url 'productsapp:catalog' %}?{{ query|sortquery:'new'}}">{% translate 'Novelty' %}</a>
                         {% endwith %}
 
                         </div>

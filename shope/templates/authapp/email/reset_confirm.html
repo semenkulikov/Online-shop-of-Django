@@ -1,16 +1,17 @@
 {% extends 'authapp/email/base-for-messages.html' %}
 {% load static %}
+{% load i18n %}
 {% autoescape off %}
 {% block content %}
 {% block container %}
-<h1>Уважаемый {{user.first_name}} {{user.last_name}}</h1>
-<p>Мы получили запрос на создание нового пароля для вашего личного кабинета на портале
+<h1>{% translate 'Dear' %} {{user.first_name}} {{user.last_name}}</h1>
+<p>{% translate 'We have received a request to create a new password for your personal account on the portal' %}
     <a href="{{ protocol }}://{{ domain }}{% url 'index' %}">Megano</a>
 </p>
-<p>Чтобы изменить пароль, нажмите, пожалуйста, на кнопку.</p>
-<a class="pass" href="{{ protocol }}://{{ domain }}{% url 'authapp:set_pass' uidb64=uid token=token %}">Изменить пароль</a>
-<p>Если вы не отправляли такой запрос, просто проигнорируйте это письмо.</p>
-<p>С уважением,</p>
+<p>{% translate 'To change your password, please click on the button' %}</p>
+<a class="pass" href="{{ protocol }}://{{ domain }}{% url 'authapp:set_pass' uidb64=uid token=token %}">{% translate 'Change password' %}</a>
+<p>{% translate 'If you have not sent such a request, simply ignore the letter.' %}</p>
+<p>{% translate 'Respectfully,' %}</p>
 <p>Megano</p>
 {% endblock %}
 {% endblock %}
