@@ -11,19 +11,22 @@
 <div class="wrap">
     <div class="row Header-rowMain">
         <div class="row-block Header-logo"><a class="logo" href="{% url 'index' %}"><img class="logo-image"
-                                                                                     src="{% static 'assets/img/logo.png' %}"
-                                                                                     alt="logo.png"/></a>
+                                                                                         src="{% static 'assets/img/logo.png' %}"
+                                                                                         alt="logo.png"/></a>
         </div>
     </div>
 </div>
 {% endblock %}
 {% block content %}
 <div class="wrapper">
-        <div class="error-login">
+    <div class="error-login">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
         {% for error in form.non_field_errors %}
             {{ error }}
         {% endfor %}
-        </div>
+    </div>
     <div class="header">
         <h3 class="sign-in">Вход</h3>
     </div>

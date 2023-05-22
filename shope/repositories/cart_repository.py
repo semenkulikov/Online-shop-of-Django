@@ -7,7 +7,7 @@ from cartapp.models.cart import Cart
 from cartapp.models.cartitem import CartItem
 
 from productsapp.models.product import Product
-
+from productsapp.models.seller import Seller
 from interfaces.cart_interface import CartInterface, CartItemInterface
 
 
@@ -31,8 +31,8 @@ class RepCart(CartInterface):
         """
         Общая стоимость
         """
-        total_amount = cart.cartitems.aggregate(
-            total_amount=Sum(F('product__price') * F('quantity'))
+        total_amount = cart.items.aggregate(
+            total_amount=Sum(F('product__product_price') * F('quantity'))
         )
         # Доделать позже
         return total_amount
@@ -80,14 +80,14 @@ class RepCartItem(CartItemInterface):
             prefetch_related('product', 'product__product_price')
         return cart_items
 
-    def get_cart_item(self, cart: Cart, product: Product) \
+    def get_cart_item(self, cart: Cart, product: Product, seller: Seller) \
             -> QuerySet[CartItem]:
         """
         Возвращает одну позицию товара
         """
         cart_item = CartItem.objects. \
-            select_related('product'). \
-            filter(cart=cart, product=product)
+            select_related('product', 'seller'). \
+            filter(cart=cart, product=product, seller=seller)
         return cart_item
 
     def save(self, force=None, **kwargs) -> CartItem:

@@ -22,7 +22,7 @@ def cart_block(request):
     else:
         if request.session.get('products'):
             context = {
-                'cart': sum([value for value in
+                'cart': sum([value[0] for value in
                              request.session['products'].values()])
             }
             return context
