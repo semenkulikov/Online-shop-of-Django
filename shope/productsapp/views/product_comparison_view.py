@@ -74,18 +74,13 @@ class ProductComparisonView(View):
 
         # Список общих имен характеристик
 
-        common_names = list()
-
-        if len(products) == 2:
-            common_names = list(set(
-                products[0].spec_names
-            ).intersection(products[1].spec_names))
-        elif len(products) == 3:
-            common_names = list(set(
-                products[0].spec_names
-            ).intersection(products[1].spec_names).intersection(
-                products[2].spec_names
-            ))
+        names = [set(product.spec_names) for product in products]
+        common_names = set()
+        for name_set in names:
+            if common_names:
+                common_names &= name_set  # пересечение множеств
+            else:
+                common_names |= name_set  # объединение множеств
 
         # Список общих характеристик
 
@@ -112,6 +107,7 @@ class ProductComparisonView(View):
             # Только различающиеся характеристики
             for product in products:
                 new_specifics = list()
+                # Обновленный список характеристик
                 for specific in product.specifics:
                     name = specific.type_spec.name
                     if name in spec_dict.keys() \
@@ -126,5 +122,6 @@ class ProductComparisonView(View):
                       context={
                           "products": products,
                           "number_of_products":
-                              self._service.comparison_list_size(request)
+                              self._service.comparison_list_size(request),
+                          "is_common_spec": False if common_spec else True,
                       })
