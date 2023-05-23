@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 18:09+0300\n"
+"POT-Creation-Date: 2023-05-23 11:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,19 +820,25 @@ msgid "Apply"
 msgstr "Применить"
 
 #: .\templates\productsapp\comparison.html:137
+#, fuzzy
+#| msgid "Characteristic"
+msgid "No common characteristics"
+msgstr "Нет общих характеристик"
+
+#: .\templates\productsapp\comparison.html:140
 #: .\templates\productsapp\product.html:86
 #: .\templates\productsapp\product.html:104
 msgid "Characteristic"
 msgstr "Характеристика"
 
-#: .\templates\productsapp\comparison.html:138
+#: .\templates\productsapp\comparison.html:141
 #: .\templates\productsapp\product.html:106
 #, fuzzy
 #| msgid "value"
 msgid "Value"
 msgstr "Значение"
 
-#: .\templates\productsapp\comparison.html:218
+#: .\templates\productsapp\comparison.html:223
 #: .\templates\productsapp\product.html:53
 msgid "Add to cart"
 msgstr "Добавить в корзину"
