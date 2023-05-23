@@ -2,16 +2,20 @@ import pytz
 from django.db import models
 from datetime import datetime, timedelta
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
     """
     Класс модели пользователя
     """
-    username = models.CharField("username", max_length=150,
+    username = models.CharField(_("username"), max_length=150,
                                 null=True, blank=True)
-    middle_name = models.CharField("middle name", max_length=150, blank=True)
-    email = models.EmailField("email address", unique=True)  # переопределение
+    middle_name = models.CharField(_("middle name"),
+                                   max_length=150,
+                                   blank=True)
+    email = models.EmailField(_("email address"),
+                              unique=True)  # переопределение
     # email с целью сделать это поле уникальным
     activation_key = models.CharField(max_length=50, blank=True)
     # ключ для активации аккаунта

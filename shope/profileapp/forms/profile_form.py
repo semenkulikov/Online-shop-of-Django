@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 from phonenumber_field.formfields import PhoneNumberField
 from repositories.profile_repository import ProfileRepository
+from django.utils.translation import gettext_lazy as _
 
 profile_rep = ProfileRepository()
 
@@ -21,8 +22,9 @@ class ProfileForm(forms.ModelForm):
             }
         )
     )
-    phone_number.error_messages['invalid'] = 'Enter a valid phone number' \
-                                             ' (e.g. +79998887766)'
+    phone_number.error_messages['invalid'] = _(
+        'Enter a valid phone number (e.g. +79998887766)'
+    )
 
     class Meta:
         model = Profile
@@ -38,7 +40,7 @@ class ProfileForm(forms.ModelForm):
         data = self.cleaned_data["avatar_image"]
         if data:
             if data.size > settings.MAX_AVATAR_IMAGE_SIZE:
-                raise ValidationError("Maximum avatar size is 2 Mb")
+                raise ValidationError(_("Maximum avatar size is 2 Mb"))
         return data
 
     def clean_phone_number(self):
@@ -47,5 +49,5 @@ class ProfileForm(forms.ModelForm):
             phone_number=phone_number
         )
         if saved_profile and phone_number != self.instance.phone_number:
-            raise ValidationError('This phone number is already in use')
+            raise ValidationError(_('This phone number is already in use'))
         return phone_number
