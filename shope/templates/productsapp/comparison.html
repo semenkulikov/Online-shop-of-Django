@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     Megano
@@ -13,7 +14,7 @@
     <div class="Middle">
         <div class="wrap">
             {% if number_of_products <= 1 %}
-                <h3 style="text-align: center">Недостаточно данных для сравнения</h3>
+                <h3 style="text-align: center">{% translate 'Insufficient data for comparison' %}</h3>
             {% else %}
                 <div class="form-group">
                     <form method="post">
@@ -21,10 +22,10 @@
                         <label class="toggle">
                             <input type="checkbox" name="is_different"/>
                             <span class="toggle-box"></span>
-                            <span class="toggle-text">Только различающиеся характеристики</span>
+                            <span class="toggle-text">{% translate 'Only different characteristics' %}</span>
                         </label>
                         <div class="buttons" style="margin-top: 1em">
-                            <button type="submit" class="btn btn_square btn_dark btn_narrow">Применить</button>
+                            <button type="submit" class="btn btn_square btn_dark btn_narrow">{% translate 'Apply' %}</button>
                         </div>
                     </form>
                 </div>
@@ -133,8 +134,8 @@
 
                                                     <table>
                                                         <tr>
-                                                            <th>Характеристика</th>
-                                                            <th>Значение</th>
+                                                            <th>{% translate 'Characteristic' %}</th>
+                                                            <th>{% translate 'Value' %}</th>
                                                         </tr>
                                                         {% for specific in product.specifics %}
                                                             {% if specific.is_comparis %}
@@ -214,7 +215,7 @@
                                     <div class="ProductCard-cartElement">
                                         <a class="btn btn_primary" href="{% url 'cartapp:add_product' product.pk %}">
                                             <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
-                                            <span class="btn-content">Добавить в корзину</span>
+                                            <span class="btn-content">{% translate 'Add to cart' %}</span>
                                         </a>
                                     </div>
                                 </div>

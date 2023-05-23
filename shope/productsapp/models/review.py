@@ -3,6 +3,7 @@ from coreapp.models import BaseModel
 
 from productsapp.models.product import Product
 from profileapp.models import Profile
+from django.utils.translation import gettext_lazy as _
 
 
 class Review(BaseModel):
@@ -17,11 +18,11 @@ class Review(BaseModel):
                                 related_name="reviews")
     text = models.TextField(blank=True,
                             null=False,
-                            verbose_name="text")
+                            verbose_name=_("text"))
 
     class Meta:
-        verbose_name = "review"
-        verbose_name_plural = "reviews"
+        verbose_name = _("review")
+        verbose_name_plural = _("reviews")
 
     def __str__(self):
-        return f"Reviews from {self.user.user.first_name}"
+        return f"{_('Reviews from')} {self.user.user.first_name}"
