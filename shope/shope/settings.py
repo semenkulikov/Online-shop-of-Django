@@ -158,9 +158,23 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DOMAIN_NAME = 'http://127.0.0.1:8000'
+
 
 PHONENUMBER_DB_FORMAT = 'E164'
 PHONENUMBER_DEFAULT_REGION = 'RU'
 PHONENUMBER_DEFAULT_FORMAT = 'E164'
 
 MAX_AVATAR_IMAGE_SIZE = 2 * 1024 * 1024
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+# Задачи, которые Celery будет выполнять
+CELERY_IMPORTS = (
+    'shope',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
+)
