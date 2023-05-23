@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-    Оплата
+    {% translate 'Payment' %}
 {% endblock %}
 
 {% block Header-slider %}
@@ -14,12 +15,12 @@
         <div class="Middle-top">
             <div class="wrap">
                 <div class="Middle-header">
-                    <h1 class="Middle-title">Оплата
+                    <h1 class="Middle-title">{% translate 'Payment' %}
                     </h1>
                     <ul class="breadcrumbs Middle-breadcrumbs">
                         <li class="breadcrumbs-item"><a href="../index.html">home</a>
                         </li>
-                        <li class="breadcrumbs-item breadcrumbs-item_current"><span>Оплата</span>
+                        <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% translate 'Payment' %}</span>
                         </li>
                     </ul>
                 </div>
@@ -30,12 +31,12 @@
                 <form class="form Payment" action="#" method="post">
                     <div class="Payment-card">
                         <div class="form-group">
-                            <label class="form-label">Номер карты
+                            <label class="form-label">{% translate 'Card number' %}
                             </label>
                             <input class="form-input Payment-bill" id="numero1" name="numero1" type="text" placeholder="9999 9999" data-mask="9999 9999" data-validate="require pay" />
                         </div>
                     </div>
-                    <div class="Payment-pay"><a class="btn btn_primary" href="../progressPayment.html">Оплатить</a>
+                    <div class="Payment-pay"><a class="btn btn_primary" href="../progressPayment.html">{% translate 'Pay' %}</a>
                     </div>
                 </form>
             </div>

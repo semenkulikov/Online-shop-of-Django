@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block Header-searchWrap %}
 {% endblock %}
@@ -19,33 +20,28 @@
 {% endblock %}
 {% block content %}
 <div class="wrapper">
-    <div class="header">
-        <h3 class="sign-in">Вход</h3>
-    </div>
-    <div class="clear"></div>
-    <form action="{% url 'authapp:login' %}" method="post">{% csrf_token %}
+        <div class="error-login">
         {% for error in form.non_field_errors %}
             {{ error }}
         {% endfor %}
-        {% for mes in messages %}
-            {{ mes }}
-        {% endfor %}
+        </div>
+    <div class="header">
+        <h3 class="sign-in">{% translate 'Log in' %}</h3>
+    </div>
+    <div class="clear"></div>
+    <form action="{% url 'authapp:login' %}" method="post">{% csrf_token %}
         <div>
-            {{form.username.errors}}
             {{ form.username }}
-            <!--            <input type="text" name="name" id="name" placeholder="E-mail"/>-->
         </div>
         <div>
-            {{form.password.errors}}
             {{ form.password }}
-            <!--            <input type="password" name="pass" id="name" placeholder="*********"/>-->
         </div>
         <div>
             <input type="submit" value="Войти"/>
         </div>
-        <a class="forgot-label" href="{% url 'authapp:forgot_pass' %}">Забыли пароль?</a>
+        <a class="forgot-label" href="{% url 'authapp:forgot_pass' %}">{% translate 'Forgot your password?' %}</a>
         <a class="registr" href="{% url 'authapp:signup' %}">
-            Регистрация
+            {% translate 'Registration' %}
         </a>
     </form>
 </div>

@@ -16,7 +16,7 @@ class AddToCart:
     """
 
     @classmethod
-    def add_to_cart(cls, request, product_id, count=1):
+    def add_to_cart(cls, request, product_id, count=1, change=False):
         """
         Добавление товара в корзину
         """
@@ -29,19 +29,19 @@ class AddToCart:
                 rep_cart_item.save(cart=cart, product=product, quantity=count)
 
             else:  # товар есть в корзине
-                if count != 1:  # изменение количества
+                if change:  # изменение количества товаров
                     cls.change_amount(request, product_id, count)
-                else:  # увеличение количества на 1
-                    cart_item.update(quantity=F('quantity') + 1)
+                else:  # добавление товаров
+                    cart_item.update(quantity=F('quantity') + count)
         else:  # если анонимный пользователь
             if request.session.get('products'):
                 #  если есть в сессиях уже какие-либо товары
                 if request.session['products']. \
                         get(str(product_id)):
-                    # если позиция с конкретным товаром уже есть и count != 1
-                    # изменить количество на count
-                    if count != 1:
+                    # если позиция с конкретным товаром уже есть и change=True
+                    if change:
                         request.session['products'][str(product_id)] = count
+                        # изменить количество на count
                     else:
                         # увеличить количество на 1
                         request.session['products'][str(product_id)] += 1

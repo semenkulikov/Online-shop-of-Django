@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block Header-searchWrap %}
 {% endblock %}
@@ -11,22 +12,19 @@
 <div class="wrap">
     <div class="row Header-rowMain">
         <div class="row-block Header-logo"><a class="logo" href="{% url 'index' %}"><img class="logo-image"
-                                                                                     src="{% static 'assets/img/logo.png' %}"
-                                                                                     alt="logo.png"/></a>
+                                                                                         src="{% static 'assets/img/logo.png' %}"
+                                                                                         alt="logo.png"/></a>
         </div>
     </div>
 </div>
 {% endblock %}
 {% block content %}
-
-
 <div class="wrapper wrap-reg">
-        {% for mes in messages %}
-            {{ mes }}
-        {% endfor %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
     <div class="header">
-        <h3 class="sign-in">Регистрация</h3>
-
+        <h3 class="sign-in">{% translate 'Registration' %}</h3>
     </div>
     <div class="clear"></div>
     <form action="{% url 'authapp:signup' %}" method="post">{% csrf_token %}
@@ -57,7 +55,7 @@
             </div>
             <input class="input-reg" type="submit" value="Зарегистрироваться"/>
             <a class="registr log-in" href="{% url 'authapp:login' %}">
-                Вход
+                {% translate 'Log in' %}
             </a>
         </div>
         <div class="clear"></div>
