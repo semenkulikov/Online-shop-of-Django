@@ -86,7 +86,7 @@ class ProductDiscount(BaseDiscount):
 class CartDiscount(BaseDiscount):
     """Класс-модель скидки на корзину товаров"""
     required_sum = models.DecimalField(
-        null=True,
+        null=False,
         max_digits=10,
         decimal_places=2,
         verbose_name='required sum')
