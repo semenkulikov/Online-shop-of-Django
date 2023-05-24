@@ -9,9 +9,12 @@ from django.shortcuts import get_object_or_404
 
 
 class SellerSelectRepository(SellerSelectInterface):
+    """
+    Репозиторий для модели продавцов
+    """
     def get_seller(self, seller_id: int) -> Seller:
         """
-        Получение объекта продавца
+        Получение объекта продавца по id
         """
         seller = get_object_or_404(Seller, pk=seller_id)
         return seller

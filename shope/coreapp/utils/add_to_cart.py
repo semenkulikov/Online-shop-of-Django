@@ -1,5 +1,5 @@
-from productsapp.models.product import Product
-from cartapp.models.cartitem import CartItem
+from productsapp.models import Product
+from cartapp.models import CartItem
 
 from django.shortcuts import get_object_or_404
 from django.db.models import F

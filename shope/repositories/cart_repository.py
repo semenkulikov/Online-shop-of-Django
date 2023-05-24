@@ -1,14 +1,13 @@
-from django.db.models import QuerySet, Sum, F
+from django.db.models import QuerySet, Sum
 from django.shortcuts import get_object_or_404
 
 from authapp.models import User
 
-from cartapp.models.cart import Cart
-from cartapp.models.cartitem import CartItem
+from cartapp.models import Cart, CartItem
 
-from productsapp.models.product import Product
-from productsapp.models.seller import Seller
+from productsapp.models import Product, Seller
 from interfaces.cart_interface import CartInterface, CartItemInterface
+from repositories.price_repository import PriceRepository
 
 
 class RepCart(CartInterface):
@@ -29,17 +28,15 @@ class RepCart(CartInterface):
 
     def get_total_amount(self, cart: Cart) -> float:
         """
-        Общая стоимость
+        Общая стоимость товаров в корзине
         """
-        total_amount = cart.items.aggregate(
-            total_amount=Sum(F('product__product_price') * F('quantity'))
-        )
-        # Доделать позже
+        rep_price = PriceRepository()
+        rep_item = RepCartItem()
+        total_amount = sum([
+            rep_price.get_price(item.product, item.seller) * item.quantity
+            for item in rep_item.get_all_items(cart)
+        ])  # сумма цен товаров в корзине
         return total_amount
-
-    # return self.items.aggregate(
-    #     total_amount=Sum(F('product__price') * F('quantity'))
-    # )['total_amount']
 
     def count_items(self, cart: Cart) -> int:
         """
@@ -76,8 +73,8 @@ class RepCartItem(CartItemInterface):
         """
         Метод возвращает все товары в корзине
         """
-        cart_items = CartItem.objects.filter(cart=cart).\
-            prefetch_related('product', 'product__product_price')
+        cart_items = CartItem.objects.filter(cart=cart). \
+            prefetch_related('product', 'seller')
         return cart_items
 
     def get_cart_item(self, cart: Cart, product: Product, seller: Seller) \
