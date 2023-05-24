@@ -133,24 +133,29 @@
                                                 <div class="table">
 
                                                     <table>
-                                                        <tr>
-                                                            <th>{% translate 'Characteristic' %}</th>
-                                                            <th>{% translate 'Value' %}</th>
-                                                        </tr>
-                                                        {% for specific in product.specifics %}
-                                                            {% if specific.is_comparis %}
-                                                                <tr>
-                                                                    <td class="comparis">{{ specific.type_spec.name }}</td>
-                                                                    <td class="comparis">{{ specific.description }}</td>
-                                                                </tr>
-                                                            {% else %}
-                                                                <tr>
-                                                                    <td>{{ specific.type_spec.name }}</td>
-                                                                    <td>{{ specific.description }}</td>
-                                                                </tr>
-                                                            {% endif %}
+                                                        {% if is_common_spec %}
+                                                            {% translate 'No common characteristics' %}
+                                                        {% else %}
+                                                            <tr>
+                                                                <th>{% translate 'Characteristic' %}</th>
+                                                                <th>{% translate 'Value' %}</th>
+                                                            </tr>
+                                                            {% for specific in product.specifics %}
+                                                                {% if specific.is_comparis %}
+                                                                    <tr>
+                                                                        <td class="comparis">{{ specific.type_spec.name }}</td>
+                                                                        <td class="comparis">{{ specific.description }}</td>
+                                                                    </tr>
+                                                                {% else %}
+                                                                    <tr>
+                                                                        <td>{{ specific.type_spec.name }}</td>
+                                                                        <td>{{ specific.description }}</td>
+                                                                    </tr>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
 
-                                                        {% endfor %}
+
 
     {#                                                    <tr>#}
     {#                                                        <td><b>Общие параметры</b></td>#}

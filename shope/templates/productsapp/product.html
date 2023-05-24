@@ -186,7 +186,7 @@
                                         <div class="Comment">
                                             <div class="Comment-column Comment-column_pict">
                                                 <div class="Comment-avatar">
-                                                    {{ review.user.avatar_image.url }}
+{#                                                    {{ review.user.avatar_image.url }}#}
                                                 </div>
                                             </div>
                                             <div class="Comment-column">
@@ -214,7 +214,7 @@
 
                                 {% if amount_review > 1 and not is_show %}
                                     <div class="form-group" style="margin-top: 2em">
-                                        <form method="post">
+                                        <form method="post" action="{% url 'productsapp:add_review' product_id=product.pk %}">
                                             {% csrf_token %}
                                             <button class="btn btn_primary" type="submit" name="show_more">
                                                 {% translate 'Show more' %}
@@ -236,7 +236,7 @@
                                                 {{ result }}
                                             {% endif %}
                                         </div>
-                                        <form class="form" method="post">
+                                        <form action="{% url 'productsapp:add_review' product_id=product.pk %}" class="form" method="post">
                                             <div class="form-group">
                                                 {% csrf_token %}
                                                 {{ form.text }}

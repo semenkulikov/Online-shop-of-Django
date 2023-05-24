@@ -1,6 +1,7 @@
-from typing import List
+from typing import List, Dict
 
 from interfaces.product_select_interface import ProductSelectInterface
+from productsapp.models import Discount
 from productsapp.models.product import Product
 from taggit.models import Tag
 from productsapp.models.specific import Specific
@@ -120,3 +121,11 @@ class ProductSelectRepository(ProductSelectInterface):
             return sort_methods[sort](products, reverse)
         else:  # при некорректном параметре сортировка не применяется
             return products
+
+    def get_all_discounts(self, products_id: List[int]) -> \
+            Dict[Product, QuerySet[Discount]]:
+        products = Product.objects.filter(id__in=products_id)
+        discounts = dict()
+        for product in products:
+            discounts[product] = product.discounted_products
+        return discounts
