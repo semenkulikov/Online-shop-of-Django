@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     Megano
@@ -105,7 +106,7 @@
                 <div class="Section-column">
                     <div class="Section-columnSection Section-columnSection_mark">
                       <header class="Section-columnHeader">
-                        <strong class="Section-columnTitle">ОГРАНИЧЕННЫЕ ПРЕДЛОЖЕНИЯ
+                        <strong class="Section-columnTitle">{% translate 'LIMITED OFFER' %}
                         </strong>
                       </header>
                       <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/home/card.jpg" alt="card.jpg"/></a>
@@ -150,7 +151,7 @@
                 </div>
                 <div class="Section-content">
                     <header class="Section-header">
-                        <h2 class="Section-title">Популярные товары
+                        <h2 class="Section-title">{% translate 'Popular products' %}
                         </h2>
                     </header>
                     <div class="Cards">
@@ -275,7 +276,7 @@
                 <div class="Section-content">
                     <div class="Slider Slider_carousel">
                         <header class="Section-header Section-header_close">
-                            <h2 class="Section-title">Ограниченный тираж
+                            <h2 class="Section-title">{% translate 'Limited edition' %}
                             </h2>
                             <div class="Section-control">
                                 <div class="Slider-navigate">

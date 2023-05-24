@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Dict
 
 from django.db.models import QuerySet
+
+from productsapp.models import Discount
 from productsapp.models.product import Product
 
 
@@ -22,7 +24,7 @@ class ProductSelectInterface(ABC):
         pass
 
     @abstractmethod
-    def get_products_with_these_id(self, products_id: List[int])\
+    def get_products_with_these_id(self, products_id: List[int]) \
             -> QuerySet[Product]:
         """ Метод для получения продуктов с заданными id """
         pass
@@ -88,4 +90,16 @@ class ProductSelectInterface(ABC):
                    products: QuerySet,
                    sort: str) -> QuerySet[Product]:
         """ Выбор метода сортировки в зависимости от параметра """
+        pass
+
+    @abstractmethod
+    def get_all_discounts(self, products_id: List[int]) -> \
+            Dict[Product, QuerySet[Discount]]:
+        """
+        Получить все скидки на указанный список товаров.
+
+        :param products_id: список id товаров, на которые надо получить скидки.
+
+        :return: Словарь, ключ - Product, значение - Discount.
+        """
         pass

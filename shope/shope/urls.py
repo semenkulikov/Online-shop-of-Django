@@ -21,9 +21,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.views.generic import TemplateView
+from django.conf.urls.i18n import i18n_patterns
 
+urlpatterns = []
 
-urlpatterns = [
+urlpatterns += i18n_patterns(
     path('', TemplateView.as_view(template_name="index.html"), name='index'),
     path('admin/', admin.site.urls),
     path('order/', include('orderapp.urls')),
@@ -32,7 +34,7 @@ urlpatterns = [
     path('payment/', include('paymentapp.urls')),
     path('auth/', include('authapp.urls')),
     path('cart/', include('cartapp.urls')),
-]
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

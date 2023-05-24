@@ -15,6 +15,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from coreapp.utils.verified_user import send_verif_link, generate_random_string
 from coreapp.utils.add_to_cart import AddToCart
 from repositories.cart_repository import RepCart
+from django.utils.translation import gettext as _
 
 
 class UserLoginView(LoginView):
@@ -72,11 +73,10 @@ class UserSignUpView(CreateView):
                 AddToCart.move_from_session(request, user)
             if send_verif_link(user, protocol, domain):
                 # если ссылка создана и отправлено сообщение
-                messages.success(request, 'Вы успешно зарегистрировались.'
-                                          ' \nСсылка для активации '
-                                          'аккаунта отправлена на email.\n'
-                                          'В течение 72 часов Вам необходимо '
-                                          'подтвердить свою учетную запись.')
+                messages.success(request, _(
+                    'You have successfully registered. '
+                    '\nThe account activation link has been emailed to you.'
+                    '\n You must confirm your account within 72 hours.'))
                 return HttpResponseRedirect(reverse('authapp:login'))
         else:  # при наличии ошибок в форме
             messages.set_level(request, messages.ERROR)
@@ -105,8 +105,9 @@ def verify_user(request, *args, **kwargs):
                 user.save()
                 login(request, user)  # вход в учетную запись
         except Exception:
-            messages.error(request, 'Произошла ошибка. Истёк срок активации\n'
-                                    'Попробуйте регистрацию заново.')
+            messages.error(request, _('An error has occurred. '
+                                      'The activation period has expired'
+                                      '\nTry registering again.'))
     return HttpResponseRedirect(reverse('index'))
 
 

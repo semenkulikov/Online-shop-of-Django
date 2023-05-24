@@ -1,6 +1,7 @@
 from django.db import models
 from coreapp.models import BaseModel
 from productsapp.models import Category
+from django.utils.translation import gettext_lazy as _
 
 
 class Banner(BaseModel):
@@ -10,18 +11,18 @@ class Banner(BaseModel):
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
-        verbose_name='category',
+        verbose_name=_('category'),
         related_name='category_on_banner'
     )
 
     image = models.ImageField(
         upload_to='banners_images/',
-        verbose_name='image'
+        verbose_name=_('image')
     )
 
     class Meta:
-        verbose_name = "banner"
-        verbose_name_plural = "banners"
+        verbose_name = _("banner")
+        verbose_name_plural = _("banners")
 
     def __str__(self):
         return self.category.name

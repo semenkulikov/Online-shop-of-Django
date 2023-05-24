@@ -2,6 +2,7 @@ from django.db import models
 from coreapp.models import BaseModel
 from .product import Product
 from .type_spec import TypeSpecific
+from django.utils.translation import gettext_lazy as _
 
 
 class Specific(BaseModel):
@@ -13,7 +14,7 @@ class Specific(BaseModel):
                                 related_name="specific")
     description = models.TextField(null=True,
                                    blank=True,
-                                   verbose_name="description")
+                                   verbose_name=_("description"))
     type_spec = models.ForeignKey(TypeSpecific,
                                   on_delete=models.CASCADE,
                                   related_name="specific")
