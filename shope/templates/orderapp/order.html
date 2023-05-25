@@ -23,7 +23,7 @@
                             </strong>
                         </header>
                         <div class="Section-columnContent">
-                            <div class="NavigateProfile">
+                            <div class="Order-navigate">
                                 <ul class="menu menu_vt">
                                     <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="#step1">Шаг 1. Параметры пользователя</a>
                                     </li>
@@ -61,28 +61,39 @@
                                         </label>
                                         <input class="form-input" id="phone" name="phone" type="text" value="{{profile_form.phone_number.value}}" />
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="mail">E-mail
+                                <div class="form-group">
+                                    <div>
+                                        <label class="toggle">
+                                            <input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>
                                         </label>
-                                        <input class="form-input" id="mail" name="mail" type="text" value="{{user_form.email.value}}" data-validate="require" />
+                                    </div>
+                                    <div>
+                                        <label class="toggle">
+                                            <input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>
+                                        </label>
                                     </div>
                                 </div>
+
+                                    <!--<div class="form-group">-->
+                                        <!--<label class="form-label" for="mail">E-mail-->
+                                        <!--</label>-->
+                                        <!--<input class="form-input" id="mail" name="mail" type="text" value="{{user_form.email.value}}" data-validate="require" />-->
+                                    <!--</div>-->
+                                </div>
                                 <div class="row-block">
-                                    <div class="form-group">
-                                        <label class="form-label" for="password">{% translate 'Password' %}
-                                        </label>
-                                        <input class="form-input" id="password" name="password" type="password" placeholder="{% translate 'You can change your password here' %}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="passwordReply">{% translate 'Password confirmation' %}
-                                        </label>
-                                        <input class="form-input" id="passwordReply" name="passwordReply" type="password" placeholder="{% translate 'Re-enter the password' %}" />
-                                    </div>
-                                    {% if request.user.is_anonymous %}
-                                    <div class="form-group">
-                                        <a class="btn btn_muted Order-btnReg" href="#">{% translate 'I am already registered' %}</a>
-                                    </div>
-                                    {% endif %}
+                                    <!--<div class="form-group">-->
+                                        <!--<label class="form-label" for="password">{% translate 'Password' %}-->
+                                        <!--</label>-->
+                                        <!--<input class="form-input" id="password" name="password" type="password" placeholder="{% translate 'You can change your password here' %}" />-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label class="form-label" for="passwordReply">{% translate 'Password confirmation' %}-->
+                                        <!--</label>-->
+                                        <!--<input class="form-input" id="passwordReply" name="passwordReply" type="password" placeholder="{% translate 'Re-enter the password' %}" />-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                        <!--<a class="btn btn_muted Order-btnReg" href="#">{% translate 'I am already registered' %}</a>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
                             <div class="Order-footer"><a class="btn btn_success Order-next" href="#step2">{% translate 'Next' %}</a>
@@ -93,18 +104,18 @@
                                 <h2 class="Section-title">{% translate 'Step 2: Method of delivery' %}
                                 </h2>
                             </header>
-                            <div class="form-group">
-                                <div>
-                                    <label class="toggle">
-                                        <input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="toggle">
-                                        <input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>
-                                    </label>
-                                </div>
-                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<div>-->
+                                    <!--<label class="toggle">-->
+                                        <!--<input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                                <!--<div>-->
+                                    <!--<label class="toggle">-->
+                                        <!--<input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
                             <div class="form-group">
                                 <label class="form-label" for="city">{% translate 'City' %}
                                 </label>
