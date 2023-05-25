@@ -6,6 +6,9 @@ from authapp.models import User
 from cartapp.models.cart import Cart
 from cartapp.models.cartitem import CartItem
 
+from productsapp.models.product import Product
+from productsapp.models.seller import Seller
+
 
 class CartInterface(ABC):
     @abstractmethod
@@ -45,7 +48,8 @@ class CartItemInterface(ABC):
         pass
 
     @abstractmethod
-    def get_cart_item(self, cart: Cart, product_id: int) -> QuerySet[CartItem]:
+    def get_cart_item(self, cart: Cart, product: Product, seller: Seller) \
+            -> QuerySet[CartItem]:
         pass
 
     @abstractmethod
