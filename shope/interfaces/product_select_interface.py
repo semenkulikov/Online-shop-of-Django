@@ -14,11 +14,6 @@ class ProductSelectInterface(ABC):
         """Получить все продукты"""
         pass
 
-    @abstractmethod
-    def get_all_tags(self) -> QuerySet[Product]:
-        """Получить список всех тегов"""
-        pass
-
     def get_product_by_id(self, product_id: int) -> Product:
         """ Получить продукт по id """
         pass
@@ -32,6 +27,7 @@ class ProductSelectInterface(ABC):
     @abstractmethod
     def get_products_with_filter(self,
                                  name: str,
+                                 category: str,
                                  free_shipping: bool,
                                  in_stock: bool) -> QuerySet[Product]:
         """Получить список продуктов на основании фильтра"""

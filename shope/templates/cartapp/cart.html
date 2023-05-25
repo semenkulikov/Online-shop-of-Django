@@ -90,7 +90,7 @@
                             <strong class="Cart-title">{% translate 'Total' %}:
                             </strong><span class="Cart-price">200.99$</span>
                         </div>
-                        <div class="Cart-block"><a class="btn btn_success btn_lg" href="order.html">{% translate 'Place an order' %}</a>
+                        <div class="Cart-block"><a class="btn btn_success btn_lg" href="{% url 'orderapp:order' %}">{% translate 'Place an order' %}</a>
                         </div>
                     </div>
                 </form>
