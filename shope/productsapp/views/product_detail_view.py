@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.views import View
 from productsapp.models import Product
+from coreapp.utils import ViewedProductsService
 from coreapp.utils.add_product_review import AddProductReview
 from repositories.price_repository import PriceRepository
 from repositories.profile_repository import ProfileRepository
@@ -13,10 +14,12 @@ class ProductDetailView(View):
     Класс-view для отображения детальной страницы продукта
     """
     _service = AddProductReview()
+    _viewed_service = ViewedProductsService()
     _profile_repository = ProfileRepository()
     _select_seller_repo = SellerSelectRepository()
     _select_specifics_repo = SpecificSelectRepository()
     _price_repository = PriceRepository()
+
     template_name = "productsapp/product.html"
 
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
@@ -31,6 +34,10 @@ class ProductDetailView(View):
             product=product
         )
         specifics = self._select_specifics_repo.get_specific_by_product(
+            product=product
+        )
+        self._viewed_service.add_to_viewed_products(
+            user=request.user,
             product=product
         )
 
