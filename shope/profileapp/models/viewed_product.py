@@ -2,6 +2,7 @@ from django.db import models
 from authapp.models import User
 from productsapp.models import Product
 from coreapp.models import BaseModel
+from django.utils.translation import gettext_lazy as _
 
 
 class ViewedProduct(BaseModel):
@@ -12,7 +13,7 @@ class ViewedProduct(BaseModel):
         User,
         on_delete=models.CASCADE,
         related_name='viewed_products',
-        verbose_name='user'
+        verbose_name=_('user')
     )
 
     product = models.ForeignKey(
@@ -25,5 +26,5 @@ class ViewedProduct(BaseModel):
         return f'{self.user} - {self.product}'
 
     class Meta:
-        verbose_name = 'viewed product'
-        verbose_name_plural = 'viewed products'
+        verbose_name = _('viewed product')
+        verbose_name_plural = _('viewed products')
