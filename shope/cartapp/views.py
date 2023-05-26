@@ -1,10 +1,9 @@
 from django.views import View
 from django.shortcuts import render
-from coreapp.utils.add_to_cart import AddToCart
 from django.http import HttpResponseRedirect
-from repositories.cart_repository import RepCart
 
-rep_cart = RepCart()
+from coreapp.utils.select_cart import SelectCart
+from coreapp.utils.update_cart import AddToCart
 
 
 class CartItemListView(View):
@@ -15,68 +14,77 @@ class CartItemListView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:  # пользователь авторизован
-            cart = rep_cart.get_cart(user=request.user)
-            cart_items = AddToCart.cart_items_list(cart=cart)
+            cart_items = SelectCart.cart_items_list(user=request.user)
             context = {
-                'items': cart_items
+                'items': cart_items,
+                'session': False
             }
             return render(request, self.template_name, context=context)
         else:  # пользователь не авторизован
             if request.session.get('products', False):  # есть товары в сессии
-                list_product_id = [product_id for product_id in
-                                   request.session['products'].keys()]
-                products = AddToCart. \
-                    cart_items_list(list_product_id=list_product_id)
+                items_price = SelectCart. \
+                    cart_items_list(session_products=request.
+                                    session['products'])
                 # все товары в корзине,
                 # которые есть в сессии
-                count_list = [product_quantity for product_quantity in
+                count_list = [product[0] for product in
                               request.session['products'].values()]
                 # список количества для каждого товара
-                context = {'items': products,
-                           'count_list': count_list}
+                context = {'items': zip(count_list, items_price),
+                           'session': True}
                 return render(request, self.template_name, context)
             else:
                 return render(request, self.template_name)
 
-    def post(self, request):
-        pass
 
-
-class AddProductCartView(View):
+class ProductUpdateView(View):
     """
-    Класс для добавления продукта в корзину
+    Общий класс для выполнения операций с товарами
     """
+    method_service = AddToCart.add_to_cart
+    # метод из сервиса для выполнения нужной операции с корзиной
 
     def get(self, request, **kwargs):
-        AddToCart.add_to_cart(request, **kwargs)
+        if request.user.is_authenticated:  # пользователь авторизован
+            kwargs['user'] = request.user
+            self.method_service(**kwargs)
+        else:
+            kwargs['session_products'] = request.session.get('products')
+            # есть товары в сессии
+            products = self.method_service(**kwargs)
+            request.session['products'] = products
+            request.session.modified = True
+
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-class RemoveProductCartView(View):
+class AddProductCartView(ProductUpdateView):
+    """
+    Класс для добавления товара в корзину
+    """
+
+
+class RemoveProductCartView(ProductUpdateView):
     """
     Класс для удаления товара из корзины
     """
+    method_service = AddToCart.delete_from_cart
+
+
+class DeleteItemCartView(ProductUpdateView):
+    """
+    Класс для удаления позиции с товаром из корзины
+    """
+    method_service = AddToCart.delete_from_cart
 
     def get(self, request, **kwargs):
-        AddToCart.delete_from_cart(request, **kwargs)
+        kwargs['full'] = True
+        super().get(request, **kwargs)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-class DeleteItemCartView(View):
-    """
-    Класс для позиции с товаром из корзины
-    """
-
-    def get(self, request, **kwargs):
-        AddToCart.delete_from_cart(request, full=True, **kwargs)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-class ChangeQuantityCartView(View):
+class ChangeQuantityCartView(ProductUpdateView):
     """
     Класс для изменения количества товара в корзине
     """
-
-    def get(self, request, **kwargs):
-        AddToCart.change_amount(request, **kwargs)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    method_service = AddToCart.change_amount

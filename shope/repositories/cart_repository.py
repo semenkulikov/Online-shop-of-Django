@@ -42,7 +42,7 @@ class RepCart(CartInterface):
         """
         Количество товаров в корзине
         """
-        total_products = cart.items. \
+        total_products = cart.items.filter(is_active=True). \
             aggregate(Sum('quantity'))['quantity__sum']
         return total_products
 
@@ -73,7 +73,7 @@ class RepCartItem(CartItemInterface):
         """
         Метод возвращает все товары в корзине
         """
-        cart_items = CartItem.objects.filter(cart=cart). \
+        cart_items = CartItem.objects.filter(cart=cart, is_active=True). \
             prefetch_related('product', 'seller')
         return cart_items
 
@@ -84,7 +84,8 @@ class RepCartItem(CartItemInterface):
         """
         cart_item = CartItem.objects. \
             select_related('product', 'seller'). \
-            filter(cart=cart, product=product, seller=seller)
+            filter(cart=cart, product=product,
+                   seller=seller, is_active=True)
         return cart_item
 
     def save(self, force=None, **kwargs) -> CartItem:
@@ -105,4 +106,4 @@ class RepCartItem(CartItemInterface):
         """
         Удаление всей позиции с товаром
         """
-        cart_item.delete()
+        cart_item.update(is_active=False)

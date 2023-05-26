@@ -1,8 +1,6 @@
 ﻿from django.db.models import Avg
-
 from interfaces.price_interface import PriceInterface
 from productsapp.models import Product, SlicePrice, Seller
-from django.shortcuts import get_object_or_404
 
 
 class PriceRepository(PriceInterface):
@@ -17,8 +15,19 @@ class PriceRepository(PriceInterface):
 
     def get_price(self, product: Product, seller: Seller) -> float:
         """
-        Метод возвращает значение цены на продукт, установленную продавцом.
+        Метод возвращает последнее значение цены на продукт,
+        установленную продавцом.
         """
-        price = get_object_or_404(SlicePrice, product=product,
-                                  seller=seller).value
+        price = SlicePrice.objects.order_by('-updated_at'). \
+            filter(seller=seller, product=product).first().value
         return price
+
+    def get_object_price(self, product: Product, seller: Seller) -> SlicePrice:
+        """
+        Метод возвращает объект SlicePrice
+        """
+        price_object = SlicePrice.objects. \
+            select_related('seller', 'product'). \
+            order_by('-updated_at'). \
+            filter(product=product, seller=seller).first()
+        return price_object
