@@ -13,6 +13,15 @@ class PriceRepository(PriceInterface):
         )
         return average_price.get("price")
 
+    def get_min_price_object(self, product: Product) -> SlicePrice:
+        """
+        Возвращает SlicePrice продукта у которого минимальная цена
+        """
+        min_price = SlicePrice.objects.filter(
+            product=product, is_active=True
+        ).select_related('product', 'seller').order_by('value').first()
+        return min_price
+
     def get_price(self, product: Product, seller: Seller) -> float:
         """
         Метод возвращает последнее значение цены на продукт,

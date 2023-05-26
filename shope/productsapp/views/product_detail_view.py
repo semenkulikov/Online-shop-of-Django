@@ -28,7 +28,8 @@ class ProductDetailView(View):
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)
         # получаем конкретный продукт
-        product_price = self._price_repository.get_avg_prices(product=product)
+        product_price = self._price_repository.\
+            get_min_price_object(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
         # количество отзывов
         reviews_list = self._service.product_reviews_list(
@@ -45,7 +46,6 @@ class ProductDetailView(View):
             user=request.user,
             product=product
         )
-
         return render(request, self.template_name,
                       context={"product": product,
                                "form": self.form_class,
