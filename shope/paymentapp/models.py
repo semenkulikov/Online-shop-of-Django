@@ -4,6 +4,8 @@ from authapp.models import User
 from coreapp.enums import PAYMENT_STATUSES
 from django.utils.translation import gettext_lazy as _
 
+from orderapp.models import Order
+
 
 class Payment(BaseModel):
     """
@@ -24,6 +26,13 @@ class Payment(BaseModel):
         max_length=20,
         verbose_name=_('payment status'),
         choices=PAYMENT_STATUSES)
+
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        verbose_name=_('order'),
+        related_name='payment'
+    )
 
     def __str__(self):
         return self.payment_id
