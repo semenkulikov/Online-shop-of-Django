@@ -7,225 +7,263 @@
     Megano
 {% endblock %}
 
+{% block Header-slider %}
+{% endblock %}
+
 {% block content %}
-    <div class="Section-content">
-        <form class="form" action="#" method="post">
-            <div class="Order-block Order-block_OPEN" id="step1">
-                <header class="Section-header Section-header_sm">
-                    <h2 class="Section-title">{% translate 'Step 1: User settings' %}
-                    </h2>
-                </header>
-                <div class="row">
-                    <div class="row-block">
-                        <div class="form-group">
-                            <label class="form-label" for="name">{% translate 'FIO' %}
-                            </label>
-                            <input class="form-input" id="name" name="name" type="text" value="Иванов Иван Иванович" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="phone">{% translate 'Phone' %}
-                            </label>
-                            <input class="form-input" id="phone" name="phone" type="text" value="+70000000000" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="mail">E-mail
-                            </label>
-                            <input class="form-input" id="mail" name="mail" type="text" value="" data-validate="require" />
-                        </div>
-                    </div>
-                    <div class="row-block">
-                        <div class="form-group">
-                            <label class="form-label" for="password">{% translate 'Password' %}
-                            </label>
-                            <input class="form-input" id="password" name="password" type="password" placeholder="{% translate 'You can change your password here' %}" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="passwordReply">{% translate 'Password confirmation' %}
-                            </label>
-                            <input class="form-input" id="passwordReply" name="passwordReply" type="password" placeholder="{% translate 'Re-enter the password' %}" />
-                        </div>
-                        <div class="form-group"><a class="btn btn_muted Order-btnReg" href="#">{% translate 'I am already registered' %}</a>
+
+    <div class="Middle Middle_top">
+        <div class="Section Section_column Section_columnRight Section_columnWide Order">
+            <div class="wrap">
+
+                <div class="Section-column">
+                    <div class="Section-columnSection">
+                        <header class="Section-header">
+                            <strong class="Section-title">Прогресс заполнения
+                            </strong>
+                        </header>
+                        <div class="Section-columnContent">
+                            <div class="Order-navigate">
+                                <ul class="menu menu_vt">
+                                    <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="#step1">Шаг 1. Параметры заказа</a>
+                                    </li>
+                                    <li class="menu-item"><a class="menu-link" href="#step2">Шаг 2. Способ оплаты</a>
+                                    </li>
+                                    <li class="menu-item"><a class="menu-link" href="#step3">Шаг 3. Подтверждение заказа</a>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="Order-footer"><a class="btn btn_success Order-next" href="#step2">{% translate 'Next' %}</a>
+
+
+
+                <div class="Section-content">
+                    <form class="form" action="#" method="post">
+                        {% csrf_token %}
+                        <div class="Order-block Order-block_OPEN" id="step1">
+                            <header class="Section-header Section-header_sm">
+                                <h2 class="Section-title">{% translate 'Step 1: Order info' %}
+                                </h2>
+                            </header>
+                            <div class="row">
+                                <div class="row-block">
+                                    <div class="form-group">
+                                        <label class="form-label" for="fio">{% translate 'FIO' %}
+                                        </label>
+                                        <input class="form-input" id="fio" name="fio" type="text" value="{{ profile_form.fio.value }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="phone">{% translate 'Phone' %}
+                                        </label>
+                                        <input class="form-input" id="phone" name="phone_number" type="text" value="{{profile_form.phone_number.value}}" />
+                                    </div>
+                                <div class="form-group">
+                                    <div>
+                                        <label class="toggle">
+                                            <input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="toggle">
+                                            <input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                    <!--<div class="form-group">-->
+                                        <!--<label class="form-label" for="mail">E-mail-->
+                                        <!--</label>-->
+                                        <!--<input class="form-input" id="mail" name="mail" type="text" value="{{user_form.email.value}}" data-validate="require" />-->
+                                    <!--</div>-->
+                                </div>
+                                <div class="row-block">
+                                    <div class="form-group">
+                                        <label class="form-label" for="city">{% translate 'City' %}</label>
+                                        <input class="form-input" id="city" name="city" type="text" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="address">{% translate 'The address is' %}</label>
+                                        <textarea class="form-textarea" name="address" id="address"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="Order-footer"><a class="btn btn_success Order-next" href="#step2">{% translate 'Next' %}</a>
+                            </div>
+                        </div>
+                        <!--<div class="Order-block" id="step2">-->
+                            <!--<header class="Section-header Section-header_sm">-->
+                                <!--<h2 class="Section-title">{% translate 'Step 2: Method of delivery' %}-->
+                                <!--</h2>-->
+                            <!--</header>-->
+                            <!--<div class="form-group">-->
+                                <!--<div>-->
+                                    <!--<label class="toggle">-->
+                                        <!--<input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                                <!--<div>-->
+                                    <!--<label class="toggle">-->
+                                        <!--<input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="Order-footer"><a class="btn btn_success Order-next" href="#step3">{% translate 'Next' %}</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="Order-block" id="step2">
+                            <header class="Section-header Section-header_sm">
+                                <h2 class="Section-title">{% translate 'Step 2: Payment method' %}
+                                </h2>
+                            </header>
+                            <div class="form-group">
+                                <div>
+                                    <label class="toggle">
+                                        <input type="radio" name="pay" value="online" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Online map' %}</span>
+                                    </label>
+                                </div>
+                                <!--<div>-->
+                                    <!--<label class="toggle">-->
+                                        <!--<input type="radio" name="pay" value="someone" /><span class="toggle-box"></span><span class="toggle-text">{% translate "Online from a random stranger's account" %}</span>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="Order-footer"><a class="btn btn_success Order-next" href="#step3">{% translate 'Next' %}</a>
+                            </div>
+                        </div>
+                        <div class="Order-block" id="step3">
+                            <header class="Section-header Section-header_sm">
+                                <h2 class="Section-title">{% translate 'Step 3: Confirm order' %}
+                                </h2>
+                            </header>
+                            <!--+div.Order.-confirmation-->
+                            <div class="Order-infoBlock">
+                                <div class="Order-personal">
+                                    <div class="row">
+                                        <div class="row-block">
+                                            <div class="Order-info">
+                                                <div class="Order-infoType">{% translate 'FIO' %}:
+                                                </div>
+                                                <div class="Order-infoContent">Иванов Иван Иванович
+                                                </div>
+                                            </div>
+                                            <div class="Order-info">
+                                                <div class="Order-infoType">{% translate 'Phone' %}:
+                                                </div>
+                                                <div class="Order-infoContent">+7000000000
+                                                </div>
+                                            </div>
+                                            <div class="Order-info">
+                                                <div class="Order-infoType">E-mail:
+                                                </div>
+                                                <div class="Order-infoContent">send@test.test
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row-block">
+                                            <div class="Order-info Order-info_delivery">
+                                                <div class="Order-infoType">{% translate 'Type of delivery' %}:
+                                                </div>
+                                                <div class="Order-infoContent">{% translate 'Ordinary delivery' %}
+                                                </div>
+                                            </div>
+                                            <div class="Order-info">
+                                                <div class="Order-infoType">{% translate 'City' %}:
+                                                </div>
+                                                <div class="Order-infoContent">{% translate 'Moscow' %}
+                                                </div>
+                                            </div>
+                                            <div class="Order-info">
+                                                <div class="Order-infoType">{% translate 'The address is' %}:
+                                                </div>
+                                                <div class="Order-infoContent">Ул. Академика Арцимовича, д. 10, кв. 10
+                                                </div>
+                                            </div>
+                                            <div class="Order-info Order-info_pay">
+                                                <div class="Order-infoType">{% translate 'Payment' %}:
+                                                </div>
+                                                <div class="Order-infoContent">{% translate 'Online map' %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Cart Cart_order">
+                                    <div class="Cart-product">
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/home/card.jpg" alt="card.jpg" /></a>
+                                            </div>
+                                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">{% translate 'Notebook' %}</a>
+                                                <div class="Cart-desc">Это супер ноутбук, 3 гб. 4 ядра
+                                                </div>
+                                            </div>
+                                            <div class="Cart-block Cart-block_price">
+                                                <div class="Cart-price">80.00$
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_amount">1 шт.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Cart-product">
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/sale/product.png" alt="product.png" /></a>
+                                            </div>
+                                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Планшет</a>
+                                                <div class="Cart-desc">Это планшет с современным железом. Процессор последнего поколения
+                                                </div>
+                                            </div>
+                                            <div class="Cart-block Cart-block_price">
+                                                <div class="Cart-price">40.99$
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_amount">1 шт.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Cart-product">
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/home/card.jpg" alt="card.jpg" /></a>
+                                            </div>
+                                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Ноутбук</a>
+                                                <div class="Cart-desc">Это супер ноутбук, 3 гб. 4 ядра
+                                                </div>
+                                            </div>
+                                            <div class="Cart-block Cart-block_price">
+                                                <div class="Cart-price">80.00$
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_amount">1 шт.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Cart-total">
+                                        <div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">{% translate 'Total' %}:
+                                            </strong><span class="Cart-price">200.99$</span>
+                                        </div>
+                                        <div class="Cart-block">
+                                            <button class="btn btn_primary btn_lg" type="submit">{% translate 'Pay' %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="Order-block" id="step2">
-                <header class="Section-header Section-header_sm">
-                    <h2 class="Section-title">{% translate 'Step 2: Method of delivery' %}
-                    </h2>
-                </header>
-                <div class="form-group">
-                    <div>
-                        <label class="toggle">
-                            <input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="toggle">
-                            <input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="city">{% translate 'City' %}
-                    </label>
-                    <input class="form-input" id="city" name="city" type="text" />
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="address">{% translate 'The address is' %}
-                    </label>
-                    <textarea class="form-textarea" name="address" id="address"></textarea>
-                </div>
-                <div class="Order-footer"><a class="btn btn_success Order-next" href="#step3">{% translate 'Next' %}</a>
-                </div>
-            </div>
-            <div class="Order-block" id="step3">
-                <header class="Section-header Section-header_sm">
-                    <h2 class="Section-title">{% translate 'Step 3: Payment method' %}
-                    </h2>
-                </header>
-                <div class="form-group">
-                    <div>
-                        <label class="toggle">
-                            <input type="radio" name="pay" value="online" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Online map' %}</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="toggle">
-                            <input type="radio" name="pay" value="someone" /><span class="toggle-box"></span><span class="toggle-text">{% translate "Online from a random stranger's account" %}</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="Order-footer"><a class="btn btn_success Order-next" href="#step4">{% translate 'Next' %}</a>
-                </div>
-            </div>
-            <div class="Order-block" id="step4">
-                <header class="Section-header Section-header_sm">
-                    <h2 class="Section-title">{% translate 'Step 4: Confirm order' %}
-                    </h2>
-                </header>
-                <!--+div.Order.-confirmation-->
-                <div class="Order-infoBlock">
-                    <div class="Order-personal">
-                        <div class="row">
-                            <div class="row-block">
-                                <div class="Order-info">
-                                    <div class="Order-infoType">{% translate 'FIO' %}:
-                                    </div>
-                                    <div class="Order-infoContent">Иванов Иван Иванович
-                                    </div>
-                                </div>
-                                <div class="Order-info">
-                                    <div class="Order-infoType">{% translate 'Phone' %}:
-                                    </div>
-                                    <div class="Order-infoContent">+7000000000
-                                    </div>
-                                </div>
-                                <div class="Order-info">
-                                    <div class="Order-infoType">E-mail:
-                                    </div>
-                                    <div class="Order-infoContent">send@test.test
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-block">
-                                <div class="Order-info Order-info_delivery">
-                                    <div class="Order-infoType">{% translate 'Type of delivery' %}:
-                                    </div>
-                                    <div class="Order-infoContent">{% translate 'Ordinary delivery' %}
-                                    </div>
-                                </div>
-                                <div class="Order-info">
-                                    <div class="Order-infoType">{% translate 'City' %}:
-                                    </div>
-                                    <div class="Order-infoContent">{% translate 'Moscow' %}
-                                    </div>
-                                </div>
-                                <div class="Order-info">
-                                    <div class="Order-infoType">{% translate 'The address is' %}:
-                                    </div>
-                                    <div class="Order-infoContent">Ул. Академика Арцимовича, д. 10, кв. 10
-                                    </div>
-                                </div>
-                                <div class="Order-info Order-info_pay">
-                                    <div class="Order-infoType">{% translate 'Payment' %}:
-                                    </div>
-                                    <div class="Order-infoContent">{% translate 'Online map' %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Cart Cart_order">
-                        <div class="Cart-product">
-                            <div class="Cart-block Cart-block_row">
-                                <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/home/card.jpg" alt="card.jpg" /></a>
-                                </div>
-                                <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">{% translate 'Notebook' %}</a>
-                                    <div class="Cart-desc">Это супер ноутбук, 3 гб. 4 ядра
-                                    </div>
-                                </div>
-                                <div class="Cart-block Cart-block_price">
-                                    <div class="Cart-price">80.00$
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="Cart-block Cart-block_row">
-                                <div class="Cart-block Cart-block_amount">1 шт.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="Cart-product">
-                            <div class="Cart-block Cart-block_row">
-                                <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/sale/product.png" alt="product.png" /></a>
-                                </div>
-                                <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Планшет</a>
-                                    <div class="Cart-desc">Это планшет с современным железом. Процессор последнего поколения
-                                    </div>
-                                </div>
-                                <div class="Cart-block Cart-block_price">
-                                    <div class="Cart-price">40.99$
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="Cart-block Cart-block_row">
-                                <div class="Cart-block Cart-block_amount">1 шт.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="Cart-product">
-                            <div class="Cart-block Cart-block_row">
-                                <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/home/card.jpg" alt="card.jpg" /></a>
-                                </div>
-                                <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Ноутбук</a>
-                                    <div class="Cart-desc">Это супер ноутбук, 3 гб. 4 ядра
-                                    </div>
-                                </div>
-                                <div class="Cart-block Cart-block_price">
-                                    <div class="Cart-price">80.00$
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="Cart-block Cart-block_row">
-                                <div class="Cart-block Cart-block_amount">1 шт.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="Cart-total">
-                            <div class="Cart-block Cart-block_total">
-                                <strong class="Cart-title">{% translate 'Total' %}:
-                                </strong><span class="Cart-price">200.99$</span>
-                            </div>
-                            <div class="Cart-block">
-                                <button class="btn btn_primary btn_lg" type="submit">{% translate 'Pay' %}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
+
+
 {% endblock %}
