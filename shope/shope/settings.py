@@ -180,6 +180,7 @@ PHONENUMBER_DEFAULT_FORMAT = 'E164'
 
 MAX_AVATAR_IMAGE_SIZE = 2 * 1024 * 1024
 
+MAX_VIEWED_PRODUCTS = 5
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
@@ -191,3 +192,4 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_IMPORTS = (
     'shope',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
 )
+

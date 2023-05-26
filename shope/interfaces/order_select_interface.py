@@ -14,3 +14,7 @@ class OrderInterface(ABC):
     @abstractmethod
     def get_last_activ(self, user: User) -> QuerySet[Order]:
         pass
+
+    @abstractmethod
+    def get_order_by_id(self, order_id: int):
+        pass

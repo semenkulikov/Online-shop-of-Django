@@ -26,3 +26,12 @@ SORT_TYPES = ('new', '-new',
               'popular', '-popular',
               'price', '-price',
               'reviews', '-reviews')
+
+# Типы доставки
+DEFAULT = 'Default delivery'
+EXPRESS = 'Express delivery'
+
+DELIVERY_TYPE = (
+    (DEFAULT, _('Default delivery')),
+    (EXPRESS, _('Express delivery'))
+)

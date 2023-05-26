@@ -26,7 +26,7 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = []
 
 urlpatterns += i18n_patterns(
-    path('', TemplateView.as_view(template_name="index.html"), name='index'),
+    path('', include('coreapp.urls')),
     path('admin/', admin.site.urls),
     path('order/', include('orderapp.urls')),
     path('profile/', include('profileapp.urls')),

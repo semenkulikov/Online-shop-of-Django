@@ -13,7 +13,7 @@ from authapp.forms import UserLoginForm, UserSignUpForm, \
     UserResetPasswordForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, LogoutView
 from coreapp.utils.verified_user import send_verif_link, generate_random_string
-from coreapp.utils.add_to_cart import AddToCart
+from coreapp.utils.update_cart import AddToCart
 from repositories.cart_repository import RepCart
 from django.utils.translation import gettext as _
 
@@ -27,17 +27,17 @@ class UserLoginView(LoginView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('coreapp:index'))
         return render(request, self.template_name, {'form': self.form_class})
 
     def form_valid(self, form):
         super().form_valid(form)
-        if self.request.user.is_authenticated and self.request. \
-                session.get('products'):
+        session_products = self.request.session.get('products')
+        if self.request.user.is_authenticated and session_products:
             # если в сессии есть продукты
-            AddToCart.move_from_session(self.request, self.request.user)
+            AddToCart.move_from_session(self.request.user, session_products)
             # добавление товаров в продукты
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('coreapp:index'))
 
 
 class UserLogoutView(LogoutView):
@@ -57,7 +57,7 @@ class UserSignUpView(CreateView):
     def get(self, request, *args, **kwargs):
         form = self.form_class(data=request.GET)
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('coreapp:index'))
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
@@ -69,8 +69,9 @@ class UserSignUpView(CreateView):
             user.save()
             protocol = request.scheme
             domain = request.META['HTTP_HOST']
-            if request.session.get('products'):  # если в сессии есть продукты
-                AddToCart.move_from_session(request, user)
+            session_products = request.session.get('products')
+            if session_products:  # если в сессии есть продукты
+                AddToCart.move_from_session(user, session_products)
             if send_verif_link(user, protocol, domain):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, _(
@@ -108,7 +109,7 @@ def verify_user(request, *args, **kwargs):
             messages.error(request, _('An error has occurred. '
                                       'The activation period has expired'
                                       '\nTry registering again.'))
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('coreapp:index'))
 
 
 class UserPassResetView(PasswordResetView):
@@ -120,7 +121,7 @@ class UserPassResetView(PasswordResetView):
     template_name = "authapp/forgot_password.html"
     from_email = settings.EMAIL_HOST_USER
     html_email_template_name = "authapp/email/reset_confirm.html"
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('coreapp:index')
 
 
 class UserPassChangeView(PasswordResetConfirmView):
@@ -129,4 +130,4 @@ class UserPassChangeView(PasswordResetConfirmView):
     """
     form_class = UserSetPasswordForm
     template_name = "authapp/set_password.html"
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('coreapp:index')
