@@ -1,8 +1,8 @@
 from django.db import models
 from coreapp.models import BaseModel
 from authapp.models import User
-from productsapp.models.product import Product
-from coreapp.enums import ORDER_STATUSES
+from productsapp.models import Seller, Product
+from coreapp.enums import ORDER_STATUSES, DELIVERY_TYPE
 from django.utils.translation import gettext_lazy as _
 
 
@@ -16,10 +16,27 @@ class Order(BaseModel):
         verbose_name=_('user'),
         related_name='orders'
     )
+
     status = models.CharField(
         max_length=20,
         verbose_name=_('status'),
         choices=ORDER_STATUSES
+    )
+
+    city = models.CharField(
+        max_length=50,
+        verbose_name=_('city'),
+    )
+
+    address = models.CharField(
+        max_length=100,
+        verbose_name=_('address')
+    )
+
+    delivery_type = models.CharField(
+        max_length=20,
+        verbose_name=_('delivery type'),
+        choices=DELIVERY_TYPE
     )
 
     def __str__(self):
@@ -38,14 +55,26 @@ class OrderItem(BaseModel):
         Order,
         related_name='order_items',
         on_delete=models.CASCADE,
-        verbose_name=_('order item'))
+        verbose_name=_('order')
+    )
+
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         verbose_name=_('product'),
-        related_name='ordered')
+        related_name='ordered'
+    )
+
     count = models.PositiveSmallIntegerField(
-        verbose_name=_('count'))
+        verbose_name=_('count')
+    )
+
+    seller = models.ForeignKey(
+        Seller,
+        on_delete=models.CASCADE,
+        verbose_name=_('seller')
+    )
+
     price = models.DecimalField(
         max_digits=8,
         decimal_places=2,

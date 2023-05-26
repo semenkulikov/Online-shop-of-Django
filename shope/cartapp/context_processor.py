@@ -2,6 +2,7 @@ from repositories.cart_repository import RepCart
 from repositories.price_repository import PriceRepository
 from repositories.product_select_repository import ProductSelectRepository
 from repositories.seller_select_repository import SellerSelectRepository
+from coreapp.utils.select_cart import SelectCart
 
 rep_cart = RepCart()
 rep_price = PriceRepository()
@@ -14,14 +15,13 @@ def cart_block(request):
     Контекстный процессор для отображения
     количества товаров в корзине и общей цены товаров в корзине
     """
-    if request.user.is_authenticated and request.user.is_superuser is not True:
-        print('ars')
+    if request.user.is_authenticated:
         # если пользователь авторизован и он не является администратором
         user = request.user
         cart = rep_cart.get_cart(user=user)  # корзина пользователя
         context = {
-            'cart_count': rep_cart.count_items(cart),
-            'cart_sum': rep_cart.get_total_amount(cart)
+            'cart_count': SelectCart.cart_items_amount(cart),
+            'cart_sum': SelectCart.cart_total_amount(cart)
         }  # словарь с количеством и суммой товаров в корзине
         return context
 
