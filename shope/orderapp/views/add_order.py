@@ -6,7 +6,7 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
 
-class OrderView(LoginRequiredMixin, View):
+class AddOrderView(LoginRequiredMixin, View):
     template_name = 'orderapp/order.html'
     login_url = reverse_lazy('authapp:login')
 
@@ -18,4 +18,4 @@ class OrderView(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
     def post(self, request):
-        return HttpResponseRedirect(reverse('orderapp:order'))
+        return HttpResponseRedirect(reverse('coreapp:index'))

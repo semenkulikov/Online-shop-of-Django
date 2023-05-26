@@ -2,6 +2,7 @@ from django.db.models import QuerySet
 from productsapp.models import Banner
 from random import sample
 from django.db.models import Min
+from typing import List
 
 from interfaces.banner_interface import BannerInterface
 
@@ -12,7 +13,7 @@ class BannerRepository(BannerInterface):
         """ Метод получения всех баннеров"""
         return Banner.objects.all()
 
-    def get_random_banners(self, quantity: int = 3) -> list[Banner]:
+    def get_random_banners(self, quantity: int = 3) -> List[Banner]:
         """
         Метод получения случайных баннеров в определенном количестве,
         по-умолчанию - 3.
