@@ -2,7 +2,8 @@ from django.views.generic import View
 from profileapp.forms import ProfileForm
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 
 
 class OrderView(LoginRequiredMixin, View):
@@ -15,3 +16,6 @@ class OrderView(LoginRequiredMixin, View):
                 instance=self.request.user.profile),
         }
         return render(request, self.template_name, context)
+
+    def post(self, request):
+        return HttpResponseRedirect(reverse('orderapp:order'))
