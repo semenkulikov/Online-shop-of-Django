@@ -13,7 +13,7 @@ from authapp.forms import UserLoginForm, UserSignUpForm, \
     UserResetPasswordForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, LogoutView
 from coreapp.utils.verified_user import send_verif_link, generate_random_string
-from coreapp.utils.add_to_cart import AddToCart
+from coreapp.utils.update_cart import AddToCart
 from repositories.cart_repository import RepCart
 from django.utils.translation import gettext as _
 
@@ -32,10 +32,10 @@ class UserLoginView(LoginView):
 
     def form_valid(self, form):
         super().form_valid(form)
-        if self.request.user.is_authenticated and self.request. \
-                session.get('products'):
+        session_products = self.request.session.get('products')
+        if self.request.user.is_authenticated and session_products:
             # если в сессии есть продукты
-            AddToCart.move_from_session(self.request, self.request.user)
+            AddToCart.move_from_session(self.request.user, session_products)
             # добавление товаров в продукты
         return HttpResponseRedirect(reverse('index'))
 
@@ -69,8 +69,9 @@ class UserSignUpView(CreateView):
             user.save()
             protocol = request.scheme
             domain = request.META['HTTP_HOST']
-            if request.session.get('products'):  # если в сессии есть продукты
-                AddToCart.move_from_session(request, user)
+            session_products = request.session.get('products')
+            if session_products:  # если в сессии есть продукты
+                AddToCart.move_from_session(user, session_products)
             if send_verif_link(user, protocol, domain):
                 # если ссылка создана и отправлено сообщение
                 messages.success(request, _(

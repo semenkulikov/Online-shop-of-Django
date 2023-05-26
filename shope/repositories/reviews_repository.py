@@ -15,7 +15,7 @@ class ReviewRepository(ReviewInterface):
                 # Если в списке есть столько элементов, возвращаем срез
                 return reviews[:count]
             # Иначе ошибка
-            raise IndexError
+            # raise IndexError
         return product.reviews.all()
 
     def get_amount_reviews(self, product: Product) -> int:
