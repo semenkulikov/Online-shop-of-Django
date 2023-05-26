@@ -7,46 +7,33 @@
 {% endblock %}
 
 <body class="Site">
-    <header class="Header">
-        <div class="Header-slider">
+
+{% block Header-slider %}
+    <div class="Header-slider">
             <div class="Slider Slider_main">
               <div class="Slider-box">
-                <div class="Slider-item">
-                  <div class="Slider-content">
-                    <div class="row">
-                      <div class="row-block">
-                        <strong class="Slider-title">Mavic Pro<span class="text_primary"> 5</span> mini Drone
-                        </strong>
-                        <div class="Slider-text">Get the best phoneyou ever seen with modern Windows OS plus 70% Off this summer.
+
+                  {% for slider in sliders %}
+
+                        <div class="Slider-item">
+                          <div class="Slider-content">
+                            <div class="row">
+                              <div class="row-block">
+                                <strong class="Slider-title">{{ slider.product.name }}</strong>
+                                <div class="Slider-text">{{ slider.description }}</div>
+                                <div class="Slider-footer"><a class="btn btn_primary" href="{% url 'productsapp:product_detail' slider.product.id %}">Get Started</a>
+                                </div>
+                              </div>
+                              <div class="row-block">
+                                <div class="Slider-img"><img src="{{ slider.product.image.url }}" alt="slider.png"/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="Slider-footer"><a class="btn btn_primary" href="#">Get Started</a>
-                        </div>
-                      </div>
-                      <div class="row-block">
-                        <div class="Slider-img"><img src="assets/img/content/home/slider.png" alt="slider.png"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="Slider-item">
-                  <div class="Slider-content">
-                    <div class="row">
-                      <div class="row-block">
-                        <strong class="Slider-title">Mavic Pro<span class="text_primary"> 5</span> mini Drone
-                        </strong>
-                        <div class="Slider-text">Get the best phoneyou ever seen with modern Windows OS plus 70% Off this summer.
-                        </div>
-                        <div class="Slider-footer"><a class="btn btn_primary" href="#">Get Started</a>
-                        </div>
-                      </div>
-                      <div class="row-block">
-                        <div class="Slider-img"><img src="assets/img/content/home/slider.png" alt="slider.png"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                  {% endfor %}
+
               </div>
               <div class="Slider-navigateWrap">
                 <div class="Slider-navigate">
@@ -54,50 +41,33 @@
               </div>
             </div>
         </div>
-    </header>
+
+{% endblock %}
+
+{% block content %}
     <div class="Middle">
         <div class="Section">
             <div class="wrap">
-                <div class="BannersHome"><a class="BannersHomeBlock" href="#">
-                        <div class="BannersHomeBlock-row">
-                            <div class="BannersHomeBlock-block">
-                                <strong class="BannersHomeBlock-title">Video Cards
-                                </strong>
-                                <div class="BannersHomeBlock-content">from&#32;<span class="BannersHomeBlock-price">$199.00</span>
+                <div class="BannersHome">
+
+                    {% for banner in banners %}
+                        <a class="BannersHomeBlock" href="{% url 'productsapp:catalog' %}?category={{banner.category.name}}">
+                            <div class="BannersHomeBlock-row">
+
+                                <div class="BannersHomeBlock-block">
+                                    <strong class="BannersHomeBlock-title">{{ banner.category.name }}</strong>
+                                    <div class="BannersHomeBlock-content">from <span class="BannersHomeBlock-price">{{banner.min_price}} &#8381;</span>
+                                    </div>
                                 </div>
-                            </div>
+
                             <div class="BannersHomeBlock-block">
-                                <div class="BannersHomeBlock-img"><img src="assets/img/content/home/videoca.png" alt="videoca.png" />
-                                </div>
-                            </div>
-                        </div>
-                    </a><a class="BannersHomeBlock" href="#">
-                        <div class="BannersHomeBlock-row">
-                            <div class="BannersHomeBlock-block">
-                                <strong class="BannersHomeBlock-title">Head Phones
-                                </strong>
-                                <div class="BannersHomeBlock-content">from&#32;<span class="BannersHomeBlock-price">$210.00</span>
-                                </div>
-                            </div>
-                            <div class="BannersHomeBlock-block">
-                                <div class="BannersHomeBlock-img"><img src="assets/img/content/home/videoca.png" alt="videoca.png" />
-                                </div>
-                            </div>
-                        </div>
-                    </a><a class="BannersHomeBlock" href="#">
-                        <div class="BannersHomeBlock-row">
-                            <div class="BannersHomeBlock-block">
-                                <strong class="BannersHomeBlock-title">Bass Speakers
-                                </strong>
-                                <div class="BannersHomeBlock-content">from&#32;<span class="BannersHomeBlock-price">$159.00</span>
-                                </div>
-                            </div>
-                            <div class="BannersHomeBlock-block">
-                                <div class="BannersHomeBlock-img"><img src="assets/img/content/home/videoca.png" alt="videoca.png" />
+                                <div class="BannersHomeBlock-img"><img src="{{ banner.image.url }}" alt="videoca.png" />
                                 </div>
                             </div>
                         </div>
                     </a>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
@@ -435,6 +405,8 @@
         </div>
     </div>
 
+
+{% endblock %}
 </body>
 
 </html>
