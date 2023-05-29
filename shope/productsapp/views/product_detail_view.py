@@ -42,10 +42,12 @@ class ProductDetailView(View):
         specifics = self._select_specifics_repo.get_specific_by_product(
             product=product
         )
-        self._viewed_service.add_to_viewed_products(
-            user=request.user,
-            product=product
-        )
+        if request.user.is_authenticated:
+            self._viewed_service.add_to_viewed_products(
+                user=request.user,
+                product=product
+            )
+
         return render(request, self.template_name,
                       context={"product": product,
                                "form": self.form_class,
