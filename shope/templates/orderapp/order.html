@@ -41,7 +41,7 @@
 
 
                 <div class="Section-content">
-                    <form class="form" action="#" method="post">
+                    <form class="form" action="" method="get">
                         {% csrf_token %}
                         <div class="Order-block Order-block_OPEN" id="step1">
                             <header class="Section-header Section-header_sm">
@@ -51,27 +51,37 @@
                             <div class="row">
                                 <div class="row-block">
                                     <div class="form-group">
-                                        <label class="form-label" for="fio">{% translate 'FIO' %}
+                                        <label class="form-label">{% translate 'FIO' %}
+                                            {{profile_form.fio}}
+                                            <!--<input class="form-input" id="fio" name="fio" type="text" value="{{ profile_form.fio.value }}" />-->
                                         </label>
-                                        <input class="form-input" id="fio" name="fio" type="text" value="{{ profile_form.fio.value }}" />
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="phone">{% translate 'Phone' %}
-                                        </label>
-                                        <input class="form-input" id="phone" name="phone_number" type="text" value="{{profile_form.phone_number.value}}" />
-                                    </div>
-                                <div class="form-group">
-                                    <div>
-                                        <label class="toggle">
-                                            <input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>
+                                        <label class="form-label">{% translate 'Phone' %}
+                                            {{profile_form.phone_number}}
+                                            <!--<input class="form-input" id="phone" name="phone_number" type="text" value="{{profile_form.phone_number.value}}" />-->
                                         </label>
                                     </div>
-                                    <div>
-                                        <label class="toggle">
-                                            <input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>
-                                        </label>
-                                    </div>
-                                </div>
+                                    <div class="form-group">
+                                        <!--<div>-->
+                                        {% for delivery_type in order_form.delivery_type %}
+                                            <div>
+                                            <label class="toggle">
+                                                {{delivery_type.tag}}<span class="toggle-box"></span><span class="toggle-text">{{delivery_type.choice_label}}</span>
+                                            </label>
+                                            </div>
+                                        {% endfor %}
+                                        <!--<label class="toggle"> Способ доставки-->
+                                            <!--&lt;!&ndash;{{order_form.delivery_type}}&ndash;&gt;-->
+                                            <!--<input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--<label class="toggle">-->
+                                            <!--<input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                        </div>
 
                                     <!--<div class="form-group">-->
                                         <!--<label class="form-label" for="mail">E-mail-->
@@ -131,7 +141,7 @@
                                     <!--</label>-->
                                 <!--</div>-->
                             </div>
-                            <div class="Order-footer"><a class="btn btn_success Order-next" href="#step3">{% translate 'Next' %}</a>
+                            <div class="Order-footer"><a id="result_btn" class="btn btn_success Order-next" href="#step3">{% translate 'Next' %}</a>
                             </div>
                         </div>
                         <div class="Order-block" id="step3">
@@ -147,19 +157,31 @@
                                             <div class="Order-info">
                                                 <div class="Order-infoType">{% translate 'FIO' %}:
                                                 </div>
-                                                <div class="Order-infoContent">Иванов Иван Иванович
+                                                <div class="Order-infoContent" id="order_fio">
+                                                    <!--<input id="order-fio">-->
+                                                    <!--{{profile_form.fio.widget.attrs.value}}-->
                                                 </div>
+                                                <script>
+                                                    const nextStep = document.getElementById('result_btn');
+                                                    nextStep.onclick = () => {
+                                                    document.querySelector('#order_fio').textContent = document.querySelector('#fio').value;
+                                                    document.querySelector('#order_phone_number').textContent = document.querySelector('#phone_number').value;
+                                                    document.querySelector('#order_delivery_type').textContent = document.querySelector('input[name=delivery_type]:checked').value;
+                                                    document.querySelector('#order_city').textContent = document.querySelector('#city').value;
+                                                    document.querySelector('#order_address').textContent = document.querySelector('#address').value;
+                                                    }
+                                                </script>
                                             </div>
                                             <div class="Order-info">
                                                 <div class="Order-infoType">{% translate 'Phone' %}:
                                                 </div>
-                                                <div class="Order-infoContent">+7000000000
+                                                <div class="Order-infoContent" id="order_phone_number">
                                                 </div>
                                             </div>
                                             <div class="Order-info">
                                                 <div class="Order-infoType">E-mail:
                                                 </div>
-                                                <div class="Order-infoContent">send@test.test
+                                                <div class="Order-infoContent">{{request.user.email}}
                                                 </div>
                                             </div>
                                         </div>
@@ -167,19 +189,19 @@
                                             <div class="Order-info Order-info_delivery">
                                                 <div class="Order-infoType">{% translate 'Type of delivery' %}:
                                                 </div>
-                                                <div class="Order-infoContent">{% translate 'Ordinary delivery' %}
+                                                <div class="Order-infoContent" id="order_delivery_type">
                                                 </div>
                                             </div>
                                             <div class="Order-info">
                                                 <div class="Order-infoType">{% translate 'City' %}:
                                                 </div>
-                                                <div class="Order-infoContent">{% translate 'Moscow' %}
+                                                <div class="Order-infoContent" id="order_city">
                                                 </div>
                                             </div>
                                             <div class="Order-info">
                                                 <div class="Order-infoType">{% translate 'The address is' %}:
                                                 </div>
-                                                <div class="Order-infoContent">Ул. Академика Арцимовича, д. 10, кв. 10
+                                                <div class="Order-infoContent" id="order_address">
                                                 </div>
                                             </div>
                                             <div class="Order-info Order-info_pay">
