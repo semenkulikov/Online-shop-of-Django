@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load get_price %}
 
 {% block title %}
     Megano
@@ -128,7 +129,7 @@
                                                             {{ seller.name }}
                                                         </a>
                                                         <div class="ProductCard-cartElement" style="margin-top: 10px;">
-                                                            <a class="btn btn_primary" href="#modal_open">
+                                                            <a class="btn btn_primary" href="{% url 'cartapp:add_product' product.pk seller.pk%}">
                                                                 <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
                                                                 <span class="btn-content">{% translate 'Buy' %}</span>
                                                             </a>
@@ -138,20 +139,20 @@
                                                         <div class="Order-info Order-info_delivery">
                                                             <div class="Order-infoType">{% translate 'Type of delivery' %}:
                                                             </div>
-                                                            <div class="Order-infoContent">{% translate 'Ordinary delivery' %}
+                                                            <div class="Order-infoContent">{% translate 'Ordinary delivery' %}, {% translate 'Express delivery' %}
                                                             </div>
                                                         </div>
                                                         <div class="Order-info Order-info_pay">
                                                             <div class="Order-infoType">{% translate 'Payment' %}:
                                                             </div>
-                                                            <div class="Order-infoContent">{% translate 'Online map' %}
+                                                            <div class="Order-infoContent">{% translate 'Online card' %}
                                                             </div>
                                                         </div>
                                                         <div class="Order-info">
                                                             <div class="Order-infoType">{% translate 'Cost' %}:
                                                             </div>
                                                             <div class="Order-infoContent"><span class="Order-price">
-                                                                {{ seller.price }}
+                                                                {% get_price product.pk seller.pk 1 %} &#x20bd
                                                             </span>
                                                             </div>
                                                         </div>
