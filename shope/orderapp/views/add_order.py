@@ -6,12 +6,16 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from orderapp.forms import OrderForm
 from coreapp.utils.select_cart import SelectCart
-from orderapp.models import Order, OrderItem
 from repositories.price_repository import PriceRepository
 from repositories.cart_repository import RepCartItem
+from repositories.order_update_repository import OrderUpdateRepository
+from repositories.orderitem_update_repository import OrderItemUpdateRepository
+from paymentapp.forms import PaymentForm
 
 rep_price = PriceRepository()
 rep_cartitem = RepCartItem()
+rep_order = OrderUpdateRepository()
+rep_orderitem = OrderItemUpdateRepository()
 
 
 class AddOrderView(LoginRequiredMixin, View):
@@ -20,27 +24,26 @@ class AddOrderView(LoginRequiredMixin, View):
 
     def get(self, request):
         cart_items = SelectCart.cart_items_list(user=request.user)
-        print(cart_items)
-        order = Order(user=request.user, status='not paid')
-        order.save()
-        for item in cart_items:
-            order_item = OrderItem(
-                order=order,
-                product=item.product,
-                seller=item.seller,
-                count=item.quantity,
-                price=rep_price.get_price(
-                    item.product, item.seller) * item.quantity)
-            order_item.save()
+        order = rep_order.create(user=request.user)
 
-        rep_cartitem.delete(cart_items)
-        profile_form = ProfileForm(instance=self.request.user.profile)
-        for name, field in profile_form.fields.items():
-            field.widget.attrs['id'] = name
+        # перенос позиций из корзины в заказ
+        order_items = rep_orderitem.create_with_cartitems(
+            order=order,
+            cart_items=cart_items)
+        total_sum = sum([item.price for item in order_items])
+        rep_cartitem.delete(cart_items)  # очистка корзины
+
+        profile_form = ProfileForm(
+            instance=self.request.user.profile)
+        payment_form = PaymentForm()
+        payment_form.fields['total_sum'].initial = total_sum
 
         context = {
             'profile_form': profile_form,
-            'order_form': OrderForm()
+            'order_form': OrderForm(),
+            'payment_form': payment_form,
+            'order': order,
+            'total_sum': total_sum,
         }
         return render(request, self.template_name, context)
 

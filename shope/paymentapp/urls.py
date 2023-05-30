@@ -1,15 +1,8 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.views.generic import TemplateView
+from django.urls import path
+from paymentapp.views import PaymentView
 
 app_name = 'paymentapp'
 
 urlpatterns = [
-    path('payment/', TemplateView.as_view(template_name=
-                                          "paymentapp/payment.html")),
-    path('paymentsomeone/', TemplateView.as_view(template_name=
-                                                 "paymentapp/paymentsomeone.html")),
-    path('progressPayment/', TemplateView.as_view(template_name=
-                                                  "paymentapp/progressPayment.html")),
-
+    path('<int:order_pk>', PaymentView.as_view(), name='payment'),
 ]

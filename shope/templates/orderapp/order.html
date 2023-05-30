@@ -41,7 +41,7 @@
 
 
                 <div class="Section-content">
-                    <form class="form" action="" method="get">
+                    <form class="form" action="{% url 'paymentapp:payment' order.pk %}" method="post">
                         {% csrf_token %}
                         <div class="Order-block Order-block_OPEN" id="step1">
                             <header class="Section-header Section-header_sm">
@@ -104,26 +104,6 @@
                             <div class="Order-footer"><a class="btn btn_success Order-next" href="#step2">{% translate 'Next' %}</a>
                             </div>
                         </div>
-                        <!--<div class="Order-block" id="step2">-->
-                            <!--<header class="Section-header Section-header_sm">-->
-                                <!--<h2 class="Section-title">{% translate 'Step 2: Method of delivery' %}-->
-                                <!--</h2>-->
-                            <!--</header>-->
-                            <!--<div class="form-group">-->
-                                <!--<div>-->
-                                    <!--<label class="toggle">-->
-                                        <!--<input type="radio" name="delivery" value="ordinary" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Ordinary delivery' %}</span>-->
-                                    <!--</label>-->
-                                <!--</div>-->
-                                <!--<div>-->
-                                    <!--<label class="toggle">-->
-                                        <!--<input type="radio" name="delivery" value="express" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Express delivery' %}</span>-->
-                                    <!--</label>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="Order-footer"><a class="btn btn_success Order-next" href="#step3">{% translate 'Next' %}</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
                         <div class="Order-block" id="step2">
                             <header class="Section-header Section-header_sm">
                                 <h2 class="Section-title">{% translate 'Step 2: Payment method' %}
@@ -135,11 +115,6 @@
                                         <input type="radio" name="pay" value="online" checked="checked" /><span class="toggle-box"></span><span class="toggle-text">{% translate 'Online map' %}</span>
                                     </label>
                                 </div>
-                                <!--<div>-->
-                                    <!--<label class="toggle">-->
-                                        <!--<input type="radio" name="pay" value="someone" /><span class="toggle-box"></span><span class="toggle-text">{% translate "Online from a random stranger's account" %}</span>-->
-                                    <!--</label>-->
-                                <!--</div>-->
                             </div>
                             <div class="Order-footer"><a id="result_btn" class="btn btn_success Order-next" href="#step3">{% translate 'Next' %}</a>
                             </div>
@@ -158,19 +133,7 @@
                                                 <div class="Order-infoType">{% translate 'FIO' %}:
                                                 </div>
                                                 <div class="Order-infoContent" id="order_fio">
-                                                    <!--<input id="order-fio">-->
-                                                    <!--{{profile_form.fio.widget.attrs.value}}-->
                                                 </div>
-                                                <script>
-                                                    const nextStep = document.getElementById('result_btn');
-                                                    nextStep.onclick = () => {
-                                                    document.querySelector('#order_fio').textContent = document.querySelector('#fio').value;
-                                                    document.querySelector('#order_phone_number').textContent = document.querySelector('#phone_number').value;
-                                                    document.querySelector('#order_delivery_type').textContent = document.querySelector('input[name=delivery_type]:checked').value;
-                                                    document.querySelector('#order_city').textContent = document.querySelector('#city').value;
-                                                    document.querySelector('#order_address').textContent = document.querySelector('#address').value;
-                                                    }
-                                                </script>
                                             </div>
                                             <div class="Order-info">
                                                 <div class="Order-infoType">{% translate 'Phone' %}:
@@ -214,68 +177,100 @@
                                     </div>
                                 </div>
                                 <div class="Cart Cart_order">
+                                    {% for item in order.order_items.all %}
                                     <div class="Cart-product">
                                         <div class="Cart-block Cart-block_row">
-                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/home/card.jpg" alt="card.jpg" /></a>
+                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{item.product.image.url}}" alt="card.jpg" /></a>
                                             </div>
-                                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">{% translate 'Notebook' %}</a>
-                                                <div class="Cart-desc">Это супер ноутбук, 3 гб. 4 ядра
+                                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'productsapp:product_detail' item.product.pk %}">{{item.product.name}}</a>
+                                                <div class="Cart-desc">{{item.product.description}}
                                                 </div>
                                             </div>
                                             <div class="Cart-block Cart-block_price">
-                                                <div class="Cart-price">80.00$
+                                                <div class="Cart-price">{{item.price}}&#8381;
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="Cart-block Cart-block_row">
-                                            <div class="Cart-block Cart-block_amount">1 шт.
+                                            <div class="Cart-block Cart-block_amount">{{item.count}} шт.
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="Cart-product">
-                                        <div class="Cart-block Cart-block_row">
-                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/sale/product.png" alt="product.png" /></a>
-                                            </div>
-                                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Планшет</a>
-                                                <div class="Cart-desc">Это планшет с современным железом. Процессор последнего поколения
-                                                </div>
-                                            </div>
-                                            <div class="Cart-block Cart-block_price">
-                                                <div class="Cart-price">40.99$
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="Cart-block Cart-block_row">
-                                            <div class="Cart-block Cart-block_amount">1 шт.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="Cart-product">
-                                        <div class="Cart-block Cart-block_row">
-                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="assets/img/content/home/card.jpg" alt="card.jpg" /></a>
-                                            </div>
-                                            <div class="Cart-block Cart-block_info"><a class="Cart-title" href="#">Ноутбук</a>
-                                                <div class="Cart-desc">Это супер ноутбук, 3 гб. 4 ядра
-                                                </div>
-                                            </div>
-                                            <div class="Cart-block Cart-block_price">
-                                                <div class="Cart-price">80.00$
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="Cart-block Cart-block_row">
-                                            <div class="Cart-block Cart-block_amount">1 шт.
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                     <div class="Cart-total">
                                         <div class="Cart-block Cart-block_total">
                                             <strong class="Cart-title">{% translate 'Total' %}:
-                                            </strong><span class="Cart-price">200.99$</span>
+                                            </strong><span class="Cart-price">{{total_sum}}&#8381;</span>
                                         </div>
                                         <div class="Cart-block">
-                                            <button class="btn btn_primary btn_lg" type="submit">{% translate 'Pay' %}
+                                            <button id="btn_open_modal" class="btn btn_primary btn_lg" type="button">{% translate 'Pay' %}
                                             </button>
+                                            <style>
+                                                .modal__overlay {
+                                                    position: fixed;
+                                                    top: 0;
+                                                    bottom: 0;
+                                                    left: 0;
+                                                    right: 0;
+                                                    background: rgba(0, 0, 0, 0.6);
+                                                    z-index: 10;
+                                                    display: none;
+                                                    align-items: center;
+                                                    justify-content: center;
+
+                                                }
+
+                                                .modal__content {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    <!--flex-wrap: wrap;-->
+                                                    align-items: center;
+                                                    max-width: 50%;
+                                                    background-color: #FFF;
+                                                    padding: 30px;
+                                                    border-radius: 15px;
+
+                                                }
+
+
+                                                .modal_visible {
+                                                    display: flex;
+                                                }
+
+                                                .modal__content input[type="text"]{
+                                                    height: 30px;
+                                                    max-width: 30%;
+                                                    margin: 0 0 20px 0;
+                                                }
+
+
+                                                .modal__content button {
+                                                    margin: auto;
+                                                }
+
+                                            </style>
+                                            <div id="modal" class="modal__overlay">
+                                                <div class="modal__content">
+                                                    <!--<label class="form-label">{{payment_form.card_number.label_tag.data}}-->
+                                                        <!--{{payment_form.card_number}}-->
+                                                    <!--</label>-->
+                                                    <!--<label class="form-label">Cardholder name-->
+                                                        <!--{{payment_form.card_holder}}-->
+                                                    <!--</label>-->
+                                                    <!--<label class="form-label">Expiration date-->
+                                                        <!--{{payment_form.expiry_date}}-->
+                                                    <!--</label>-->
+                                                    <!--<label class="form-label">CVC/CVV-->
+                                                        <!--{{payment_form.cvv}}-->
+                                                    <!--</label>-->
+                                                    {{payment_form}}
+                                                    <!--<label class="form-label">sum-->
+                                                        <!--<input class="payment__input" type="text" value="{{total_sum}}" disabled>-->
+                                                    <!--</label>-->
+
+                                                    <button class="btn btn_primary" type="submit">Заплатить</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -286,6 +281,23 @@
             </div>
         </div>
     </div>
+    <script>
+        const nextStep = document.getElementById('result_btn');
+        const modalOpenBtn = document.getElementById('btn_open_modal');
+        const modal = document.getElementById('modal');
+
+        nextStep.onclick = () => {
+            document.querySelector('#order_fio').textContent = document.querySelector('#id_fio').value;
+            document.querySelector('#order_phone_number').textContent = document.querySelector('#id_phone_number').value;
+            document.querySelector('#order_delivery_type').textContent = document.querySelector('input[name=delivery_type]:checked').value;
+            document.querySelector('#order_city').textContent = document.querySelector('#city').value;
+            document.querySelector('#order_address').textContent = document.querySelector('#address').value;
+        }
+
+        modalOpenBtn.onclick = () => {
+            modal.classList.add('modal_visible')
+        }
+    </script>
 
 
 {% endblock %}
