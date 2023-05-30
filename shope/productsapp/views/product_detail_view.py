@@ -60,7 +60,8 @@ class ProductDetailView(View):
 
     def post(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)
-        product_price = self._price_repository.get_avg_prices(product=product)
+        product_price = self._price_repository. \
+            get_min_price_object(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
         reviews_list = self._service.product_reviews_list(product=product)
         return render(request, self.template_name,

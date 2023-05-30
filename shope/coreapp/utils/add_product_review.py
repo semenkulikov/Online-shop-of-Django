@@ -3,14 +3,16 @@ from profileapp.models import Profile
 from repositories.reviews_repository import ReviewRepository
 
 
+_repository = ReviewRepository()
+
+
 class AddProductReview:
     """
     Сервис добавления отзыва к товару
     """
-    _repository = ReviewRepository()
 
-    def add_product_review(self,
-                           user: Profile,
+    @staticmethod
+    def add_product_review(user: Profile,
                            product: Product,
                            text: str):
         """
@@ -27,10 +29,11 @@ class AddProductReview:
         review = Review(user=user,
                         product=product,
                         text=text)
-        self._repository.save(review=review)
+        _repository.save(review=review)
         return True
 
-    def product_reviews_list(self, product: Product, count=None):
+    @staticmethod
+    def product_reviews_list(product: Product, count=None):
         """
         Получение списка отзывов к товару
 
@@ -39,12 +42,13 @@ class AddProductReview:
         :return: QuerySet
         """
         if count is not None:
-            return self._repository.get_all_reviews(
+            return _repository.get_all_reviews(
                 product=product,
                 count=count)
-        return self._repository.get_all_reviews(product=product)
+        return _repository.get_all_reviews(product=product)
 
-    def product_reviews_amount(self, product: Product) -> int:
+    @staticmethod
+    def product_reviews_amount(product: Product) -> int:
         """
         Получение количества отзывов для товара
 
@@ -53,4 +57,4 @@ class AddProductReview:
         :return: int
         """
 
-        return self._repository.get_amount_reviews(product=product)
+        return _repository.get_amount_reviews(product=product)

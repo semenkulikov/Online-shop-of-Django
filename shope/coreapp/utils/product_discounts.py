@@ -6,18 +6,21 @@ from productsapp.models import Product, Discount
 from repositories.product_select_repository import ProductSelectRepository
 
 
+_product_repository = ProductSelectRepository()
+
+
 class ProductDiscounts:
     """
     Сервис получения скидок на товары
     """
-    _product_repository = ProductSelectRepository()
 
-    def all_discounts(self, products_id: List[int]) -> \
+    @staticmethod
+    def all_discounts(products_id: List[int]) -> \
             Dict[Product, QuerySet[Discount]]:
         """
         Получение всех скидок на указанный список товаров или на один товар.
         """
-        discounts = self._product_repository.get_all_discounts(products_id)
+        discounts = _product_repository.get_all_discounts(products_id)
         return discounts
 
     def priority_discount(self):

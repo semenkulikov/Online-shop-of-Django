@@ -10,6 +10,12 @@ from repositories.profile_repository import ProfileRepository
 from repositories import SellerSelectRepository, SpecificSelectRepository
 from django.utils.translation import gettext as _
 
+_profile_repository = ProfileRepository()
+_product_repository = ProductSelectRepository()
+select_seller_repo = SellerSelectRepository()
+select_specifics_repo = SpecificSelectRepository()
+_price_repository = PriceRepository()
+
 
 class AddReviewView(View):
     """
@@ -18,15 +24,11 @@ class AddReviewView(View):
     form_class = AddReviewForm
     template_name = "productsapp/product.html"
     _service = AddProductReview()
-    _profile_repository = ProfileRepository()
-    _product_repository = ProductSelectRepository()
-    select_seller_repo = SellerSelectRepository()
-    select_specifics_repo = SpecificSelectRepository()
-    _price_repository = PriceRepository()
 
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)
-        product_price = self._price_repository.get_avg_prices(product=product)
+        product_price = _price_repository. \
+            get_min_price_object(product=product)
         # получаем конкретный продукт
         amount_review = self._service.product_reviews_amount(product=product)
         # количество отзывов
@@ -34,10 +36,10 @@ class AddReviewView(View):
             product=product,
             count=1)
         # список отзывов
-        sellers = self.select_seller_repo.get_seller_by_product(
+        sellers = select_seller_repo.get_seller_by_product(
             product=product
         )
-        specifics = self.select_specifics_repo.get_specific_by_product(
+        specifics = select_specifics_repo.get_specific_by_product(
             product=product
         )
 
@@ -55,16 +57,12 @@ class AddReviewView(View):
              request: HttpRequest,
              product_id: int) -> HttpResponse:
         form = self.form_class(data=request.POST)  # форма с отзывом
-        product = self._product_repository.get_product_by_id(
+        product = _product_repository.get_product_by_id(
             product_id=product_id
         )
-        product_price = self._price_repository.get_avg_prices(
-            product=product
-        )
+        product_price = _price_repository. \
+            get_min_price_object(product=product)
         amount_review = self._service.product_reviews_amount(
-            product=product
-        )
-        reviews_list = self._service.product_reviews_list(
             product=product
         )
         is_show_more = False  # Нажата ли кнопка "Показать еще"
@@ -81,7 +79,7 @@ class AddReviewView(View):
                 # Если форма валидна, берем отзыв и добавляем к продукту
                 text = form.cleaned_data.get("text")
                 result = self._service.add_product_review(
-                    user=self._profile_repository.get_profile(request.user),
+                    user=_profile_repository.get_profile(request.user),
                     product=product,
                     text=text
                 )
