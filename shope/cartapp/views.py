@@ -88,3 +88,12 @@ class ChangeQuantityCartView(ProductUpdateView):
     Класс для изменения количества товара в корзине
     """
     method_service = AddToCart.change_amount
+
+
+class AjaxAddProductView(View):
+
+    method_service = AddToCart.add_to_cart
+
+    def get(self, request, **kwargs):
+        if request.is_ajax():
+            print('ajx')
