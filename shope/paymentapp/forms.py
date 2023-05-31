@@ -22,8 +22,10 @@ class PaymentForm(forms.Form):
     total_sum = forms.DecimalField(
         max_digits=10,
         decimal_places=2,
-        label='total sum')
+        label='total sum (rub.)')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['total_sum'].widget.attrs['readonly'] = True
+        self.label_suffix = ''
+        self.fields['expiry_date'].widget.attrs['placeholder'] = 'mm/yy'

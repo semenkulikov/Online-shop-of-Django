@@ -6,3 +6,6 @@ from .spec_select_repository import SpecificSelectRepository
 from .viewed_products_repository import ViewedProductsRepository
 from .slider_repository import SliderRepository
 from .banner_repository import BannerRepository
+from .order_update_repository import OrderUpdateRepository
+from .orderitem_update_repository import OrderItemUpdateRepository
+from .payment_update_repository import PaymentUpdateRepository

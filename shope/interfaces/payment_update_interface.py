@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from orderapp.models import Order
+from paymentapp.models import Payment
 
 
-class OrderUpdateInterface(ABC):
+class PaymentUpdateInterface(ABC):
 
     @abstractmethod
-    def save(self, instance: Order, **kwargs) -> Order:
+    def save(self, instance: Payment, **kwargs) -> Payment:
         """Создание или обновление заказа"""
         pass
