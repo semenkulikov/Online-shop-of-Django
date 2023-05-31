@@ -1,1 +1,35 @@
-[{"model": "productsapp.slider", "pk": 1, "fields": {"created_at": "2023-05-25T20:44:19.973Z", "updated_at": "2023-05-25T20:44:19.974Z", "is_active": true, "product": 11, "description": "Такая большая скидка на этот товар что охерееешь"}}, {"model": "productsapp.slider", "pk": 2, "fields": {"created_at": "2023-05-25T20:44:29.461Z", "updated_at": "2023-05-25T20:44:29.461Z", "is_active": true, "product": 9, "description": "а тут вообзе жесть"}}, {"model": "productsapp.slider", "pk": 3, "fields": {"created_at": "2023-05-25T20:44:37.583Z", "updated_at": "2023-05-25T20:44:37.583Z", "is_active": true, "product": 3, "description": "а тут тем более"}}]
+[
+  {
+    "model": "productsapp.slider",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-05-25T20:44:19.973Z",
+      "updated_at": "2023-05-25T20:44:19.974Z",
+      "is_active": true,
+      "product": 11,
+      "description": "Такая большая скидка на этот товар что охерееешь"
+    }
+  },
+  {
+    "model": "productsapp.slider",
+    "pk": 2,
+    "fields": {
+      "created_at": "2023-05-25T20:44:29.461Z",
+      "updated_at": "2023-05-25T20:44:29.461Z",
+      "is_active": true,
+      "product": 9,
+      "description": "а тут вообзе жесть"
+    }
+  },
+  {
+    "model": "productsapp.slider",
+    "pk": 3,
+    "fields": {
+      "created_at": "2023-05-25T20:44:37.583Z",
+      "updated_at": "2023-05-25T20:44:37.583Z",
+      "is_active": true,
+      "product": 3,
+      "description": "а тут тем более"
+    }
+  }
+]
