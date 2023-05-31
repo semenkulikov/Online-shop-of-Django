@@ -2,7 +2,7 @@ from django.db import models
 from coreapp.models import BaseModel
 from authapp.models import User
 from productsapp.models import Seller, Product
-from coreapp.enums import ORDER_STATUSES, DELIVERY_TYPE
+from coreapp.enums import ORDER_STATUSES, DELIVERY_TYPE, DEFAULT
 from django.utils.translation import gettext_lazy as _
 
 
@@ -36,7 +36,8 @@ class Order(BaseModel):
     delivery_type = models.CharField(
         max_length=20,
         verbose_name=_('delivery type'),
-        choices=DELIVERY_TYPE
+        choices=DELIVERY_TYPE,
+        default=DEFAULT
     )
 
     def __str__(self):
