@@ -6,25 +6,26 @@ from repositories import SpecificSelectRepository
 from repositories.price_repository import PriceRepository
 
 
+_price_repository = PriceRepository()
+_specific_repository = SpecificSelectRepository()
+
+
 class ProductComparisonView(View):
     """
     Класс-view для сравнения товаров
     """
-    _service = ProductsComparisonList()
-    _price_repository = PriceRepository()
-    _specific_repository = SpecificSelectRepository()
     template_name = "productsapp/comparison.html"
+    _service = ProductsComparisonList()
 
     def get(self, request: HttpRequest) -> HttpResponse:
         request.session["comparison_list"] = [1, 2]
         # это тестовые продукты из фикстур
         products = self._service.get_comparison_list(request)
         for product in products:
-            product_price = self._price_repository.get_avg_prices(
-                product=product
-            )
+            product_price = _price_repository. \
+                get_min_price_object(product=product)
             product.product_price_avg = product_price
-            specifics = self._specific_repository.get_specific_by_product(
+            specifics = _specific_repository.get_specific_by_product(
                 product=product
             )
             for specific in specifics:
@@ -46,12 +47,11 @@ class ProductComparisonView(View):
     def post(self, request: HttpRequest):
         products = self._service.get_comparison_list(request)
         for product in products:
-            product_price = self._price_repository.get_avg_prices(
-                product=product
-            )
+            product_price = _price_repository. \
+                get_min_price_object(product=product)
             product.product_price_avg = product_price
             # Усредненная цена
-            specifics = self._specific_repository.get_specific_by_product(
+            specifics = _specific_repository.get_specific_by_product(
                 product=product
             )
             # Получаем характеристики для продукта

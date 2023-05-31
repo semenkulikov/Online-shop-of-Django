@@ -5,11 +5,13 @@ from productsapp.models import Product
 from repositories.product_select_repository import ProductSelectRepository
 
 
+_repository = ProductSelectRepository()
+
+
 class ProductsComparisonList:
     """
     Сервис сравнения товаров
     """
-    _repository = ProductSelectRepository()
 
     @classmethod
     def add_to_comparison(cls, request: HttpRequest, product_id: int) -> None:
@@ -41,7 +43,8 @@ class ProductsComparisonList:
         if product_id in request.session["comparison_list"]:
             request.session["comparison_list"].remove(product_id)
 
-    def get_comparison_list(self, request: HttpRequest) -> QuerySet[Product]:
+    @staticmethod
+    def get_comparison_list(request: HttpRequest) -> QuerySet[Product]:
         """
         Получение списка товаров, добавленных к сравнению (с возможностью
         ограничить количество, по умолчанию максимум — три первых)
@@ -50,7 +53,7 @@ class ProductsComparisonList:
         :return: QuerySet[Product]
         """
         products_id = request.session.get("comparison_list")
-        return self._repository.get_products_with_these_id(products_id)
+        return _repository.get_products_with_these_id(products_id)
 
     @classmethod
     def comparison_list_size(cls, request: HttpRequest) -> int:
