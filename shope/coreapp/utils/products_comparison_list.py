@@ -24,7 +24,12 @@ class ProductsComparisonList:
         :return: None
         """
         comparison_list: list = request.session.get("comparison_list", [])
-        if product_id not in comparison_list and len(comparison_list) <= 4:
+        if product_id not in comparison_list:
+            if len(comparison_list) >= 2:
+                different = len(comparison_list) - 2
+                comparison_list = comparison_list[different + 1:]
+                # Обрезаем список до 3 элементов с последующим
+                # добавлением четвертого
             comparison_list.append(product_id)
         request.session["comparison_list"] = comparison_list
 
@@ -44,15 +49,20 @@ class ProductsComparisonList:
             request.session["comparison_list"].remove(product_id)
 
     @staticmethod
-    def get_comparison_list(request: HttpRequest) -> QuerySet[Product]:
+    def get_comparison_list(request: HttpRequest,
+                            count: int = 3) -> QuerySet[Product]:
         """
         Получение списка товаров, добавленных к сравнению (с возможностью
         ограничить количество, по умолчанию максимум — три первых)
 
         :param request: запрос
+
+        :param count: количество товаров
         :return: QuerySet[Product]
         """
         products_id = request.session.get("comparison_list")
+        products_id = products_id[:count + 1] if count < len(products_id) \
+            else products_id
         return _repository.get_products_with_these_id(products_id)
 
     @classmethod

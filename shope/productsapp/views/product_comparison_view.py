@@ -18,8 +18,6 @@ class ProductComparisonView(View):
     _service = ProductsComparisonList()
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        request.session["comparison_list"] = [1, 2]
-        # это тестовые продукты из фикстур
         products = self._service.get_comparison_list(request)
         for product in products:
             product_price = _price_repository. \
