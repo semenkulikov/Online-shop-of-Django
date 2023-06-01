@@ -15,6 +15,10 @@ class Product(BaseModel):
     description = models.TextField(verbose_name=_("description"),
                                    null=False,
                                    blank=True)
+    short_description = models.TextField(verbose_name=_("short_description"),
+                                         null=True,
+                                         blank=True,
+                                         max_length=100)
     tags = TaggableManager()
     archived = models.BooleanField(default=False,
                                    verbose_name=_("archived"))
