@@ -2,7 +2,6 @@
 from django.shortcuts import render
 from django.views import View
 
-from coreapp.utils.products_comparison_list import ProductsComparisonList
 from productsapp.forms import AddReviewForm
 from productsapp.models import Product
 from coreapp.utils import ViewedProductsService
@@ -25,7 +24,6 @@ class ProductDetailView(View):
     """
     _service = AddProductReview()
     _viewed_service = ViewedProductsService()
-    _comparison_service = ProductsComparisonList()
 
     template_name = "productsapp/product.html"
     form_class = AddReviewForm
@@ -55,10 +53,6 @@ class ProductDetailView(View):
 
         product_images = _product_image_repo.get_all_images(product=product)
 
-        count_comparis = self._comparison_service.comparison_list_size(
-            request=request
-        )
-
         return render(request, self.template_name,
                       context={"product": product,
                                "product_images": product_images,
@@ -68,8 +62,7 @@ class ProductDetailView(View):
                                "reviews_list": reviews_list,
                                'sellers': sellers,
                                'specifics': specifics,
-                               "user": request.user,
-                               "count_comparis": count_comparis})
+                               "user": request.user})
 
     def post(self, request: HttpRequest, product_id: int) -> HttpResponse:
         product = Product.objects.get(id=product_id)

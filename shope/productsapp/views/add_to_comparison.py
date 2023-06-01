@@ -55,10 +55,6 @@ class AddToComparisonView(View):
 
         product_images = _product_image_repo.get_all_images(product=product)
 
-        count_comparis = self._comparison_service.comparison_list_size(
-            request=request
-        )
-
         return render(request, self.template_name,
                       context={"product": product,
                                "product_images": product_images,
@@ -68,8 +64,7 @@ class AddToComparisonView(View):
                                "reviews_list": reviews_list,
                                'sellers': sellers,
                                'specifics': specifics,
-                               "user": request.user,
-                               "count_comparis": count_comparis})
+                               "user": request.user})
 
     def post(self, request: HttpRequest, product_id: int) -> HttpResponse:
         self._comparison_service.add_to_comparison(
