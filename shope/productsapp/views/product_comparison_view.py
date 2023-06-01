@@ -34,12 +34,20 @@ class ProductComparisonView(View):
                 ]:
                     specific.is_comparis = True
             product.specifics = specifics
+
+        # Множество общих категорий, если разные
+        # категории у разных продуктов - не сравниваем
+        common_category: set = {product.category for product in products}
+
         return render(request=request,
                       template_name=self.template_name,
                       context={
                           "products": products,
                           "number_of_products":
-                              self._service.comparison_list_size(request)
+                              self._service.comparison_list_size(request),
+                          "is_common_spec": True
+                          if len(common_category) > 1
+                          else False,
                       })
 
     def post(self, request: HttpRequest):
@@ -115,11 +123,15 @@ class ProductComparisonView(View):
                         # и у которых одинаковые характеристики
                 product.specifics = new_specifics
 
+        common_category: set = {product.category for product in products}
+
         return render(request=request,
                       template_name=self.template_name,
                       context={
                           "products": products,
                           "number_of_products":
                               self._service.comparison_list_size(request),
-                          "is_common_spec": False if common_spec else True,
+                          "is_common_spec": True
+                          if not common_spec or len(common_category) > 1
+                          else False,
                       })
