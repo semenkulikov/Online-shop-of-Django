@@ -39,6 +39,10 @@ class ProductComparisonView(View):
         # категории у разных продуктов - не сравниваем
         common_category: set = {product.category for product in products}
 
+        count_comparis = self._service.comparison_list_size(
+            request=request
+        )
+
         return render(request=request,
                       template_name=self.template_name,
                       context={
@@ -48,6 +52,7 @@ class ProductComparisonView(View):
                           "is_common_spec": True
                           if len(common_category) > 1
                           else False,
+                          "count_comparis": count_comparis
                       })
 
     def post(self, request: HttpRequest):

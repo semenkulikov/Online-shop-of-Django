@@ -8,7 +8,8 @@ class Command(BaseCommand):
     Applies all fixtures to the database
     """
     def handle(self, *args, **options):
-        self.stdout.write("Apply all fixtures to the database")
+        self.stdout.write("=" * 40 +
+                          "\nApply all fixtures to the database\n\n")
         paths = [
             "authapp/fixtures/users-fixtures.json",
             "profileapp/fixtures/profiles-fixtures.json",
@@ -24,16 +25,12 @@ class Command(BaseCommand):
                 os.system(f"python manage.py loaddata {path}")
             except IntegrityError as error:
                 self.stdout.write(self.style.ERROR(
-                    f"ERROR! {path} - {error}"
+                    f"ERROR! {path} - {error}\n\n"
                 ))
             else:
                 self.stdout.write(self.style.SUCCESS(
-                    f"Fixture {path} applied successfully"
+                    f"Fixture {path} applied successfully\n\n"
                 ))
 
-        self.stdout.write(self.style.SUCCESS("Fixtures applied successfully"))
-
-
-if __name__ == "__main__":
-    test = Command()
-    test.handle(None)
+        self.stdout.write(self.style.SUCCESS(
+            "Fixtures applied successfully\n" + "=" * 40))
