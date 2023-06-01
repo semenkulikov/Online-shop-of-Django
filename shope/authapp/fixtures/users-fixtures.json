@@ -1,0 +1,23 @@
+[
+  {
+    "model": "authapp.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$DVfsSc1GgnrWnyqF6tSpGf$agq4Uz8EF1P5zzlm1QapPoXc1LR33XwWtArGmViNVJk=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-06-01T13:24:43.197Z",
+      "username": "admin",
+      "middle_name": "",
+      "email": "test@test.test",
+      "activation_key": "",
+      "activation_key_expires": "2023-06-01T13:24:43.766Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
