@@ -15,8 +15,6 @@ class Product(BaseModel):
     description = models.TextField(verbose_name=_("description"),
                                    null=False,
                                    blank=True)
-    image = models.ImageField(upload_to="products", null=True,
-                              verbose_name=_("image"))
     tags = TaggableManager()
     archived = models.BooleanField(default=False,
                                    verbose_name=_("archived"))

@@ -148,7 +148,6 @@
       "is_active": true,
       "name": "Vityaz 50LU1221",
       "description": "Телевизор в хорошем качестве. диагональ: 32\"-39\", диагональ (точно): 32 \", Поддержка цифрового ТВ: нет, беспроводная связь: Wi-Fi",
-      "image": "products/televizor.webp",
       "archived": false,
       "free_delivery": false,
       "category": 1
@@ -163,7 +162,6 @@
       "is_active": true,
       "name": "Микронаушник Mxmedia",
       "description": "Модель с микрофоном, встроенным в корпус передатчика (без кнопки пищалки и выносного микрофона).\nМикронаушник Magnet Bluetooth является отличной моделью в среднем ценовом сегменте, занимает 3 место по объему продаж из всей линейки микронаушников производителя Mxmedia.\nМодель популярна за счет доступной цены, но при этом обладает достойными характеристиками. В комплекте передатчик bluetooth 4.0, аккумулятора 50 мАч хватает до 3-4 часов разговора.\nМикрофон встроен в передатчик и средне улавливает тихий голос. Если требуется передавать много информации шепотом, то советуем выбрать модель Mxmedia Magnet Bluetooth с выносным микрофоном и кнопкой пищалкой (другой товар, ищите на маркете).\nВ качестве динамиков используются невидимые в ухе магнитные микронаушники, которые забрасываются на барабанную перепонку, становясь совершенно незаметными для окружающих.\nОбращаем внимание, что при использовании магнитного типа микронаушников может возникать дискомфорт в ушах, по возможности рекомендуем пользоваться капсульными аналогами.",
-      "image": "products/Headphones.webp",
       "archived": false,
       "free_delivery": true,
       "category": 2
@@ -178,7 +176,6 @@
       "is_active": true,
       "name": "Стиральная машина Candy GS4 1063D1, белый",
       "description": "Особенности: Б/У\nРаньше принадлежал другому человеку.\nСтиральная машина в отличном техническом состоянии. Произведена замена подшипников и протестирована нашим техническим центром.\nВнешний вид: Отличный",
-      "image": "products/washing_machine.webp",
       "archived": false,
       "free_delivery": false,
       "category": 3
@@ -193,7 +190,6 @@
       "is_active": true,
       "name": "Крючки декоративные бронза / крючок для ключницы / крючок настенный / 5шт.",
       "description": "Характеристики\nБренд - Багемот\nТип - крючок\nНазначение - мелочи, аксессуары\nМатериал - металл\nКрепление - шурупы",
-      "image": "products/Accessories.webp",
       "archived": false,
       "free_delivery": true,
       "category": 4
@@ -208,7 +204,6 @@
       "is_active": true,
       "name": "Premium чехол «Свирепый доберман» на iPhone SE 2022",
       "description": "Красивый чехол, недорого",
-      "image": "products/case.jpg",
       "archived": false,
       "free_delivery": true,
       "category": 5
@@ -223,7 +218,6 @@
       "is_active": true,
       "name": "Игровой компьютер GAMER PRO",
       "description": "Новая серия карт nVidia 4ххх уже здесь! В связке с десятиядерным процессором i5 12600KF вы получаете беспрецедентную производительность за разумные деньги.\n4К гейминг в любых играх без тормозов, запуск фото и видеоредакторов со сверхсложными проектами - с этими и любыми другими задачами ваш новый компьютер справиться без труда!\nСборка выполнена в корпусе известного бренда Zalman с блоком питания 1000W, которого хватит для любых последующих модернизаций.",
-      "image": "products/comp_1.webp",
       "archived": false,
       "free_delivery": true,
       "category": 6
@@ -238,7 +232,6 @@
       "is_active": true,
       "name": "Топовый игровой компьютер GAMER PRO Core i9 13900F 24x5800MHz / 64GB DDR5/ 3000GB HDD +1TB SSD/ RTX4",
       "description": "Прекрасный ПК для всех игр в разрешениях вплоть до 4К.\nВидеокарта RTX4070Ti на 25% производительнее чем nVidia RTX3080 и при этом меньше греется.\nТоповый процессор i9 11900F 10 ядер 20 потоков 5200МГц.\nБесшумное водяное охлаждение.\nПредустановленная и настроенная Windows 10 PRO.",
-      "image": "products/comp_2.webp",
       "archived": false,
       "free_delivery": false,
       "category": 6
@@ -253,7 +246,6 @@
       "is_active": true,
       "name": "Персональный компьютер Atomic Heart с водяным охлаждением 5950x/16/3090/1TbSSD/1000W/ Thermaltake To",
       "description": "Авторский проект от нашей компании по игре Atomic Heart на базе уникального корпуса Thermaltake 500\nКонфигурация:\nПроцессор AMD Ryzen 9 5950X AM4\nМатеринская плата GIGABYTE X570S UD (AM4, ATX)\nОперативная память TeamGroup NightHawk White 16Gb PC4-25600\nВидеокарта GIGABYTE GeForce 3090 Gaming OC\nSSD диск ADATA M.2 XPG SX6000 1000GB\nКорпус Thermaltake Tower 500\nPSU 1000W\nВентиляторы DeepCool FC120",
-      "image": "products/comp_3.webp",
       "archived": true,
       "free_delivery": true,
       "category": 6
@@ -268,7 +260,6 @@
       "is_active": true,
       "name": "ПЭВМ OLDI Game PC 770 0801899 > Intel Core i5-13600KF 3.5GHz/Z690/DDR5-128GB 5200MHz/SSD M.2-2TB/HDD",
       "description": "Компьютер OLDI Computers ПЭВМ OLDI Game PC 770 0801899",
-      "image": "products/comp_4.webp",
       "archived": false,
       "free_delivery": true,
       "category": 6
