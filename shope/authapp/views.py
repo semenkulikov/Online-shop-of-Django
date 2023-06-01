@@ -24,11 +24,7 @@ class UserLoginView(LoginView):
     """
     template_name = 'authapp/login.html'
     form_class = UserLoginForm
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse('coreapp:index'))
-        return render(request, self.template_name, {'form': self.form_class})
+    redirect_authenticated_user = True
 
     def form_valid(self, form):
         super().form_valid(form)
@@ -37,7 +33,7 @@ class UserLoginView(LoginView):
             # если в сессии есть продукты
             AddToCart.move_from_session(self.request.user, session_products)
             # добавление товаров в продукты
-        return HttpResponseRedirect(reverse('coreapp:index'))
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class UserLogoutView(LogoutView):

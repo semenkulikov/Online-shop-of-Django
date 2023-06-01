@@ -1,7 +1,6 @@
 from django.views.generic import View
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
 from profileapp.forms import ProfileForm
 from orderapp.forms import OrderForm
 from paymentapp.forms import PaymentForm
@@ -20,7 +19,6 @@ rep_orderitem = OrderItemUpdateRepository()
 
 class AddOrderView(LoginRequiredMixin, View):
     template_name = 'orderapp/order.html'
-    login_url = reverse_lazy('authapp:login')
 
     def post(self, request):
         cart_items = SelectCart.cart_items_list(user=request.user)
