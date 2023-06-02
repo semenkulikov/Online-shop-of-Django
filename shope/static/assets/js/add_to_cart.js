@@ -1,20 +1,24 @@
 function AddToCart(url) {
-    let product = JSON.parse(document.getElementById('product').textContent)
+    let quantity = 1
+    if (document.getElementById("amount")) {
+        quantity = document.getElementById("amount").value;
+    }
+
     $.ajax({
     url: url,
-
     type: "GET",
-        data: {
-        product: product.product.pk,
-        quantity: 2,
+    data:
+        {
+            'quantity': quantity
         },
     dataType: "text",
     success: (data) => {
         console.log(url)
         $("#modal_open").fadeIn(200);
         let obj =$.parseJSON(data)
-        $(".CartBlock-amount").text(obj['count']);
-        $(".CartBlock-price").text(obj['amount']);
+        $(".CartBlock-amount").text(obj['cart_count']);
+        $(".CartBlock-price").text(obj['cart_sum']);
+        document.getElementById("amount").value = 1;
         },
      error: (error) => {
       console.log(error);
