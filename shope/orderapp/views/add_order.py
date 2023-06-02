@@ -42,6 +42,5 @@ class AddOrderView(LoginRequiredMixin, View):
             'order_form': OrderForm(),
             'payment_form': payment_form,
             'order': order,
-            'total_sum': total_sum,
         }
         return render(request, self.template_name, context)

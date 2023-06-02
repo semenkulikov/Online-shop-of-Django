@@ -892,7 +892,6 @@ const nextStep = document.getElementById('result_btn');
 const modalOpenBtn = document.getElementById('btn_open_modal');
 const modal = document.getElementById('modal');
 const cancelBtn = document.getElementById('cancel');
-const mainForm = document.getElementById('main-form');
 
 nextStep.onclick = () => {
     document.querySelector('#order_fio').textContent = document.querySelector('#id_fio').value;
@@ -908,14 +907,15 @@ modalOpenBtn.onclick = () => {
 
 cancelBtn.onclick = () => {
     modal.classList.remove('modal_visible');
-    mainForm.reset();
+    document.getElementById('id_card_number').value = '';
+    document.getElementById('id_card_holder').value = '';
+    document.getElementById('id_expiry_date').value = '';
+    document.getElementById('id_cvv').value = '';
 }
 
 $(function(){
-    $("#id_card_number").mask("9999 9999 9999 ?9999 999");
-    $("#id_expiry_date").mask("99/99");
-
+    $("#id_card_number").mask("9999 9999 9999 ?9999 999", {autoclear: false});
+    $("#id_expiry_date").mask("99/99", {autoclear: false});
 });
-
 
 })(jQuery);

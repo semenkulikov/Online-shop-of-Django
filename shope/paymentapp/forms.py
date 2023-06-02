@@ -25,7 +25,8 @@ class PaymentForm(forms.Form):
         max_digits=10,
         decimal_places=2,
         widget=forms.HiddenInput,
-        label='total sum (rub.)')
+        label='total sum (rub.)',
+        required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
