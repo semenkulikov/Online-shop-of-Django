@@ -32,7 +32,7 @@
         <h3 class="sign-in">{% translate 'Log in' %}</h3>
     </div>
     <div class="clear"></div>
-    <form action="{% url 'authapp:login' %}" method="post">{% csrf_token %}
+    <form action="" method="post">{% csrf_token %}
         <div>
             {{ form.username }}
         </div>

@@ -6541,3 +6541,70 @@ input[type="radio"] {
     color: #9b2626;
     margin-bottom: 20px;
 }
+
+/* || Order modal window */
+
+.modal__overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 50%;
+    background-color: #FFF;
+    padding: 10px 30px;
+    border-radius: 15px;
+}
+
+.modal_visible {
+    display: flex;
+}
+
+.modal__content input[type="text"], input[type="number"]{
+    min-height: 56px;
+    margin: 0 0 10px 0;
+    padding: 5px 25px;
+    border: 1px solid #d4d4d4;
+}
+
+.modal__content input:last-of-type {
+    margin-bottom: 30px;
+}
+
+.modal__content label {
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.modal__content button {
+    width: 150px;
+    margin: 0 auto 20px;
+}
+
+.cancel_btn {
+    background-color: #95999C;
+    border-color: #95999C;
+}
+
+.cancel_btn:hover {
+    background-color: #BBC0C4;
+    border-color: #BBC0C4;
+}
+
+.form-group .errorlist {
+    text-align: center;
+    color: #9b2626;
+    margin: 0;
+}
+

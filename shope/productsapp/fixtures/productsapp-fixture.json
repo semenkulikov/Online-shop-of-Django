@@ -1801,5 +1801,181 @@
       "product": 14,
       "seller": 8
     }
+  },
+    {
+    "model": "productsapp.selleritem",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 1,
+      "seller": 1
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 2,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 3,
+      "seller": 1
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 3,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 10,
+      "seller": 1
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 4,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 11,
+      "seller": 1
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 5,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 12,
+      "seller": 1
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 6,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 11,
+      "seller": 2
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 7,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 12,
+      "seller": 2
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 8,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 2,
+      "seller": 3
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 9,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 9,
+      "seller": 3
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 10,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 10,
+      "seller": 3
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 11,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 12,
+      "seller": 3
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 12,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 13,
+      "seller": 4
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 13,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 1,
+      "seller": 5
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 14,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 3,
+      "seller": 6
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 15,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 2,
+      "seller": 7
+    }
+  },
+      {
+    "model": "productsapp.selleritem",
+    "pk": 16,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 14,
+      "seller": 8
+    }
   }
 ]

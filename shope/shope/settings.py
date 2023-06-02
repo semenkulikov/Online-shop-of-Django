@@ -156,7 +156,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.User'
-LOGIN_URL = '/'
+LOGIN_URL = '/auth/login'
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL = '/'

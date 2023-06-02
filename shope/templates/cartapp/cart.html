@@ -18,6 +18,7 @@ Megano
         <div class="wrap">
             {% if items %}
             <form class="form Cart" action="#" method="post">
+                {% csrf_token %}
                 {% if session %}
                 {% for count, item in items %}
                 <div class="Cart-product">
@@ -30,6 +31,10 @@ Megano
                         <div class="Cart-block Cart-block_info"><a class="Cart-title"
                                                                    href="{% url 'productsapp:product_detail' item.product.pk %}">{{item.product.name}}</a>
                             <div class="Cart-desc">{{item.product.description}}
+                            </div>
+                             <br>
+                            <div class="seller-cart">
+                                {% translate 'Seller' %}: {{item.seller.name}}
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
@@ -78,13 +83,17 @@ Megano
                 <div class="Cart-product">
                     <div class="Cart-block Cart-block_row">
                         <div class="Cart-block Cart-block_pict">
-                            <a class="Cart-pict" href="#">
+                            <a class="Cart-pict" href="{% url 'productsapp:product_detail' item.product.pk %}">
                                 <img class="Cart-img" src="{{item.product.image.url}}" alt="card.jpg"/>
                             </a>
                         </div>
                         <div class="Cart-block Cart-block_info"><a class="Cart-title"
                                                                    href="{% url 'productsapp:product_detail' item.product.pk %}">{{item.product.name}}</a>
                             <div class="Cart-desc">{{item.product.description}}
+                            </div>
+                            <br>
+                            <div class="seller-cart">
+                                {% translate 'Seller' %}: {{item.seller.name}}
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
@@ -123,9 +132,9 @@ Megano
                 <div class="Cart-total">
                     <div class="Cart-block Cart-block_total">
                         <strong class="Cart-title">{% translate 'Total' %}:
-                        </strong><span class="Cart-price">{% firstof cart_sum '0' %}</span>
+                        </strong><span class="Cart-price">{% firstof cart_sum '0' %} &#x20bd</span>
                     </div>
-                    <div class="Cart-block"><a class="btn btn_success btn_lg" href="{% url 'orderapp:add_order' %}">{% translate 'Place an order' %}</a>
+                    <div class="Cart-block"><button class="btn btn_success btn_lg" type="submit" formmethod="post" formaction="{% url 'orderapp:add_order' %}">{% translate 'Place an order' %}</button>
                     </div>
                 </div>
             </form>

@@ -1,1 +1,57 @@
-[{"model": "productsapp.banner", "pk": 1, "fields": {"created_at": "2023-05-25T21:08:49.944Z", "updated_at": "2023-05-25T21:08:49.944Z", "is_active": true, "category": 1, "image": "banners_images/download_2.png"}}, {"model": "productsapp.banner", "pk": 2, "fields": {"created_at": "2023-05-25T21:09:04.737Z", "updated_at": "2023-05-25T21:09:04.737Z", "is_active": true, "category": 9, "image": "banners_images/download_2_ngCiPE2.png"}}, {"model": "productsapp.banner", "pk": 3, "fields": {"created_at": "2023-05-25T21:09:17.881Z", "updated_at": "2023-05-25T21:09:24.348Z", "is_active": true, "category": 5, "image": "banners_images/download_2_n1GPHBR.png"}}, {"model": "productsapp.banner", "pk": 4, "fields": {"created_at": "2023-05-25T21:09:31.976Z", "updated_at": "2023-05-25T21:09:31.976Z", "is_active": true, "category": 10, "image": "banners_images/download_2_pP8Zm6H.png"}}, {"model": "productsapp.banner", "pk": 5, "fields": {"created_at": "2023-05-25T21:09:42.893Z", "updated_at": "2023-05-25T21:09:42.893Z", "is_active": true, "category": 6, "image": "banners_images/download_2_xYu0uFe.png"}}]
+[
+  {
+    "model": "productsapp.banner",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-05-25T21:08:49.944Z",
+      "updated_at": "2023-05-25T21:08:49.944Z",
+      "is_active": true,
+      "category": 1,
+      "image": "banners_images/download_2.png"
+    }
+  },
+  {
+    "model": "productsapp.banner",
+    "pk": 2,
+    "fields": {
+      "created_at": "2023-05-25T21:09:04.737Z",
+      "updated_at": "2023-05-25T21:09:04.737Z",
+      "is_active": true,
+      "category": 9,
+      "image": "banners_images/download_2_ngCiPE2.png"
+    }
+  },
+  {
+    "model": "productsapp.banner",
+    "pk": 3,
+    "fields": {
+      "created_at": "2023-05-25T21:09:17.881Z",
+      "updated_at": "2023-05-25T21:09:24.348Z",
+      "is_active": true,
+      "category": 5,
+      "image": "banners_images/download_2_n1GPHBR.png"
+    }
+  },
+  {
+    "model": "productsapp.banner",
+    "pk": 4,
+    "fields": {
+      "created_at": "2023-05-25T21:09:31.976Z",
+      "updated_at": "2023-05-25T21:09:31.976Z",
+      "is_active": true,
+      "category": 10,
+      "image": "banners_images/download_2_pP8Zm6H.png"
+    }
+  },
+  {
+    "model": "productsapp.banner",
+    "pk": 5,
+    "fields": {
+      "created_at": "2023-05-25T21:09:42.893Z",
+      "updated_at": "2023-05-25T21:09:42.893Z",
+      "is_active": true,
+      "category": 6,
+      "image": "banners_images/download_2_xYu0uFe.png"
+    }
+  }
+]
