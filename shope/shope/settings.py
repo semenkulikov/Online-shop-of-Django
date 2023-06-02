@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 # flake8: noqa
-
+import logging
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -82,6 +82,33 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+            'datefmt': "%Y/%b/%d %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "imports": {
+            "class": "logging.FileHandler",
+            "level": "DEBUG",
+            'filename': BASE_DIR / os.path.join(os.getenv("LOG_PATH"), 'imports_log.log'),
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "coreapp": {
+            "handlers": ["imports"],
+            "level": "DEBUG",
+            "propagate": True,
+        }
+    }
+}
 
 WSGI_APPLICATION = 'shope.wsgi.application'
 
@@ -174,7 +201,6 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 DOMAIN_NAME = 'http://127.0.0.1:8000'
 
-
 PHONENUMBER_DB_FORMAT = 'E164'
 PHONENUMBER_DEFAULT_REGION = 'RU'
 PHONENUMBER_DEFAULT_FORMAT = 'E164'
@@ -193,4 +219,3 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_IMPORTS = (
     'shope',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
 )
-
