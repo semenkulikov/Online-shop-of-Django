@@ -6577,7 +6577,9 @@ input[type="radio"] {
     display: flex;
 }
 
-.modal__content input[type="text"], input[type="number"], input[type='password']{
+.modal__content input[type="text"],
+.modal__content input[type="number"],
+.modal__content input[type='password']{
     min-width: 215px;
     max-width: 215px;
     min-height: 26px;
@@ -6643,4 +6645,8 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset;
     -webkit-text-fill-color: #707070;
+}
+
+.middle_top_oneorder {
+    margin: 0;
 }
