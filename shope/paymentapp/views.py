@@ -78,7 +78,7 @@ class PaymentView(View):
             context = {
                 'profile_form': profile_form,
                 'order_form': order_form,
-                'payment_form': payment_form,
+                'payment_form': PaymentForm(),
                 'order': order,
                 'total_sum': total_sum,
             }

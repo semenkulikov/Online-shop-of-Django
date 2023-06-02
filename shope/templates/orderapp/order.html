@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="Section-content">
-                    <form class="form" action="{% url 'paymentapp:payment' order.pk %}" method="post">
+                    <form class="form" id="main-form" action="{% url 'paymentapp:payment' order.pk %}" method="post">
                         {% csrf_token %}
                         <div class="Order-block Order-block_OPEN" id="step1">
                             <header class="Section-header Section-header_sm">
@@ -182,14 +182,15 @@
                                     <div class="Cart-total">
                                         <div class="Cart-block Cart-block_total">
                                             <strong class="Cart-title">{% translate 'Total' %}:
-                                            </strong><span class="Cart-price">{{total_sum}}&#8381;</span>
+                                            </strong><span class="Cart-price">{{total_sum}} &#8381;</span>
                                         </div>
                                         <div class="Cart-block">
                                             <button id="btn_open_modal" class="btn btn_primary btn_lg" type="button">{% translate 'Pay' %}
                                             </button>
                                             <div id="modal" class="modal__overlay">
                                                 <div class="modal__content">
-                                                    {{payment_form}}
+                                                    {{payment_form.as_p}}
+                                                    <div class="total_sum">{{total_sum}} &#8381;</div>
                                                     <button class="btn btn_primary" type="submit">Pay</button>
                                                     <button id="cancel" class="btn btn_primary cancel_btn" type="button">Cancel</button>
                                                 </div>
