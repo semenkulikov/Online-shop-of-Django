@@ -7,7 +7,7 @@
       "updated_at": "2023-06-01T12:10:06.171Z",
       "is_active": true,
       "image": "products_images/case_1.webp",
-      "product": 10
+      "product": 5
     }
   },
   {
@@ -18,7 +18,7 @@
       "updated_at": "2023-06-01T12:10:12.365Z",
       "is_active": true,
       "image": "products_images/case_2.webp",
-      "product": 10
+      "product": 5
     }
   },
   {
@@ -29,7 +29,7 @@
       "updated_at": "2023-06-01T12:10:17.400Z",
       "is_active": true,
       "image": "products_images/case_3.webp",
-      "product": 10
+      "product": 5
     }
   },
   {
@@ -40,7 +40,7 @@
       "updated_at": "2023-06-01T12:10:32.559Z",
       "is_active": true,
       "image": "products_images/comp_1_1.webp",
-      "product": 11
+      "product": 6
     }
   },
   {
@@ -51,7 +51,7 @@
       "updated_at": "2023-06-01T12:10:38.620Z",
       "is_active": true,
       "image": "products_images/comp_1_2.webp",
-      "product": 11
+      "product": 6
     }
   },
   {
@@ -62,7 +62,7 @@
       "updated_at": "2023-06-01T12:10:45.691Z",
       "is_active": true,
       "image": "products_images/comp_1_3.webp",
-      "product": 11
+      "product": 6
     }
   },
   {
@@ -73,7 +73,7 @@
       "updated_at": "2023-06-01T12:10:58.771Z",
       "is_active": true,
       "image": "products_images/comp_2_1.webp",
-      "product": 14
+      "product": 9
     }
   },
   {
@@ -84,7 +84,7 @@
       "updated_at": "2023-06-01T12:11:05.299Z",
       "is_active": true,
       "image": "products_images/comp_2_2.webp",
-      "product": 14
+      "product": 9
     }
   },
   {
@@ -95,7 +95,7 @@
       "updated_at": "2023-06-01T12:11:11.384Z",
       "is_active": true,
       "image": "products_images/comp_2_3.webp",
-      "product": 14
+      "product": 9
     }
   },
   {
@@ -106,7 +106,7 @@
       "updated_at": "2023-06-01T12:11:19.376Z",
       "is_active": true,
       "image": "products_images/comp_3_1.webp",
-      "product": 13
+      "product": 8
     }
   },
   {
@@ -117,7 +117,7 @@
       "updated_at": "2023-06-01T12:11:27.155Z",
       "is_active": true,
       "image": "products_images/comp_3_2.webp",
-      "product": 13
+      "product": 8
     }
   },
   {
@@ -128,7 +128,7 @@
       "updated_at": "2023-06-01T12:11:35.537Z",
       "is_active": true,
       "image": "products_images/comp_3_3.webp",
-      "product": 13
+      "product": 8
     }
   },
   {
@@ -139,7 +139,7 @@
       "updated_at": "2023-06-01T12:11:45.317Z",
       "is_active": true,
       "image": "products_images/comp_4_1.webp",
-      "product": 12
+      "product": 7
     }
   },
   {
@@ -150,7 +150,7 @@
       "updated_at": "2023-06-01T12:11:52.391Z",
       "is_active": true,
       "image": "products_images/comp_4_2.webp",
-      "product": 12
+      "product": 7
     }
   },
   {
@@ -161,7 +161,7 @@
       "updated_at": "2023-06-01T12:11:58.916Z",
       "is_active": true,
       "image": "products_images/comp_4_3.webp",
-      "product": 12
+      "product": 7
     }
   },
   {
@@ -205,7 +205,7 @@
       "updated_at": "2023-06-01T12:13:13.628Z",
       "is_active": true,
       "image": "products_images/hook_1.webp",
-      "product": 9
+      "product": 4
     }
   },
   {
@@ -216,7 +216,7 @@
       "updated_at": "2023-06-01T12:13:20.779Z",
       "is_active": true,
       "image": "products_images/hook_2.webp",
-      "product": 9
+      "product": 4
     }
   },
   {
@@ -227,7 +227,7 @@
       "updated_at": "2023-06-01T12:13:31.380Z",
       "is_active": true,
       "image": "products_images/hook_3.webp",
-      "product": 9
+      "product": 4
     }
   },
   {
@@ -304,7 +304,7 @@
       "updated_at": "2023-06-01T12:14:32.924Z",
       "is_active": true,
       "image": "products_images/comp_2_2_G0SCELa.webp",
-      "product": 15
+      "product": 10
     }
   }
 ]

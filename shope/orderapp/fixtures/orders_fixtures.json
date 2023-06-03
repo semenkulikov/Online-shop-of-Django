@@ -49,7 +49,7 @@
       "updated_at": "2023-05-25T23:23:51.262Z",
       "is_active": true,
       "order": 1,
-      "product": 10,
+      "product": 5,
       "count": 2,
       "seller": 3,
       "price": "25411.00"
@@ -63,7 +63,7 @@
       "updated_at": "2023-05-25T23:25:19.595Z",
       "is_active": true,
       "order": 1,
-      "product": 11,
+      "product": 6,
       "count": 1,
       "seller": 3,
       "price": "63546.00"
@@ -77,7 +77,7 @@
       "updated_at": "2023-05-25T23:25:31.992Z",
       "is_active": true,
       "order": 2,
-      "product": 12,
+      "product": 7,
       "count": 5,
       "seller": 6,
       "price": "654654.00"
@@ -91,7 +91,7 @@
       "updated_at": "2023-05-25T23:25:43.369Z",
       "is_active": true,
       "order": 3,
-      "product": 11,
+      "product": 6,
       "count": 2,
       "seller": 8,
       "price": "1211.00"
@@ -105,7 +105,7 @@
       "updated_at": "2023-05-26T01:01:28.175Z",
       "is_active": true,
       "order": 3,
-      "product": 9,
+      "product": 4,
       "count": 2,
       "seller": 3,
       "price": "5465.00"
