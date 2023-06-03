@@ -10,3 +10,4 @@ from .banner import Banner
 from .seller import Seller
 from .seller_item import SellerItem
 from .slice_price import SlicePrice
+from .product_image import ProductImage

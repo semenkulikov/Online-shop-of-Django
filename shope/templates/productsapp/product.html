@@ -19,9 +19,24 @@
                     <div class="ProductCard">
                         <div class="ProductCard-look">
                             <div class="ProductCard-photo">
-                                <img src="{{ product.image.url }}" alt="bigGoods.png" />
+                                <img src="{{ product_images.first.image.url }}" alt="bigGoods.png" />
                             </div>
-                            <div class="ProductCard-picts"><a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{% static 'assets/img/content/home/bigGoods.png' %}"><img src="{% static 'assets/img/content/home/bigGoods.png' %}" alt="bigGoods.png" /></a><a class="ProductCard-pict" href="{% static 'assets/img/content/home/slider.png' %}"><img src="{% static 'assets/img/content/home/slider.png' %}" alt="slider.png" /></a><a class="ProductCard-pict" href="{% static 'assets/img/content/home/videoca.png' %}"><img src="{% static 'assets/img/content/home/videoca.png' %}" alt="videoca.png" /></a>
+                            <div class="ProductCard-picts">
+                                {% for image in product_images %}
+                                     <a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{{ image.image.url }}">
+                                        <img src="{{ image.image.url }}" alt="bigGoods.png" />
+                                    </a>
+                                {% endfor %}
+
+{#                                <a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{% static 'assets/img/content/home/bigGoods.png' %}">#}
+{#                                    <img src="{% static 'assets/img/content/home/bigGoods.png' %}" alt="bigGoods.png" />#}
+{#                                </a>#}
+{#                                <a class="ProductCard-pict" href="{% static 'assets/img/content/home/slider.png' %}">#}
+{#                                    <img src="{% static 'assets/img/content/home/slider.png' %}" alt="slider.png" />#}
+{#                                </a>#}
+{#                                <a class="ProductCard-pict" href="{% static 'assets/img/content/home/videoca.png' %}">#}
+{#                                    <img src="{% static 'assets/img/content/home/videoca.png' %}" alt="videoca.png" />#}
+{#                                </a>#}
                             </div>
                         </div>
                         <div class="ProductCard-desc">
@@ -95,7 +110,7 @@
                                 <h2>{{ product.name}}
                                 </h2>
                                 {{product.description}}
-                                <img class="pict pict_right" src="{{ product.image.url }}" alt="bigGoods.png" />
+                                <img class="pict pict_right" src="{{ product_images.first.image.url }}" alt="bigGoods.png" />
 
                                 <div class="clearfix">
                                 </div>

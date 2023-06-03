@@ -10,3 +10,4 @@ from .slider import Slider
 from .seller import Seller
 from .seller_items import SellerItem
 from .price import SlicePrice
+from .images import ProductImage

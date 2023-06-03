@@ -10,7 +10,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ["pk",
                     "name",
                     "description",
-                    "image",
                     "tags",
                     "archived",
                     "free_delivery",
