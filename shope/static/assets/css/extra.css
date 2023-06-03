@@ -6559,37 +6559,61 @@ input[type="radio"] {
 
 .modal__content {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    max-width: 50%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 250px;
+    min-width: 215px;
     background-color: #FFF;
-    padding: 10px 30px;
+    padding: 15px;
     border-radius: 15px;
+}
+
+.modal__content ::placeholder {
+    font-size: 15px;
 }
 
 .modal_visible {
     display: flex;
 }
 
-.modal__content input[type="text"], input[type="number"]{
-    min-height: 56px;
-    margin: 0 0 10px 0;
-    padding: 5px 25px;
+.modal__content input[type="text"],
+.modal__content input[type="number"],
+.modal__content input[type='password']{
+    min-width: 215px;
+    max-width: 215px;
+    min-height: 26px;
+    margin: 0;
+    padding: 0 10px;
     border: 1px solid #d4d4d4;
+    text-align: center;
+    font-size: 15px;
+    color: #707070;
+
 }
 
-.modal__content input:last-of-type {
-    margin-bottom: 30px;
+.modal__content input[type='text'].input_small, input[type='password'].input_small {
+    max-width: 80px;
+    min-width: 80px;
+}
+
+.modal__content p {
+    text-align: center;
+    margin: 0;
 }
 
 .modal__content label {
     font-size: 14px;
     text-transform: capitalize;
+    color: #969696;
 }
 
+
 .modal__content button {
-    width: 150px;
-    margin: 0 auto 20px;
+    width: 120px;
+    margin: 0 0 20px;
+    font-size: 15px;
+
 }
 
 .cancel_btn {
@@ -6608,3 +6632,21 @@ input[type="radio"] {
     margin: 0;
 }
 
+.total_sum {
+    min-width: 215px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-text-fill-color: #707070;
+}
+
+.middle_top_oneorder {
+    margin: 0;
+}

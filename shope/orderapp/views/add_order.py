@@ -9,7 +9,6 @@ from repositories.price_repository import PriceRepository
 from repositories.cart_repository import RepCartItem
 from repositories import OrderUpdateRepository
 from repositories import OrderItemUpdateRepository
-from coreapp.enums import NOT_PAID_STATUS
 
 rep_price = PriceRepository()
 rep_cartitem = RepCartItem()
@@ -23,8 +22,7 @@ class AddOrderView(LoginRequiredMixin, View):
     def post(self, request):
         cart_items = SelectCart.cart_items_list(user=request.user)
         order = rep_order.save(  # создание нового заказа
-            user=request.user,
-            status=NOT_PAID_STATUS)
+            user=request.user)
 
         # перенос позиций из корзины в заказ
         order_items = rep_orderitem.create_with_cartitems(
@@ -44,6 +42,5 @@ class AddOrderView(LoginRequiredMixin, View):
             'order_form': OrderForm(),
             'payment_form': payment_form,
             'order': order,
-            'total_sum': total_sum,
         }
         return render(request, self.template_name, context)
