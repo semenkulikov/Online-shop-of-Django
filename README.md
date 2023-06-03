@@ -19,3 +19,7 @@
 
 # Apply fixtures
     python manage.py apply_fixtures - применить все фикстуры
+
+# Running imports
+    python manage.py run_imports - запустить импорты всех файлов в директории imports/expected_imports
+    python manage.py run_imports -p <file_1> <file_2> <file_3> - запустить импорт указанных файлов 
