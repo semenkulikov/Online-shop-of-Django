@@ -11,3 +11,7 @@ pymemcache==4.0.0
 celery==5.2.7
 redis==4.5.5
 pymemcache==4.0.0
+pandas==2.0.2
+openpyxl==3.1.2
+XlsxWriter==3.1.2
+xlrd==2.0.1

@@ -90,6 +90,12 @@
                                     {% translate 'Add to comparison' %}
                                 </button>
                             </form>
+                            <form action="{% url 'productsapp:export_product' product.pk %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn_primary" type="submit" style="margin-left: 12em; margin-top: 1em">
+                                    {% translate 'Export product' %}
+                                </button>
+                            </form>
                             <div class="ProductCard-footer">
                                 <div class="ProductCard-tags">
                                     <strong class="ProductCard-tagsTitle">{% translate 'Tags' %}: {{ product.tags }}</strong>
