@@ -103,21 +103,28 @@ class AjaxUpdateCartView(View):
                 # обновляем kwargs
                 kwargs['user'] = request.user
                 kwargs['count'] = request.GET.get('quantity', 1)
-
                 self.method_service(**kwargs)
+                cart_count = SelectCart.\
+                    cart_items_amount(user=request.user)
+                cart_sum = SelectCart.\
+                    cart_total_amount(user=request.user)
 
             else:
 
                 kwargs['session_products'] = request.session.get('products')
                 kwargs['count'] = int(request.GET.get('quantity', 1))
-
                 # есть товары в сессии
                 products = self.method_service(**kwargs)
                 request.session['products'] = products
                 request.session.modified = True
+                cart_count = SelectCart.\
+                    cart_items_amount(session_products=products)
+                cart_sum = SelectCart.\
+                    cart_total_amount(session_products=products)
 
-            context = cart_block(request)
-
+            context = {'cart_count': cart_count,
+                       'cart_sum': cart_sum
+                       }
             return JsonResponse(data=context)
 
 
@@ -130,7 +137,6 @@ class RemoveFromCartAjaxView(AjaxUpdateCartView):
 
 
 class DeleteCartItemAjaxView(AjaxUpdateCartView):
-
     method_service = AddToCart.delete_from_cart
 
     def get(self, request, **kwargs):
