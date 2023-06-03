@@ -46,3 +46,7 @@ def get_processed_image_path(image_path):
     return processed_image_path
 
 
+@shared_task
+def import_run():
+    """ Функция для фонового импорта файлов """
+    os.system("python manage.py run_imports")

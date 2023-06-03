@@ -19,9 +19,24 @@
                     <div class="ProductCard">
                         <div class="ProductCard-look">
                             <div class="ProductCard-photo">
-                                <img src="{{ product.image.url }}" alt="bigGoods.png" />
+                                <img src="{{ product_images.first.image.url }}" alt="bigGoods.png" />
                             </div>
-                            <div class="ProductCard-picts"><a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{% static 'assets/img/content/home/bigGoods.png' %}"><img src="{% static 'assets/img/content/home/bigGoods.png' %}" alt="bigGoods.png" /></a><a class="ProductCard-pict" href="{% static 'assets/img/content/home/slider.png' %}"><img src="{% static 'assets/img/content/home/slider.png' %}" alt="slider.png" /></a><a class="ProductCard-pict" href="{% static 'assets/img/content/home/videoca.png' %}"><img src="{% static 'assets/img/content/home/videoca.png' %}" alt="videoca.png" /></a>
+                            <div class="ProductCard-picts">
+                                {% for image in product_images %}
+                                     <a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{{ image.image.url }}">
+                                        <img src="{{ image.image.url }}" alt="bigGoods.png" />
+                                    </a>
+                                {% endfor %}
+
+{#                                <a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{% static 'assets/img/content/home/bigGoods.png' %}">#}
+{#                                    <img src="{% static 'assets/img/content/home/bigGoods.png' %}" alt="bigGoods.png" />#}
+{#                                </a>#}
+{#                                <a class="ProductCard-pict" href="{% static 'assets/img/content/home/slider.png' %}">#}
+{#                                    <img src="{% static 'assets/img/content/home/slider.png' %}" alt="slider.png" />#}
+{#                                </a>#}
+{#                                <a class="ProductCard-pict" href="{% static 'assets/img/content/home/videoca.png' %}">#}
+{#                                    <img src="{% static 'assets/img/content/home/videoca.png' %}" alt="videoca.png" />#}
+{#                                </a>#}
                             </div>
                         </div>
                         <div class="ProductCard-desc">
@@ -43,13 +58,14 @@
                                     <div class="Amount Amount_product">
                                         <button class="Amount-remove" type="button">
                                         </button>
-                                        <input class="Amount-input form-input" name="amount" type="text" value="1" />
+                                        <input id="amount" class="Amount-input form-input" name="amount" type="text" value="1" />
                                         <button class="Amount-add" type="button">
                                         </button>
                                     </div>
                                 </div>
                                 <div class="ProductCard-cartElement">
-                                    <a class="btn btn_primary" href="{% url 'cartapp:add_product' product_price.product.pk product_price.seller.pk %}">
+
+                                    <a class="btn btn_primary" onclick="AddToCart('{% url 'cartapp:ajax_add_product' product_price.product.pk product_price.seller.pk %}')">
                                         <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
                                         <span class="btn-content">{% translate 'Add to cart' %}</span>
                                     </a>
@@ -68,6 +84,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <form action="{% url 'productsapp:add_to_comparison' product.pk %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn_primary" type="submit" style="margin-left: 12em; margin-top: 1em">
+                                    {% translate 'Add to comparison' %}
+                                </button>
+                            </form>
                             <div class="ProductCard-footer">
                                 <div class="ProductCard-tags">
                                     <strong class="ProductCard-tagsTitle">{% translate 'Tags' %}: {{ product.tags }}</strong>
@@ -95,7 +117,7 @@
                                 <h2>{{ product.name}}
                                 </h2>
                                 {{product.description}}
-                                <img class="pict pict_right" src="{{ product.image.url }}" alt="bigGoods.png" />
+                                <img class="pict pict_right" src="{{ product_images.first.image.url }}" alt="bigGoods.png" />
 
                                 <div class="clearfix">
                                 </div>

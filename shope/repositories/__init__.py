@@ -9,3 +9,4 @@ from .banner_repository import BannerRepository
 from .order_update_repository import OrderUpdateRepository
 from .orderitem_update_repository import OrderItemUpdateRepository
 from .payment_update_repository import PaymentUpdateRepository
+from .product_select_repository import ProductSelectRepository

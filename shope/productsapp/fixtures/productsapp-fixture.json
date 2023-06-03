@@ -148,7 +148,7 @@
       "is_active": true,
       "name": "Vityaz 50LU1221",
       "description": "Телевизор в хорошем качестве. диагональ: 32\"-39\", диагональ (точно): 32 \", Поддержка цифрового ТВ: нет, беспроводная связь: Wi-Fi",
-      "image": "products/televizor.webp",
+      "short_description": "Телевизор в хорошем качестве.",
       "archived": false,
       "free_delivery": false,
       "category": 1
@@ -163,7 +163,7 @@
       "is_active": true,
       "name": "Микронаушник Mxmedia",
       "description": "Модель с микрофоном, встроенным в корпус передатчика (без кнопки пищалки и выносного микрофона).\nМикронаушник Magnet Bluetooth является отличной моделью в среднем ценовом сегменте, занимает 3 место по объему продаж из всей линейки микронаушников производителя Mxmedia.\nМодель популярна за счет доступной цены, но при этом обладает достойными характеристиками. В комплекте передатчик bluetooth 4.0, аккумулятора 50 мАч хватает до 3-4 часов разговора.\nМикрофон встроен в передатчик и средне улавливает тихий голос. Если требуется передавать много информации шепотом, то советуем выбрать модель Mxmedia Magnet Bluetooth с выносным микрофоном и кнопкой пищалкой (другой товар, ищите на маркете).\nВ качестве динамиков используются невидимые в ухе магнитные микронаушники, которые забрасываются на барабанную перепонку, становясь совершенно незаметными для окружающих.\nОбращаем внимание, что при использовании магнитного типа микронаушников может возникать дискомфорт в ушах, по возможности рекомендуем пользоваться капсульными аналогами.",
-      "image": "products/Headphones.webp",
+      "short_description": "Модель с микрофоном, встроенным в корпус передатчика",
       "archived": false,
       "free_delivery": true,
       "category": 2
@@ -178,7 +178,7 @@
       "is_active": true,
       "name": "Стиральная машина Candy GS4 1063D1, белый",
       "description": "Особенности: Б/У\nРаньше принадлежал другому человеку.\nСтиральная машина в отличном техническом состоянии. Произведена замена подшипников и протестирована нашим техническим центром.\nВнешний вид: Отличный",
-      "image": "products/washing_machine.webp",
+      "short_description": "Стиральная машина Candy",
       "archived": false,
       "free_delivery": false,
       "category": 3
@@ -186,14 +186,14 @@
   },
   {
     "model": "productsapp.product",
-    "pk": 9,
+    "pk": 4,
     "fields": {
       "created_at": "2023-05-16T16:57:50.790Z",
       "updated_at": "2023-05-16T16:57:50.790Z",
       "is_active": true,
       "name": "Крючки декоративные бронза / крючок для ключницы / крючок настенный / 5шт.",
       "description": "Характеристики\nБренд - Багемот\nТип - крючок\nНазначение - мелочи, аксессуары\nМатериал - металл\nКрепление - шурупы",
-      "image": "products/Accessories.webp",
+      "short_description": "Крючки декоративные бронза",
       "archived": false,
       "free_delivery": true,
       "category": 4
@@ -201,14 +201,14 @@
   },
   {
     "model": "productsapp.product",
-    "pk": 10,
+    "pk": 5,
     "fields": {
       "created_at": "2023-05-16T17:02:03.446Z",
       "updated_at": "2023-05-16T17:02:03.446Z",
       "is_active": true,
       "name": "Premium чехол «Свирепый доберман» на iPhone SE 2022",
       "description": "Красивый чехол, недорого",
-      "image": "products/case.jpg",
+      "short_description": "Premium чехол «Свирепый доберман»",
       "archived": false,
       "free_delivery": true,
       "category": 5
@@ -216,14 +216,14 @@
   },
   {
     "model": "productsapp.product",
-    "pk": 11,
+    "pk": 6,
     "fields": {
       "created_at": "2023-05-16T17:28:46.945Z",
       "updated_at": "2023-05-16T17:59:01.810Z",
       "is_active": true,
       "name": "Игровой компьютер GAMER PRO",
       "description": "Новая серия карт nVidia 4ххх уже здесь! В связке с десятиядерным процессором i5 12600KF вы получаете беспрецедентную производительность за разумные деньги.\n4К гейминг в любых играх без тормозов, запуск фото и видеоредакторов со сверхсложными проектами - с этими и любыми другими задачами ваш новый компьютер справиться без труда!\nСборка выполнена в корпусе известного бренда Zalman с блоком питания 1000W, которого хватит для любых последующих модернизаций.",
-      "image": "products/comp_1.webp",
+      "short_description": "Игровой компьютер GAMER PRO",
       "archived": false,
       "free_delivery": true,
       "category": 6
@@ -231,14 +231,14 @@
   },
   {
     "model": "productsapp.product",
-    "pk": 12,
+    "pk": 7,
     "fields": {
       "created_at": "2023-05-16T17:35:39.250Z",
       "updated_at": "2023-05-16T17:35:39.250Z",
       "is_active": true,
       "name": "Топовый игровой компьютер GAMER PRO Core i9 13900F 24x5800MHz / 64GB DDR5/ 3000GB HDD +1TB SSD/ RTX4",
       "description": "Прекрасный ПК для всех игр в разрешениях вплоть до 4К.\nВидеокарта RTX4070Ti на 25% производительнее чем nVidia RTX3080 и при этом меньше греется.\nТоповый процессор i9 11900F 10 ядер 20 потоков 5200МГц.\nБесшумное водяное охлаждение.\nПредустановленная и настроенная Windows 10 PRO.",
-      "image": "products/comp_2.webp",
+      "short_description": "Компьютер GAMER PRO Core i9",
       "archived": false,
       "free_delivery": false,
       "category": 6
@@ -246,14 +246,14 @@
   },
   {
     "model": "productsapp.product",
-    "pk": 13,
+    "pk": 8,
     "fields": {
       "created_at": "2023-05-16T17:52:07.997Z",
       "updated_at": "2023-05-16T17:52:07.997Z",
       "is_active": true,
       "name": "Персональный компьютер Atomic Heart с водяным охлаждением 5950x/16/3090/1TbSSD/1000W/ Thermaltake To",
       "description": "Авторский проект от нашей компании по игре Atomic Heart на базе уникального корпуса Thermaltake 500\nКонфигурация:\nПроцессор AMD Ryzen 9 5950X AM4\nМатеринская плата GIGABYTE X570S UD (AM4, ATX)\nОперативная память TeamGroup NightHawk White 16Gb PC4-25600\nВидеокарта GIGABYTE GeForce 3090 Gaming OC\nSSD диск ADATA M.2 XPG SX6000 1000GB\nКорпус Thermaltake Tower 500\nPSU 1000W\nВентиляторы DeepCool FC120",
-      "image": "products/comp_3.webp",
+      "short_description": "Персональный компьютер Atomic Heart",
       "archived": true,
       "free_delivery": true,
       "category": 6
@@ -261,14 +261,29 @@
   },
   {
     "model": "productsapp.product",
-    "pk": 14,
+    "pk": 9,
     "fields": {
       "created_at": "2023-05-16T17:56:35.440Z",
       "updated_at": "2023-05-16T17:56:35.440Z",
       "is_active": true,
       "name": "ПЭВМ OLDI Game PC 770 0801899 > Intel Core i5-13600KF 3.5GHz/Z690/DDR5-128GB 5200MHz/SSD M.2-2TB/HDD",
       "description": "Компьютер OLDI Computers ПЭВМ OLDI Game PC 770 0801899",
-      "image": "products/comp_4.webp",
+      "short_description": "ПЭВМ OLDI Game PC 770 0801899",
+      "archived": false,
+      "free_delivery": true,
+      "category": 6
+    }
+  },
+  {
+    "model": "productsapp.product",
+    "pk": 10,
+    "fields": {
+      "created_at": "2023-05-16T17:56:35.440Z",
+      "updated_at": "2023-05-16T17:56:35.440Z",
+      "is_active": true,
+      "name": "Computers ПЭВМ OLDI Game PC 770",
+      "description": "Компьютер OLDI Computers ПЭВМ OLDI Game PC 770 0801899",
+      "short_description": "Хороший игровой компьютер OLDI",
       "archived": false,
       "free_delivery": true,
       "category": 6
@@ -276,19 +291,19 @@
   },
   {
     "model": "productsapp.review",
-    "pk": 11,
+    "pk": 5,
     "fields": {
       "created_at": "2023-05-16T18:07:16.954Z",
       "updated_at": "2023-05-16T18:07:16.954Z",
       "is_active": true,
       "user": 1,
-      "product": 10,
+      "product": 5,
       "text": "Хороший чехол, отличное качество"
     }
   },
   {
     "model": "productsapp.review",
-    "pk": 12,
+    "pk": 6,
     "fields": {
       "created_at": "2023-05-16T18:07:32.439Z",
       "updated_at": "2023-05-16T18:07:32.439Z",
@@ -300,37 +315,37 @@
   },
   {
     "model": "productsapp.review",
-    "pk": 13,
+    "pk": 7,
     "fields": {
       "created_at": "2023-05-16T18:07:54.002Z",
       "updated_at": "2023-05-16T18:07:54.002Z",
       "is_active": true,
       "user": 1,
-      "product": 11,
+      "product": 6,
       "text": "Отличный игровой компьютер, очень мощный"
     }
   },
   {
     "model": "productsapp.review",
-    "pk": 14,
+    "pk": 4,
     "fields": {
       "created_at": "2023-05-16T18:08:09.363Z",
       "updated_at": "2023-05-16T18:08:09.363Z",
       "is_active": true,
       "user": 1,
-      "product": 9,
+      "product": 4,
       "text": "Хорошие крючки"
     }
   },
   {
     "model": "productsapp.review",
-    "pk": 15,
+    "pk": 9,
     "fields": {
       "created_at": "2023-05-16T18:08:40.346Z",
       "updated_at": "2023-05-16T18:08:40.346Z",
       "is_active": true,
       "user": 1,
-      "product": 12,
+      "product": 7,
       "text": "Очень мощный игровой компьютер, мне понравился"
     }
   },
@@ -889,7 +904,7 @@
       "created_at": "2023-05-16T17:04:05.951Z",
       "updated_at": "2023-05-16T17:04:05.951Z",
       "is_active": true,
-      "product": 10,
+      "product": 5,
       "description": "силикон Soft Touch",
       "type_spec": 13
     }
@@ -901,7 +916,7 @@
       "created_at": "2023-05-16T17:04:22.538Z",
       "updated_at": "2023-05-16T17:04:22.538Z",
       "is_active": true,
-      "product": 10,
+      "product": 5,
       "description": "iPhone SE 2022",
       "type_spec": 15
     }
@@ -913,7 +928,7 @@
       "created_at": "2023-05-16T17:05:09.875Z",
       "updated_at": "2023-05-16T17:05:09.875Z",
       "is_active": true,
-      "product": 10,
+      "product": 5,
       "description": "Черный",
       "type_spec": 12
     }
@@ -925,7 +940,7 @@
       "created_at": "2023-05-16T17:06:14.072Z",
       "updated_at": "2023-05-16T17:06:26.561Z",
       "is_active": true,
-      "product": 9,
+      "product": 4,
       "description": "крючок",
       "type_spec": 11
     }
@@ -937,7 +952,7 @@
       "created_at": "2023-05-16T17:06:44.251Z",
       "updated_at": "2023-05-16T17:06:44.251Z",
       "is_active": true,
-      "product": 9,
+      "product": 4,
       "description": "Металл",
       "type_spec": 13
     }
@@ -949,7 +964,7 @@
       "created_at": "2023-05-16T17:09:30.357Z",
       "updated_at": "2023-05-16T17:09:30.357Z",
       "is_active": true,
-      "product": 9,
+      "product": 4,
       "description": "Шурупы",
       "type_spec": 16
     }
@@ -1225,7 +1240,7 @@
       "created_at": "2023-05-16T17:29:35.569Z",
       "updated_at": "2023-05-16T17:29:35.569Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "Настольный компьютер",
       "type_spec": 11
     }
@@ -1237,7 +1252,7 @@
       "created_at": "2023-05-16T17:29:53.020Z",
       "updated_at": "2023-05-16T17:29:53.020Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "Gamer PRO",
       "type_spec": 24
     }
@@ -1249,7 +1264,7 @@
       "created_at": "2023-05-16T17:30:14.742Z",
       "updated_at": "2023-05-16T17:30:14.742Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "Windows 10 Pro",
       "type_spec": 7
     }
@@ -1261,7 +1276,7 @@
       "created_at": "2023-05-16T17:30:49.611Z",
       "updated_at": "2023-05-16T17:30:49.611Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "Intel Core i5-12600KF",
       "type_spec": 26
     }
@@ -1273,7 +1288,7 @@
       "created_at": "2023-05-16T17:31:14.581Z",
       "updated_at": "2023-05-16T17:31:14.581Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "64 ГБ",
       "type_spec": 27
     }
@@ -1285,7 +1300,7 @@
       "created_at": "2023-05-16T17:31:42.120Z",
       "updated_at": "2023-05-16T17:31:42.121Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "DDR4",
       "type_spec": 28
     }
@@ -1297,7 +1312,7 @@
       "created_at": "2023-05-16T17:32:45.717Z",
       "updated_at": "2023-05-16T17:32:45.718Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "1 ТБ",
       "type_spec": 29
     }
@@ -1309,7 +1324,7 @@
       "created_at": "2023-05-16T17:33:08.948Z",
       "updated_at": "2023-05-16T17:33:08.948Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "description": "2 ТБ",
       "type_spec": 30
     }
@@ -1321,7 +1336,7 @@
       "created_at": "2023-05-16T17:36:15.439Z",
       "updated_at": "2023-05-16T17:36:15.439Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "Gamer Pro",
       "type_spec": 24
     }
@@ -1333,7 +1348,7 @@
       "created_at": "2023-05-16T17:36:27.346Z",
       "updated_at": "2023-05-16T17:36:27.346Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "настольный компьютер",
       "type_spec": 11
     }
@@ -1345,7 +1360,7 @@
       "created_at": "2023-05-16T17:36:44.787Z",
       "updated_at": "2023-05-16T17:36:44.787Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "Windows 10 Pro",
       "type_spec": 7
     }
@@ -1357,7 +1372,7 @@
       "created_at": "2023-05-16T17:37:23.685Z",
       "updated_at": "2023-05-16T17:37:23.685Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "Intel Core i9 13900KF",
       "type_spec": 26
     }
@@ -1369,7 +1384,7 @@
       "created_at": "2023-05-16T17:37:42.455Z",
       "updated_at": "2023-05-16T17:37:42.455Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "64 ГБ",
       "type_spec": 27
     }
@@ -1381,7 +1396,7 @@
       "created_at": "2023-05-16T17:37:57.962Z",
       "updated_at": "2023-05-16T17:37:57.962Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "DDR5",
       "type_spec": 28
     }
@@ -1393,7 +1408,7 @@
       "created_at": "2023-05-16T17:38:11.659Z",
       "updated_at": "2023-05-16T17:38:11.660Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "1 ТБ",
       "type_spec": 29
     }
@@ -1405,7 +1420,7 @@
       "created_at": "2023-05-16T17:38:22.116Z",
       "updated_at": "2023-05-16T17:38:22.116Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "3 ТБ",
       "type_spec": 30
     }
@@ -1417,7 +1432,7 @@
       "created_at": "2023-05-16T17:38:33.609Z",
       "updated_at": "2023-05-16T17:38:33.609Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "description": "Черный",
       "type_spec": 12
     }
@@ -1429,7 +1444,7 @@
       "created_at": "2023-05-16T17:53:07.868Z",
       "updated_at": "2023-05-16T17:53:07.868Z",
       "is_active": true,
-      "product": 13,
+      "product": 8,
       "description": "Не определен",
       "type_spec": 24
     }
@@ -1441,7 +1456,7 @@
       "created_at": "2023-05-16T17:53:20.013Z",
       "updated_at": "2023-05-16T17:53:20.013Z",
       "is_active": true,
-      "product": 13,
+      "product": 8,
       "description": "настольный компьютер",
       "type_spec": 11
     }
@@ -1453,7 +1468,7 @@
       "created_at": "2023-05-16T17:53:33.019Z",
       "updated_at": "2023-05-16T17:53:33.019Z",
       "is_active": true,
-      "product": 13,
+      "product": 8,
       "description": "AMD Ryzen 9 5950X",
       "type_spec": 26
     }
@@ -1465,7 +1480,7 @@
       "created_at": "2023-05-16T17:53:42.984Z",
       "updated_at": "2023-05-16T17:53:42.984Z",
       "is_active": true,
-      "product": 13,
+      "product": 8,
       "description": "16 ГБ",
       "type_spec": 27
     }
@@ -1477,7 +1492,7 @@
       "created_at": "2023-05-16T17:53:52.248Z",
       "updated_at": "2023-05-16T17:53:52.248Z",
       "is_active": true,
-      "product": 13,
+      "product": 8,
       "description": "DDR4",
       "type_spec": 28
     }
@@ -1489,7 +1504,7 @@
       "created_at": "2023-05-16T17:54:04.143Z",
       "updated_at": "2023-05-16T17:54:04.143Z",
       "is_active": true,
-      "product": 13,
+      "product": 8,
       "description": "1 ТБ",
       "type_spec": 29
     }
@@ -1501,7 +1516,7 @@
       "created_at": "2023-05-16T17:57:17.124Z",
       "updated_at": "2023-05-16T17:57:17.124Z",
       "is_active": true,
-      "product": 14,
+      "product": 9,
       "description": "OLDI Computers",
       "type_spec": 24
     }
@@ -1513,7 +1528,7 @@
       "created_at": "2023-05-16T17:57:28.186Z",
       "updated_at": "2023-05-16T17:57:28.186Z",
       "is_active": true,
-      "product": 14,
+      "product": 9,
       "description": "Intel Core i5 13600KF",
       "type_spec": 26
     }
@@ -1525,7 +1540,7 @@
       "created_at": "2023-05-16T17:57:37.022Z",
       "updated_at": "2023-05-16T17:57:37.022Z",
       "is_active": true,
-      "product": 14,
+      "product": 9,
       "description": "DDR5",
       "type_spec": 28
     }
@@ -1618,7 +1633,7 @@
       "updated_at": "2023-05-16T17:42:15.246Z",
       "is_active": true,
       "value": "339550.00",
-      "product": 12,
+      "product": 7,
       "seller": 1
     }
   },
@@ -1630,7 +1645,7 @@
       "updated_at": "2023-05-16T17:42:30.882Z",
       "is_active": true,
       "value": "320500.00",
-      "product": 12,
+      "product": 7,
       "seller": 2
     }
   },
@@ -1642,7 +1657,7 @@
       "updated_at": "2023-05-16T17:42:45.691Z",
       "is_active": true,
       "value": "300000.00",
-      "product": 12,
+      "product": 7,
       "seller": 3
     }
   },
@@ -1654,7 +1669,7 @@
       "updated_at": "2023-05-16T17:42:58.220Z",
       "is_active": true,
       "value": "150000.00",
-      "product": 11,
+      "product": 6,
       "seller": 1
     }
   },
@@ -1666,7 +1681,7 @@
       "updated_at": "2023-05-16T17:43:10.052Z",
       "is_active": true,
       "value": "200450.00",
-      "product": 11,
+      "product": 6,
       "seller": 2
     }
   },
@@ -1678,7 +1693,7 @@
       "updated_at": "2023-05-16T17:43:18.179Z",
       "is_active": true,
       "value": "500.00",
-      "product": 10,
+      "product": 5,
       "seller": 1
     }
   },
@@ -1690,7 +1705,7 @@
       "updated_at": "2023-05-16T17:43:35.171Z",
       "is_active": true,
       "value": "399.00",
-      "product": 10,
+      "product": 5,
       "seller": 3
     }
   },
@@ -1774,7 +1789,7 @@
       "updated_at": "2023-05-16T17:48:25.531Z",
       "is_active": true,
       "value": "290.00",
-      "product": 9,
+      "product": 4,
       "seller": 3
     }
   },
@@ -1786,7 +1801,7 @@
       "updated_at": "2023-05-16T17:52:38.042Z",
       "is_active": true,
       "value": "420000.00",
-      "product": 13,
+      "product": 8,
       "seller": 4
     }
   },
@@ -1798,7 +1813,19 @@
       "updated_at": "2023-05-16T17:57:00.560Z",
       "is_active": true,
       "value": "308126.00",
-      "product": 14,
+      "product": 9,
+      "seller": 8
+    }
+  },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 20,
+    "fields": {
+      "created_at": "2023-05-16T17:57:00.560Z",
+      "updated_at": "2023-05-16T17:57:00.560Z",
+      "is_active": true,
+      "value": "310446.00",
+      "product": 10,
       "seller": 8
     }
   },
@@ -1831,7 +1858,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 10,
+      "product": 5,
       "seller": 1
     }
   },
@@ -1842,7 +1869,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "seller": 1
     }
   },
@@ -1853,7 +1880,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "seller": 1
     }
   },
@@ -1864,7 +1891,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 11,
+      "product": 6,
       "seller": 2
     }
   },
@@ -1875,7 +1902,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "seller": 2
     }
   },
@@ -1897,7 +1924,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 9,
+      "product": 4,
       "seller": 3
     }
   },
@@ -1908,7 +1935,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 10,
+      "product": 5,
       "seller": 3
     }
   },
@@ -1919,7 +1946,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 12,
+      "product": 7,
       "seller": 3
     }
   },
@@ -1930,7 +1957,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 13,
+      "product": 8,
       "seller": 4
     }
   },
@@ -1974,7 +2001,18 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 14,
+      "product": 9,
+      "seller": 8
+    }
+  },
+  {
+    "model": "productsapp.selleritem",
+    "pk": 16,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 10,
       "seller": 8
     }
   }

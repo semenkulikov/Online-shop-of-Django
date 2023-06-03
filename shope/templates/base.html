@@ -121,7 +121,7 @@
                                 </li>
                                 <li class="menu-item"><span class="menu-label menu-label_success">{% translate 'Discounts' %}</span><a class="menu-link" href="{% url 'productsapp:catalog' %}">{% translate 'Catalog' %}</a>
                                 </li>
-                                <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">{% translate 'Comparison' %}</a>
+                                <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">{% translate 'Comparison' %}<span class="CartBlock-amount">{% firstof count_comparis '0' %}</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -747,11 +747,13 @@
     <!---->
     {% block scripts %}
         <script src="{% static 'assets/plg/jQuery/jquery-3.5.0.slim.min.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js">
         <script src="{% static 'assets/plg/form/jquery.form.js' %}"></script>
         <script src="{% static 'assets/plg/form/jquery.maskedinput.min.js' %}"></script>
         <script src="{% static 'assets/plg/range/ion.rangeSlider.min.js' %}"></script>
         <script src="{% static 'assets/plg/Slider/slick.min.js' %}"></script>
         <script src="{% static 'assets/js/scripts.js' %}"></script>
+        <script src="{% static 'assets/js/add_to_cart.js' %}"></script>
     {% endblock %}
 </body>
 

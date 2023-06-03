@@ -1,9 +1,10 @@
 from django.views import View
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 
 from coreapp.utils.select_cart import SelectCart
 from coreapp.utils.update_cart import AddToCart
+from .context_processor import cart_block
 
 
 class CartItemListView(View):
@@ -42,6 +43,7 @@ class ProductUpdateView(View):
     Общий класс для выполнения операций с товарами
     """
     method_service = AddToCart.add_to_cart
+
     # метод из сервиса для выполнения нужной операции с корзиной
 
     def get(self, request, **kwargs):
@@ -84,6 +86,58 @@ class DeleteItemCartView(ProductUpdateView):
 
 
 class ChangeQuantityCartView(ProductUpdateView):
+    """
+    Класс для изменения количества товара в корзине
+    """
+    method_service = AddToCart.change_amount
+
+
+class AjaxUpdateCartView(View):
+    method_service = AddToCart.add_to_cart
+
+    def get(self, request, **kwargs):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            if request.user.is_authenticated:  # пользователь авторизован
+                # обновляем kwargs
+                kwargs['user'] = request.user
+                kwargs['count'] = request.GET.get('quantity', 1)
+
+                self.method_service(**kwargs)
+
+            else:
+
+                kwargs['session_products'] = request.session.get('products')
+                kwargs['count'] = int(request.GET.get('quantity', 1))
+
+                # есть товары в сессии
+                products = self.method_service(**kwargs)
+                request.session['products'] = products
+                request.session.modified = True
+
+            context = cart_block(request)
+
+            return JsonResponse(data=context)
+
+
+class AddToCartAjaxView(AjaxUpdateCartView):
+    method_service = AddToCart.add_to_cart
+
+
+class RemoveFromCartAjaxView(AjaxUpdateCartView):
+    method_service = AddToCart.delete_from_cart
+
+
+class DeleteCartItemAjaxView(AjaxUpdateCartView):
+
+    method_service = AddToCart.delete_from_cart
+
+    def get(self, request, **kwargs):
+        kwargs['full'] = True
+        print(kwargs)
+        super().get(request, **kwargs)
+
+
+class ChangeQuantityCartAjaxView(AjaxUpdateCartView):
     """
     Класс для изменения количества товара в корзине
     """
