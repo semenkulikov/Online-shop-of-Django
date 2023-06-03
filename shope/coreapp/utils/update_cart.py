@@ -58,7 +58,7 @@ class AddToCart:
             return session_products
 
     @classmethod
-    def delete_from_cart(cls, product_id, seller_id,
+    def delete_from_cart(cls, product_id, seller_id, count=1,
                          user=None, session_products=None, full=None):
         """
         Удаление товара из корзины
@@ -75,14 +75,14 @@ class AddToCart:
             if full or cart_item.quantity == 1:  # удаление товара из корзины
                 rep_cart_item.delete(cart_item)
             else:  # уменьшение количества товара на 1
-                cart_item.update(quantity=F('quantity') - 1)
+                cart_item.update(quantity=F('quantity') - count)
         else:
             if session_products:  # если есть товары в сессии
                 if full or session_products[str(product_id)][0] == 1:
                     # удаление товара из корзины
                     session_products.pop(str(product_id), False)
                 else:  # уменьшение количества на 1
-                    session_products[str(product_id)][0] -= 1
+                    session_products[str(product_id)][0] -= count
                 return session_products
 
     @classmethod
