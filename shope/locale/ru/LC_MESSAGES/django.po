@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-01 14:19+0300\n"
+"POT-Creation-Date: 2023-06-01 22:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,7 @@ msgstr "корзины"
 
 #: .\cartapp\models\cartitem.py:18 .\orderapp\models.py:65
 #: .\productsapp\models\images.py:21 .\productsapp\models\price.py:22
-#: .\productsapp\models\product.py:31 .\productsapp\models\seller_items.py:23
+#: .\productsapp\models\product.py:35 .\productsapp\models\seller_items.py:23
 #: .\productsapp\models\slider.py:15
 msgid "product"
 msgstr "продукт"
@@ -137,7 +137,7 @@ msgstr "Не оплачено"
 msgid "Default delivery"
 msgstr "Тип доставки"
 
-#: .\coreapp\enums.py:36 .\templates\productsapp\product.html:157
+#: .\coreapp\enums.py:36 .\templates\productsapp\product.html:163
 msgid "Express delivery"
 msgstr "Экспресс-доставка"
 
@@ -194,7 +194,7 @@ msgstr "предметы заказа"
 #: .\templates\paymentapp\paymentsomeone.html:18
 #: .\templates\paymentapp\paymentsomeone.html:23
 #: .\templates\paymentapp\progressPayment.html:6
-#: .\templates\productsapp\product.html:161
+#: .\templates\productsapp\product.html:167
 #: .\templates\profileapp\account.html:72
 msgid "Payment"
 msgstr "Оплата"
@@ -248,7 +248,7 @@ msgid "Review"
 msgstr "Обзор"
 
 #: .\productsapp\models\banner.py:14 .\productsapp\models\category.py:16
-#: .\productsapp\models\product.py:26
+#: .\productsapp\models\product.py:30
 msgid "category"
 msgstr "категория"
 
@@ -302,15 +302,21 @@ msgstr "ценовой срез"
 msgid "price slices"
 msgstr "ценовые срезы"
 
-#: .\productsapp\models\product.py:20
+#: .\productsapp\models\product.py:18
+#, fuzzy
+#| msgid "description"
+msgid "short_description"
+msgstr "краткое описание"
+
+#: .\productsapp\models\product.py:24
 msgid "archived"
 msgstr "архивированный"
 
-#: .\productsapp\models\product.py:22
+#: .\productsapp\models\product.py:26
 msgid "free_delivery"
 msgstr "бесплатная доставка"
 
-#: .\productsapp\models\product.py:32
+#: .\productsapp\models\product.py:36
 msgid "products"
 msgstr "товары"
 
@@ -634,7 +640,7 @@ msgid "from"
 msgstr ""
 
 #: .\templates\orderapp\historyorder.html:50
-#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:155
+#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:161
 #: .\templates\profileapp\account.html:66
 msgid "Type of delivery"
 msgstr "Тип доставки"
@@ -747,8 +753,8 @@ msgid "Price"
 msgstr "Цена"
 
 #: .\templates\productsapp\catalog.html:84
-#: .\templates\productsapp\product.html:105
-#: .\templates\productsapp\product.html:197
+#: .\templates\productsapp\product.html:111
+#: .\templates\productsapp\product.html:203
 msgid "Reviews"
 msgstr "Отзывы"
 
@@ -773,13 +779,13 @@ msgid "No common characteristics"
 msgstr "Нет общих характеристик"
 
 #: .\templates\productsapp\comparison.html:140
-#: .\templates\productsapp\product.html:102
-#: .\templates\productsapp\product.html:120
+#: .\templates\productsapp\product.html:108
+#: .\templates\productsapp\product.html:126
 msgid "Characteristic"
 msgstr "Характеристика"
 
 #: .\templates\productsapp\comparison.html:141
-#: .\templates\productsapp\product.html:122
+#: .\templates\productsapp\product.html:128
 msgid "Value"
 msgstr "Значение"
 
@@ -796,63 +802,69 @@ msgstr "Поздравляем"
 msgid "Product successfully added to cart"
 msgstr "Продукт успешно добавлен в корзину"
 
-#: .\templates\productsapp\product.html:88
+#: .\templates\productsapp\product.html:89
+#, fuzzy
+#| msgid "Add to cart"
+msgid "Add to comparison"
+msgstr "Добавить в сравнение"
+
+#: .\templates\productsapp\product.html:94
 msgid "Tags"
 msgstr "Теги"
 
-#: .\templates\productsapp\product.html:96
+#: .\templates\productsapp\product.html:102
 msgid "Description"
 msgstr "Описание"
 
-#: .\templates\productsapp\product.html:99
+#: .\templates\productsapp\product.html:105
 msgid "Sellers"
 msgstr "Продавцы"
 
-#: .\templates\productsapp\product.html:126
+#: .\templates\productsapp\product.html:132
 msgid "Device type"
 msgstr "Тип устройства"
 
-#: .\templates\productsapp\product.html:128
+#: .\templates\productsapp\product.html:134
 msgid "Notebook"
 msgstr "Ноутбук"
 
-#: .\templates\productsapp\product.html:149
+#: .\templates\productsapp\product.html:155
 msgid "Buy"
 msgstr "Купить"
 
-#: .\templates\productsapp\product.html:157
+#: .\templates\productsapp\product.html:163
 msgid "Ordinary delivery"
 msgstr "Обычная доставка"
 
-#: .\templates\productsapp\product.html:163
+#: .\templates\productsapp\product.html:169
 msgid "Online card"
 msgstr "Онлайн карта"
 
-#: .\templates\productsapp\product.html:167
+#: .\templates\productsapp\product.html:173
 msgid "Cost"
 msgstr "Стоимость"
 
-#: .\templates\productsapp\product.html:236
+#: .\templates\productsapp\product.html:242
 msgid "Show more"
 msgstr "Показать больше"
 
-#: .\templates\productsapp\product.html:244
+#: .\templates\productsapp\product.html:250
 msgid "Add review"
 msgstr "Добавить отзыв"
 
-#: .\templates\productsapp\product.html:250
+#: .\templates\productsapp\product.html:256
 msgid "Review has been successfully added"
 msgstr "Отзыв успешно добавлен"
 
-#: .\templates\productsapp\product.html:262
+#: .\templates\productsapp\product.html:268
 msgid "Send review"
 msgstr "Отправить отзыв"
 
-#: .\templates\productsapp\product.html:269
+#: .\templates\productsapp\product.html:275
 msgid "To leave a review you need to"
 msgstr "Чтобы оставить отзыв, вам необходимо"
 
-#: .\templates\productsapp\product.html:270
+#: .\templates\productsapp\product.html:276
 msgid "log on"
 msgstr "авторизоваться"
 

@@ -16,3 +16,6 @@
     python manage.py makemessages -l ru - сгенерировать переводы на русский язык
     python manage.py makemessages -l en - сгенерировать переводы на English
     python manage.py compilemessages - скомпиллировать переводы
+
+# Apply fixtures
+    python manage.py apply_fixtures - применить все фикстуры

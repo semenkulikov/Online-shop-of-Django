@@ -1817,6 +1817,18 @@
       "seller": 8
     }
   },
+  {
+    "model": "productsapp.sliceprice",
+    "pk": 20,
+    "fields": {
+      "created_at": "2023-05-16T17:57:00.560Z",
+      "updated_at": "2023-05-16T17:57:00.560Z",
+      "is_active": true,
+      "value": "310446.00",
+      "product": 10,
+      "seller": 8
+    }
+  },
     {
     "model": "productsapp.selleritem",
     "pk": 1,
@@ -1990,6 +2002,17 @@
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
       "product": 9,
+      "seller": 8
+    }
+  },
+  {
+    "model": "productsapp.selleritem",
+    "pk": 16,
+    "fields": {
+      "created_at": "2023-05-16T17:56:59.268Z",
+      "updated_at": "2023-05-16T17:56:59.268Z",
+      "is_active": true,
+      "product": 10,
       "seller": 8
     }
   }
