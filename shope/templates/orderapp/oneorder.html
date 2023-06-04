@@ -105,10 +105,10 @@
                                     {% for order_item in object.order_items.all %}
                                         <div class="Cart-product">
                                         <div class="Cart-block Cart-block_row">
-                                        <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{ order_item.product.image.url }}" alt="card.jpg" /></a>
+                                        <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{ order_item.product.product_images.first.image.url }}" alt="card.jpg" /></a>
                                         </div>
                                         <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'productsapp:product_detail' order_item.product.id %}">{{ order_item.product.name }}</a>
-                                            <div class="Cart-desc">{{ order_item.product.description }}
+                                            <div class="Cart-desc">{{ order_item.product.short_description }}
                                             </div>
                                         </div>
                                         <div class="Cart-block Cart-block_price">

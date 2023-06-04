@@ -6560,12 +6560,12 @@ input[type="radio"] {
 .modal__content {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 250px;
+    max-width: 400px;
     min-width: 215px;
     background-color: #FFF;
-    padding: 15px;
+    padding: 20px 40px;
     border-radius: 15px;
 }
 
@@ -6580,21 +6580,21 @@ input[type="radio"] {
 .modal__content input[type="text"],
 .modal__content input[type="number"],
 .modal__content input[type='password']{
-    min-width: 215px;
-    max-width: 215px;
-    min-height: 26px;
+    min-width: 320px;
+    max-width: 320px;
+    min-height: 30px;
     margin: 0;
     padding: 0 10px;
     border: 1px solid #d4d4d4;
     text-align: center;
-    font-size: 15px;
+    font-size: 16px;
     color: #707070;
 
 }
 
 .modal__content input[type='text'].input_small, input[type='password'].input_small {
-    max-width: 80px;
-    min-width: 80px;
+    max-width: 130px;
+    min-width: 130px;
 }
 
 .modal__content p {
@@ -6603,16 +6603,18 @@ input[type="radio"] {
 }
 
 .modal__content label {
-    font-size: 14px;
+    font-size: 15px;
     text-transform: capitalize;
     color: #969696;
 }
 
 
 .modal__content button {
-    width: 120px;
-    margin: 0 0 20px;
-    font-size: 15px;
+    width: 80px;
+    min-height: 30px;
+    margin: 0;
+    padding: 3px 20px 0;
+    font-size: 14px;
 
 }
 
@@ -6633,9 +6635,17 @@ input[type="radio"] {
 }
 
 .total_sum {
-    min-width: 215px;
-    text-align: center;
-    margin: 15px 0;
+    min-width: 120px;
+    text-align: right;
+    margin: 0;
+    font-weight: bold;
+}
+
+.payment_bottom {
+    min-width: 320px;
+    padding: 40px 0 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Change the white to any color */
@@ -6648,5 +6658,5 @@ input:-webkit-autofill:active{
 }
 
 .middle_top_oneorder {
-    margin: 0;
+    margin: 30px 0;
 }

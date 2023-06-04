@@ -25,7 +25,7 @@
                             <form class="form" action="" method="get">
                                 <div class="form-group">
                                     <div class="range Section-columnRange">
-                                        <input class="range-line" id="price" name="price_range" type="text" data-type="double" data-min="1" data-max="200000" data-from="1" data-to="200000" />
+                                        <input class="range-line" id="price" name="price_range" type="text" data-type="double" data-min="1" data-max="1000000" data-from="1" data-to="1000000" />
                                         <div class="range-price">{% translate 'Price (RUB)' %}:&#32;
                                             <div class="rangePrice">
                                             </div>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="Cards">
                         {% for object in page_obj %}
-                            <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' object.id %}"><img src="{{object.image.url}}" alt="card.jpg" /></a>
+                            <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' object.id %}"><img src="{{object.product_images.first.image.url}}" alt="card.jpg" /></a>
                                 <div class="Card-content">
                                     <strong class="Card-title"><a href="{% url 'productsapp:product_detail' object.id %}">{{object.name}} {{object.year}}</a>
                                     </strong>
