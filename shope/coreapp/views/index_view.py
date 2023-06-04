@@ -3,7 +3,7 @@ from django.shortcuts import render
 from repositories import (
     SliderRepository,
     BannerRepository,
-    ProductSelectRepository
+    ProductSelectRepository,
 )
 
 slider_rep = SliderRepository()
@@ -19,15 +19,23 @@ class IndexView(View):
 
         sliders = slider_rep.get_all()
         banners = banner_rep.get_random_banners()
-        products = product_rep.get_all_products()
 
-        popular = product_rep.sort_by_popular(products=products, reverse=True)
-        popular = product_rep.get_product_prices(popular)
+        products = product_rep.get_all_products_with_main_image()
+
+        products_with_price = product_rep.get_product_prices(products)
+
+        popular = product_rep.sort_by_popular(
+            products=products_with_price,
+            reverse=True
+        )
+
+        limited = products_with_price.filter(is_limited=True)
 
         context = {
             'sliders': sliders,
             'banners': banners,
-            'populars': popular
+            'populars': popular,
+            'limited': limited
         }
 
         return render(request, self.template_name, context=context)
