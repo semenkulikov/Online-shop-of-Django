@@ -11,3 +11,5 @@ pymemcache==4.0.0
 celery==5.2.7
 redis==4.5.5
 pymemcache==4.0.0
+django-silk==5.0.3
+gprof2dot==2022.7.29

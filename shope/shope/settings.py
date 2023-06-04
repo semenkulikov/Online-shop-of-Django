@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'cartapp.apps.CartappConfig',
     'taggit',
     'phonenumber_field',
+    'silk',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'shope.urls'
@@ -220,3 +222,4 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_IMPORTS = (
     'shope',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
 )
+SILKY_PYTHON_PROFILER = True
