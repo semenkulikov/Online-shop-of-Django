@@ -91,7 +91,7 @@ class ProductSelectRepository(ProductSelectInterface):
         sorted_products = products.annotate(
             year=Subquery(
                 Specific.objects.filter(
-                    type_spec__name='Год выпуска',
+                    type_spec__name='Год релиза',
                     product=OuterRef('pk')
                 ).values('description'))).order_by(f'{prefix}year')
         return sorted_products
