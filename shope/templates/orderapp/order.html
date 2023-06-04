@@ -162,10 +162,10 @@
                                     {% for item in order.order_items.all %}
                                     <div class="Cart-product">
                                         <div class="Cart-block Cart-block_row">
-                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{item.product.image.url}}" alt="card.jpg" /></a>
+                                            <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{item.product.product_images.first.image.url}}" alt="card.jpg" /></a>
                                             </div>
                                             <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'productsapp:product_detail' item.product.pk %}">{{item.product.name}}</a>
-                                                <div class="Cart-desc">{{item.product.description}}
+                                                <div class="Cart-desc">{{item.product.short_description}}
                                                 </div>
                                             </div>
                                             <div class="Cart-block Cart-block_price">
@@ -190,9 +190,11 @@
                                             <div id="modal" class="modal__overlay">
                                                 <div class="modal__content">
                                                     {{payment_form.as_p}}
-                                                    <div class="total_sum">{{payment_form.total_sum.value}} &#8381;</div>
-                                                    <button class="btn btn_primary" type="submit">Pay</button>
-                                                    <button id="cancel" class="btn btn_primary cancel_btn" type="button">Cancel</button>
+                                                    <div class="payment_bottom">
+                                                        <button class="btn btn_primary" type="submit">Pay</button>
+                                                        <button id="cancel" class="btn btn_primary cancel_btn" type="button">Cancel</button>
+                                                        <span class="total_sum">{{payment_form.total_sum.value}} &#8381;</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
