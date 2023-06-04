@@ -1645,7 +1645,7 @@
       "updated_at": "2023-05-16T17:42:30.882Z",
       "is_active": true,
       "value": "320500.00",
-      "product": 7,
+      "product": 9,
       "seller": 2
     }
   },
@@ -1902,7 +1902,7 @@
       "created_at": "2023-05-16T17:56:59.268Z",
       "updated_at": "2023-05-16T17:56:59.268Z",
       "is_active": true,
-      "product": 7,
+      "product": 9,
       "seller": 2
     }
   },

@@ -99,3 +99,7 @@ class ProductSelectInterface(ABC):
         :return: Словарь, ключ - Product, значение - Discount.
         """
         pass
+
+    def get_all_products_with_main_image(self):
+        """Получить все продукты с картинками"""
+        pass

@@ -25,7 +25,7 @@
                                 </div>
                               </div>
                               <div class="row-block">
-                                <div class="Slider-img"><img src="{{ slider.product.image.url }}" alt="slider.png"/>
+                                <div class="Slider-img"><img src="{{ slider.product.product_images.first.image.url }}" alt="slider.png"/>
                                 </div>
                               </div>
                             </div>
@@ -128,7 +128,7 @@
 
                         {% for product in populars %}
 
-                            <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' product.id %}"><img src="{{ product.image.url }}" alt="card.jpg" /></a>
+                            <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' product.id %}"><img src="{{ product.product_images.first.image.url }}" alt="card.jpg" /></a>
                                 <div class="Card-content">
                                     <strong class="Card-title"><a href="{% url 'productsapp:product_detail' product.id %}">{{ product.name }}</a>
                                     </strong>
