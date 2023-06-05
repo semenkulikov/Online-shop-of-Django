@@ -6,3 +6,4 @@ from .spec_select_intraface import SpecificSelectInterface
 from .viewed_products_interface import ViewedProductsInterface
 from .slider_interface import SliderInterface
 from .banner_interface import BannerInterface
+from .category_select_interface import CategorySelectInterface

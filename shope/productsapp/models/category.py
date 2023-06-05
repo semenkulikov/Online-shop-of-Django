@@ -12,6 +12,18 @@ class Category(BaseModel):
                             blank=True,
                             verbose_name=_("name"))
 
+    image = models.ImageField(
+        upload_to='categories_images/',
+        null=True,
+        blank=True,
+        verbose_name=_('image'))
+
+    icon = models.ImageField(
+        upload_to='categories_icons/',
+        null=True,
+        blank=True,
+        verbose_name=_('icon'))
+
     class Meta:
         verbose_name = _("category")
         verbose_name_plural = _("categories")

@@ -80,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'cartapp.context_processor.cart_block',
                 'productsapp.context_processor.count_comparis_block',
+                'productsapp.context_processor.categories_list',
             ],
         },
     },
