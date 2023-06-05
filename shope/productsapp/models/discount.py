@@ -1,30 +1,6 @@
 from django.db import models
 from coreapp.models import BaseModel
 from productsapp.models.product import Product, Category
-from django.utils.translation import gettext_lazy as _
-
-
-class Discount(BaseModel):
-    """
-    Класс-модель для продуктов со скидками
-    """
-    product = models.ForeignKey(Product,
-                                on_delete=models.CASCADE,
-                                related_name="discounted_products")
-    name = models.CharField(max_length=100,
-                            blank=True,
-                            null=False,
-                            verbose_name=_("name"))
-    start_date = models.DateTimeField(blank=True,
-                                      null=False)
-    expiration_date = models.DateTimeField(blank=True,
-                                           null=True)
-    description = models.TextField(null=True,
-                                   blank=True,
-                                   verbose_name=_("description"))
-
-    def __str__(self):
-        return self.name
 
 
 class BaseDiscount(BaseModel):
@@ -71,6 +47,10 @@ class SetDiscount(BaseDiscount):
         related_name='set_discounts',
         verbose_name='products')
 
+    class Meta:
+        verbose_name = "Set Discount"
+        verbose_name_plural = "Set Discounts"
+
 
 class ProductDiscount(BaseDiscount):
     """ Класс-модель скидки для списка продуктов и категорий"""
@@ -80,7 +60,12 @@ class ProductDiscount(BaseDiscount):
         verbose_name='products')
     categories = models.ManyToManyField(
         Category,
-        related_name='category_discounts')
+        related_name='category_discounts',
+        verbose_name='categories')
+
+    class Meta:
+        verbose_name = "Product Discount"
+        verbose_name_plural = "Product Discounts"
 
 
 class CartDiscount(BaseDiscount):
@@ -94,3 +79,7 @@ class CartDiscount(BaseDiscount):
         null=False,
         blank=True,
         verbose_name='required quantity')
+
+    class Meta:
+        verbose_name = "Cart Discount"
+        verbose_name_plural = "Cart Discounts"

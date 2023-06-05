@@ -1,7 +1,6 @@
-from typing import List, Dict
+from typing import List
 
 from interfaces.product_select_interface import ProductSelectInterface
-from productsapp.models import Discount
 from productsapp.models.product import Product
 from productsapp.models.price import SlicePrice
 from productsapp.models.specific import Specific
@@ -19,7 +18,7 @@ class ProductSelectRepository(ProductSelectInterface):
         """ Получить продукт по id """
         return Product.objects.get(id=product_id)
 
-    def get_products_with_these_id(self, products_id: List[int])\
+    def get_products_with_these_id(self, products_id: List[int]) \
             -> QuerySet[Product]:
         return Product.objects.filter(id__in=products_id)
 
@@ -123,14 +122,6 @@ class ProductSelectRepository(ProductSelectInterface):
             return sort_methods[sort](products, reverse)
         else:  # при некорректном параметре сортировка не применяется
             return products
-
-    def get_all_discounts(self, products_id: List[int]) -> \
-            Dict[Product, QuerySet[Discount]]:
-        products = Product.objects.filter(id__in=products_id)
-        discounts = dict()
-        for product in products:
-            discounts[product] = product.discounted_products
-        return discounts
 
     def get_all_products_with_main_image(self):
         """Получить все продукты с главной картинкой"""
