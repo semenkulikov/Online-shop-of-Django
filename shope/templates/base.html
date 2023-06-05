@@ -169,7 +169,7 @@
                                 {% for category in categories_list %}
                                     <div class="CategoriesButton-link"><a href="{% url 'productsapp:catalog' %}?category={{category.name}}">
                                             <div class="CategoriesButton-icon">
-                                                <!--<img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg" />-->
+                                                <img src="{% if category.icon %}{{category.icon.url}}{% endif %}" alt="1.svg" />
                                             </div>
                                             <span class="CategoriesButton-text">{{category.name}}</span>
                                         </a>
