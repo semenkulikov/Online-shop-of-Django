@@ -16,7 +16,7 @@ urlpatterns = [
     path('catalog/<int:product_id>/', ProductDetailView.as_view(), name="product_detail"),
     path('catalog/<int:product_id>/add_review/', AddReviewView.as_view(), name="add_review"),
     path('catalog/<int:product_id>/add_to_comparison/', AddToComparisonView.as_view(), name="add_to_comparison"),
-    path('catalog/<int:product_id>/export/', export_product_to_xls, name="export_product"),
+    path('catalog/export/', export_product_to_xls, name="export_product"),
     path('comparison/', ProductComparisonView.as_view(), name="comparison"),
     path('sale/',
          TemplateView.as_view(template_name="productsapp/sale.html"))

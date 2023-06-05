@@ -68,6 +68,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="Section-columnSection">
+                        <header class="Section-header">
+                            <strong class="Section-title">{% translate 'Export of all products' %}
+                            </strong>
+                        </header>
+                        <div class="Section-columnContent">
+                            <form action="{% url 'productsapp:export_product' %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn_primary" type="submit">
+                                    {% translate 'Export product' %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="Section-content">
                     <div class="Sort">

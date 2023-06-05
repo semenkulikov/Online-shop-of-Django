@@ -3,25 +3,25 @@
 from django.http import HttpRequest, HttpResponse
 import pandas as pd
 
-from repositories import ProductSelectRepository
+from repositories import OrderRepository
 
-_product_repository = ProductSelectRepository()
+_order_repository = OrderRepository()
 
 
-def export_product_to_xls(request: HttpRequest)\
+def export_orders_to_xls(request: HttpRequest)\
         -> HttpResponse:
-    products = _product_repository.get_all_products()
+    orders = _order_repository.get_all()
     excel_file = BytesIO()
     excel_writer = pd.ExcelWriter(excel_file)
-    for product in products:
+    for order in orders:
         df = pd.DataFrame({
-            **{name_field.name: product.__getattribute__(str(name_field.name))
-               for name_field in product._meta.fields}
-        }, index=[product.pk])
-        df['updated_at'] = product.updated_at.isoformat(sep=" ")
-        df['created_at'] = product.created_at.isoformat(sep=" ")
+            **{name_field.name: order.__getattribute__(str(name_field.name))
+               for name_field in order._meta.fields}
+        }, index=[order.pk])
+        df['updated_at'] = order.updated_at.isoformat(sep=" ")
+        df['created_at'] = order.created_at.isoformat(sep=" ")
 
-        df.to_excel(excel_writer, sheet_name=f'product_data_{product.id}')
+        df.to_excel(excel_writer, sheet_name=f'order_data_{order.id}')
 
     excel_writer.close()
     excel_file.seek(0)
