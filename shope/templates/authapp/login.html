@@ -40,7 +40,7 @@
             {{ form.password }}
         </div>
         <div>
-            <input type="submit" value="Войти"/>
+            <input type="submit" value="{% translate 'Log in' %}"/>
         </div>
         <a class="forgot-label" href="{% url 'authapp:forgot_pass' %}">{% translate 'Forgot your password?' %}</a>
         <a class="registr" href="{% url 'authapp:signup' %}">

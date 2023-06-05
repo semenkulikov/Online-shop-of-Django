@@ -6,7 +6,7 @@ class PaymentForm(forms.Form):
         max_length=19,
         min_length=13,
         required=True,
-        label='card number')
+        label='card number (12-19 digits)')
     card_holder = forms.CharField(
         max_length=30,
         required=True,
@@ -14,18 +14,23 @@ class PaymentForm(forms.Form):
     expiry_date = forms.DateField(
         required=True,
         input_formats=['%m/%y',],
+        widget=forms.DateInput,
         label='expiry date')
     cvv = forms.CharField(
         max_length=3,
         min_length=3,
-        label='CVV/CVC code')
+        widget=forms.PasswordInput,
+        label='CVV/CVC')
     total_sum = forms.DecimalField(
         max_digits=10,
         decimal_places=2,
-        label='total sum (rub.)')
+        widget=forms.HiddenInput,
+        label='total sum (rub.)',
+        required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['total_sum'].widget.attrs['readonly'] = True
         self.label_suffix = ''
         self.fields['expiry_date'].widget.attrs['placeholder'] = 'mm/yy'
+        self.fields['expiry_date'].widget.attrs['class'] = 'input_small'
+        self.fields['cvv'].widget.attrs['class'] = 'input_small'

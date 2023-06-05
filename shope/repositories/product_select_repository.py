@@ -91,7 +91,7 @@ class ProductSelectRepository(ProductSelectInterface):
         sorted_products = products.annotate(
             year=Subquery(
                 Specific.objects.filter(
-                    type_spec__name='Год выпуска',
+                    type_spec__name='Год релиза',
                     product=OuterRef('pk')
                 ).values('description'))).order_by(f'{prefix}year')
         return sorted_products
@@ -131,3 +131,7 @@ class ProductSelectRepository(ProductSelectInterface):
         for product in products:
             discounts[product] = product.discounted_products
         return discounts
+
+    def get_all_products_with_main_image(self):
+        """Получить все продукты с главной картинкой"""
+        return Product.objects.prefetch_related('product_images')

@@ -31,6 +31,11 @@ class Product(BaseModel):
         related_name='category_products'
     )
 
+    is_limited = models.BooleanField(
+        default=False,
+        verbose_name=_('limited')
+    )
+
     class Meta:
         verbose_name = _("product")
         verbose_name_plural = _("products")

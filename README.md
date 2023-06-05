@@ -23,3 +23,8 @@
 # Running imports
     python manage.py run_imports - запустить импорты всех файлов в директории imports/expected_imports
     python manage.py run_imports -p <file_1> <file_2> <file_3> - запустить импорт указанных файлов 
+
+# Running django-silk
+    pip install -r requirements.txt - для установки пакетов django-silk и gprof2dot
+    python manage.py migrate - для миграций silk
+    http://127.0.0.1:8000/silk/requests/ - url адрес для просмотра запросов

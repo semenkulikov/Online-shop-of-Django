@@ -1,4 +1,5 @@
 from django.shortcuts import HttpResponseRedirect, reverse, render
+from django.http import HttpResponseBadRequest
 from django.views.generic import View
 from paymentapp.forms import PaymentForm
 from profileapp.forms import ProfileForm
@@ -35,9 +36,17 @@ class PaymentView(View):
             order_form.save()
             profile_form.save()
 
+            # Если сумма платежа не равна сумме заказа
+            if order.amount != payment_form.cleaned_data['total_sum']:
+                return HttpResponseBadRequest('Payment is incorrect!')
+
+            # удаление пробелов от маски в номере карты
+            card_number = ''.join(
+                payment_form.cleaned_data['card_number'].split(' '))
+
             card = {  # создание объекта карты для проведения платежа
                 'number':
-                    payment_form.cleaned_data['card_number'],
+                    card_number,
                 'cardholder':
                     payment_form.cleaned_data['card_holder'],
                 'csc':
@@ -74,12 +83,13 @@ class PaymentView(View):
                                                 kwargs={'order_pk': order.pk}))
 
         else:
-            total_sum = sum([item.price for item in order.order_items.all()])
+            payment_form = PaymentForm()
+            payment_form.fields['total_sum'].initial = order.amount
+
             context = {
                 'profile_form': profile_form,
                 'order_form': order_form,
                 'payment_form': payment_form,
                 'order': order,
-                'total_sum': total_sum,
             }
             return render(request, 'orderapp/order.html', context=context)
