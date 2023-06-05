@@ -6,6 +6,7 @@ from productsapp.views import (
     ProductComparisonView,
     ProductDetailView,
     AddToComparisonView,
+    RemoveFromComparisonView
 )
 
 app_name = 'productsapp'
@@ -16,6 +17,7 @@ urlpatterns = [
     path('catalog/<int:product_id>/add_review/', AddReviewView.as_view(), name="add_review"),
     path('catalog/<int:product_id>/add_to_comparison/', AddToComparisonView.as_view(), name="add_to_comparison"),
     path('comparison/', ProductComparisonView.as_view(), name="comparison"),
+    path('comparison/<int:product_id>', RemoveFromComparisonView.as_view(), name="remove_from_comp"),
     path('sale/',
          TemplateView.as_view(template_name="productsapp/sale.html"))
 ]
