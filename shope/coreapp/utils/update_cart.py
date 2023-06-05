@@ -45,16 +45,17 @@ class AddToCart:
                 cart_item.update(quantity=F('quantity') + count)
                 # добавление товаров
         else:  # анонимный пользователь
+            key = f'{product_id} {seller_id}'
+            # определение ключа для работы с сессией
             if session_products:  # если есть товары в сессии
-                # в сессии есть уже какие-либо товары
-                if session_products.get(str(product_id)):
-                    # позиция с товаром уже есть
-                    session_products[str(product_id)][0] += count
+                if session_products.get(key):
+                    # позиция с товаром от этого продавца уже есть
+                    session_products[key] += count
                     # увеличить количество на count
                 else:  # позиция с товаром отсутствует
-                    session_products[str(product_id)] = [count, seller_id]
+                    session_products[key] = count
             else:  # в сессии нет товаров
-                session_products = {str(product_id): [count, seller_id]}
+                session_products = {key: count}
             return session_products
 
     @classmethod
@@ -65,28 +66,30 @@ class AddToCart:
         Если есть словарь с товарами из сессии <session_products>,
         то метод вернёт обновлённый словарь для обновления текущей сессии.
         """
-        product = rep_prod.get_product_by_id(product_id)  # продукт по id
-        seller = rep_seller.get_seller(seller_id)  # продавец по id
         if user:  # если пользователь авторизован
+            product = rep_prod.get_product_by_id(product_id)  # продукт по id
+            seller = rep_seller.get_seller(seller_id)  # продавец по id
             cart = rep_cart.get_cart(user)  # корзина пользователя
             cart_item = rep_cart_item. \
                 get_cart_item(cart=cart, product=product, seller=seller)
             # позиция с товаром в корзине
             if full or cart_item.quantity == 1:  # удаление товара из корзины
                 rep_cart_item.delete(cart_item)
-            else:  # уменьшение количества товара на 1
+            else:  # уменьшение количества товара на count
                 cart_item.update(quantity=F('quantity') - count)
         else:
+            key = f'{product_id} {seller_id}'
+            # определение ключа для работы с сессией
             if session_products:  # если есть товары в сессии
-                if full or session_products[str(product_id)][0] == 1:
+                if full or session_products[key] == 1:
                     # удаление товара из корзины
-                    session_products.pop(str(product_id), False)
+                    session_products.pop(key, False)
                 else:  # уменьшение количества на 1
-                    session_products[str(product_id)][0] -= count
+                    session_products[key] -= count
                 return session_products
 
     @classmethod
-    def change_amount(cls, request, product_id, seller_id,
+    def change_amount(cls, product_id, seller_id,
                       count, user=None, session_products=None):
         """
         Изменить количество товара в корзине
@@ -105,7 +108,7 @@ class AddToCart:
             # изменение количества товара в корзине
         else:
             if session_products:  # если есть товары в сессии
-                session_products[str(product_id)][0] = count
+                session_products[f'{product_id} {seller_id}'] = count
                 # изменение количества товара в корзине
                 return session_products
 
@@ -116,22 +119,24 @@ class AddToCart:
         из сессии
         """
         cart = rep_cart.get_cart(user)
-        for product_id in session_products:
-            # цикл по product_id в сессии
+        for item in session_products:
+            # цикл по ключам в сессии
+            product_id, seller_id = item.split()[0], item.split()[1]
             product = rep_prod.get_product_by_id(product_id)  # товар по id
             seller = rep_seller. \
-                get_seller(int(session_products[product_id][1]))
+                get_seller(int(seller_id))  # продавец по id
             cart_item = rep_cart_item. \
                 get_cart_item(cart=cart, product=product, seller=seller)
+            key = f'{product_id} {seller_id}'
             if cart_item:
                 # позиция с этим товаром от этого продавца в корзине уже есть
-                count = session_products[product_id][0]
+                count = session_products[key]
                 cart_item.update(quantity=F('quantity') + count)
             else:
                 rep_cart_item.save(
                     cart=cart,
                     product=product,
                     seller=seller,
-                    quantity=session_products[product_id][0]
+                    quantity=session_products[key]
                 )
             # создание позиций в корзине

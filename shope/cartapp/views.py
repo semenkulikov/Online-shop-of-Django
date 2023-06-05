@@ -9,7 +9,7 @@ from .context_processor import cart_block
 
 class CartItemListView(View):
     """
-    Класс для отображения всех продуктов в корзине
+    Класс для отображения всех товаров в корзине
     """
     template_name = 'cartapp/cart.html'
 
@@ -28,7 +28,7 @@ class CartItemListView(View):
                                     session['products'])
                 # все товары в корзине,
                 # которые есть в сессии
-                count_list = [product[0] for product in
+                count_list = [value for value in
                               request.session['products'].values()]
                 # список количества для каждого товара
                 context = {'items': zip(count_list, items_price),
@@ -38,13 +38,15 @@ class CartItemListView(View):
                 return render(request, self.template_name)
 
 
-class ProductUpdateView(View):
+class UpdateCartView(View):
     """
     Общий класс для выполнения операций с товарами
     """
     method_service = AddToCart.add_to_cart
 
     # метод из сервиса для выполнения нужной операции с корзиной
+    # для работы класса-view обязательно указать метод из сервиса
+    # в противном случае будет ошибка
 
     def get(self, request, **kwargs):
         if request.user.is_authenticated:  # пользователь авторизован
@@ -60,20 +62,20 @@ class ProductUpdateView(View):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-class AddProductCartView(ProductUpdateView):
+class AddToCartView(UpdateCartView):
     """
     Класс для добавления товара в корзину
     """
 
 
-class RemoveProductCartView(ProductUpdateView):
+class RemoveFromCartView(UpdateCartView):
     """
     Класс для удаления товара из корзины
     """
     method_service = AddToCart.delete_from_cart
 
 
-class DeleteItemCartView(ProductUpdateView):
+class DeleteItemCartView(UpdateCartView):
     """
     Класс для удаления позиции с товаром из корзины
     """
@@ -85,7 +87,7 @@ class DeleteItemCartView(ProductUpdateView):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-class ChangeQuantityCartView(ProductUpdateView):
+class ChangeQuantityCartView(UpdateCartView):
     """
     Класс для изменения количества товара в корзине
     """
@@ -101,21 +103,28 @@ class AjaxUpdateCartView(View):
                 # обновляем kwargs
                 kwargs['user'] = request.user
                 kwargs['count'] = request.GET.get('quantity', 1)
-
                 self.method_service(**kwargs)
+                cart_count = SelectCart.\
+                    cart_items_amount(user=request.user)
+                cart_sum = SelectCart.\
+                    cart_total_amount(user=request.user)
 
             else:
 
                 kwargs['session_products'] = request.session.get('products')
                 kwargs['count'] = int(request.GET.get('quantity', 1))
-
                 # есть товары в сессии
                 products = self.method_service(**kwargs)
                 request.session['products'] = products
                 request.session.modified = True
+                cart_count = SelectCart.\
+                    cart_items_amount(session_products=products)
+                cart_sum = SelectCart.\
+                    cart_total_amount(session_products=products)
 
-            context = cart_block(request)
-
+            context = {'cart_count': cart_count,
+                       'cart_sum': cart_sum
+                       }
             return JsonResponse(data=context)
 
 
@@ -128,7 +137,6 @@ class RemoveFromCartAjaxView(AjaxUpdateCartView):
 
 
 class DeleteCartItemAjaxView(AjaxUpdateCartView):
-
     method_service = AddToCart.delete_from_cart
 
     def get(self, request, **kwargs):
