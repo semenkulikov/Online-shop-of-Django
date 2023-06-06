@@ -1,8 +1,6 @@
 from django.contrib import admin
-from productsapp.models.discount import Discount, \
+from productsapp.models.discount import \
     ProductDiscount, SetDiscount, CartDiscount
-
-admin.site.register(Discount)
 
 
 class ProductInline(admin.StackedInline):
