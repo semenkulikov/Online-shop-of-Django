@@ -1,5 +1,6 @@
 from django.urls import path
-from orderapp.views import OrderListView, OrderDetailView, AddOrderView
+from orderapp.views import OrderListView, OrderDetailView, \
+    AddOrderView, export_orders_to_xls
 
 
 app_name = 'orderapp'
@@ -9,4 +10,5 @@ urlpatterns = [
     path('historyorder/', OrderListView.as_view(), name='history_order'),
     path('oneorder/<int:order_pk>/', OrderDetailView.as_view(), name='oneorder'),
     path('', AddOrderView.as_view(), name='add_order'),
+    path('historyorder/export_orders/', export_orders_to_xls, name='export_orders'),
 ]

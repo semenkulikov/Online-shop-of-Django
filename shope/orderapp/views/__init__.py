@@ -2,3 +2,4 @@
 from .orders_list import OrderListView
 from .order_detail import OrderDetailView
 from .add_order import AddOrderView
+from .export_orders import export_orders_to_xls
