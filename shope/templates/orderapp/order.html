@@ -50,14 +50,14 @@
                                 <div class="row-block">
                                     <div class="form-group">
                                         <label class="form-label">{% translate 'FIO' %}
-                                            {{profile_form.fio}}
-                                            {{profile_form.fio.errors}}
+                                            {{order_form.fio}}
+                                            {{order_form.fio.errors}}
                                         </label>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">{% translate 'Phone' %}
-                                            {{profile_form.phone_number}}
-                                            {{profile_form.phone_number.errors}}
+                                            {{order_form.phone_number}}
+                                            {{order_form.phone_number.errors}}
                                         </label>
                                     </div>
                                     <div class="form-group">
@@ -181,8 +181,14 @@
                                     {% endfor %}
                                     <div class="Cart-total">
                                         <div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">{% translate 'Total' %}:
-                                            </strong><span class="Cart-price">{{payment_form.total_sum.value}} &#8381;</span>
+                                            <div>
+                                                <strong class="Cart-title">{% translate 'Delivery' %}:</strong>
+                                                <span class="Cart-price">{{order.delivery_price}} &#8381;</span>
+                                            </div>
+                                            <div>
+                                                <strong class="Cart-title">{% translate 'Total' %}:</strong>
+                                                <span class="Cart-price">{{payment_form.total_sum.value}} &#8381;</span>
+                                            </div>
                                         </div>
                                         <div class="Cart-block">
                                             <button id="btn_open_modal" class="btn btn_primary btn_lg" type="button">{% translate 'Pay' %}

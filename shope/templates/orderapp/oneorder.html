@@ -41,13 +41,13 @@
                                         <div class="Order-info">
                                             <div class="Order-infoType">ФИО:
                                             </div>
-                                            <div class="Order-infoContent">{{ object.user.profile.fio}}
+                                            <div class="Order-infoContent">{{ object.fio}}
                                             </div>
                                         </div>
                                         <div class="Order-info">
                                             <div class="Order-infoType">Телефон:
                                             </div>
-                                            <div class="Order-infoContent">{{ object.user.profile.phone_number}}
+                                            <div class="Order-infoContent">{{ object.phone_number}}
                                             </div>
                                         </div>
                                         <div class="Order-info">
@@ -130,7 +130,7 @@
                                         </strong>
                                     </div>
                                     {% if object.status != "paid" %}
-                                    <div class="Cart-block"><a class="btn btn_primary btn_lg" href="#">Оплатить</a>
+                                    <div class="Cart-block"><a class="btn btn_primary btn_lg" href="{% url 'orderapp:edit_order' object.pk %}">Оплатить</a>
                                     </div>
                                     {% endif %}
                                 </div>
