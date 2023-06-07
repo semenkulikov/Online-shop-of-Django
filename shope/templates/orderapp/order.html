@@ -177,12 +177,18 @@
                                             <div class="Cart-block Cart-block_amount">{{item.count}} шт.
                                             </div>
                                         </div>
+                                        {% if order.order_items.all|length > 1 %}
+                                        <div>
+                                            <a href="{% url 'orderapp:remove_item' order.id item.id %}">{% translate 'Remove' %}</a>
+                                        </div>
+                                        {% endif %}
+
                                     </div>
                                     {% endfor %}
                                     <div class="Cart-total">
                                         <div class="Cart-block Cart-block_total">
                                             <div>
-                                                <strong class="Cart-title">{% translate 'Delivery' %}:</strong>
+                                                <strong class="Cart-title">Доставка:</strong>
                                                 <span class="Cart-price">{{order.delivery_price}} &#8381;</span>
                                             </div>
                                             <div>

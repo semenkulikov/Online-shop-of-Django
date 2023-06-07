@@ -85,8 +85,11 @@
                                         <div class="Order-info Order-info_status">
                                             <div class="Order-infoType">Статус:
                                             </div>
-                                            <div class="Order-infoContent">{{ object.status }}
-                                            </div>
+                                            {% if object.status == "paid" %}
+                                                <div class="Order-infoContent">{% translate 'Paid' %}</div>
+                                            {% else %}
+                                                <div class="Order-infoContent">{% translate 'Not paid for' %}</div>
+                                            {% endif %}
                                         </div>
                                         {% if object.status != "paid" %}
                                         <div class="Order-info Order-info_error">

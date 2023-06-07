@@ -12,3 +12,8 @@ class OrderItemUpdateInterface(ABC):
             cart_items: QuerySet[CartItem]) -> QuerySet[OrderItem]:
         """Создание позиций в заказе на основании позиций в корзине"""
         pass
+
+    @abstractmethod
+    def delete(self, orderitem_id: int) -> None:
+        """Удаление позиции из заказа"""
+        pass
