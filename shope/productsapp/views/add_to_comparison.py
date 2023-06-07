@@ -78,12 +78,16 @@ class AddToComparisonView(View):
         category_in_comp = self._comparison_service.\
             get_comparison_list(request).first()
         cur_category = _product_repo.get_product_by_id(product_id).category
+        error_category = False
         if category_in_comp is None or \
                 category_in_comp.category == cur_category:
             self._comparison_service.add_to_comparison(
                 request=request,
                 product_id=product_id
             )
+        elif category_in_comp and \
+                category_in_comp.category != cur_category:
+            error_category = True
 
         return render(request, self.template_name,
                       context={"product": product,
@@ -92,4 +96,4 @@ class AddToComparisonView(View):
                                "amount_review": amount_review,
                                "reviews_list": reviews_list,
                                "form": self.form_class,
-                               "error_category": True})
+                               "error_category": error_category})

@@ -6,7 +6,7 @@ from productsapp.views import (
     ProductComparisonView,
     ProductDetailView,
     AddToComparisonView,
-    RemoveFromComparisonView
+    RemoveFromComparisonView,
     export_product_to_xls
 )
 
