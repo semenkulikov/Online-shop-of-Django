@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-01 22:36+0300\n"
+"POT-Creation-Date: 2023-06-07 20:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,20 +56,20 @@ msgstr ""
 msgid "email address"
 msgstr ""
 
-#: .\authapp\views.py:78
+#: .\authapp\views.py:74
 msgid ""
 "You have successfully registered. \n"
 "The account activation link has been emailed to you.\n"
 " You must confirm your account within 72 hours."
 msgstr ""
 
-#: .\authapp\views.py:109
+#: .\authapp\views.py:105
 msgid ""
 "An error has occurred. The activation period has expired\n"
 "Try registering again."
 msgstr ""
 
-#: .\cartapp\models\cart.py:16 .\orderapp\models.py:16
+#: .\cartapp\models\cart.py:16 .\orderapp\models.py:17
 #: .\paymentapp\models.py:17 .\paymentapp\models.py:52
 #: .\profileapp\models\profile.py:15 .\profileapp\models\viewed_product.py:16
 msgid "user"
@@ -83,9 +83,9 @@ msgstr ""
 msgid "carts"
 msgstr ""
 
-#: .\cartapp\models\cartitem.py:18 .\orderapp\models.py:65
+#: .\cartapp\models\cartitem.py:18 .\orderapp\models.py:67
 #: .\productsapp\models\images.py:21 .\productsapp\models\price.py:22
-#: .\productsapp\models\product.py:35 .\productsapp\models\seller_items.py:23
+#: .\productsapp\models\product.py:40 .\productsapp\models\seller_items.py:23
 #: .\productsapp\models\slider.py:15
 msgid "product"
 msgstr ""
@@ -130,52 +130,52 @@ msgstr ""
 msgid "Default delivery"
 msgstr ""
 
-#: .\coreapp\enums.py:36 .\templates\productsapp\product.html:163
+#: .\coreapp\enums.py:36 .\templates\productsapp\product.html:169
 msgid "Express delivery"
 msgstr ""
 
-#: .\orderapp\models.py:22
+#: .\orderapp\models.py:23
 msgid "status"
 msgstr ""
 
-#: .\orderapp\models.py:28
+#: .\orderapp\models.py:30
 msgid "city"
 msgstr ""
 
-#: .\orderapp\models.py:33
+#: .\orderapp\models.py:35
 msgid "address"
 msgstr ""
 
-#: .\orderapp\models.py:38
+#: .\orderapp\models.py:40
 msgid "delivery type"
 msgstr ""
 
-#: .\orderapp\models.py:47 .\orderapp\models.py:59 .\paymentapp\models.py:33
+#: .\orderapp\models.py:49 .\orderapp\models.py:61 .\paymentapp\models.py:33
 msgid "order"
 msgstr ""
 
-#: .\orderapp\models.py:48
+#: .\orderapp\models.py:50
 msgid "orders"
 msgstr ""
 
-#: .\orderapp\models.py:70
+#: .\orderapp\models.py:72
 msgid "count"
 msgstr ""
 
-#: .\orderapp\models.py:76 .\productsapp\models\price.py:29
+#: .\orderapp\models.py:78 .\productsapp\models\price.py:29
 #: .\productsapp\models\seller.py:20 .\productsapp\models\seller_items.py:16
 msgid "seller"
 msgstr ""
 
-#: .\orderapp\models.py:82
+#: .\orderapp\models.py:84
 msgid "price"
 msgstr ""
 
-#: .\orderapp\models.py:88
+#: .\orderapp\models.py:90
 msgid "order item"
 msgstr ""
 
-#: .\orderapp\models.py:89
+#: .\orderapp\models.py:91
 msgid "order items"
 msgstr ""
 
@@ -187,7 +187,7 @@ msgstr ""
 #: .\templates\paymentapp\paymentsomeone.html:18
 #: .\templates\paymentapp\paymentsomeone.html:23
 #: .\templates\paymentapp\progressPayment.html:6
-#: .\templates\productsapp\product.html:167
+#: .\templates\productsapp\product.html:173
 #: .\templates\profileapp\account.html:72
 msgid "Payment"
 msgstr ""
@@ -240,7 +240,7 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: .\productsapp\models\banner.py:14 .\productsapp\models\category.py:16
+#: .\productsapp\models\banner.py:14 .\productsapp\models\category.py:22
 #: .\productsapp\models\product.py:30
 msgid "category"
 msgstr ""
@@ -257,18 +257,17 @@ msgstr ""
 msgid "banners"
 msgstr ""
 
-#: .\productsapp\models\category.py:13 .\productsapp\models\discount.py:17
-#: .\productsapp\models\product.py:13 .\productsapp\models\seller.py:13
+#: .\productsapp\models\category.py:13 .\productsapp\models\product.py:13
+#: .\productsapp\models\seller.py:13
 msgid "name"
 msgstr ""
 
-#: .\productsapp\models\category.py:17
-msgid "categories"
+#: .\productsapp\models\category.py:19
+msgid "icon (SVG)"
 msgstr ""
 
-#: .\productsapp\models\discount.py:24 .\productsapp\models\product.py:15
-#: .\productsapp\models\slider.py:21 .\productsapp\models\specific.py:17
-msgid "description"
+#: .\productsapp\models\category.py:23
+msgid "categories"
 msgstr ""
 
 #: .\productsapp\models\images.py:28
@@ -291,6 +290,11 @@ msgstr ""
 msgid "price slices"
 msgstr ""
 
+#: .\productsapp\models\product.py:15 .\productsapp\models\slider.py:21
+#: .\productsapp\models\specific.py:17
+msgid "description"
+msgstr ""
+
 #: .\productsapp\models\product.py:18
 msgid "short_description"
 msgstr ""
@@ -304,6 +308,10 @@ msgid "free_delivery"
 msgstr ""
 
 #: .\productsapp\models\product.py:36
+msgid "limited"
+msgstr ""
+
+#: .\productsapp\models\product.py:41
 msgid "products"
 msgstr ""
 
@@ -393,15 +401,15 @@ msgstr ""
 msgid "viewed products"
 msgstr ""
 
-#: .\profileapp\views.py:36
+#: .\profileapp\views.py:35
 msgid "Profile is updated successfully"
 msgstr ""
 
-#: .\shope\settings.py:138
+#: .\shope\settings.py:169
 msgid "English"
 msgstr ""
 
-#: .\shope\settings.py:139
+#: .\shope\settings.py:170
 msgid "Russian"
 msgstr ""
 
@@ -462,9 +470,13 @@ msgid ""
 "registered account"
 msgstr ""
 
+#: .\templates\authapp\forgot_password.html:36
+msgid "Get a verification code"
+msgstr ""
+
 #: .\templates\authapp\forgot_password.html:39
-#: .\templates\authapp\login.html:32 .\templates\authapp\registr.html:58
-#: .\templates\base.html:90
+#: .\templates\authapp\login.html:32 .\templates\authapp\login.html:43
+#: .\templates\authapp\registr.html:58 .\templates\base.html:90
 msgid "Log in"
 msgstr ""
 
@@ -472,14 +484,22 @@ msgstr ""
 msgid "Forgot your password?"
 msgstr ""
 
-#: .\templates\base.html:93 .\templates\base.html:136
+#: .\templates\authapp\registr.html:56
+msgid "Register"
+msgstr ""
+
+#: .\templates\authapp\set_password.html:36
+msgid "Save password"
+msgstr ""
+
+#: .\templates\base.html:93 .\templates\base.html:153
 #: .\templates\profileapp\account.html:25
 #: .\templates\profileapp\profile.html:27
 #: .\templates\profileapp\profileAvatar.html:36
 msgid "Private Office"
 msgstr ""
 
-#: .\templates\base.html:120 .\templates\base.html:710
+#: .\templates\base.html:120 .\templates\base.html:736
 #: .\templates\paymentapp\paymentsomeone.html:21
 #: .\templates\paymentapp\progressPayment.html:21
 #: .\templates\productsapp\sale.html:20
@@ -487,105 +507,105 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: .\templates\base.html:122 .\templates\base.html:194
+#: .\templates\base.html:122 .\templates\base.html:220
 msgid "Discounts"
 msgstr ""
 
-#: .\templates\base.html:122 .\templates\base.html:712
+#: .\templates\base.html:122 .\templates\base.html:738
 msgid "Catalog"
 msgstr ""
 
-#: .\templates\base.html:124 .\templates\base.html:714
+#: .\templates\base.html:124 .\templates\base.html:740
 msgid "Comparison"
 msgstr ""
 
-#: .\templates\base.html:137
+#: .\templates\base.html:154
 msgid "Administrative section"
 msgstr ""
 
-#: .\templates\base.html:138
+#: .\templates\base.html:155
 msgid "Output"
 msgstr ""
 
-#: .\templates\base.html:150
+#: .\templates\base.html:167
 msgid "Show navigation"
 msgstr ""
 
-#: .\templates\base.html:164
+#: .\templates\base.html:181
 msgid "All categories"
 msgstr ""
 
-#: .\templates\base.html:171
+#: .\templates\base.html:197
 msgid "Televisions"
 msgstr ""
 
-#: .\templates\base.html:176
+#: .\templates\base.html:202
 msgid "Headphones"
 msgstr ""
 
-#: .\templates\base.html:181
+#: .\templates\base.html:207
 msgid "Washing machines"
 msgstr ""
 
-#: .\templates\base.html:185 .\templates\base.html:241
+#: .\templates\base.html:211 .\templates\base.html:267
 msgid "Accessories"
 msgstr ""
 
-#: .\templates\base.html:188
+#: .\templates\base.html:214
 msgid "Covers"
 msgstr ""
 
-#: .\templates\base.html:199
+#: .\templates\base.html:225
 msgid "Electronics"
 msgstr ""
 
-#: .\templates\base.html:204
+#: .\templates\base.html:230
 msgid "Cameras"
 msgstr ""
 
-#: .\templates\base.html:209
+#: .\templates\base.html:235
 msgid "Fittings"
 msgstr ""
 
-#: .\templates\base.html:213 .\templates\base.html:222
+#: .\templates\base.html:239 .\templates\base.html:248
 msgid "Mobile phones"
 msgstr ""
 
-#: .\templates\base.html:216 .\templates\base.html:244
+#: .\templates\base.html:242 .\templates\base.html:270
 msgid "Bags"
 msgstr ""
 
-#: .\templates\base.html:227
+#: .\templates\base.html:253
 msgid "Microwave ovens"
 msgstr ""
 
-#: .\templates\base.html:232
+#: .\templates\base.html:258
 msgid "Kitchen appliances"
 msgstr ""
 
-#: .\templates\base.html:237
+#: .\templates\base.html:263
 msgid "Floor lamps"
 msgstr ""
 
-#: .\templates\base.html:370 .\templates\index.html:79
+#: .\templates\base.html:396 .\templates\index.html:79
 msgid "LIMITED OFFER"
 msgstr ""
 
-#: .\templates\base.html:415 .\templates\index.html:124
+#: .\templates\base.html:441 .\templates\index.html:124
 msgid "Popular products"
 msgstr ""
 
-#: .\templates\base.html:540 .\templates\index.html:249
+#: .\templates\base.html:566 .\templates\index.html:159
 msgid "Limited edition"
 msgstr ""
 
-#: .\templates\base.html:707 .\templates\profileapp\account.html:19
+#: .\templates\base.html:733 .\templates\profileapp\account.html:19
 #: .\templates\profileapp\profile.html:21
 #: .\templates\profileapp\profileAvatar.html:30
 msgid "Navigation"
 msgstr ""
 
-#: .\templates\base.html:716 .\templates\profileapp\account.html:27
+#: .\templates\base.html:742 .\templates\profileapp\account.html:27
 #: .\templates\profileapp\profile.html:5 .\templates\profileapp\profile.html:29
 #: .\templates\profileapp\profileAvatar.html:14
 #: .\templates\profileapp\profileAvatar.html:19
@@ -593,24 +613,28 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: .\templates\base.html:722
+#: .\templates\base.html:748
 msgid "Contact"
 msgstr ""
 
-#: .\templates\cartapp\cart.html:37 .\templates\cartapp\cart.html:96
+#: .\templates\cartapp\cart.html:37 .\templates\cartapp\cart.html:97
 msgid "Seller"
 msgstr ""
 
-#: .\templates\cartapp\cart.html:75 .\templates\cartapp\cart.html:134
+#: .\templates\cartapp\cart.html:75 .\templates\cartapp\cart.html:135
 #: .\templates\orderapp\order.html:184
 msgid "Total"
 msgstr ""
 
-#: .\templates\cartapp\cart.html:78 .\templates\cartapp\cart.html:137
+#: .\templates\cartapp\cart.html:79
+msgid "Log in to continue"
+msgstr ""
+
+#: .\templates\cartapp\cart.html:138
 msgid "Place an order"
 msgstr ""
 
-#: .\templates\cartapp\cart.html:143
+#: .\templates\cartapp\cart.html:144
 msgid "No products in cart"
 msgstr ""
 
@@ -623,7 +647,7 @@ msgid "from"
 msgstr ""
 
 #: .\templates\orderapp\historyorder.html:50
-#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:161
+#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:167
 #: .\templates\profileapp\account.html:66
 msgid "Type of delivery"
 msgstr ""
@@ -636,6 +660,10 @@ msgstr ""
 #: .\templates\orderapp\historyorder.html:66
 #: .\templates\profileapp\account.html:84
 msgid "Status"
+msgstr ""
+
+#: .\templates\orderapp\historyorder.html:80
+msgid "Export orders"
 msgstr ""
 
 #: .\templates\orderapp\order.html:46
@@ -723,25 +751,33 @@ msgstr ""
 msgid "Popular tags"
 msgstr ""
 
-#: .\templates\productsapp\catalog.html:74
-msgid "Sort by"
+#: .\templates\productsapp\catalog.html:73
+msgid "Export of all products"
 msgstr ""
 
 #: .\templates\productsapp\catalog.html:80
+msgid "Export product"
+msgstr ""
+
+#: .\templates\productsapp\catalog.html:88
+msgid "Sort by"
+msgstr ""
+
+#: .\templates\productsapp\catalog.html:94
 msgid "Popularity"
 msgstr ""
 
-#: .\templates\productsapp\catalog.html:82
+#: .\templates\productsapp\catalog.html:96
 msgid "Price"
 msgstr ""
 
-#: .\templates\productsapp\catalog.html:84
-#: .\templates\productsapp\product.html:111
-#: .\templates\productsapp\product.html:203
+#: .\templates\productsapp\catalog.html:98
+#: .\templates\productsapp\product.html:117
+#: .\templates\productsapp\product.html:209
 msgid "Reviews"
 msgstr ""
 
-#: .\templates\productsapp\catalog.html:86
+#: .\templates\productsapp\catalog.html:100
 msgid "Novelty"
 msgstr ""
 
@@ -762,90 +798,100 @@ msgid "No common characteristics"
 msgstr ""
 
 #: .\templates\productsapp\comparison.html:140
-#: .\templates\productsapp\product.html:108
-#: .\templates\productsapp\product.html:126
+#: .\templates\productsapp\product.html:114
+#: .\templates\productsapp\product.html:132
 msgid "Characteristic"
 msgstr ""
 
 #: .\templates\productsapp\comparison.html:141
-#: .\templates\productsapp\product.html:128
+#: .\templates\productsapp\product.html:134
 msgid "Value"
 msgstr ""
 
 #: .\templates\productsapp\comparison.html:223
-#: .\templates\productsapp\product.html:69
+#: .\templates\productsapp\product.html:70
 msgid "Add to cart"
 msgstr ""
 
-#: .\templates\productsapp\product.html:76
+#: .\templates\productsapp\comparison.html:230
+msgid "Remove from comparison"
+msgstr ""
+
+#: .\templates\productsapp\product.html:77
 msgid "Congratulations"
 msgstr ""
 
-#: .\templates\productsapp\product.html:80
+#: .\templates\productsapp\product.html:81
 msgid "Product successfully added to cart"
 msgstr ""
 
-#: .\templates\productsapp\product.html:89
+#: .\templates\productsapp\product.html:90
 msgid "Add to comparison"
 msgstr ""
 
-#: .\templates\productsapp\product.html:94
+#: .\templates\productsapp\product.html:95
+msgid ""
+"Adding error! You cannot add products from different categories to the "
+"comparison list"
+msgstr ""
+
+#: .\templates\productsapp\product.html:100
 msgid "Tags"
 msgstr ""
 
-#: .\templates\productsapp\product.html:102
+#: .\templates\productsapp\product.html:108
 msgid "Description"
 msgstr ""
 
-#: .\templates\productsapp\product.html:105
+#: .\templates\productsapp\product.html:111
 msgid "Sellers"
 msgstr ""
 
-#: .\templates\productsapp\product.html:132
+#: .\templates\productsapp\product.html:138
 msgid "Device type"
 msgstr ""
 
-#: .\templates\productsapp\product.html:134
+#: .\templates\productsapp\product.html:140
 msgid "Notebook"
 msgstr ""
 
-#: .\templates\productsapp\product.html:155
+#: .\templates\productsapp\product.html:161
 msgid "Buy"
 msgstr ""
 
-#: .\templates\productsapp\product.html:163
+#: .\templates\productsapp\product.html:169
 msgid "Ordinary delivery"
 msgstr ""
 
-#: .\templates\productsapp\product.html:169
+#: .\templates\productsapp\product.html:175
 msgid "Online card"
 msgstr ""
 
-#: .\templates\productsapp\product.html:173
+#: .\templates\productsapp\product.html:179
 msgid "Cost"
 msgstr ""
 
-#: .\templates\productsapp\product.html:242
+#: .\templates\productsapp\product.html:248
 msgid "Show more"
 msgstr ""
 
-#: .\templates\productsapp\product.html:250
+#: .\templates\productsapp\product.html:256
 msgid "Add review"
 msgstr ""
 
-#: .\templates\productsapp\product.html:256
+#: .\templates\productsapp\product.html:262
 msgid "Review has been successfully added"
 msgstr ""
 
-#: .\templates\productsapp\product.html:268
+#: .\templates\productsapp\product.html:274
 msgid "Send review"
 msgstr ""
 
-#: .\templates\productsapp\product.html:275
+#: .\templates\productsapp\product.html:281
 msgid "To leave a review you need to"
 msgstr ""
 
-#: .\templates\productsapp\product.html:276
+#: .\templates\productsapp\product.html:282
 msgid "log on"
 msgstr ""
 
