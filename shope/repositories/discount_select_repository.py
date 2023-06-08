@@ -48,5 +48,5 @@ class DiscountRepository(DiscountInterface):
         cart_discount = CartDiscount.objects.filter(
             start_date__lte=date_now, expiration_date__gte=date_now,
             is_active=True).order_by('-priority') \
-            .values('required_sum', 'required_quantity').first()
+            .values('required_sum', 'required_quantity', 'value').first()
         return cart_discount
