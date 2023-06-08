@@ -6,3 +6,4 @@ from .product_detail_view import ProductDetailView
 from .add_to_comparison import AddToComparisonView
 from .export_product import export_product_to_xls
 from .remove_from_comparison import RemoveFromComparisonView
+from .product_search_view import ProductSearchView

@@ -7,13 +7,15 @@ from productsapp.views import (
     ProductDetailView,
     AddToComparisonView,
     RemoveFromComparisonView,
-    export_product_to_xls
+    export_product_to_xls,
+    ProductSearchView,
 )
 
 app_name = 'productsapp'
 
 urlpatterns = [
     path('catalog/', ProductListView.as_view(), name="catalog"),
+    path('catalog/search/', ProductSearchView.as_view(), name="product_search"),
     path('catalog/<int:product_id>/', ProductDetailView.as_view(), name="product_detail"),
     path('catalog/<int:product_id>/add_review/', AddReviewView.as_view(), name="add_review"),
     path('catalog/<int:product_id>/add_to_comparison/', AddToComparisonView.as_view(), name="add_to_comparison"),
