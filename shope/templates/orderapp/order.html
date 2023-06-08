@@ -159,7 +159,7 @@
                                     </div>
                                 </div>
                                 <div class="Cart Cart_order">
-                                    {% for item in order.order_items.all %}
+                                    {% for item in order_items %}
                                     <div class="Cart-product">
                                         <div class="Cart-block Cart-block_row">
                                             <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{item.product.product_images.first.image.url}}" alt="card.jpg" /></a>
@@ -177,7 +177,7 @@
                                             <div class="Cart-block Cart-block_amount">{{item.count}} шт.
                                             </div>
                                         </div>
-                                        {% if order.order_items.all|length > 1 %}
+                                        {% if order_items|length > 1 %}
                                         <div>
                                             <a href="{% url 'orderapp:remove_item' order.id item.id %}">{% translate 'Remove' %}</a>
                                         </div>

@@ -3,9 +3,10 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from orderapp.forms import OrderForm
 from paymentapp.forms import PaymentForm
-from repositories import OrderRepository
+from repositories import OrderRepository, OrderItemSelectRepository
 
 order_rep = OrderRepository()
+orderitem_rep = OrderItemSelectRepository()
 
 
 class EditOrderView(LoginRequiredMixin, View):
@@ -15,6 +16,7 @@ class EditOrderView(LoginRequiredMixin, View):
 
     def get(self, request, **kwargs):
         order = order_rep.get_order_by_id(kwargs['order_pk'])
+        order_items = orderitem_rep.get_all_items(order=order)
 
         # Предзаполняем заказ данными из профиля
         if not (order.fio and order.phone_number):
@@ -31,5 +33,6 @@ class EditOrderView(LoginRequiredMixin, View):
             'order_form': order_form,
             'payment_form': payment_form,
             'order': order,
+            'order_items': order_items,
         }
         return render(request, self.template_name, context)

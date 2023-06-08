@@ -7,11 +7,13 @@ from coreapp.utils.payment import Payment
 from repositories import OrderRepository
 from repositories import OrderUpdateRepository
 from repositories import PaymentUpdateRepository
+from repositories import OrderItemSelectRepository
 from coreapp.enums import SUCCEDED_STATUS, PAID_STATUS
 
 order_rep = OrderRepository()
 order_upd_rep = OrderUpdateRepository()
 payment_upd_rep = PaymentUpdateRepository()
+orderitem_rep = OrderItemSelectRepository()
 
 
 class PaymentView(View):
@@ -78,6 +80,8 @@ class PaymentView(View):
                                                 kwargs={'order_pk': order.pk}))
 
         else:
+            order_items = orderitem_rep.get_all_items(order=order)
+
             payment_form = PaymentForm()
             payment_form.fields[
                 'total_sum'].initial = order.amount + order.delivery_price
@@ -86,5 +90,6 @@ class PaymentView(View):
                 'order_form': order_form,
                 'payment_form': payment_form,
                 'order': order,
+                'order_items': order_items,
             }
             return render(request, 'orderapp/order.html', context=context)

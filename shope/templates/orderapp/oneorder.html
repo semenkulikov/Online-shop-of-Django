@@ -105,7 +105,7 @@
                             <div class="Cart Cart_order">
 
 
-                                    {% for order_item in object.order_items.all %}
+                                    {% for order_item in order_items %}
                                         <div class="Cart-product">
                                         <div class="Cart-block Cart-block_row">
                                         <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{ order_item.product.product_images.first.image.url }}" alt="card.jpg" /></a>
@@ -129,7 +129,9 @@
 
                                 <div class="Cart-total">
                                     <div class="Cart-block Cart-block_total">
-                                        <strong class="Cart-title">Итого:<span class="Cart-price">{{ order.amount }}&#8381;</span>
+                                        <strong class="Cart-title">Доставка:<span class="Cart-price">{{ order.delivery_price }} &#8381;</span>
+                                        </strong>
+                                        <strong class="Cart-title">Итого:<span class="Cart-price">{{ order.amount|add:order.delivery_price }} &#8381;</span>
                                         </strong>
                                     </div>
                                     {% if object.status != "paid" %}

@@ -29,4 +29,4 @@ class OrderItemUpdateRepository(OrderItemUpdateInterface):
 
     def delete(self, orderitem_id: int) -> None:
         """Удаление позиции из заказа"""
-        OrderItem.objects.filter(id=orderitem_id).delete()
+        OrderItem.objects.filter(id=orderitem_id).update(is_active=False)
