@@ -18,7 +18,7 @@ class ProductComparisonView(View):
     _service = ProductsComparisonList()
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        products = self._service.get_comparison_list(request)
+        products = self._service.get_comparison_list(request) or []
         for product in products:
             product_price = _price_repository. \
                 get_min_price_object(product=product)
@@ -51,7 +51,7 @@ class ProductComparisonView(View):
                       })
 
     def post(self, request: HttpRequest):
-        products = self._service.get_comparison_list(request)
+        products = self._service.get_comparison_list(request) or []
         for product in products:
             product_price = _price_repository. \
                 get_min_price_object(product=product)

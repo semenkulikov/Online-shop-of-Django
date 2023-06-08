@@ -138,7 +138,7 @@
                                         <div class="Card-category">{{ product.category.name }}
                                         </div>
 
-                                        <div class="Card-hover"><a class="Card-btn" href="{% url 'cartapp:add_product' product.pk product.seller_id %}"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
+                                        <div class="Card-hover"><a class="Card-btn" onclick="AddToCart('{% url 'cartapp:ajax_add_product' product.pk product.seller_id %}')"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                                                     </div>
                                                     <div class="Card-category">{{ product.category.name }}
                                                     </div>
-                                                    <div class="Card-hover"><a class="Card-btn" href="{% url 'cartapp:add_product' product.pk product.seller_id %}"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
+                                                    <div class="Card-hover"><a class="Card-btn" onclick="AddToCart('{% url 'cartapp:ajax_add_product' product.pk product.seller_id %}')"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
                                                     </div>
                                                 </div>
                                             </div>

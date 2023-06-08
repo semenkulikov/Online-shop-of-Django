@@ -90,6 +90,11 @@
                                     {% translate 'Add to comparison' %}
                                 </button>
                             </form>
+                            <div class="ProductCard-text">
+                                {% if error_category %}
+                                    {% translate 'Adding error! You cannot add products from different categories to the comparison list' %}
+                                {% endif %}
+                            </div>
                             <div class="ProductCard-footer">
                                 <div class="ProductCard-tags">
                                     <strong class="ProductCard-tagsTitle">{% translate 'Tags' %}: {{ product.tags }}</strong>
