@@ -2,17 +2,18 @@ from django.shortcuts import HttpResponseRedirect, reverse, render
 from django.http import HttpResponseBadRequest
 from django.views.generic import View
 from paymentapp.forms import PaymentForm
-from profileapp.forms import ProfileForm
 from orderapp.forms import OrderForm
 from coreapp.utils.payment import Payment
 from repositories import OrderRepository
 from repositories import OrderUpdateRepository
 from repositories import PaymentUpdateRepository
+from repositories import OrderItemSelectRepository
 from coreapp.enums import SUCCEDED_STATUS, PAID_STATUS
 
 order_rep = OrderRepository()
 order_upd_rep = OrderUpdateRepository()
 payment_upd_rep = PaymentUpdateRepository()
+orderitem_rep = OrderItemSelectRepository()
 
 
 class PaymentView(View):
@@ -23,21 +24,17 @@ class PaymentView(View):
         order_form = OrderForm(
             request.POST,
             instance=order)
-        profile_form = ProfileForm(
-            request.POST,
-            instance=self.request.user.profile)
         payment_form = PaymentForm(
             request.POST)
 
         if all((order_form.is_valid(),
-                profile_form.is_valid(),
                 payment_form.is_valid())):
 
             order_form.save()
-            profile_form.save()
 
             # Если сумма платежа не равна сумме заказа
-            if order.amount != payment_form.cleaned_data['total_sum']:
+            if order.amount + order.delivery_price != \
+                    payment_form.cleaned_data['total_sum']:
                 return HttpResponseBadRequest('Payment is incorrect!')
 
             # удаление пробелов от маски в номере карты
@@ -83,13 +80,16 @@ class PaymentView(View):
                                                 kwargs={'order_pk': order.pk}))
 
         else:
+            order_items = orderitem_rep.get_all_items(order=order)
+
             payment_form = PaymentForm()
-            payment_form.fields['total_sum'].initial = order.amount
+            payment_form.fields[
+                'total_sum'].initial = order.amount + order.delivery_price
 
             context = {
-                'profile_form': profile_form,
                 'order_form': order_form,
                 'payment_form': payment_form,
                 'order': order,
+                'order_items': order_items,
             }
             return render(request, 'orderapp/order.html', context=context)

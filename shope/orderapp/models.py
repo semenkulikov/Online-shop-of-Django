@@ -5,6 +5,7 @@ from productsapp.models import Seller, Product
 from coreapp.enums import ORDER_STATUSES, DELIVERY_TYPE, \
     DEFAULT, NOT_PAID_STATUS
 from django.utils.translation import gettext_lazy as _
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Order(BaseModel):
@@ -16,6 +17,16 @@ class Order(BaseModel):
         on_delete=models.CASCADE,
         verbose_name=_('user'),
         related_name='orders'
+    )
+
+    fio = models.CharField(
+        max_length=100,
+        verbose_name=_('FIO')
+    )
+
+    phone_number = PhoneNumberField(
+        blank=True,
+        verbose_name=_('phone number')
     )
 
     status = models.CharField(

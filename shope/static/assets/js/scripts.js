@@ -894,8 +894,8 @@ const modal = document.getElementById('modal');
 const cancelBtn = document.getElementById('cancel');
 
 nextStep.onclick = () => {
-    document.querySelector('#order_fio').textContent = document.querySelector('#id_fio').value;
-    document.querySelector('#order_phone_number').textContent = document.querySelector('#id_phone_number').value;
+    document.querySelector('#order_fio').textContent = document.querySelector('#fio').value;
+    document.querySelector('#order_phone_number').textContent = document.querySelector('#phone_number').value;
     document.querySelector('#order_delivery_type').textContent = document.querySelector('input[name=delivery_type]:checked').value;
     document.querySelector('#order_city').textContent = document.querySelector('#city').value;
     document.querySelector('#order_address').textContent = document.querySelector('#address').value;
