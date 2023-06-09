@@ -19,11 +19,9 @@ class ProductSearchView(View):
         text = request.POST.get("query")
         if text:
             products = product_repositories.\
-                get_all_products_by_name_match(text)
-            for product in products:
-                min_price = price_repo.get_min_price_object(product)
-                product.seller_id = min_price.seller_id
-                product.price = min_price.value
+                get_all_products_by_name_match(name=text)
+            products = product_repositories.get_product_prices(products)
+
             return render(request, "productsapp/catalog.html", context={
                 "page_obj": products,
             })
