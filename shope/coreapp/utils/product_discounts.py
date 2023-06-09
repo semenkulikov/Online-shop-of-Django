@@ -1,12 +1,8 @@
-from typing import List, Dict
-
-from django.db.models import QuerySet
-from productsapp.models import Product, Discount
-
 from repositories.product_select_repository import ProductSelectRepository
-
+from repositories.discount_select_repository import DiscountRepository
 
 _product_repository = ProductSelectRepository()
+discount_rep = DiscountRepository()
 
 
 class ProductDiscounts:
@@ -14,25 +10,28 @@ class ProductDiscounts:
     Сервис получения скидок на товары
     """
 
-    @staticmethod
-    def all_discounts(products_id: List[int]) -> \
-            Dict[Product, QuerySet[Discount]]:
+    @classmethod
+    def get_discounted_price_on_product(cls, price, product, category):
         """
-        Получение всех скидок на указанный список товаров или на один товар.
+        Рассчитать скидку на товар или категорию.
+        Возвращает цену на товар/категорию со скидкой
         """
-        discounts = _product_repository.get_all_discounts(products_id)
-        return discounts
+        discount = discount_rep. \
+            get_discount_by_product_or_category(product=product,
+                                                category=category)
+        price -= price * discount / 100
+        return price
 
-    def priority_discount(self):
+    @classmethod
+    def get_discounted_cart_price(cls, cart_price, count):
         """
-        Получение приоритетной скидки на указанный список товаров
-        или на один товар
+        Рассчитать цену корзины с учётом скидки
         """
         pass
 
-    def discounted_price(self):
+    @classmethod
+    def get_discounted_set_price(cls):
         """
-        Рассчитать цену со скидкой на товар с дополнительным
-        необязательным параметром 'Цена товара'
+        Получить скидку на набор товаров
         """
         pass

@@ -107,3 +107,9 @@ class RepCartItem(CartItemInterface):
         Удаление всей позиции с товаром
         """
         cart_item.update(is_active=False)
+
+    def get_count_cart_items(self, cart: Cart) -> int:
+        """
+        Получение количества позиций с товаром
+        """
+        return cart.cartitems.count()

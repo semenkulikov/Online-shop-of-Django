@@ -60,3 +60,7 @@ class CartItemInterface(ABC):
     @abstractmethod
     def delete(self, cart_item: CartItem) -> None:
         pass
+
+    @abstractmethod
+    def get_count_cart_items(self, cart: Cart) -> int:
+        pass

@@ -1,9 +1,12 @@
-﻿from django.db.models import Avg
+﻿from django.db.models import Avg, Min
 from interfaces.price_interface import PriceInterface
 from productsapp.models import Product, SlicePrice, Seller
 
 
 class PriceRepository(PriceInterface):
+    """
+    Репозиторий для работы с ценами на товары
+    """
 
     def get_avg_prices(self, product: Product) -> int:
         average_price = SlicePrice.objects.filter(
@@ -15,11 +18,12 @@ class PriceRepository(PriceInterface):
 
     def get_min_price_object(self, product: Product) -> SlicePrice:
         """
-        Возвращает SlicePrice продукта у которого минимальная цена
+        Возвращает SlicePrice продукта, у которого минимальная цена
         """
-        min_price = SlicePrice.objects.filter(
-            product=product, is_active=True
-        ).select_related('product', 'seller').order_by('value').first()
+        min_price = SlicePrice.objects. \
+            filter(product=product, is_active=True). \
+            annotate(min_value=Min('value')). \
+            latest('updated_at', 'min_value')
         return min_price
 
     def get_price(self, product: Product, seller: Seller) -> float:
