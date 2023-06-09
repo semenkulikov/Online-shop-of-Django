@@ -23,13 +23,15 @@ class ProductDiscounts:
         return price
 
     @classmethod
-    def get_discounted_cart_price(cls, cart_price):
+    def get_discounted_cart_price(cls, cart_price, count):
         """
         Рассчитать цену корзины с учётом скидки
         """
+        pass
 
     @classmethod
     def get_discounted_set_price(cls):
         """
         Получить скидку на набор товаров
         """
+        pass
