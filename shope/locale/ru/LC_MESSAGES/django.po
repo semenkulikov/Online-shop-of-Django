@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-07 20:27+0300\n"
+"POT-Creation-Date: 2023-06-08 16:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: \n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\authapp\apps.py:9
 msgid "Users"
@@ -231,7 +231,7 @@ msgstr "идентификатор метода оплаты"
 msgid "card type"
 msgstr "тип карты"
 
-#: .\paymentapp\models.py:63
+#: .\paymentapp\models.py:63 .\productsapp\models\discount.py:26
 msgid "expiration date"
 msgstr "срок действия"
 
@@ -264,8 +264,8 @@ msgstr "баннер"
 msgid "banners"
 msgstr "баннеры"
 
-#: .\productsapp\models\category.py:13 .\productsapp\models\product.py:13
-#: .\productsapp\models\seller.py:13
+#: .\productsapp\models\category.py:13 .\productsapp\models\discount.py:13
+#: .\productsapp\models\product.py:13 .\productsapp\models\seller.py:13
 msgid "name"
 msgstr "название"
 
@@ -273,9 +273,63 @@ msgstr "название"
 msgid "icon (SVG)"
 msgstr "значок (SVG)"
 
-#: .\productsapp\models\category.py:23
+#: .\productsapp\models\category.py:23 .\productsapp\models\discount.py:65
 msgid "categories"
 msgstr "категории"
+
+#: .\productsapp\models\discount.py:18 .\productsapp\models\price.py:15
+msgid "value"
+msgstr "значение"
+
+#: .\productsapp\models\discount.py:22
+msgid "start date"
+msgstr "дата начала"
+
+#: .\productsapp\models\discount.py:31 .\productsapp\models\product.py:15
+#: .\productsapp\models\slider.py:21 .\productsapp\models\specific.py:17
+msgid "description"
+msgstr "описание"
+
+#: .\productsapp\models\discount.py:35
+msgid "priority"
+msgstr "приоритет"
+
+#: .\productsapp\models\discount.py:49 .\productsapp\models\discount.py:61
+#: .\productsapp\models\product.py:41
+msgid "products"
+msgstr "товары"
+
+#: .\productsapp\models\discount.py:52
+msgid "Set Discount"
+msgstr "Скидка на набор товаров"
+
+#: .\productsapp\models\discount.py:53
+msgid "Set Discounts"
+msgstr "Скидки на наборы товаров"
+
+#: .\productsapp\models\discount.py:68
+msgid "Product Discount"
+msgstr "Скидка на товары"
+
+#: .\productsapp\models\discount.py:69
+msgid "Product Discounts"
+msgstr "Скидки на товары"
+
+#: .\productsapp\models\discount.py:78
+msgid "required sum"
+msgstr "необходимая сумма"
+
+#: .\productsapp\models\discount.py:82
+msgid "required quantity"
+msgstr "необходимое количество"
+
+#: .\productsapp\models\discount.py:85
+msgid "Cart Discount"
+msgstr "Скидка на корзину"
+
+#: .\productsapp\models\discount.py:86
+msgid "Cart Discounts"
+msgstr "Скидки на корзину"
 
 #: .\productsapp\models\images.py:28
 msgid "product image"
@@ -285,10 +339,6 @@ msgstr "Фотография товара"
 msgid "product images"
 msgstr "Фотографии продукта"
 
-#: .\productsapp\models\price.py:15
-msgid "value"
-msgstr "значение"
-
 #: .\productsapp\models\price.py:36
 msgid "price slice"
 msgstr "ценовой срез"
@@ -296,11 +346,6 @@ msgstr "ценовой срез"
 #: .\productsapp\models\price.py:37
 msgid "price slices"
 msgstr "ценовые срезы"
-
-#: .\productsapp\models\product.py:15 .\productsapp\models\slider.py:21
-#: .\productsapp\models\specific.py:17
-msgid "description"
-msgstr "описание"
 
 #: .\productsapp\models\product.py:18
 msgid "short_description"
@@ -317,10 +362,6 @@ msgstr "бесплатная доставка"
 #: .\productsapp\models\product.py:36
 msgid "limited"
 msgstr ""
-
-#: .\productsapp\models\product.py:41
-msgid "products"
-msgstr "товары"
 
 #: .\productsapp\models\review.py:21
 msgid "text"
@@ -617,7 +658,8 @@ msgid "Navigation"
 msgstr "Навигация"
 
 #: .\templates\base.html:742 .\templates\profileapp\account.html:27
-#: .\templates\profileapp\profile.html:5 .\templates\profileapp\profile.html:29
+#: .\templates\profileapp\profile.html:5
+#: .\templates\profileapp\profile.html:29
 #: .\templates\profileapp\profileAvatar.html:14
 #: .\templates\profileapp\profileAvatar.html:19
 #: .\templates\profileapp\profileAvatar.html:38
@@ -639,7 +681,7 @@ msgstr "Итого"
 
 #: .\templates\cartapp\cart.html:79
 msgid "Log in to continue"
-msgstr ""
+msgstr "Войдите, чтобы продолжить"
 
 #: .\templates\cartapp\cart.html:138
 msgid "Place an order"
@@ -658,7 +700,8 @@ msgid "from"
 msgstr ""
 
 #: .\templates\orderapp\historyorder.html:50
-#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:167
+#: .\templates\orderapp\order.html:135
+#: .\templates\productsapp\product.html:167
 #: .\templates\profileapp\account.html:66
 msgid "Type of delivery"
 msgstr "Тип доставки"
@@ -769,8 +812,6 @@ msgid "Export of all products"
 msgstr "Экспорт всех продуктов"
 
 #: .\templates\productsapp\catalog.html:80
-#, fuzzy
-#| msgid "Popular products"
 msgid "Export product"
 msgstr "Экспорт продукта"
 
@@ -850,7 +891,9 @@ msgstr "Добавить в сравнение"
 msgid ""
 "Adding error! You cannot add products from different categories to the "
 "comparison list"
-msgstr "Ошибка добавления! Вы не можете добавить в список сравнения товары из разных категорий"
+msgstr ""
+"Ошибка добавления! Вы не можете добавить в список сравнения товары из разных "
+"категорий"
 
 #: .\templates\productsapp\product.html:100
 msgid "Tags"

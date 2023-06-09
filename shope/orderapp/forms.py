@@ -5,12 +5,16 @@ from orderapp.models import Order
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('city', 'address', 'delivery_type')
+        fields = ('fio', 'phone_number', 'city', 'address', 'delivery_type')
         widgets = {'delivery_type': forms.RadioSelect(),
                    'address': forms.Textarea()}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['fio'].required = True
+        self.fields['fio'].widget.attrs['class'] = 'form-input'
+        self.fields['phone_number'].required = True
+        self.fields['phone_number'].widget.attrs['class'] = 'form-input'
         self.fields['city'].required = True
         self.fields['city'].widget.attrs['class'] = 'form-input'
         self.fields['address'].required = True

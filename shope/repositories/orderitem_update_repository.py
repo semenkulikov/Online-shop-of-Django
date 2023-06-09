@@ -26,3 +26,7 @@ class OrderItemUpdateRepository(OrderItemUpdateInterface):
             order_item_list.append(order_item)
 
         return OrderItem.objects.bulk_create(order_item_list)
+
+    def delete(self, orderitem_id: int) -> None:
+        """Удаление позиции из заказа"""
+        OrderItem.objects.filter(id=orderitem_id).update(is_active=False)

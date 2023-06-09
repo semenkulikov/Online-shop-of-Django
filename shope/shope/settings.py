@@ -224,3 +224,6 @@ CELERY_IMPORTS = (
     'shope',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
 )
 SILKY_PYTHON_PROFILER = True
+
+DELIVERY_PRICE = 200
+FREE_DELIVERY_SUM = 2000
