@@ -278,9 +278,9 @@
                     </div>
                     <div class="Header-search">
                         <div class="search">
-                            <form class="form form_search" action="#" method="post">
+                            <form class="form form_search" action="{% url 'productsapp:catalog' %}" method="get">
                                 <input class="search-input" id="query" name="query" type="text" placeholder="NVIDIA GeForce RTX 3060" />
-                                <button class="search-button" type="submit" name="search" id="search"><img src="{% static 'assets/img/icons/search.svg' %}" alt="search.svg" />Поиск
+                                <button class="search-button" type="submit" name="search" id="search"><img src="{% static 'assets/img/icons/search.svg' %}" alt="search.svg" />{% translate 'Search' %}
                                 </button>
                             </form>
                         </div>
