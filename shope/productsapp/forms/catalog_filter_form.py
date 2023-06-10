@@ -7,7 +7,7 @@ class CatalogFilterForm(forms.Form):
     """
     Форма валидации параметров фильтра в каталоге
     """
-    name = forms.CharField(max_length=50, required=False)
+    query = forms.CharField(max_length=50, required=False)
     category = forms.CharField(max_length=30, required=False)
     price_range = forms.CharField(max_length=30, required=False)
     free_delivery = forms.BooleanField(required=False)
