@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from productsapp.models import Product, SetDiscount
+from django.db.models import QuerySet
 
 
 class DiscountInterface(ABC):
@@ -25,3 +27,11 @@ class DiscountInterface(ABC):
         """
         Метод получения скидки на корзину
         """
+
+    @abstractmethod
+    def get_set_discounts_for_product(
+            self, product: Product) -> QuerySet[SetDiscount]:
+        """
+        Получить все скидки на наборы, в которых есть данный продукт
+        """
+        pass
