@@ -1,7 +1,7 @@
 from repositories.product_select_repository import ProductSelectRepository
 from repositories.discount_select_repository import DiscountRepository
 from repositories.cart_repository import RepCartItem
-from cartapp.models import Cart
+from typing import List
 
 product_repository = ProductSelectRepository()
 discount_rep = DiscountRepository()
@@ -40,14 +40,14 @@ class ProductDiscounts:
         pass
 
     @classmethod
-    def get_priority_set_discount(cls, cart: Cart):
+    def get_priority_set_discount(cls, products_id: List[int]):
         """
         Проверить корзину на наличе скидочных наборов
         и вернуть скидку на приоритетный набор
         """
-        cart_items = cartitem_rep.get_all_items(cart=cart)
         # множество товаров, содержащихся в позициях корзины
-        cart_prod_set = {item.product for item in cart_items}
+        cart_prod_set = set(
+            product_repository.get_products_with_these_id(products_id))
 
         result_discounts = list()
 
