@@ -112,4 +112,4 @@ class RepCartItem(CartItemInterface):
         """
         Получение количества позиций с товаром
         """
-        return cart.cartitems.count()
+        return cart.items.filter(is_active=True).count()
