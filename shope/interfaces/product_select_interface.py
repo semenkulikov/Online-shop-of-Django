@@ -25,7 +25,7 @@ class ProductSelectInterface(ABC):
 
     @abstractmethod
     def get_products_with_filter(self,
-                                 name: str,
+                                 query: str,
                                  category: str,
                                  free_shipping: bool,
                                  in_stock: bool) -> QuerySet[Product]:

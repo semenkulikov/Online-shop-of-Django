@@ -34,7 +34,7 @@ class ProductListView(ListView):
             price_max = form.cleaned_data.get('price_max')
             tag = form.cleaned_data.get('tag')
             sort = form.cleaned_data.get('sort')
-            name = form.cleaned_data.get('name')
+            query = form.cleaned_data.get('query')
             category = form.cleaned_data.get('category')
             free_delivery = form.cleaned_data.get('free_delivery')
             in_stock = form.cleaned_data.get('in_stock')
@@ -44,7 +44,7 @@ class ProductListView(ListView):
 
             else:  # поиск по имени и доп. параметрам
                 queryset = select_repo.get_products_with_filter(
-                    name=name,
+                    query=query,
                     category=category,
                     free_delivery=free_delivery,
                     in_stock=in_stock)

@@ -4,7 +4,7 @@ from interfaces.product_select_interface import ProductSelectInterface
 from productsapp.models.product import Product
 from productsapp.models.price import SlicePrice
 from productsapp.models.specific import Specific
-from django.db.models import QuerySet, Sum, Count, Subquery, OuterRef
+from django.db.models import QuerySet, Sum, Count, Subquery, OuterRef, Q
 from coreapp.enums import SORT_TYPES
 
 
@@ -23,13 +23,13 @@ class ProductSelectRepository(ProductSelectInterface):
         return Product.objects.filter(id__in=products_id)
 
     def get_products_with_filter(self,
-                                 name: str,
+                                 query: str,
                                  category: str,
                                  free_delivery: bool,
                                  in_stock: bool) -> QuerySet[Product]:
         """Получить список продуктов на основании фильтра"""
         return Product.objects.filter(
-            name__icontains=name,
+            Q(name__icontains=query) | Q(description__icontains=query),
             category__name__icontains=category,
             free_delivery__in=(True, free_delivery),
             is_active__in=(True, in_stock))
