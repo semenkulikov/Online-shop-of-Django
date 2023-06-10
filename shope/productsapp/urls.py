@@ -7,7 +7,7 @@ from productsapp.views import (
     ProductDetailView,
     AddToComparisonView,
     RemoveFromComparisonView,
-    export_product_to_xls
+    export_product_to_xls,
 )
 
 app_name = 'productsapp'
