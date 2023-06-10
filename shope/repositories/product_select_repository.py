@@ -4,7 +4,7 @@ from interfaces.product_select_interface import ProductSelectInterface
 from productsapp.models.product import Product
 from productsapp.models.price import SlicePrice
 from productsapp.models.specific import Specific
-from django.db.models import QuerySet, Sum, Count, Subquery, OuterRef, Q
+from django.db.models import QuerySet, Sum, Count, Subquery, OuterRef
 from coreapp.enums import SORT_TYPES
 
 
@@ -126,7 +126,3 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_all_products_with_main_image(self):
         """Получить все продукты с главной картинкой"""
         return Product.objects.prefetch_related('product_images')
-
-    def get_all_products_by_name_match(self, name: str) -> QuerySet[Product]:
-        return Product.objects.filter(Q(name__icontains=name)
-                                      | Q(description__icontains=name))

@@ -90,9 +90,3 @@ class ProductSelectInterface(ABC):
     def get_all_products_with_main_image(self):
         """Получить все продукты с картинками"""
         pass
-
-    def get_all_products_by_name_match(self, name: str) -> QuerySet[Product]:
-        """
-        Получить все продукты, имена которых
-        частично совпадают с переданным именем
-        """
