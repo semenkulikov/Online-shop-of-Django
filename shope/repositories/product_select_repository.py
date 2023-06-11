@@ -126,3 +126,7 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_all_products_with_main_image(self):
         """Получить все продукты с главной картинкой"""
         return Product.objects.prefetch_related('product_images')
+
+    def get_products_from_set(self, set_discount) -> QuerySet[Product]:
+        """ Получить все продукты из скидочного набора """
+        return set_discount.products.all()
