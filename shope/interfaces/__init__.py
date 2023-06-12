@@ -8,3 +8,4 @@ from .slider_interface import SliderInterface
 from .banner_interface import BannerInterface
 from .category_select_interface import CategorySelectInterface
 from .orderitem_select_interface import OrderItemSelectInterface
+from .discount_select_interface import DiscountInterface

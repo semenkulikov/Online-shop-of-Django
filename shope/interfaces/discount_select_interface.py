@@ -1,4 +1,8 @@
 from abc import ABC, abstractmethod
+from productsapp.models import Product, Category, \
+    SetDiscount, ProductDiscount, CartDiscount
+
+from django.db.models import QuerySet
 
 
 class DiscountInterface(ABC):
@@ -7,21 +11,25 @@ class DiscountInterface(ABC):
     """
 
     @abstractmethod
-    def get_discount_by_product_or_category(self, product, category):
+    def get_discount_by_product_or_category(self, product: Product,
+                                            category: Category) \
+            -> ProductDiscount:
         """
         Метод получения скидки на товар
         """
         pass
 
     @abstractmethod
-    def get_discount_by_set_products(self, set_product):
+    def get_discount_by_cart(self) -> CartDiscount:
         """
-        Метод получения скидки на набор товаров
+        Метод получения скидки на корзину
         """
         pass
 
     @abstractmethod
-    def get_discount_by_cart(self):
+    def get_set_discounts_for_product(
+            self, product: Product) -> QuerySet[SetDiscount]:
         """
-        Метод получения скидки на корзину
+        Получить все скидки на наборы, в которых есть данный продукт
         """
+        pass

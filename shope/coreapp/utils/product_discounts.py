@@ -1,8 +1,11 @@
 from repositories.product_select_repository import ProductSelectRepository
 from repositories.discount_select_repository import DiscountRepository
+from repositories.cart_repository import RepCartItem
+from typing import List
 
-_product_repository = ProductSelectRepository()
+product_repository = ProductSelectRepository()
 discount_rep = DiscountRepository()
+cartitem_rep = RepCartItem()
 
 
 class ProductDiscounts:
@@ -25,7 +28,7 @@ class ProductDiscounts:
     @classmethod
     def get_discounted_cart_price(cls, cart_price, count):
         """
-        Получение приоритетной скидки на корзину
+        Получение приоритетной скидки на корзину.
         Возвращает экземпляр CartDiscount, если есть скидка на
         корзину и необходимые условия для скидки выполнены
         """
@@ -62,3 +65,33 @@ class ProductDiscounts:
         Получить скидку на набор товаров
         """
         pass
+
+    @classmethod
+    def get_priority_set_discount(cls, products_id: List[int]):
+        """
+        Проверить корзину на наличе скидочных наборов
+        и вернуть скидку на приоритетный набор
+        """
+        # множество товаров, содержащихся в позициях корзины
+        cart_prod_set = set(
+            product_repository.get_products_with_these_id(products_id))
+
+        result_discounts = list()
+
+        for product in cart_prod_set:
+            # все скидочные наборы, где есть данный продукт
+            current_discounts = discount_rep.get_set_discounts_for_product(
+                product=product)
+
+            # проверка вхождения множества товаров из набора
+            # в множество товаров корзины
+            for discount in current_discounts:
+                disc_prod_set = set(
+                    product_repository.get_products_from_set(discount))
+                if disc_prod_set.issubset(cart_prod_set):
+                    result_discounts.append(discount)
+
+        priority_discount = max(result_discounts,
+                                key=lambda discount: discount.priority)
+
+        return priority_discount

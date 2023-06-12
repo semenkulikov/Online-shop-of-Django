@@ -1,6 +1,8 @@
 from interfaces.discount_select_interface import DiscountInterface
 from datetime import datetime
-from productsapp.models import CartDiscount, Product, Category
+from productsapp.models import CartDiscount, SetDiscount, \
+    Product, Category
+from django.db.models import QuerySet
 
 
 class DiscountRepository(DiscountInterface):
@@ -51,3 +53,13 @@ class DiscountRepository(DiscountInterface):
             .only('required_sum', 'required_quantity',
                   'value', 'priority').first()
         return cart_discount
+
+    def get_set_discounts_for_product(
+            self, product: Product) -> QuerySet[SetDiscount]:
+        """
+        Получить все скидки на наборы, в которых есть данный продукт
+        """
+        date_now = datetime.now()
+        return product.set_discounts.filter(start_date__lte=date_now,
+                                            expiration_date__gte=date_now,
+                                            is_active=True)

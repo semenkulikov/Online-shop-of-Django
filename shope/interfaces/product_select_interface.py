@@ -87,6 +87,12 @@ class ProductSelectInterface(ABC):
         """ Выбор метода сортировки в зависимости от параметра """
         pass
 
+    @abstractmethod
     def get_all_products_with_main_image(self):
         """Получить все продукты с картинками"""
+        pass
+
+    @abstractmethod
+    def get_products_from_set(self, set_discount) -> QuerySet[Product]:
+        """ Получить все продукты из скидочного набора """
         pass
