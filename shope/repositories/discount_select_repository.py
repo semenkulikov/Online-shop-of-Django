@@ -35,12 +35,6 @@ class DiscountRepository(DiscountInterface):
         else:
             return False
 
-    def get_discount_by_set_products(self, set_product):
-        """
-        Метод получения скидки на набор товаров
-        """
-        pass
-
     def get_discount_by_cart(self) -> CartDiscount:
         """
         Метод получения скидки на корзину
