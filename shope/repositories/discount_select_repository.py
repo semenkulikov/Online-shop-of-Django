@@ -91,5 +91,5 @@ class DiscountRepository(DiscountInterface):
         date_now = datetime.now()
         products_discounts = ProductDiscount.objects.filter(
             expiration_date__gte=date_now, is_active=True
-        )
+        ).prefetch_related('products')
         return products_discounts

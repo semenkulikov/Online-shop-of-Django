@@ -106,11 +106,10 @@ class ProductDiscounts:
         if cart:
             items = cartitem_rep.get_all_items(cart)
             for item in items:
-                price = rep_price. \
-                    get_price(item.product, item.seller)
                 category = item.product.category
                 discount = cls.get_priority_product_discount(item.product,
                                                              category)
+                price = item.price
                 if discount:
                     price = (price - price * discount.value / 100) * \
                             item.quantity
@@ -145,14 +144,13 @@ class ProductDiscounts:
         {'product_id seller_id': count,...}
         Метод возвращает сумму товаров в корзине со скидкой
         """
+        products_discounted = set_discount.products.all()
         if cart:
             cart_sum = []
             items = cartitem_rep.get_all_items(cart)
             for item in items:
-                price = rep_price. \
-                    get_price(item.product,
-                              item.seller)
-                if item.product in set_discount.products.all():
+                price = item.price
+                if item.product in products_discounted:
                     price = (price - price * set_discount.value / 100) \
                             * item.quantity
                 else:
@@ -165,7 +163,7 @@ class ProductDiscounts:
                 seller = rep_seller.get_seller(item.split()[1])
                 price = rep_price.get_price(product=product,
                                             seller=seller)
-                if product in set_discount.products.all():
+                if product in products_discounted:
                     price = (price - price * set_discount.value / 100) * \
                             session_products[item]
                 else:
@@ -187,7 +185,7 @@ class ProductDiscounts:
     def get_price_discount_on_cart(cls, cart_price, count,
                                    cart=None, session_products=None):
         """
-        В методе происходит определение наиболее приоритеной схемы скидки
+        В методе происходит определение наиболее приоритетной схемы скидки
         Если пользователь авторизован, то в метод передаётся
         экземпляр корзины пользователя - cart, если нет, то словарь
         session_products =
