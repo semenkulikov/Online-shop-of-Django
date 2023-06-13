@@ -1,7 +1,7 @@
 from interfaces.discount_select_interface import DiscountInterface
 from datetime import datetime
 from productsapp.models import CartDiscount, SetDiscount, \
-    Product, Category
+    Product, Category, ProductDiscount
 from django.db.models import QuerySet
 
 
@@ -57,3 +57,39 @@ class DiscountRepository(DiscountInterface):
         return product.set_discounts.filter(start_date__lte=date_now,
                                             expiration_date__gte=date_now,
                                             is_active=True)
+
+    def get_set_discounts_all(self):
+        """
+        Получить все скидки на наборы, которые
+        действуют сейчас или будет действовать
+        в будущем
+        """
+        date_now = datetime.now()
+        set_discounts = SetDiscount.objects.filter(
+            expiration_date__gte=date_now, is_active=True
+        )
+        return set_discounts
+
+    def get_cart_discounts_all(self):
+        """
+        Получить все скидки на корзину, которые
+        действуют сейчас или будет действовать
+        в будущем
+        """
+        date_now = datetime.now()
+        cart_discounts = CartDiscount.objects.filter(
+            expiration_date__gte=date_now, is_active=True
+        )
+        return cart_discounts
+
+    def get_products_discounts_all(self):
+        """
+        Получить все скидки на товары, которые
+        действуют сейчас или будет действовать
+        в будущем
+        """
+        date_now = datetime.now()
+        products_discounts = ProductDiscount.objects.filter(
+            expiration_date__gte=date_now, is_active=True
+        )
+        return products_discounts

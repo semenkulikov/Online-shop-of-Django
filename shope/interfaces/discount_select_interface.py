@@ -33,3 +33,30 @@ class DiscountInterface(ABC):
         Получить все скидки на наборы, в которых есть данный продукт
         """
         pass
+
+    @abstractmethod
+    def get_set_discounts_all(self) -> QuerySet[SetDiscount]:
+        """
+        Получить все скидки на наборы, которые
+        действуют сейчас или будет действовать
+        в будущем
+        """
+        pass
+
+    @abstractmethod
+    def get_cart_discounts_all(self) -> QuerySet[CartDiscount]:
+        """
+        Получить все скидки на корзину, которые
+        действуют сейчас или будет действовать
+        в будущем
+        """
+        pass
+
+    @abstractmethod
+    def get_products_discounts_all(self) -> QuerySet[ProductDiscount]:
+        """
+        Получить все скидки на товары, которые
+        действуют сейчас или будет действовать
+        в будущем
+        """
+        pass
