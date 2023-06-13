@@ -33,7 +33,7 @@ class DiscountRepository(DiscountInterface):
         if total:
             return total
         else:
-            return 0
+            return False
 
     def get_discount_by_set_products(self, set_product):
         """

@@ -2,9 +2,11 @@ from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 
-from coreapp.utils.select_cart import SelectCart
-from coreapp.utils.update_cart import AddToCart
-from .context_processor import cart_block
+from coreapp.utils import AddToCart, SelectCart, ProductDiscounts
+from repositories import DiscountRepository, RepCart
+
+disc_rep = DiscountRepository()
+cart_rep = RepCart()
 
 
 class CartItemListView(View):
@@ -104,11 +106,13 @@ class AjaxUpdateCartView(View):
                 kwargs['user'] = request.user
                 kwargs['count'] = request.GET.get('quantity', 1)
                 self.method_service(**kwargs)
-                cart_count = SelectCart.\
-                    cart_items_amount(user=request.user)
-                cart_sum = SelectCart.\
-                    cart_total_amount(user=request.user)
-
+                cart = cart_rep.get_cart(user=request.user)
+                cart_count = SelectCart. \
+                    cart_all_products_amount(cart=cart)
+                cart_sum = SelectCart. \
+                    cart_total_amount(cart=cart)
+                discounted_total_price = ProductDiscounts. \
+                    get_price_discount_on_cart(cart_sum, cart_count, cart=cart)
             else:
 
                 kwargs['session_products'] = request.session.get('products')
@@ -117,13 +121,15 @@ class AjaxUpdateCartView(View):
                 products = self.method_service(**kwargs)
                 request.session['products'] = products
                 request.session.modified = True
-                cart_count = SelectCart.\
-                    cart_items_amount(session_products=products)
-                cart_sum = SelectCart.\
+                cart_count = SelectCart. \
+                    cart_all_products_amount(session_products=products)
+                cart_sum = SelectCart. \
                     cart_total_amount(session_products=products)
-
+                discounted_total_price = ProductDiscounts. \
+                    get_price_discount_on_cart(cart_sum, cart_count,
+                                               session_products=products)
             context = {'cart_count': cart_count,
-                       'cart_sum': cart_sum
+                       'cart_sum': discounted_total_price
                        }
             return JsonResponse(data=context)
 
