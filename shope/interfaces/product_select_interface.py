@@ -4,6 +4,7 @@ from typing import List
 from django.db.models import QuerySet
 
 from productsapp.models.product import Product
+from cartapp.models import Cart
 
 
 class ProductSelectInterface(ABC):
@@ -95,4 +96,11 @@ class ProductSelectInterface(ABC):
     @abstractmethod
     def get_products_from_set(self, set_discount) -> QuerySet[Product]:
         """ Получить все продукты из скидочного набора """
+        pass
+
+    @abstractmethod
+    def get_products_id_from_cart(self, cart: Cart) -> List[int]:
+        """
+        Получить все id товаров, которые есть в корзине
+        """
         pass

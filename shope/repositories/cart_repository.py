@@ -1,13 +1,12 @@
-from django.db.models import QuerySet, Sum
+from django.db.models import QuerySet, Sum, OuterRef
 from django.shortcuts import get_object_or_404
 
 from authapp.models import User
 
 from cartapp.models import Cart, CartItem
 
-from productsapp.models import Product, Seller
+from productsapp.models import Product, Seller, SlicePrice
 from interfaces.cart_interface import CartInterface, CartItemInterface
-from repositories.price_repository import PriceRepository
 
 
 class RepCart(CartInterface):
@@ -30,11 +29,11 @@ class RepCart(CartInterface):
         """
         Общая стоимость товаров в корзине
         """
-        rep_price = PriceRepository()
         rep_item = RepCartItem()
+        cart_items = rep_item.get_all_items(cart)
         total_amount = sum([
-            rep_price.get_price(item.product, item.seller) * item.quantity
-            for item in rep_item.get_all_items(cart)
+            item.price * item.quantity
+            for item in cart_items
         ])  # сумма цен товаров в корзине
         return total_amount
 
@@ -73,7 +72,14 @@ class RepCartItem(CartItemInterface):
         """
         Метод возвращает все товары в корзине
         """
-        cart_items = CartItem.objects.filter(cart=cart, is_active=True). \
+        subquery = SlicePrice.objects. \
+            filter(product_id=OuterRef('product_id'),
+                   seller_id=OuterRef('seller_id'),
+                   is_active=True). \
+            order_by('-updated_at').values('value')
+        cart_items = CartItem.objects.\
+            filter(cart=cart, is_active=True). \
+            annotate(price=subquery[:1]). \
             prefetch_related('product', 'seller')
         return cart_items
 

@@ -43,16 +43,15 @@ class SelectCart:
         return items_list
 
     @classmethod
-    def cart_items_amount(cls, user=None, session_products=None):
+    def cart_all_products_amount(cls, cart=None, session_products=None):
         """
         Получение общего количества товаров в корзине
         если есть товары в сессии, то в метод передаётся словарь
         session_products =
         {'product_id seller_id': count,...}
         """
-        if user:
+        if cart:
             # в метод передан экземпляр пользователя(авторизован)
-            cart = rep_cart.get_cart(user)
             count = rep_cart.count_items(cart)
         elif session_products:
             # в метод передан словарь <session_products>
@@ -63,17 +62,35 @@ class SelectCart:
         return count
 
     @classmethod
-    def cart_total_amount(cls, user=None, session_products=None):
+    def cart_items_amount(cls, cart=None, session_products=None):
+        """
+        Получение общего количества позиций с товарами в корзине
+        если есть товары в сессии, то в метод передаётся словарь
+        session_products =
+        {'product_id seller_id': count,...}
+        """
+        if cart:
+            # в метод передан экземпляр пользователя(авторизован)
+            count = rep_cart_item.get_count_cart_items(cart)
+        elif session_products:
+            # в метод передан словарь <session_products>
+            count = len(session_products)
+        else:
+            count = 0
+        return count
+
+    @classmethod
+    def cart_total_amount(cls, cart=None, session_products=None):
         """
         Получение общей цены товаров в корзине
         если есть товары в сессии, то в метод передаётся словарь
         session_products =
         {'product_id seller_id': count,...}
         """
-        if user:
-            # в метод передан экземпляр пользователя(авторизован)
-            cart = rep_cart.get_cart(user)
+        if cart:
+            # в метод передан экземпляр корзины пользователя(авторизован)
             total_amount = rep_cart.get_total_amount(cart)
+            # общая сумма
         elif session_products:
             # в метод передан словарь <session_products>
             cart_sum = []

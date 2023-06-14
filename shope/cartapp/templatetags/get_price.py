@@ -6,8 +6,7 @@ register = template.Library()
 
 
 @register.simple_tag()
-def get_price(product, seller, quantity):
+def get_price(price, quantity):
     """Возвращает цену на товар в корзине
     с учётом его количества"""
-    price = rep_price.get_price(product, seller) * quantity
-    return price
+    return price * quantity

@@ -32,8 +32,10 @@ class PriceRepository(PriceInterface):
         установленную продавцом.
         """
         price = SlicePrice.objects.order_by('-updated_at'). \
-            filter(seller=seller, product=product).first().value
-        return price
+            filter(seller=seller, product=product,
+                   is_active=True). \
+            values('value').first()
+        return price['value']
 
     def get_object_price(self, product: Product, seller: Seller) -> SlicePrice:
         """
@@ -42,5 +44,6 @@ class PriceRepository(PriceInterface):
         price_object = SlicePrice.objects. \
             select_related('seller', 'product'). \
             order_by('-updated_at'). \
-            filter(product=product, seller=seller).first()
+            filter(product=product, seller=seller,
+                   is_active=True).first()
         return price_object

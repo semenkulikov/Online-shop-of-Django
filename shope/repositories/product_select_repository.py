@@ -130,3 +130,11 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_products_from_set(self, set_discount) -> QuerySet[Product]:
         """ Получить все продукты из скидочного набора """
         return set_discount.products.all()
+
+    def get_products_id_from_cart(self, cart) -> List[int]:
+        """
+        Получить все id товаров, которые есть в корзине
+        """
+        cart_items = cart.items.filter(is_active=True).only('product_id')
+        products_id = [item.product_id for item in cart_items]
+        return products_id
