@@ -46,3 +46,16 @@ class ViewedProductsInterface(ABC):
                            ):
         """Get product for user"""
         pass
+
+    def get_by_user_limit(
+            self,
+            user: User,
+            limit: int,
+            is_active: bool = True
+    ) -> QuerySet[ViewedProduct]:
+
+        """
+        Получить просмотренные продукты для пользователя
+        с ограничением на количество
+        """
+        pass
