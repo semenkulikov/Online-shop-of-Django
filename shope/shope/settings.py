@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") in ('True', 'TRUE')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -118,12 +118,23 @@ WSGI_APPLICATION = 'shope.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db',
+        'PASSWORD': 'password123',
+        'USER': 'nikolay',
+        'HOST': 'db-shop',
+        'PORT': '5432',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
 }
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
@@ -175,8 +186,8 @@ LANGUAGES = [
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (BASE_DIR / 'static',)
-
+# STATICFILES_DIRS = (BASE_DIR / 'static',)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
