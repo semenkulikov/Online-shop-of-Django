@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
-{% load get_price %}
+{% load get_price_a_seller %}
 
 {% block title %}
     Megano
@@ -179,7 +179,7 @@
                                                             <div class="Order-infoType">{% translate 'Cost' %}:
                                                             </div>
                                                             <div class="Order-infoContent"><span class="Order-price">
-                                                                {% get_price product.pk seller.pk 1 %} &#x20bd
+                                                                {% get_price_a_seller product seller  %} &#x20bd
                                                             </span>
                                                             </div>
                                                         </div>
