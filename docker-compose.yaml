@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 
 services:
   redis-shop:
@@ -15,6 +15,8 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB:  ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
   backend-shop:
     build: ./shope
     privileged: true
@@ -23,15 +25,12 @@ services:
     command:
       bash -c "
       python manage.py migrate &&
-      python3 manage.py apply_fixtures &&
+      python manage.py apply_fixtures &&
       gunicorn shope.wsgi -b 0.0.0.0:8080 &&
       celery -A shope worker -l info
       "
     depends_on:
       - db-shop
-  nginx-shop:
-    build: ./docker/nginx
-    ports:
-      - 8000:80
-    depends_on:
-      - backend-shop
+
+volumes:
+  postgres_data:
