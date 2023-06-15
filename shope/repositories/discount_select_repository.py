@@ -93,3 +93,10 @@ class DiscountRepository(DiscountInterface):
             expiration_date__gte=date_now, is_active=True
         ).prefetch_related('products')
         return products_discounts
+
+    def get_product_with_discount(self):
+        date_now = datetime.now()
+        product_discount = ProductDiscount.objects.filter(
+            start_date__lte=date_now, expiration_date__gte=date_now,
+            is_active=True)[:1].prefetch_related('products')
+        return product_discount

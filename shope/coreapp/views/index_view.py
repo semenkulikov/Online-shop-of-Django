@@ -4,11 +4,13 @@ from repositories import (
     SliderRepository,
     BannerRepository,
     ProductSelectRepository,
+    DiscountRepository
 )
 
 slider_rep = SliderRepository()
 banner_rep = BannerRepository()
 product_rep = ProductSelectRepository()
+discount_rep = DiscountRepository()
 
 
 class IndexView(View):
@@ -24,6 +26,8 @@ class IndexView(View):
 
         products_with_price = product_rep.get_product_prices(products)
 
+        discount_product = discount_rep.get_product_with_discount()
+        print(discount_product)
         popular = product_rep.sort_by_popular(
             products=products_with_price,
             reverse=True
@@ -35,7 +39,8 @@ class IndexView(View):
             'sliders': sliders,
             'banners': banners,
             'populars': popular,
-            'limited': limited
+            'limited': limited,
+            'discounted': discount_product
         }
 
         return render(request, self.template_name, context=context)
