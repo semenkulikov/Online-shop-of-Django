@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load sort_links %}
+{% load discounted_price %}
 {% load i18n %}
 
 {% block title %}
@@ -109,8 +110,17 @@
                                     <strong class="Card-title"><a href="{% url 'productsapp:product_detail' object.id %}">{{object.name}} {{object.year}}</a>
                                     </strong>
                                     <div class="Card-description">
-                                        <div class="Card-cost"><span class="Card-price">{{object.price}} &#8381;</span>
-                                        </div>
+                                        {% with disc_price=object|discounted_price:object.price %}
+                                            {% if disc_price %}
+                                                <div class="Card-cost"><span class="Card-price" style="text-decoration: line-through; color: grey">{{object.price}} &#8381;</span>
+                                                </div>
+                                                <div class="Card-cost"><span class="Card-price">{{ disc_price }} &#8381;</span>
+                                                </div>
+                                            {% else %}
+                                                <div class="Card-cost"><span class="Card-price">{{ object.price }} &#8381;</span>
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
                                         <div class="Card-category">{{object.category}}
                                         </div>
                                         <div class="Card-hover"><a class="Card-btn" onclick="AddToCart('{% url 'cartapp:ajax_add_product' object.pk object.seller_id %}')"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
