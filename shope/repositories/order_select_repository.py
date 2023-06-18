@@ -2,7 +2,6 @@ from interfaces import OrderInterface
 from orderapp.models import Order
 from authapp.models import User
 from django.db.models import QuerySet, Sum, Count, Q
-from django.conf import settings
 
 
 class OrderRepository(OrderInterface):
@@ -34,8 +33,8 @@ class OrderRepository(OrderInterface):
 
         # Доставка бесплатна, если все товары от одного
         # продавца и сумма заказа больше заданной.
-        order.delivery_price = settings.DELIVERY_PRICE
-        if order.amount > settings.FREE_DELIVERY_SUM and order.sellers == 1:
-            order.delivery_price = 0
+        # order.delivery_price = settings.DELIVERY_PRICE
+        # if order.amount > settings.FREE_DELIVERY_SUM and order.sellers == 1:
+        #     order.delivery_price = 0
 
         return order

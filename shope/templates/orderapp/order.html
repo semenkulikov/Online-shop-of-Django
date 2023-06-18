@@ -177,11 +177,11 @@
                                             <div class="Cart-block Cart-block_amount">{{item.count}} шт.
                                             </div>
                                         </div>
-                                        {% if order_items|length > 1 %}
-                                        <div>
-                                            <a href="{% url 'orderapp:remove_item' order.id item.id %}">{% translate 'Remove' %}</a>
-                                        </div>
-                                        {% endif %}
+                                        <!--{% if order_items|length > 1 %}-->
+                                        <!--<div>-->
+                                            <!--<a href="{% url 'orderapp:remove_item' order.id item.id %}">{% translate 'Remove' %}</a>-->
+                                        <!--</div>-->
+                                        <!--{% endif %}-->
 
                                     </div>
                                     {% endfor %}
@@ -193,7 +193,7 @@
                                             </div>
                                             <div>
                                                 <strong class="Cart-title">{% translate 'Total' %}:</strong>
-                                                <span class="Cart-price">{{payment_form.total_sum.value}} &#8381;</span>
+                                                <span class="Cart-price">{{order.total_discounted_price}} &#8381;</span>
                                             </div>
                                         </div>
                                         <div class="Cart-block">
@@ -205,7 +205,7 @@
                                                     <div class="payment_bottom">
                                                         <button class="btn btn_primary" type="submit">Pay</button>
                                                         <button id="cancel" class="btn btn_primary cancel_btn" type="button">Cancel</button>
-                                                        <span class="total_sum">{{payment_form.total_sum.value}} &#8381;</span>
+                                                        <span class="total_sum">{{order.total_discounted_price}} &#8381;</span>
                                                     </div>
                                                 </div>
                                             </div>
