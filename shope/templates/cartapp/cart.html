@@ -20,7 +20,7 @@ Megano
             <form class="form Cart" action="#" method="post">
                 {% csrf_token %}
                 {% if session %}
-                {% for count, item in items %}
+                {% for count, item, discounted_price in items %}
                 <div class="Cart-product">
                     <div class="Cart-block Cart-block_row">
                         <div class="Cart-block Cart-block_pict">
@@ -38,7 +38,7 @@ Megano
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
-                            <div class="Cart-price">{% get_price item.value count %} &#x20bd
+                            <div class="Cart-price">{{discounted_price}} &#x20bd
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ Megano
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
-                            <div class="Cart-price">{% get_price item.price item.quantity %} &#x20bd
+                            <div class="Cart-price">{{item.discounted_price}} &#x20bd
                             </div>
                         </div>
                     </div>

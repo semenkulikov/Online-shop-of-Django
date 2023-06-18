@@ -32,8 +32,10 @@ class CartItemListView(View):
                 # которые есть в сессии
                 count_list = [value for value in
                               request.session['products'].values()]
+                discounted_price_list = request.session['prices']
                 # список количества для каждого товара
-                context = {'items': zip(count_list, items_price),
+                context = {'items': zip(count_list, items_price,
+                                        discounted_price_list),
                            'session': True}
                 return render(request, self.template_name, context)
             else:
@@ -112,7 +114,9 @@ class AjaxUpdateCartView(View):
                 cart_sum = SelectCart. \
                     cart_total_amount(cart=cart)
                 discounted_total_price = ProductDiscounts. \
-                    get_price_discount_on_cart(cart_sum, cart_count, cart=cart)
+                    get_prices_discount_on_cart(cart_sum,
+                                                cart_count,
+                                                cart=cart)
             else:
 
                 kwargs['session_products'] = request.session.get('products')
@@ -120,16 +124,17 @@ class AjaxUpdateCartView(View):
                 # есть товары в сессии
                 products = self.method_service(**kwargs)
                 request.session['products'] = products
-                request.session.modified = True
                 cart_count = SelectCart. \
                     cart_all_products_amount(session_products=products)
                 cart_sum = SelectCart. \
                     cart_total_amount(session_products=products)
                 discounted_total_price = ProductDiscounts. \
-                    get_price_discount_on_cart(cart_sum, cart_count,
-                                               session_products=products)
+                    get_prices_discount_on_cart(cart_sum, cart_count,
+                                                session_products=products)
+                request.session['prices'] = discounted_total_price
+                request.session.modified = True
             context = {'cart_count': cart_count,
-                       'cart_sum': discounted_total_price
+                       'cart_sum': sum(discounted_total_price)
                        }
             return JsonResponse(data=context)
 
