@@ -26,7 +26,7 @@ def cart_block(request):
             get_prices_discount_on_cart(cart_price, count, cart=cart)
         context = {
             'cart_count': count,
-            'cart_sum': sum(discounted_prices_list)
+            'cart_sum': round(sum(discounted_prices_list), 2)
         }  # словарь с количеством и суммой товаров в корзине
         return context
 
@@ -45,6 +45,6 @@ def cart_block(request):
         request.session.modified = True
         context = {
             'cart_count': count,
-            'cart_sum': sum(discounted_prices_list)
+            'cart_sum': round(sum(discounted_prices_list), 2)
         }  # словарь с количеством и суммой товаров в корзине
         return context
