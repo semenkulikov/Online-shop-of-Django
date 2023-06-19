@@ -28,6 +28,8 @@
                                     </li>
                                     <li class="menu-item"><a class="menu-link" href="{% url 'orderapp:history_order' %}">{% translate 'Order history' %}</a>
                                     </li>
+                                    <li class="menu-item"><a class="menu-link" href="{% url 'profileapp:viewed_products' %}">{% translate 'Viewed products' %}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -93,6 +95,33 @@
                                 {% else %}
                                     {% translate 'You have not yet placed any orders' %}
                                 {% endif %}
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="Account-group">
+                            <div class="Account-column Account-column_full">
+
+                                <header class="Section-header">
+                                <h2 class="Section-title">{% translate 'Recently viewed products' %}</h2>
+                                </header>
+                                <div class="Cards">
+                                    {% if viewed %}
+                                        {% for product in viewed %}
+
+                                        <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' product.product.id %}"><img src="{{ product.product.product_images.first.image.url }}" alt="card.jpg" /></a>
+                                        </div>
+
+                                        {% endfor %}
+                                    {% endif %}
+
+
+
+                                </div>
+
 
                             </div>
                         </div>
