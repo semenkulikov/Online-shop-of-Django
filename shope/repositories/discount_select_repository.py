@@ -2,7 +2,7 @@ from interfaces.discount_select_interface import DiscountInterface
 from datetime import datetime
 from productsapp.models import CartDiscount, SetDiscount, \
     Product, Category, ProductDiscount
-from django.db.models import QuerySet
+from django.db.models import QuerySet, Q, Value
 
 
 class DiscountRepository(DiscountInterface):
@@ -61,35 +61,41 @@ class DiscountRepository(DiscountInterface):
     def get_set_discounts_all(self):
         """
         Получить все скидки на наборы, которые
-        действуют сейчас или будет действовать
+        действуют сейчас или будут действовать
         в будущем
         """
         date_now = datetime.now()
         set_discounts = SetDiscount.objects.filter(
-            expiration_date__gte=date_now, is_active=True
-        )
+            Q(expiration_date__gte=date_now) |
+            Q(expiration_date__isnull=True), is_active=True)\
+            .annotate(type=Value('set'))\
+            .order_by('-start_date')
         return set_discounts
 
     def get_cart_discounts_all(self):
         """
         Получить все скидки на корзину, которые
-        действуют сейчас или будет действовать
+        действуют сейчас или будут действовать
         в будущем
         """
         date_now = datetime.now()
         cart_discounts = CartDiscount.objects.filter(
-            expiration_date__gte=date_now, is_active=True
-        )
+            Q(expiration_date__gte=date_now) |
+            Q(expiration_date__isnull=True), is_active=True)\
+            .annotate(type=Value('cart'))\
+            .order_by('-start_date')
         return cart_discounts
 
     def get_products_discounts_all(self):
         """
         Получить все скидки на товары, которые
-        действуют сейчас или будет действовать
+        действуют сейчас или будут действовать
         в будущем
         """
         date_now = datetime.now()
         products_discounts = ProductDiscount.objects.filter(
-            expiration_date__gte=date_now, is_active=True
-        ).prefetch_related('products')
+            Q(expiration_date__gte=date_now) |
+            Q(expiration_date__isnull=True), is_active=True)\
+            .order_by('-start_date')\
+            .prefetch_related('products', 'categories')
         return products_discounts

@@ -2,6 +2,7 @@ from repositories import ProductSelectRepository, DiscountRepository, \
     PriceRepository, SellerSelectRepository
 from repositories.cart_repository import RepCartItem
 from typing import List
+from cartapp.models import CartItem
 
 product_repository = ProductSelectRepository()
 discount_rep = DiscountRepository()
@@ -100,37 +101,54 @@ class ProductDiscounts:
         экземпляр корзины пользователя - cart, если нет, то словарь
         session_products =
         {'product_id seller_id': count,...}
-        Метод возвращает сумму товаров в корзине со скидкой
+        Метод возвращает список цен на товары в корзине с учетом скидки
         """
-        cart_sum = []
-        if cart:
+        cart_prices = []
+        if cart:  # пользователь авторизован
             items = cartitem_rep.get_all_items(cart)
+            #  все cart_items которые есть в корзине
             for item in items:
+                #  цикл по каждой позиции с товаром в корзине
                 category = item.product.category
                 discount = cls.get_priority_product_discount(item.product,
                                                              category)
+                # приоритетная скидка на товар или его категорию
                 price = item.price
                 if discount:
-                    price = (price - price * discount.value / 100) * \
-                            item.quantity
+                    # если скидка на товар есть, то считается цена со
+                    # скидкой
+                    discounted_price = (price - price * discount.value / 100)
+                    price = round(float(discounted_price * item.quantity), 2)
                 else:
-                    price *= item.quantity
-                cart_sum.append(price)
-        else:
+                    # цена без скидки
+                    price = round(float(item.price * item.quantity), 2)
+                item.discounted_price = price
+                cart_prices.append(price)
+            # обновление поля discounted_price во всех позициях с товарами
+            # в корзине
+            CartItem.objects.bulk_update(
+                items, ['discounted_price'], batch_size=20
+            )
+
+        else:  # пользователь не авторизован
             for item in session_products:
+                # цикл по товарам в словаре session_products
                 product = rep_prod.get_product_by_id(item.split()[0])
                 seller = rep_seller.get_seller(item.split()[1])
                 price = rep_price.get_price(product=product,
                                             seller=seller)
                 discount = cls.get_priority_product_discount(product,
                                                              product.category)
+                # приоритетная скидка на товар
                 if discount:
-                    price = (price - price * discount.value / 100) \
-                            * session_products[item]
+                    # если скидка есть, то рассчитывается цена со скидкой
+                    price = round(float((price - price * discount.value / 100)
+                                        * session_products[item]), 2)
                 else:
-                    price *= session_products[item]
-                cart_sum.append(price)
-        return sum(cart_sum)
+                    # цена без скидки
+                    price = round(float(price * session_products[item]), 2)
+                cart_prices.append(price)
+        return cart_prices
 
     @classmethod
     def apply_set_discount(cls, set_discount, cart=None,
@@ -142,63 +160,101 @@ class ProductDiscounts:
         экземпляр корзины пользователя - cart, если нет, то словарь
         session_products =
         {'product_id seller_id': count,...}
-        Метод возвращает сумму товаров в корзине со скидкой
+        Метод возвращает список цен на каждый товар
+        в корзине со скидкой
         """
         products_discounted = set_discount.products.all()
-        if cart:
-            cart_sum = []
+        cart_prices = []
+        if cart:  # пользователь авторизован
             items = cartitem_rep.get_all_items(cart)
             for item in items:
                 price = item.price
                 if item.product in products_discounted:
-                    price = (price - price * set_discount.value / 100) \
-                            * item.quantity
+                    # если товар есть в скидочном наборе,
+                    # то на него действует скидка
+                    discounted_price = (price - price *
+                                        set_discount.value / 100)
+                    price = round(float(discounted_price * item.quantity), 2)
                 else:
-                    price *= item.quantity
-                cart_sum.append(price)
-        else:
-            cart_sum = []
+                    # цена без скидки
+                    price = round(float(item.price * item.quantity), 2)
+                item.discounted_price = price
+                cart_prices.append(price)
+            # обновление поля discounted_price во всех позициях с товарами
+            # в корзине
+            CartItem.objects.bulk_update(
+                items, ['discounted_price'], batch_size=20
+            )
+
+        else:  # пользователь не авторизован
             for item in session_products:
                 product = rep_prod.get_product_by_id(item.split()[0])
                 seller = rep_seller.get_seller(item.split()[1])
                 price = rep_price.get_price(product=product,
                                             seller=seller)
                 if product in products_discounted:
-                    price = (price - price * set_discount.value / 100) * \
-                            session_products[item]
+                    # товар находится в скидочном наборе
+                    # на него действует скидка
+                    price = round(float((price - price *
+                                         set_discount.value / 100) *
+                                        session_products[item]), 2)
                 else:
-                    price *= session_products[item]
-                cart_sum.append(price)
-        return sum(cart_sum)
+                    # у товара нет скидки
+                    price = round(float(price * session_products[item]), 2)
+                cart_prices.append(price)
+        return cart_prices
 
     @classmethod
-    def apply_cart_discount(cls, cart_discount, cart_price):
+    def apply_cart_discount(cls, cart_discount, cart_price,
+                            cart=None, session_products=None, ):
         """
         Метод применяет скидку на корзину
-        и возвращает цену на корзину с примененной
-        скидкой
+        и возвращает список цен на товары в корзине
         """
-        cart_price -= cart_price * cart_discount.value / 100
-        return cart_price
+        discount = cart_discount.value
+        cart_prices = []
+        if cart:  # пользователь авторизован
+            items = cartitem_rep.get_all_items(cart)
+            for item in items:
+                price = item.price
+                discounted_price = (price - price * discount / 100)
+                price = round(float(discounted_price * item.quantity), 2)
+                item.discounted_price = price
+                cart_prices.append(price)
+            # обновление поля discounted_price во всех позициях с товарами
+            # в корзине
+            CartItem.objects.bulk_update(
+                items, ['discounted_price'], batch_size=20
+            )
+        else:  # пользователь не авторизован
+            for item in session_products:
+                product = rep_prod.get_product_by_id(item.split()[0])
+                seller = rep_seller.get_seller(item.split()[1])
+                price = rep_price.get_price(product=product,
+                                            seller=seller)
+                price = round(float((price - price * discount / 100) *
+                                    session_products[item]), 2)
+                cart_prices.append(price)
+        return cart_prices
 
     @classmethod
-    def get_price_discount_on_cart(cls, cart_price, count,
-                                   cart=None, session_products=None):
+    def get_prices_discount_on_cart(cls, cart_price, count,
+                                    cart=None, session_products=None):
         """
         В методе происходит определение наиболее приоритетной схемы скидки
         Если пользователь авторизован, то в метод передаётся
         экземпляр корзины пользователя - cart, если нет, то словарь
         session_products =
         {'product_id seller_id': count,...}
-        Метод возвращает сумму товаров в корзине со скидкой
+        Метод возвращает список цен на товары в корзине
         """
 
         if cart:  # пользователь авторизован
             products_id = product_repository.get_products_id_from_cart(cart)
-            cart_discount = cls.\
+            cart_discount = cls. \
                 get_priority_cart_discount(cart_price, count)
             # скидка на корзину
-            set_discount = cls.\
+            set_discount = cls. \
                 get_priority_set_discount(products_id)
             # скидка на набор
             if cart_discount and set_discount:
@@ -206,54 +262,58 @@ class ProductDiscounts:
                 if cart_discount.priority >= set_discount.priority:
                     # приоритет скидки на корзину выше либо равен
                     # приоритету скидки на набор товаров
-                    total_price = cls.\
-                        apply_cart_discount(cart_discount, cart_price)
+                    cart_prices_list = cls. \
+                        apply_cart_discount(cart_discount, cart_price,
+                                            cart=cart)
                     # применение скидки на корзину
                 else:
-                    total_price = cls.\
+                    cart_prices_list = cls. \
                         apply_set_discount(set_discount, cart=cart)
                     # применение скидки на набор товаров
             elif cart_discount:
                 # имеется только скидка на корзину
-                total_price = cls.\
-                    apply_cart_discount(cart_discount, cart_price)
+                cart_prices_list = cls. \
+                    apply_cart_discount(cart_discount, cart_price,
+                                        cart=cart)
             elif set_discount:
                 # имеется только скидка на набор товаров
-                total_price = cls.\
+                cart_prices_list = cls. \
                     apply_set_discount(set_discount, cart=cart)
             else:
                 # скидки на корзину и набор отсутствуют,
                 # идет подсчет скидки на каждый товар
-                total_price = cls.\
+                cart_prices_list = cls. \
                     apply_products_discount(cart)
         elif session_products:
             # есть товары в сессии(пользователь не авторизован)
             # логика та же, что и при авторизованном
             products_id = [item.split()[0] for item in session_products.keys()]
-            cart_discount = cls.\
+            cart_discount = cls. \
                 get_priority_cart_discount(cart_price, count)
-            set_discount = cls.\
+            set_discount = cls. \
                 get_priority_set_discount(products_id)
             if cart_discount and set_discount:
                 if cart_discount.priority >= set_discount.priority:
-                    total_price = cls.\
+                    cart_prices_list = cls. \
                         apply_cart_discount(cart_discount,
-                                            cart_price)
+                                            cart_price,
+                                            session_products=session_products)
                 else:
-                    total_price = cls.\
+                    cart_prices_list = cls. \
                         apply_set_discount(set_discount,
                                            session_products=session_products)
             elif cart_discount:
-                total_price = cls.\
+                cart_prices_list = cls. \
                     apply_cart_discount(cart_discount,
-                                        cart_price)
+                                        cart_price,
+                                        session_products=session_products)
             elif set_discount:
-                total_price = cls.\
+                cart_prices_list = cls. \
                     apply_set_discount(set_discount,
                                        session_products=session_products)
             else:
-                total_price = cls.\
+                cart_prices_list = cls. \
                     apply_products_discount(session_products=session_products)
         else:
-            total_price = 0
-        return round(total_price, 2)
+            cart_prices_list = []
+        return cart_prices_list

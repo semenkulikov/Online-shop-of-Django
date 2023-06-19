@@ -34,6 +34,13 @@ class CartItem(BaseModel):
         related_name='items',
         verbose_name='seller'
     )
+    discounted_price = models.DecimalField(
+        default=0,
+        verbose_name=_('Discounted price'),
+        decimal_places=2,
+        max_digits=20
+
+    )
 
     class Meta:
         verbose_name_plural = _('items in cart')

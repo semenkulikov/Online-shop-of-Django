@@ -23,7 +23,7 @@ class PriceRepository(PriceInterface):
         min_price = SlicePrice.objects. \
             filter(product=product, is_active=True). \
             annotate(min_value=Min('value')). \
-            latest('updated_at', 'min_value')
+            latest('-min_value', 'updated_at')
         return min_price
 
     def get_price(self, product: Product, seller: Seller) -> float:
