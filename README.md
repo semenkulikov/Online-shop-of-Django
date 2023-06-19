@@ -28,3 +28,8 @@
     pip install -r requirements.txt - для установки пакетов django-silk и gprof2dot
     python manage.py migrate - для миграций silk
     http://127.0.0.1:8000/silk/requests/ - url адрес для просмотра запросов
+
+# Running docker
+    docker compose up -d --build - сборка перед стартом контейнеров
+    docker compose up -d - запуск контейнеров (-d для запуска в фоне)
+    docker compose down - остановка контейнеров
