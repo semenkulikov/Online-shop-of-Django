@@ -77,19 +77,20 @@
                     <div class="Section-columnSection Section-columnSection_mark">
                       <header class="Section-columnHeader">
                         <strong class="Section-columnTitle">{% translate 'LIMITED OFFER' %}
+
                         </strong>
                       </header>
-                      <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/home/card.jpg" alt="card.jpg"/></a>
+                      <div class="Card"><a class="Card-picture" href="#"><img src="{{ discounted.product_images.first.image.url }}" alt="card.jpg"/></a>
                         <div class="Card-content">
-                          <strong class="Card-title"><a href="#">Corsair Carbide Series Arctic White Steel</a>
+                          <strong class="Card-title"><a href="#">{{ discounted.name }}</a>
                           </strong>
                           <div class="Card-description">
                             <div class="Card-cost"><span class="Card-priceOld">$115.00</span><span class="Card-price">$85.00</span>
                             </div>
-                            <div class="Card-category">News / xbox
+                            <div class="Card-category">{{ discounted.category.name}}
                             </div>
                           </div>
-                          <div class="CountDown" data-date="08.06.2023 03:59">
+                          <div class="CountDown" data-date="{{ discounted.product_discounts.first.expiration_date |date:"d.m.Y"}} 00:00">
                             <div class="CountDown-block">
                               <div class="CountDown-wrap">
                                 <div class="CountDown-days">
