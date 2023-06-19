@@ -118,22 +118,31 @@ WSGI_APPLICATION = 'shope.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("POSTGRES_DB"),
-        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-        'USER': os.getenv("POSTGRES_USER"),
-        'HOST': 'db-shop',
-        'PORT': '5432',
+if os.getenv("DOCKER"):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv("POSTGRES_DB"),
+            'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+            'USER': os.getenv("POSTGRES_USER"),
+            'HOST': 'db-shop',
+            'PORT': '5432',
+        }
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
 
-}
+    STATIC_ROOT = os.path.join(BASE_DIR, '/static')
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+
+    }
+
+    STATICFILES_DIRS = (BASE_DIR / 'static',)
+
 
 CACHES = {
     "default": {
@@ -186,8 +195,8 @@ LANGUAGES = [
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = (BASE_DIR / 'static',)
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -224,8 +233,8 @@ MAX_AVATAR_IMAGE_SIZE = 2 * 1024 * 1024
 MAX_VIEWED_PRODUCTS = 5
 
 MAX_POPULAR_INDEX = 6
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
