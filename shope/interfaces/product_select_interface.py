@@ -29,7 +29,8 @@ class ProductSelectInterface(ABC):
                                  query: str,
                                  category: str,
                                  free_shipping: bool,
-                                 in_stock: bool) -> QuerySet[Product]:
+                                 in_stock: bool,
+                                 discounted: bool) -> QuerySet[Product]:
         """Получить список продуктов на основании фильтра"""
         pass
 

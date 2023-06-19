@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-08 16:12+0300\n"
+"POT-Creation-Date: 2023-06-16 00:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
-"100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\authapp\apps.py:9
 msgid "Users"
@@ -76,7 +76,7 @@ msgstr ""
 "Произошла ошибка. Срок активации истек\n"
 ".Попробуйте зарегистрироваться еще раз."
 
-#: .\cartapp\models\cart.py:16 .\orderapp\models.py:17
+#: .\cartapp\models\cart.py:16 .\orderapp\models.py:18
 #: .\paymentapp\models.py:17 .\paymentapp\models.py:52
 #: .\profileapp\models\profile.py:15 .\profileapp\models\viewed_product.py:16
 msgid "user"
@@ -90,7 +90,7 @@ msgstr "корзина"
 msgid "carts"
 msgstr "корзины"
 
-#: .\cartapp\models\cartitem.py:18 .\orderapp\models.py:67
+#: .\cartapp\models\cartitem.py:18 .\orderapp\models.py:78
 #: .\productsapp\models\images.py:21 .\productsapp\models\price.py:22
 #: .\productsapp\models\product.py:40 .\productsapp\models\seller_items.py:23
 #: .\productsapp\models\slider.py:15
@@ -125,11 +125,11 @@ msgstr "Аннулировано"
 msgid "Successfully completed"
 msgstr "Успешно завершен"
 
-#: .\coreapp\enums.py:20
+#: .\coreapp\enums.py:20 .\templates\orderapp\oneorder.html:89
 msgid "Paid"
 msgstr "Оплачено"
 
-#: .\coreapp\enums.py:21
+#: .\coreapp\enums.py:21 .\templates\orderapp\oneorder.html:91
 msgid "Not paid for"
 msgstr "Не оплачено"
 
@@ -141,48 +141,58 @@ msgstr "Тип доставки"
 msgid "Express delivery"
 msgstr "Экспресс-доставка"
 
-#: .\orderapp\models.py:23
+#: .\orderapp\models.py:24 .\profileapp\models\profile.py:19
+#: .\templates\orderapp\order.html:52 .\templates\orderapp\order.html:115
+#: .\templates\profileapp\profileAvatar.html:65
+msgid "FIO"
+msgstr "ФИО"
+
+#: .\orderapp\models.py:29 .\profileapp\models\profile.py:31
+msgid "phone number"
+msgstr "номер телефона"
+
+#: .\orderapp\models.py:34
 msgid "status"
 msgstr "статус"
 
-#: .\orderapp\models.py:30
+#: .\orderapp\models.py:41
 msgid "city"
 msgstr "Город"
 
-#: .\orderapp\models.py:35
+#: .\orderapp\models.py:46
 msgid "address"
 msgstr "адрес электронной почты"
 
-#: .\orderapp\models.py:40
+#: .\orderapp\models.py:51
 msgid "delivery type"
 msgstr "Тип устройства"
 
-#: .\orderapp\models.py:49 .\orderapp\models.py:61 .\paymentapp\models.py:33
+#: .\orderapp\models.py:60 .\orderapp\models.py:72 .\paymentapp\models.py:33
 msgid "order"
 msgstr "заказ"
 
-#: .\orderapp\models.py:50
+#: .\orderapp\models.py:61
 msgid "orders"
 msgstr "заказы"
 
-#: .\orderapp\models.py:72
+#: .\orderapp\models.py:83
 msgid "count"
 msgstr "количество"
 
-#: .\orderapp\models.py:78 .\productsapp\models\price.py:29
+#: .\orderapp\models.py:89 .\productsapp\models\price.py:29
 #: .\productsapp\models\seller.py:20 .\productsapp\models\seller_items.py:16
 msgid "seller"
 msgstr "продавец"
 
-#: .\orderapp\models.py:84
+#: .\orderapp\models.py:95
 msgid "price"
 msgstr "цена"
 
-#: .\orderapp\models.py:90
+#: .\orderapp\models.py:101
 msgid "order item"
 msgstr "предмет заказа"
 
-#: .\orderapp\models.py:91
+#: .\orderapp\models.py:102
 msgid "order items"
 msgstr "предметы заказа"
 
@@ -231,7 +241,7 @@ msgstr "идентификатор метода оплаты"
 msgid "card type"
 msgstr "тип карты"
 
-#: .\paymentapp\models.py:63 .\productsapp\models\discount.py:26
+#: .\paymentapp\models.py:63 .\productsapp\models\discount.py:27
 msgid "expiration date"
 msgstr "срок действия"
 
@@ -264,7 +274,7 @@ msgstr "баннер"
 msgid "banners"
 msgstr "баннеры"
 
-#: .\productsapp\models\category.py:13 .\productsapp\models\discount.py:13
+#: .\productsapp\models\category.py:13 .\productsapp\models\discount.py:14
 #: .\productsapp\models\product.py:13 .\productsapp\models\seller.py:13
 msgid "name"
 msgstr "название"
@@ -273,61 +283,61 @@ msgstr "название"
 msgid "icon (SVG)"
 msgstr "значок (SVG)"
 
-#: .\productsapp\models\category.py:23 .\productsapp\models\discount.py:65
+#: .\productsapp\models\category.py:23 .\productsapp\models\discount.py:69
 msgid "categories"
 msgstr "категории"
 
-#: .\productsapp\models\discount.py:18 .\productsapp\models\price.py:15
+#: .\productsapp\models\discount.py:19 .\productsapp\models\price.py:15
 msgid "value"
 msgstr "значение"
 
-#: .\productsapp\models\discount.py:22
+#: .\productsapp\models\discount.py:23
 msgid "start date"
 msgstr "дата начала"
 
-#: .\productsapp\models\discount.py:31 .\productsapp\models\product.py:15
+#: .\productsapp\models\discount.py:32 .\productsapp\models\product.py:15
 #: .\productsapp\models\slider.py:21 .\productsapp\models\specific.py:17
 msgid "description"
 msgstr "описание"
 
-#: .\productsapp\models\discount.py:35
+#: .\productsapp\models\discount.py:37
 msgid "priority"
 msgstr "приоритет"
 
-#: .\productsapp\models\discount.py:49 .\productsapp\models\discount.py:61
+#: .\productsapp\models\discount.py:51 .\productsapp\models\discount.py:63
 #: .\productsapp\models\product.py:41
 msgid "products"
 msgstr "товары"
 
-#: .\productsapp\models\discount.py:52
+#: .\productsapp\models\discount.py:54
 msgid "Set Discount"
 msgstr "Скидка на набор товаров"
 
-#: .\productsapp\models\discount.py:53
+#: .\productsapp\models\discount.py:55
 msgid "Set Discounts"
 msgstr "Скидки на наборы товаров"
 
-#: .\productsapp\models\discount.py:68
+#: .\productsapp\models\discount.py:74
 msgid "Product Discount"
 msgstr "Скидка на товары"
 
-#: .\productsapp\models\discount.py:69
+#: .\productsapp\models\discount.py:75
 msgid "Product Discounts"
 msgstr "Скидки на товары"
 
-#: .\productsapp\models\discount.py:78
+#: .\productsapp\models\discount.py:86
 msgid "required sum"
 msgstr "необходимая сумма"
 
-#: .\productsapp\models\discount.py:82
+#: .\productsapp\models\discount.py:91
 msgid "required quantity"
 msgstr "необходимое количество"
 
-#: .\productsapp\models\discount.py:85
+#: .\productsapp\models\discount.py:94
 msgid "Cart Discount"
 msgstr "Скидка на корзину"
 
-#: .\productsapp\models\discount.py:86
+#: .\productsapp\models\discount.py:95
 msgid "Cart Discounts"
 msgstr "Скидки на корзину"
 
@@ -419,19 +429,9 @@ msgstr "Новый пароль"
 msgid "New password confirmation"
 msgstr "Подтверждение нового пароля"
 
-#: .\profileapp\models\profile.py:19 .\templates\orderapp\order.html:52
-#: .\templates\orderapp\order.html:115
-#: .\templates\profileapp\profileAvatar.html:65
-msgid "FIO"
-msgstr "ФИО"
-
 #: .\profileapp\models\profile.py:24
 msgid "avatar"
 msgstr "аватар"
-
-#: .\profileapp\models\profile.py:31
-msgid "phone number"
-msgstr "номер телефона"
 
 #: .\profileapp\models\profile.py:38
 msgid "profile"
@@ -453,11 +453,11 @@ msgstr "просмотренные продукты"
 msgid "Profile is updated successfully"
 msgstr "Профиль успешно обновлен"
 
-#: .\shope\settings.py:169
+#: .\shope\settings.py:180
 msgid "English"
 msgstr "Английский"
 
-#: .\shope\settings.py:170
+#: .\shope\settings.py:181
 msgid "Russian"
 msgstr "Русский"
 
@@ -639,6 +639,10 @@ msgstr "Кухонная техника"
 msgid "Floor lamps"
 msgstr "Напольные лампы"
 
+#: .\templates\base.html:283
+msgid "Search"
+msgstr "Поиск"
+
 #: .\templates\base.html:396 .\templates\index.html:79
 msgid "LIMITED OFFER"
 msgstr "ОГРАНИЧЕННОЕ ПРЕДЛОЖЕНИЕ"
@@ -649,7 +653,7 @@ msgstr "Популярные товары"
 
 #: .\templates\base.html:566 .\templates\index.html:159
 msgid "Limited edition"
-msgstr ""
+msgstr "Ограниченная серия"
 
 #: .\templates\base.html:733 .\templates\profileapp\account.html:19
 #: .\templates\profileapp\profile.html:21
@@ -658,8 +662,7 @@ msgid "Navigation"
 msgstr "Навигация"
 
 #: .\templates\base.html:742 .\templates\profileapp\account.html:27
-#: .\templates\profileapp\profile.html:5
-#: .\templates\profileapp\profile.html:29
+#: .\templates\profileapp\profile.html:5 .\templates\profileapp\profile.html:29
 #: .\templates\profileapp\profileAvatar.html:14
 #: .\templates\profileapp\profileAvatar.html:19
 #: .\templates\profileapp\profileAvatar.html:38
@@ -675,7 +678,7 @@ msgid "Seller"
 msgstr "Продавцы"
 
 #: .\templates\cartapp\cart.html:75 .\templates\cartapp\cart.html:135
-#: .\templates\orderapp\order.html:184
+#: .\templates\orderapp\order.html:195
 msgid "Total"
 msgstr "Итого"
 
@@ -697,11 +700,10 @@ msgstr "заказ"
 
 #: .\templates\orderapp\historyorder.html:46
 msgid "from"
-msgstr ""
+msgstr "от"
 
 #: .\templates\orderapp\historyorder.html:50
-#: .\templates\orderapp\order.html:135
-#: .\templates\productsapp\product.html:167
+#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:167
 #: .\templates\profileapp\account.html:66
 msgid "Type of delivery"
 msgstr "Тип доставки"
@@ -756,7 +758,11 @@ msgstr "Онлайн карта"
 msgid "Step 3: Confirm order"
 msgstr "Шаг 4: Подтвердить заказ"
 
-#: .\templates\orderapp\order.html:188 .\templates\paymentapp\payment.html:39
+#: .\templates\orderapp\order.html:182
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\templates\orderapp\order.html:200 .\templates\paymentapp\payment.html:39
 #: .\templates\paymentapp\paymentsomeone.html:41
 msgid "Pay"
 msgstr "Оплатить"
@@ -782,58 +788,62 @@ msgstr "Ожидание платежа"
 msgid "Waiting for confirmation of payment by the payment system"
 msgstr "Ожидание подтверждения платежа со стороны платежной системы"
 
-#: .\templates\productsapp\catalog.html:21
-#: .\templates\productsapp\catalog.html:52
+#: .\templates\productsapp\catalog.html:22
+#: .\templates\productsapp\catalog.html:58
 msgid "Filter"
 msgstr "Фильтр"
 
-#: .\templates\productsapp\catalog.html:29
+#: .\templates\productsapp\catalog.html:30
 msgid "Price (RUB)"
 msgstr "Цена (руб.)"
 
-#: .\templates\productsapp\catalog.html:36
+#: .\templates\productsapp\catalog.html:37
 msgid "Product name"
 msgstr "Название товара"
 
-#: .\templates\productsapp\catalog.html:43
+#: .\templates\productsapp\catalog.html:44
 msgid "Items in stock only"
 msgstr "Товары в наличии"
 
-#: .\templates\productsapp\catalog.html:48
+#: .\templates\productsapp\catalog.html:49
 msgid "With free delivery"
 msgstr "С бесплатной доставкой"
 
-#: .\templates\productsapp\catalog.html:60
+#: .\templates\productsapp\catalog.html:54
+msgid "Discounted"
+msgstr "Со скидкой"
+
+#: .\templates\productsapp\catalog.html:66
 msgid "Popular tags"
 msgstr "Популярные теги"
 
-#: .\templates\productsapp\catalog.html:73
+#: .\templates\productsapp\catalog.html:79
 msgid "Export of all products"
 msgstr "Экспорт всех продуктов"
 
-#: .\templates\productsapp\catalog.html:80
+#: .\templates\productsapp\catalog.html:86
 msgid "Export product"
 msgstr "Экспорт продукта"
 
-#: .\templates\productsapp\catalog.html:88
+#: .\templates\productsapp\catalog.html:94
 msgid "Sort by"
 msgstr "Сортировать по"
 
-#: .\templates\productsapp\catalog.html:94
+#: .\templates\productsapp\catalog.html:100
 msgid "Popularity"
 msgstr "Популярность"
 
-#: .\templates\productsapp\catalog.html:96
+#: .\templates\productsapp\catalog.html:102
 msgid "Price"
 msgstr "Цена"
 
-#: .\templates\productsapp\catalog.html:98
+#: .\templates\productsapp\catalog.html:104
 #: .\templates\productsapp\product.html:117
 #: .\templates\productsapp\product.html:209
 msgid "Reviews"
 msgstr "Отзывы"
 
-#: .\templates\productsapp\catalog.html:100
+#: .\templates\productsapp\catalog.html:106
 msgid "Novelty"
 msgstr "Новизна"
 

@@ -12,6 +12,7 @@ class CatalogFilterForm(forms.Form):
     price_range = forms.CharField(max_length=30, required=False)
     free_delivery = forms.BooleanField(required=False)
     in_stock = forms.BooleanField(required=False)
+    discounted = forms.BooleanField(required=False)
     sort = forms.CharField(max_length=20, required=False)
     tag = forms.CharField(max_length=50, required=False)
     price_min = forms.IntegerField(min_value=0, required=False)
