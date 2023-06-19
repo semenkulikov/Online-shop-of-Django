@@ -131,7 +131,7 @@
                                     <div class="Cart-block Cart-block_total">
                                         <strong class="Cart-title">Доставка:<span class="Cart-price">{{ order.delivery_price }} &#8381;</span>
                                         </strong>
-                                        <strong class="Cart-title">Итого:<span class="Cart-price">{{ order.amount|add:order.delivery_price }} &#8381;</span>
+                                        <strong class="Cart-title">Итого:<span class="Cart-price">{{ order.total_discounted_price }} &#8381;</span>
                                         </strong>
                                     </div>
                                     {% if object.status != "paid" %}

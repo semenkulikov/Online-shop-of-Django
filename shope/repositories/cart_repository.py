@@ -1,4 +1,4 @@
-from django.db.models import QuerySet, Sum, OuterRef
+from django.db.models import QuerySet, Sum, OuterRef, Count, Q
 from django.shortcuts import get_object_or_404
 
 from authapp.models import User
@@ -80,7 +80,7 @@ class RepCartItem(CartItemInterface):
         cart_items = CartItem.objects.\
             filter(cart=cart, is_active=True). \
             annotate(price=subquery[:1]). \
-            prefetch_related('product', 'seller')
+            prefetch_related('product', 'seller', 'product__category')
         return cart_items
 
     def get_cart_item(self, cart: Cart, product: Product, seller: Seller) \
@@ -119,3 +119,16 @@ class RepCartItem(CartItemInterface):
         Получение количества позиций с товаром
         """
         return cart.items.filter(is_active=True).count()
+
+    def sellers_amount(self, cart_id: int) -> int:
+        """
+        Получение количества разных продавцов в корзине
+        (для расчета доставки)
+        """
+        cart = Cart.objects.annotate(
+            sellers=Count('items__seller',
+                          distinct=True,
+                          filter=Q(items__is_active=True)
+                          )).get(id=cart_id)
+
+        return cart.sellers

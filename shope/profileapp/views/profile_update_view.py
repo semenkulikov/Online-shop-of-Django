@@ -1,30 +1,14 @@
-from django.views.generic import DetailView, View
+from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from .models import Profile
+
 from repositories import OrderRepository
-from .forms import ProfileForm, UserForm, UserPasswordSetForm
+from profileapp.forms import ProfileForm, UserForm, UserPasswordSetForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import update_session_auth_hash
 from django.utils.translation import gettext_lazy as _
 
 order_rep = OrderRepository()
-
-
-class ProfileDetailView(LoginRequiredMixin, DetailView):
-    """
-    View класс для отображения информации об аккаунте
-    """
-    queryset = Profile
-    template_name = 'profileapp/account.html'
-
-    def get_object(self, queryset=None):
-        return self.request.user.profile
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['order'] = order_rep.get_last_activ(user=self.request.user)
-        return context
 
 
 class ProfileUpdateView(LoginRequiredMixin, View):

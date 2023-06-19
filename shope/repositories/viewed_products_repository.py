@@ -52,7 +52,7 @@ class ViewedProductsRepository(ViewedProductsInterface):
         return ViewedProduct.objects.filter(
             user=user,
             is_active=is_active
-        )
+        ).order_by('-updated_at')
 
     def get_viewed_product(
             self,
@@ -77,3 +77,19 @@ class ViewedProductsRepository(ViewedProductsInterface):
 
         viewed_product.update(updated_at=timezone.now())
         return viewed_product
+
+    def get_by_user_limit(
+            self,
+            user: User,
+            limit: int,
+            is_active: bool = True
+    ) -> QuerySet[ViewedProduct]:
+
+        """
+        Получить просмотренные продукты для пользователя
+        с ограничением на количество
+        """
+        return ViewedProduct.objects.filter(
+            user=user,
+            is_active=is_active
+        ).order_by('updated_at')[:limit]

@@ -22,11 +22,11 @@ def cart_block(request):
         cart = rep_cart.get_cart(user=user)
         count = SelectCart.cart_all_products_amount(cart=cart)
         cart_price = SelectCart.cart_total_amount(cart=cart)
-        discounted_total_price = ProductDiscounts.\
-            get_price_discount_on_cart(cart_price, count, cart=cart)
+        discounted_prices_list = ProductDiscounts. \
+            get_prices_discount_on_cart(cart_price, count, cart=cart)
         context = {
             'cart_count': count,
-            'cart_sum': discounted_total_price
+            'cart_sum': sum(discounted_prices_list)
         }  # словарь с количеством и суммой товаров в корзине
         return context
 
@@ -38,11 +38,13 @@ def cart_block(request):
             session_products=session_products)
         cart_price = SelectCart.cart_total_amount(
             session_products=session_products)
-        discounted_total_price = ProductDiscounts.\
-            get_price_discount_on_cart(cart_price, count,
-                                       session_products=session_products)
+        discounted_prices_list = ProductDiscounts. \
+            get_prices_discount_on_cart(cart_price, count,
+                                        session_products=session_products)
+        request.session['prices'] = discounted_prices_list
+        request.session.modified = True
         context = {
             'cart_count': count,
-            'cart_sum': discounted_total_price
+            'cart_sum': sum(discounted_prices_list)
         }  # словарь с количеством и суммой товаров в корзине
         return context

@@ -33,7 +33,7 @@ class PaymentView(View):
             order_form.save()
 
             # Если сумма платежа не равна сумме заказа
-            if order.amount + order.delivery_price != \
+            if order.total_discounted_price != \
                     payment_form.cleaned_data['total_sum']:
                 return HttpResponseBadRequest('Payment is incorrect!')
 
@@ -84,7 +84,7 @@ class PaymentView(View):
 
             payment_form = PaymentForm()
             payment_form.fields[
-                'total_sum'].initial = order.amount + order.delivery_price
+                'total_sum'].initial = order.total_discounted_price
 
             context = {
                 'order_form': order_form,

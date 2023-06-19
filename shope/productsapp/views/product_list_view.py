@@ -38,6 +38,7 @@ class ProductListView(ListView):
             category = form.cleaned_data.get('category')
             free_delivery = form.cleaned_data.get('free_delivery')
             in_stock = form.cleaned_data.get('in_stock')
+            discounted = form.cleaned_data.get('discounted')
 
             if tag:  # поиск по тегу
                 queryset = select_repo.get_products_with_tag(tag=tag)
@@ -47,7 +48,8 @@ class ProductListView(ListView):
                     query=query,
                     category=category,
                     free_delivery=free_delivery,
-                    in_stock=in_stock)
+                    in_stock=in_stock,
+                    discounted=discounted)
 
             queryset = select_repo.get_product_prices(queryset)
 

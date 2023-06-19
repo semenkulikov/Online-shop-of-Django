@@ -5,6 +5,7 @@ from productsapp.models.product import Product
 from productsapp.models.price import SlicePrice
 from productsapp.models.specific import Specific
 from django.db.models import QuerySet, Sum, Count, Subquery, OuterRef, Q
+from django.db.models.functions import Greatest
 from coreapp.enums import SORT_TYPES
 
 
@@ -26,13 +27,22 @@ class ProductSelectRepository(ProductSelectInterface):
                                  query: str,
                                  category: str,
                                  free_delivery: bool,
-                                 in_stock: bool) -> QuerySet[Product]:
+                                 in_stock: bool,
+                                 discounted: bool) -> QuerySet[Product]:
         """Получить список продуктов на основании фильтра"""
-        return Product.objects.filter(
+        products = Product.objects.filter(
             Q(name__icontains=query) | Q(description__icontains=query),
             category__name__icontains=category,
             free_delivery__in=(True, free_delivery),
             is_active__in=(True, in_stock))
+
+        if discounted:
+            products = products.annotate(disc_num=(Greatest(
+                Count('product_discounts'),
+                Count('category__category_discounts')))
+            ).filter(disc_num__gt=0)
+
+        return products
 
     def get_products_with_tag(self,
                               tag: str) -> QuerySet[Product]:
