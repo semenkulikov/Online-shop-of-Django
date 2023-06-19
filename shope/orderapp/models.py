@@ -53,6 +53,24 @@ class Order(BaseModel):
         default=DEFAULT
     )
 
+    delivery_price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        verbose_name=_('delivery price')
+    )
+
+    total_price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        verbose_name=_('total price')
+    )
+
+    total_discounted_price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        verbose_name=_('total discounted price')
+    )
+
     def __str__(self):
         return f'Order {self.id}'
 

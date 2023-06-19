@@ -64,3 +64,11 @@ class CartItemInterface(ABC):
     @abstractmethod
     def get_count_cart_items(self, cart: Cart) -> int:
         pass
+
+    @abstractmethod
+    def sellers_amount(self, cart_id: int) -> int:
+        """
+        Получение количества разных продавцов в корзине
+        (для расчета доставки)
+        """
+        pass
