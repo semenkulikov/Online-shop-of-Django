@@ -27,7 +27,7 @@ class IndexView(View):
         products_with_price = product_rep.get_product_prices(products)
 
         discount_product = discount_rep.get_product_with_discount()
-        print(discount_product)
+
         popular = product_rep.sort_by_popular(
             products=products_with_price,
             reverse=True

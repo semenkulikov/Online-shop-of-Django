@@ -60,3 +60,10 @@ class DiscountInterface(ABC):
         в будущем
         """
         pass
+
+    @abstractmethod
+    def get_product_with_discount(self):
+        """
+        Получить товары с активными скидками
+        """
+        pass

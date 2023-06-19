@@ -19,13 +19,11 @@ class DiscountRepository(DiscountInterface):
         date_now = datetime.now()
         product_discount = product.product_discounts.filter(
             start_date__lte=date_now, expiration_date__gte=date_now,
-            is_active=True).order_by('-priority'). \
-            only('value', 'priority')[:1]
+            is_active=True).order_by('-priority').only('value', 'priority')[:1]
         # наиболее приоритетная скидка на товар, если есть
         category_discount = category.category_discounts.filter(
             start_date__lte=date_now, expiration_date__gte=date_now,
-            is_active=True).order_by('-priority'). \
-            only('value', 'priority')[:1]
+            is_active=True).order_by('-priority').only('value', 'priority')[:1]
         # наиболее приоритетная скидка на категорию, если есть
         total = (category_discount | product_discount). \
             order_by('-priority').first()
@@ -95,8 +93,14 @@ class DiscountRepository(DiscountInterface):
         return products_discounts
 
     def get_product_with_discount(self):
+        """
+        Получить товары с активными скидками
+        """
         date_now = datetime.now()
-        product_discount = ProductDiscount.objects.filter(
-            start_date__lte=date_now, expiration_date__gte=date_now,
-            is_active=True)[:1].prefetch_related('products')
-        return product_discount
+
+        products = Product.objects.filter(
+            product_discounts__start_date__lte=date_now,
+            product_discounts__expiration_date__gte=date_now,
+            product_discounts__is_active=True
+        ).order_by('updated_at').prefetch_related('product_discounts').first()
+        return products
