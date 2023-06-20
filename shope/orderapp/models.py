@@ -112,6 +112,11 @@ class OrderItem(BaseModel):
         decimal_places=2,
         verbose_name=_('price'))
 
+    discounted_price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        verbose_name=_('discounted price'))
+
     def __str__(self):
         return f'{self.product} x{self.count}'
 

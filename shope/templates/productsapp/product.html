@@ -2,6 +2,8 @@
 {% load static %}
 {% load i18n %}
 {% load get_price_a_seller %}
+{% load discounted_price %}
+
 
 {% block title %}
     Megano
@@ -45,8 +47,20 @@
                                 </h2>
                                 <div class="ProductCard-info">
                                     <div class="ProductCard-cost">
-                                        <div class="ProductCard-price">${{ product_price.value }}
-                                        </div>
+                                        {% with disc_price=product|discounted_price:product_price.value %}
+                                            {% if disc_price %}
+                                                <div class="ProductCard-price discounted_price">
+                                                    {{ product_price.value }} &#x20bd
+                                                </div>
+                                                <div class="ProductCard-price">
+                                                    &nbsp;{{ disc_price }} &#x20bd
+                                                </div>
+                                            {% else %}
+                                                <div class="ProductCard-price">
+                                                    {{ product_price.value }} &#x20bd
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
                                     </div>
                                 </div>
                             </div>
