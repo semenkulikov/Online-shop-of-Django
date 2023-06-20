@@ -134,7 +134,7 @@ class AjaxUpdateCartView(View):
                 request.session['prices'] = discounted_total_price
                 request.session.modified = True
             context = {'cart_count': cart_count,
-                       'cart_sum': sum(discounted_total_price)
+                       'cart_sum': round(sum(discounted_total_price), 2)
                        }
             return JsonResponse(data=context)
 

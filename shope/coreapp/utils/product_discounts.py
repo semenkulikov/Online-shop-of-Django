@@ -118,10 +118,11 @@ class ProductDiscounts:
                     # если скидка на товар есть, то считается цена со
                     # скидкой
                     discounted_price = (price - price * discount.value / 100)
-                    price = round(float(discounted_price * item.quantity), 2)
+                    price = discounted_price * item.quantity
                 else:
                     # цена без скидки
-                    price = round(float(item.price * item.quantity), 2)
+                    price = item.price * item.quantity
+                price = round(float(price), 2)
                 item.discounted_price = price
                 cart_prices.append(price)
             # обновление поля discounted_price во всех позициях с товарами
@@ -142,12 +143,12 @@ class ProductDiscounts:
                 # приоритетная скидка на товар
                 if discount:
                     # если скидка есть, то рассчитывается цена со скидкой
-                    price = round(float((price - price * discount.value / 100)
-                                        * session_products[item]), 2)
+                    price = (price - price * discount.value / 100) \
+                            * session_products[item]
                 else:
                     # цена без скидки
-                    price = round(float(price * session_products[item]), 2)
-                cart_prices.append(price)
+                    price = price * session_products[item]
+                cart_prices.append(round(float(price), 2))
         return cart_prices
 
     @classmethod
@@ -174,10 +175,11 @@ class ProductDiscounts:
                     # то на него действует скидка
                     discounted_price = (price - price *
                                         set_discount.value / 100)
-                    price = float(discounted_price * item.quantity)
+                    price = discounted_price * item.quantity
                 else:
                     # цена без скидки
                     price = item.price * item.quantity
+                price = round(float(price), 2)
                 item.discounted_price = price
                 cart_prices.append(price)
             # обновление поля discounted_price во всех позициях с товарами
@@ -201,7 +203,7 @@ class ProductDiscounts:
                 else:
                     # у товара нет скидки
                     price = float(price * session_products[item])
-                cart_prices.append(price)
+                cart_prices.append(round(price, 2))
         return cart_prices
 
     @classmethod
@@ -218,7 +220,7 @@ class ProductDiscounts:
             for item in items:
                 price = item.price
                 discounted_price = (price - price * discount / 100)
-                price = float(discounted_price * item.quantity)
+                price = round(float(discounted_price * item.quantity), 2)
                 item.discounted_price = price
                 cart_prices.append(price)
             # обновление поля discounted_price во всех позициях с товарами
@@ -234,7 +236,7 @@ class ProductDiscounts:
                                             seller=seller)
                 price = float((price - price * discount / 100) *
                               session_products[item])
-                cart_prices.append(price)
+                cart_prices.append(round(price, 2))
         return cart_prices
 
     @classmethod
