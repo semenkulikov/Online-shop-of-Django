@@ -115,8 +115,18 @@
                                             </div>
                                         </div>
                                         <div class="Cart-block Cart-block_price">
-                                            <div class="Cart-price">{{ order_item.price }}
-                                            </div>
+                                                {% if order_item.price != order_item.discounted_price %}
+                                                    <div class="Cart-price discounted_price">
+                                                        {{order_item.price}}&#8381;
+                                                    </div>
+                                                    <div class="Cart-price">
+                                                        {{order_item.discounted_price}}&#8381;
+                                                    </div>
+                                                {% else %}
+                                                    <div class="Cart-price">
+                                                        {{order_item.price}}&#8381;
+                                                    </div>
+                                                {% endif %}
                                         </div>
                                     </div>
                                         <div class="Cart-block Cart-block_row">

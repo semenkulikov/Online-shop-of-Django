@@ -38,8 +38,18 @@ Megano
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
-                            <div class="Cart-price">{{discounted_price}} &#x20bd
-                            </div>
+                            {% if item.value != discounted_price %}
+                                <div class="Cart-price discounted_price">
+                                    {{item.value}}&nbsp;&#8381;
+                                </div>
+                                <div class="Cart-price">
+                                    {{discounted_price}}&nbsp;&#8381;
+                                </div>
+                            {% else %}
+                                <div class="Cart-price">
+                                    {{item.value}}&nbsp;&#8381;
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="Cart-block Cart-block_row">
@@ -73,7 +83,7 @@ Megano
                 <div class="Cart-total">
                     <div class="Cart-block Cart-block_total">
                         <strong class="Cart-title">{% translate 'Total' %}:
-                        </strong><span class="Cart-price">{% firstof cart_sum '0' %}</span>
+                        </strong><span class="Cart-price">{% firstof cart_sum '0' %}&nbsp;&#8381;</span>
                     </div>
                     <div class="Cart-block">
                         <a class="btn btn_success btn_lg" href="{% url 'authapp:login' %}?next={% url 'cartapp:cart' %}">{% translate 'Log in to continue' %}</a>
@@ -98,8 +108,18 @@ Megano
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
-                            <div class="Cart-price">{{item.discounted_price}} &#x20bd
-                            </div>
+                            {% if item.price != item.discounted_price %}
+                                <div class="Cart-price discounted_price">
+                                    {{item.price}}&nbsp;&#8381;
+                                </div>
+                                <div class="Cart-price">
+                                    {{item.discounted_price}}&nbsp;&#8381;
+                                </div>
+                            {% else %}
+                                <div class="Cart-price">
+                                    {{item.price}}&nbsp;&#8381;
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="Cart-block Cart-block_row">

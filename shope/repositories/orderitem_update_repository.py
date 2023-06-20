@@ -21,7 +21,8 @@ class OrderItemUpdateRepository(OrderItemUpdateInterface):
                 order=order, product=item.product,
                 seller=item.seller, count=item.quantity,
                 price=rep_price.get_price(
-                    item.product, item.seller) * item.quantity)
+                    item.product, item.seller) * item.quantity,
+                discounted_price=item.discounted_price)
 
             order_item_list.append(order_item)
 

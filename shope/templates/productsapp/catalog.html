@@ -117,7 +117,7 @@
                                     <div class="Card-description">
                                         {% with disc_price=object|discounted_price:object.price %}
                                             {% if disc_price %}
-                                                <div class="Card-cost"><span class="Card-price" style="text-decoration: line-through; color: grey">{{object.price}} &#8381;</span>
+                                                <div class="Card-cost"><span class="Card-price discounted_price">{{object.price}} &#8381;</span>
                                                 </div>
                                                 <div class="Card-cost"><span class="Card-price">{{ disc_price }} &#8381;</span>
                                                 </div>

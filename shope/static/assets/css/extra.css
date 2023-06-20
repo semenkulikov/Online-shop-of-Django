@@ -6660,3 +6660,8 @@ input:-webkit-autofill:active{
 .middle_top_oneorder {
     margin: 30px 0;
 }
+
+.discounted_price {
+    text-decoration: line-through;
+    color: grey
+}
