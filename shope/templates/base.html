@@ -119,7 +119,7 @@
                             <ul class="menu menu_main">
                                 <li class="menu-item"><a class="menu-link" href="{% url 'coreapp:index' %}">{% translate 'Home' %}</a>
                                 </li>
-                                <li class="menu-item"><span class="menu-label menu-label_success">{% translate 'Discounts' %}</span><a class="menu-link" href="{% url 'productsapp:catalog' %}">{% translate 'Catalog' %}</a>
+                                <li class="menu-item"><a href="{% url 'productsapp:sales' %}"><span class="menu-label menu-label_success">{% translate 'Discounts' %}</span></a><a class="menu-link" href="{% url 'productsapp:catalog' %}">{% translate 'Catalog' %}</a>
                                 </li>
                                 <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">{% translate 'Comparison' %}
                                     <span style="

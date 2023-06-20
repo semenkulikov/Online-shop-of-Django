@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 00:51+0300\n"
+"POT-Creation-Date: 2023-06-20 00:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: \n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\authapp\apps.py:9
 msgid "Users"
@@ -90,22 +90,26 @@ msgstr "корзина"
 msgid "carts"
 msgstr "корзины"
 
-#: .\cartapp\models\cartitem.py:18 .\orderapp\models.py:78
+#: .\cartapp\models\cartitem.py:18 .\orderapp\models.py:96
 #: .\productsapp\models\images.py:21 .\productsapp\models\price.py:22
 #: .\productsapp\models\product.py:40 .\productsapp\models\seller_items.py:23
 #: .\productsapp\models\slider.py:15
 msgid "product"
-msgstr "продукт"
+msgstr "товар"
 
 #: .\cartapp\models\cartitem.py:23
 msgid "quantity"
 msgstr "количество"
 
 #: .\cartapp\models\cartitem.py:39
+msgid "Discounted price"
+msgstr "Цена со скидкой"
+
+#: .\cartapp\models\cartitem.py:46
 msgid "items in cart"
 msgstr "товары в корзине"
 
-#: .\cartapp\models\cartitem.py:40
+#: .\cartapp\models\cartitem.py:47
 msgid "item in cart"
 msgstr "товар в корзине"
 
@@ -167,36 +171,48 @@ msgstr "адрес электронной почты"
 msgid "delivery type"
 msgstr "Тип устройства"
 
-#: .\orderapp\models.py:60 .\orderapp\models.py:72 .\paymentapp\models.py:33
+#: .\orderapp\models.py:59
+msgid "delivery price"
+msgstr "Стоимость доставки"
+
+#: .\orderapp\models.py:65
+msgid "total price"
+msgstr "общая цена"
+
+#: .\orderapp\models.py:71
+msgid "total discounted price"
+msgstr "общая цена со скидкой"
+
+#: .\orderapp\models.py:78 .\orderapp\models.py:90 .\paymentapp\models.py:33
 msgid "order"
 msgstr "заказ"
 
-#: .\orderapp\models.py:61
+#: .\orderapp\models.py:79
 msgid "orders"
 msgstr "заказы"
 
-#: .\orderapp\models.py:83
+#: .\orderapp\models.py:101
 msgid "count"
 msgstr "количество"
 
-#: .\orderapp\models.py:89 .\productsapp\models\price.py:29
+#: .\orderapp\models.py:107 .\productsapp\models\price.py:29
 #: .\productsapp\models\seller.py:20 .\productsapp\models\seller_items.py:16
 msgid "seller"
 msgstr "продавец"
 
-#: .\orderapp\models.py:95
+#: .\orderapp\models.py:113
 msgid "price"
 msgstr "цена"
 
-#: .\orderapp\models.py:101
+#: .\orderapp\models.py:119
 msgid "order item"
 msgstr "предмет заказа"
 
-#: .\orderapp\models.py:102
+#: .\orderapp\models.py:120
 msgid "order items"
 msgstr "предметы заказа"
 
-#: .\paymentapp\apps.py:8 .\templates\orderapp\historyorder.html:55
+#: .\paymentapp\apps.py:8 .\templates\orderapp\historyorder.html:56
 #: .\templates\orderapp\order.html:153 .\templates\paymentapp\payment.html:6
 #: .\templates\paymentapp\payment.html:18
 #: .\templates\paymentapp\payment.html:23
@@ -205,7 +221,7 @@ msgstr "предметы заказа"
 #: .\templates\paymentapp\paymentsomeone.html:23
 #: .\templates\paymentapp\progressPayment.html:6
 #: .\templates\productsapp\product.html:173
-#: .\templates\profileapp\account.html:72
+#: .\templates\profileapp\account.html:74
 msgid "Payment"
 msgstr "Оплата"
 
@@ -449,7 +465,7 @@ msgstr "просмотренный продукт"
 msgid "viewed products"
 msgstr "просмотренные продукты"
 
-#: .\profileapp\views.py:35
+#: .\profileapp\views\profile_update_view.py:19
 msgid "Profile is updated successfully"
 msgstr "Профиль успешно обновлен"
 
@@ -548,13 +564,14 @@ msgstr "Сохранить пароль"
 #: .\templates\profileapp\account.html:25
 #: .\templates\profileapp\profile.html:27
 #: .\templates\profileapp\profileAvatar.html:36
+#: .\templates\profileapp\viewed_products.html:25
 msgid "Private Office"
 msgstr "Личный кабинет"
 
 #: .\templates\base.html:120 .\templates\base.html:736
 #: .\templates\paymentapp\paymentsomeone.html:21
 #: .\templates\paymentapp\progressPayment.html:21
-#: .\templates\productsapp\sale.html:20
+#: .\templates\productsapp\sale.html:19
 #: .\templates\profileapp\profileAvatar.html:17
 msgid "Home"
 msgstr "Главная"
@@ -658,14 +675,17 @@ msgstr "Ограниченная серия"
 #: .\templates\base.html:733 .\templates\profileapp\account.html:19
 #: .\templates\profileapp\profile.html:21
 #: .\templates\profileapp\profileAvatar.html:30
+#: .\templates\profileapp\viewed_products.html:19
 msgid "Navigation"
 msgstr "Навигация"
 
 #: .\templates\base.html:742 .\templates\profileapp\account.html:27
-#: .\templates\profileapp\profile.html:5 .\templates\profileapp\profile.html:29
+#: .\templates\profileapp\profile.html:5
+#: .\templates\profileapp\profile.html:29
 #: .\templates\profileapp\profileAvatar.html:14
 #: .\templates\profileapp\profileAvatar.html:19
 #: .\templates\profileapp\profileAvatar.html:38
+#: .\templates\profileapp\viewed_products.html:27
 msgid "Profile"
 msgstr "Профиль"
 
@@ -694,31 +714,40 @@ msgstr "Разместить заказ"
 msgid "No products in cart"
 msgstr "Нет товаров в корзине"
 
-#: .\templates\orderapp\historyorder.html:46
+#: .\templates\orderapp\historyorder.html:33
+#: .\templates\profileapp\account.html:31
+#: .\templates\profileapp\profile.html:33
+#: .\templates\profileapp\viewed_products.html:31
+#: .\templates\profileapp\viewed_products.html:41
+msgid "Viewed products"
+msgstr "просмотренные продукты"
+
+#: .\templates\orderapp\historyorder.html:47
 msgid "Order"
 msgstr "заказ"
 
-#: .\templates\orderapp\historyorder.html:46
+#: .\templates\orderapp\historyorder.html:47
 msgid "from"
 msgstr "от"
 
-#: .\templates\orderapp\historyorder.html:50
-#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:167
-#: .\templates\profileapp\account.html:66
+#: .\templates\orderapp\historyorder.html:51
+#: .\templates\orderapp\order.html:135
+#: .\templates\productsapp\product.html:167
+#: .\templates\profileapp\account.html:68
 msgid "Type of delivery"
 msgstr "Тип доставки"
 
-#: .\templates\orderapp\historyorder.html:60
-#: .\templates\profileapp\account.html:78
+#: .\templates\orderapp\historyorder.html:61
+#: .\templates\profileapp\account.html:80
 msgid "Total cost"
 msgstr "Общая стоимость"
 
-#: .\templates\orderapp\historyorder.html:66
-#: .\templates\profileapp\account.html:84
+#: .\templates\orderapp\historyorder.html:67
+#: .\templates\profileapp\account.html:86
 msgid "Status"
 msgstr "Статус"
 
-#: .\templates\orderapp\historyorder.html:80
+#: .\templates\orderapp\historyorder.html:81
 #, fuzzy
 #| msgid "orders"
 msgid "Export orders"
@@ -750,7 +779,7 @@ msgid "Step 2: Payment method"
 msgstr "Шаг 3: Способ оплаты"
 
 #: .\templates\orderapp\order.html:98 .\templates\orderapp\order.html:155
-#: .\templates\profileapp\account.html:74
+#: .\templates\profileapp\account.html:76
 msgid "Online map"
 msgstr "Онлайн карта"
 
@@ -965,39 +994,57 @@ msgstr "Чтобы оставить отзыв, вам необходимо"
 msgid "log on"
 msgstr "авторизоваться"
 
-#: .\templates\productsapp\sale.html:22
+#: .\templates\productsapp\sale.html:21
 msgid "Blog"
 msgstr "Блог"
 
+#: .\templates\productsapp\sale.html:73
+msgid "Discount"
+msgstr "Скидка"
+
+#: .\templates\productsapp\sale.html:78
+msgid "Category"
+msgstr "категория"
+
+#: .\templates\productsapp\sale.html:80
+msgid "Discount on product category"
+msgstr "Скидка на категорию товаров"
+
 #: .\templates\profileapp\account.html:5
+#: .\templates\profileapp\viewed_products.html:5
 msgid "Account"
 msgstr "Аккаунт"
 
 #: .\templates\profileapp\account.html:29
-#: .\templates\profileapp\account.html:61
+#: .\templates\profileapp\account.html:63
 #: .\templates\profileapp\profile.html:31
 #: .\templates\profileapp\profileAvatar.html:40
+#: .\templates\profileapp\viewed_products.html:29
 msgid "Order history"
 msgstr "История заказов"
 
-#: .\templates\profileapp\account.html:47
+#: .\templates\profileapp\account.html:49
 msgid "Edit profile"
 msgstr "Редактировать профиль"
 
-#: .\templates\profileapp\account.html:60
+#: .\templates\profileapp\account.html:62
 msgid "Order from"
 msgstr "Заказ"
 
-#: .\templates\profileapp\account.html:94
+#: .\templates\profileapp\account.html:96
 msgid "You have not yet placed any orders"
 msgstr "Вы еще не сделали ни одного заказа"
 
-#: .\templates\profileapp\profile.html:86
+#: .\templates\profileapp\account.html:109
+msgid "Recently viewed products"
+msgstr "просмотренные продукты"
+
+#: .\templates\profileapp\profile.html:87
 #: .\templates\profileapp\profileAvatar.html:84
 msgid "You can change your password here"
 msgstr "Вы можете изменить свой пароль здесь"
 
-#: .\templates\profileapp\profile.html:93
+#: .\templates\profileapp\profile.html:94
 #: .\templates\profileapp\profileAvatar.html:89
 msgid "Re-enter the password"
 msgstr "Повторно введите пароль"
