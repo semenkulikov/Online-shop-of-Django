@@ -67,3 +67,20 @@ class DiscountInterface(ABC):
         Получить товары с активными скидками
         """
         pass
+
+    @abstractmethod
+    def get_set_discount_by_id(self, set_id: int) -> SetDiscount:
+        """
+        Получить набор скидок на товар по id
+        :param set_id: id объекта SetDiscount
+        :return: объект SetDiscount
+        """
+        pass
+
+    @abstractmethod
+    def get_cart_discount_by_id(self, cart_id: int) -> CartDiscount:
+        """
+        Получить скидку на корзину по id
+        :param cart_id: id объекта CartDiscount
+        :return: объект CartDiscount
+        """

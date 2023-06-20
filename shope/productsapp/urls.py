@@ -1,5 +1,4 @@
 from django.urls import path
-from django.views.generic import TemplateView
 from productsapp.views import (
     ProductListView,
     AddReviewView,
@@ -8,7 +7,9 @@ from productsapp.views import (
     AddToComparisonView,
     RemoveFromComparisonView,
     export_product_to_xls,
-    DiscountsListView
+    DiscountsListView,
+    DiscountSetDetailView,
+    DiscountCartDetailView,
 )
 
 app_name = 'productsapp'
@@ -21,5 +22,7 @@ urlpatterns = [
     path('catalog/export/', export_product_to_xls, name="export_product"),
     path('comparison/', ProductComparisonView.as_view(), name="comparison"),
     path('comparison/<int:product_id>', RemoveFromComparisonView.as_view(), name="remove_from_comp"),
-    path('sale/', DiscountsListView.as_view(), name="sales")
+    path('sale/', DiscountsListView.as_view(), name="sales"),
+    path('sale/<int:elem_id>/set/', DiscountSetDetailView.as_view(), name="discount_set_detail"),
+    path('sale/<int:elem_id>/cart/', DiscountCartDetailView.as_view(), name="discount_cart_detail"),
 ]

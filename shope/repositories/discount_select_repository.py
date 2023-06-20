@@ -65,8 +65,8 @@ class DiscountRepository(DiscountInterface):
         date_now = datetime.now()
         set_discounts = SetDiscount.objects.filter(
             Q(expiration_date__gte=date_now) |
-            Q(expiration_date__isnull=True), is_active=True)\
-            .annotate(type=Value('set'))\
+            Q(expiration_date__isnull=True), is_active=True) \
+            .annotate(type=Value('set')) \
             .order_by('-start_date')
         return set_discounts
 
@@ -79,8 +79,8 @@ class DiscountRepository(DiscountInterface):
         date_now = datetime.now()
         cart_discounts = CartDiscount.objects.filter(
             Q(expiration_date__gte=date_now) |
-            Q(expiration_date__isnull=True), is_active=True)\
-            .annotate(type=Value('cart'))\
+            Q(expiration_date__isnull=True), is_active=True) \
+            .annotate(type=Value('cart')) \
             .order_by('-start_date')
         return cart_discounts
 
@@ -93,8 +93,8 @@ class DiscountRepository(DiscountInterface):
         date_now = datetime.now()
         products_discounts = ProductDiscount.objects.filter(
             Q(expiration_date__gte=date_now) |
-            Q(expiration_date__isnull=True), is_active=True)\
-            .order_by('-start_date')\
+            Q(expiration_date__isnull=True), is_active=True) \
+            .order_by('-start_date') \
             .prefetch_related('products', 'categories')
         return products_discounts
 
@@ -110,3 +110,9 @@ class DiscountRepository(DiscountInterface):
             product_discounts__is_active=True
         ).order_by('updated_at').prefetch_related('product_discounts').first()
         return products
+
+    def get_set_discount_by_id(self, set_id: int) -> SetDiscount:
+        return SetDiscount.objects.get(id=set_id)
+
+    def get_cart_discount_by_id(self, cart_id: int) -> CartDiscount:
+        return CartDiscount.objects.get(id=cart_id)
