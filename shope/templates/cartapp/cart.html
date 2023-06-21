@@ -8,7 +8,72 @@
 Megano
 {% endblock %}
 
+        {% block wrap %}
+            <div class="wrap">
+                <div class="row Header-rowMain">
+                    <div class="row-block Header-logo"><a class="logo" href="{% url 'coreapp:index' %}"><img class="logo-image" src="{% static 'assets/img/logo.png' %}" alt="logo.png" /></a>
+                    </div>
+                    <nav class="row-block row-block_right Header-menu">
+                        <div class="menuModal" id="navigate">
+                            <ul class="menu menu_main">
+                                <li class="menu-item"><a class="menu-link" href="{% url 'coreapp:index' %}">{% translate 'Home' %}</a>
+                                </li>
+                                <li class="menu-item"><a href="{% url 'productsapp:sales' %}"><span class="menu-label menu-label_success">{% translate 'Discounts' %}</span></a><a class="menu-link" href="{% url 'productsapp:catalog' %}">{% translate 'Catalog' %}</a>
+                                </li>
+                                <li class="menu-item"><a class="menu-link" href="{% url 'productsapp:comparison' %}">{% translate 'Comparison' %}
+                                    <span style="
+                                        background: #0063d1;
+                                        position: absolute;
+                                        right: -14px;
+                                        top: 0px;
+                                        min-width: 23px;
+                                        font-size: 12px;
+                                        letter-spacing: -0.6px;
+                                        color: #fff;
+                                        padding: 2px;
+                                        line-height: 1.2em;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        border: 3px solid #fff;
+                                        border-radius: 100px;
+                                    ">{% firstof count_comparis '0' %}</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="row-block">
 
+                        <div class="CartBlock">
+                            <div class="dropdown">
+                                {% if user.is_authenticated %}
+                                <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
+                                <div class="dropdown-content">
+                                    <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">{% translate 'Private Office' %}</a>
+                                    <a class="dropdown-content-a" href="#">{% translate 'Administrative section' %}</a>
+                                    <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">{% translate 'Output' %}</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if session %}
+                            <a class="CartBlock-block" href="{% url 'cartapp:cart' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof count_cart '0' %}</span></a>
+                            <div class="CartBlock-block"><span class="CartBlock-price">{% firstof total_amount '0' %}</span>
+                            </div>
+                            {% else %}
+                            <a class="CartBlock-block" href="{% url 'cartapp:cart' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="{% static 'cart.svg'%}" /><span class="CartBlock-amount">{% firstof cart_count '0' %}</span></a>
+                            <div class="CartBlock-block"><span class="CartBlock-price">{% firstof cart_sum '0' %}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row-block Header-trigger"><a class="menuTrigger" href="#navigate">
+                            <div class="menuTrigger-content">{% translate 'Show navigation' %}
+                            </div><span></span><span></span><span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
 {% block Header-slider %}
 {% endblock %}
 
@@ -153,7 +218,12 @@ Megano
                 <div class="Cart-total">
                     <div class="Cart-block Cart-block_total">
                         <strong class="Cart-title">{% translate 'Total' %}:
-                        </strong><span class="Cart-price">{% firstof cart_sum '0' %} &#x20bd</span>
+                        </strong>
+                        {% if session %}
+                        <span class="Cart-price">{% firstof total_amount '0' %} &#x20bd</span>
+                        {% else %}
+                        <span class="Cart-price">{% firstof cart_sum '0' %} &#x20bd</span>
+                        {% endif %}
                     </div>
                     <div class="Cart-block"><button class="btn btn_success btn_lg" type="submit" formmethod="post" formaction="{% url 'orderapp:add_order' %}">{% translate 'Place an order' %}</button>
                     </div>
