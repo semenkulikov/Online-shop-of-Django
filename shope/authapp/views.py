@@ -61,14 +61,14 @@ class UserSignUpView(CreateView):
         if form.is_valid():  # форма прошла валидацию
             user = form.save(commit=False)
             user.is_active = False  # деактивация пользователя
-            user.activation_key = generate_random_string()
+            user.activation_key = generate_random_string.delay()
             user.save()
             protocol = request.scheme
             domain = request.META['HTTP_HOST']
             session_products = request.session.get('products')
             if session_products:  # если в сессии есть продукты
                 AddToCart.move_from_session(user, session_products)
-            send_verif_link(user, protocol, domain)
+            send_verif_link.delay(user, protocol, domain)
             # ссылка создана и отправлено сообщение
             messages.success(request, _(
                 'You have successfully registered. '
