@@ -12,7 +12,7 @@ from django.urls import reverse_lazy, \
 from authapp.forms import UserLoginForm, UserSignUpForm, \
     UserResetPasswordForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, LogoutView
-from coreapp.utils.verified_user import send_verif_link, generate_random_string
+from .tasks import send_verif_link, generate_random_string
 from coreapp.utils.update_cart import AddToCart
 from repositories.cart_repository import RepCart
 from django.utils.translation import gettext as _
@@ -68,13 +68,13 @@ class UserSignUpView(CreateView):
             session_products = request.session.get('products')
             if session_products:  # если в сессии есть продукты
                 AddToCart.move_from_session(user, session_products)
-            if send_verif_link(user, protocol, domain):
-                # если ссылка создана и отправлено сообщение
-                messages.success(request, _(
-                    'You have successfully registered. '
-                    '\nThe account activation link has been emailed to you.'
-                    '\n You must confirm your account within 72 hours.'))
-                return HttpResponseRedirect(reverse('authapp:login'))
+            send_verif_link(user, protocol, domain)
+            # ссылка создана и отправлено сообщение
+            messages.success(request, _(
+                'You have successfully registered. '
+                '\nThe account activation link has been emailed to you.'
+                '\n You must confirm your account within 72 hours.'))
+            return HttpResponseRedirect(reverse('authapp:login'))
         else:  # при наличии ошибок в форме
             messages.set_level(request, messages.ERROR)
             messages.error(request, *list(form.errors.values()))
