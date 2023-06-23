@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'cartapp.apps.CartappConfig',
     'taggit',
     'phonenumber_field',
-    'silk',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +61,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'shope.urls'
@@ -140,7 +138,8 @@ else:
         }
 
     }
-
+    MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
+    INSTALLED_APPS += ['silk']
     STATICFILES_DIRS = (BASE_DIR / 'static',)
 
 

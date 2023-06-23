@@ -32,11 +32,29 @@ class CartItemListView(View):
                 # которые есть в сессии
                 count_list = [value for value in
                               request.session['products'].values()]
-                discounted_price_list = request.session['prices']
+                session_products = request.session.get('products')
+                count = SelectCart.cart_all_products_amount(
+                    session_products=session_products)
+                cart_price = SelectCart.cart_total_amount(
+                    session_products=session_products)
+                discounted_prices_list = ProductDiscounts. \
+                    get_prices_discount_on_cart(
+                        cart_price,
+                        count,
+                        session_products=session_products
+                    )
+                request.session['prices'] = discounted_prices_list
+                request.session.modified = True
                 # список количества для каждого товара
-                context = {'items': zip(count_list, items_price,
-                                        discounted_price_list),
-                           'session': True}
+                context = {'items': zip(count_list,
+                                        items_price,
+                                        discounted_prices_list),
+                           'session': True,
+                           'count_cart': count,
+                           'total_amount': round(sum(discounted_prices_list),
+                                                 2
+                                                 )
+                           }
                 return render(request, self.template_name, context)
             else:
                 return render(request, self.template_name)
@@ -134,7 +152,7 @@ class AjaxUpdateCartView(View):
                 request.session['prices'] = discounted_total_price
                 request.session.modified = True
             context = {'cart_count': cart_count,
-                       'cart_sum': sum(discounted_total_price)
+                       'cart_sum': round(sum(discounted_total_price), 2)
                        }
             return JsonResponse(data=context)
 
