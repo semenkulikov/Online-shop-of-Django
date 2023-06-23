@@ -240,6 +240,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 # Задачи, которые Celery будет выполнять
 CELERY_IMPORTS = (
     'shope',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
+    'authapp.tasks'
 )
 SILKY_PYTHON_PROFILER = True
 
