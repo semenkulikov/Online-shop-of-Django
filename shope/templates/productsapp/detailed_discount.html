@@ -1,0 +1,130 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load get_price %}
+
+{% block title %}
+    Megano
+{% endblock %}
+
+
+{% block Header-slider %}
+{% endblock %}
+
+{% block content %}
+    <div class="Middle Middle_top">
+        <div class="Section">
+            <div class="wrap">
+                {% if set_discount %}
+                        <div class="Middle Middle_top">
+                            <div class="Section">
+                                <div class="wrap">
+                                        <h3 style="text-align: center">Скидка на фиксированный набор продуктов</h3>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Имя:
+                                            </strong><span class="Cart-price">{{ set_discount.name }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Цена:
+                                            </strong><span class="Cart-price">{{ set_discount.value }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Дата начала скидки:
+                                            </strong><span class="Cart-price">{{ set_discount.start_date }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Дата окончания:
+                                            </strong><span class="Cart-price">{% firstof set_discount.expiration_date "Не указана" %}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Описание:
+                                            </strong><span class="Cart-price">{{ set_discount.description }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title" style="margin-bottom: 2em">Набор продуктов:</strong>
+                                            {% for product in set_discount.products.all %}
+                                                <div class="Cart-product">
+                                                    <div class="Cart-block Cart-block_row">
+                                                        <div class="Cart-block Cart-block_pict">
+                                                            <a class="Cart-pict" href="{% url 'productsapp:product_detail' product.pk %}">
+                                                                <img class="Cart-img" src="{{ product.product_images.first.image.url }}" alt="card.jpg" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="Cart-block Cart-block_info"><a class="Cart-title"
+                                                                                                   href="{% url 'productsapp:product_detail' product.pk %}">{{ product.name }}</a>
+                                                            <div class="Cart-desc">{{ product.short_description }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="Cart-block Cart-block_price">
+                                                            <div class="Cart-price">{{ product.product_price_avg }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Cart-block Cart-block_row">
+                                                        <div class="Cart-block Cart-block_seller">
+                                                            <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
+
+                                                        </div>
+                                                        <div class="Cart-block Cart-block_amount">
+                                                            <div class="Cart-amount">
+                                                                <div class="Amount">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="Cart-block Cart-block_delete">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        <div class="Cart-total">
+                                            <div class="Cart-block Cart-block_total">
+                                                <strong class="Cart-title">Итого:
+                                                </strong><span class="Cart-price">{{ total_price}}</span>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                {% elif cart_discount %}
+                        <div class="Middle Middle_top">
+                            <div class="Section">
+                                <div class="wrap">
+                                        <h3 style="text-align: center">Скидка на корзину с данными условиями</h3>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Имя:
+                                            </strong><span class="Cart-price">{{ cart_discount.name }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Цена:
+                                            </strong><span class="Cart-price">{{ cart_discount.value }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Дата начала скидки:
+                                            </strong><span class="Cart-price">{{ cart_discount.start_date }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Дата окончания:
+                                            </strong><span class="Cart-price">{% firstof cart_discount.expiration_date "Не указана" %}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Описание:
+                                            </strong><span class="Cart-price">{{ cart_discount.description }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Необходимая минимальная сумма:
+                                            </strong><span class="Cart-price">{{ cart_discount.required_sum }}</span>
+                                        </div></div>
+                                        <div class="Cart-total"><div class="Cart-block Cart-block_total">
+                                            <strong class="Cart-title">Необходимое минимальное количество товаров:
+                                            </strong><span class="Cart-price">{{ cart_discount.required_quantity }}</span>
+                                        </div></div>
+                                </div>
+                            </div>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

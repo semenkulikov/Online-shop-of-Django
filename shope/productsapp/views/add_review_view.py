@@ -74,7 +74,7 @@ class AddReviewView(View):
                 product=product,
                 count=1,
             )
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and not is_show_more:
             if form.is_valid():
                 # Если форма валидна, берем отзыв и добавляем к продукту
                 text = form.cleaned_data.get("text")

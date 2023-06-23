@@ -274,7 +274,7 @@
                                         <div>
                                             {% if result == True %}
                                                 {% translate 'Review has been successfully added' %}
-                                            {% else %}
+                                            {% elif result != False %}
                                                 {{ result }}
                                             {% endif %}
                                         </div>

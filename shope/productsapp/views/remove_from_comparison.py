@@ -18,7 +18,7 @@ class RemoveFromComparisonView(View):
     template_name = "productsapp/comparison.html"
     _service = ProductsComparisonList()
 
-    def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         products = self._service.get_comparison_list(request)
         for product in products:
             product_price = _price_repository. \

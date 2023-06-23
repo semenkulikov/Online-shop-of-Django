@@ -75,12 +75,14 @@
 
                         {% endfor %}
                     </div>
-                    <form action="{% url 'orderapp:export_orders' %}" method="post">
-                        {% csrf_token %}
-                        <button class="btn btn_primary" type="submit">
-                            {% translate 'Export orders' %}
-                        </button>
-                    </form>
+                    {% if order_list %}
+                        <form action="{% url 'orderapp:export_orders' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn_primary" type="submit" style="text-align: right; margin-top: 1em">
+                                {% translate 'Export orders' %}
+                            </button>
+                        </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
