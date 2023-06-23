@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load discounted_price %}
+
 
 {% block title %}
     Megano
@@ -134,8 +136,17 @@
                                     <strong class="Card-title"><a href="{% url 'productsapp:product_detail' product.id %}">{{ product.name }}</a>
                                     </strong>
                                     <div class="Card-description">
-                                        <div class="Card-cost"><span class="Card-price">{{ product.price }}</span>
-                                        </div>
+                                        {% with disc_price=product|discounted_price:product.price %}
+                                            {% if disc_price %}
+                                                <div class="Card-cost"><span class="Card-price discounted_price">{{product.price}} &#8381;</span>
+                                                </div>
+                                                <div class="Card-cost"><span class="Card-price">{{ disc_price }} &#8381;</span>
+                                                </div>
+                                            {% else %}
+                                                <div class="Card-cost"><span class="Card-price">{{ product.price }} &#8381;</span>
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
                                         <div class="Card-category">{{ product.category.name }}
                                         </div>
 
@@ -174,8 +185,17 @@
                                                 <strong class="Card-title"><a href="#">{{ product.name }}</a>
                                                 </strong>
                                                 <div class="Card-description">
-                                                    <div class="Card-cost"><span class="Card-price">{{ product.price }}</span>
-                                                    </div>
+                                                    {% with disc_price=product|discounted_price:product.price %}
+                                                        {% if disc_price %}
+                                                            <div class="Card-cost"><span class="Card-price discounted_price">{{product.price}} &#8381;</span>
+                                                            </div>
+                                                            <div class="Card-cost"><span class="Card-price">{{ disc_price }} &#8381;</span>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="Card-cost"><span class="Card-price">{{ product.price }} &#8381;</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endwith %}
                                                     <div class="Card-category">{{ product.category.name }}
                                                     </div>
                                                     <div class="Card-hover"><a class="Card-btn" onclick="AddToCart('{% url 'cartapp:ajax_add_product' product.pk product.seller_id %}')"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>

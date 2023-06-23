@@ -10,7 +10,10 @@
       "status": "paid",
       "city": "dasdasf",
       "address": "asdasfasf",
-      "delivery_type": "Express delivery"
+      "delivery_type": "Express delivery",
+      "delivery_price": 200,
+      "total_discounted_price": "12500.00",
+      "total_price": "12500.00"
     }
   },
   {
@@ -24,7 +27,11 @@
       "status": "paid",
       "city": "Санкт-Петербург",
       "address": "Парфеновская 9",
-      "delivery_type": "Express delivery"
+      "delivery_type": "Express delivery",
+      "delivery_price": 200,
+      "total_discounted_price": "634854.00",
+      "total_price": "634854.00"
+
     }
   },
   {
@@ -38,7 +45,11 @@
       "status": "not paid",
       "city": "Москва",
       "address": "Резиновая, 4",
-      "delivery_type": "Default delivery"
+      "delivery_type": "Default delivery",
+      "delivery_price": 200,
+      "total_discounted_price": "8300.00",
+      "total_price": "8300.00"
+
     }
   },
   {
@@ -52,7 +63,8 @@
       "product": 5,
       "count": 2,
       "seller": 3,
-      "price": "25411.00"
+      "price": "25411.00",
+      "discounted_price": "25011.00"
     }
   },
   {
@@ -66,7 +78,8 @@
       "product": 6,
       "count": 1,
       "seller": 3,
-      "price": "63546.00"
+      "price": "63546.00",
+      "discounted_price": "63546.00"
     }
   },
   {
@@ -80,7 +93,8 @@
       "product": 7,
       "count": 5,
       "seller": 6,
-      "price": "654654.00"
+      "price": "654654.00",
+      "discounted_price": "634654.00"
     }
   },
   {
@@ -94,7 +108,8 @@
       "product": 6,
       "count": 2,
       "seller": 8,
-      "price": "1211.00"
+      "price": "1211.00",
+      "discounted_price": "1211.00"
     }
   },
   {
@@ -108,7 +123,8 @@
       "product": 4,
       "count": 2,
       "seller": 3,
-      "price": "5465.00"
+      "price": "5465.00",
+      "discounted_price": "5465.00"
     }
   }
 ]

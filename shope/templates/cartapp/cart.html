@@ -103,16 +103,17 @@ Megano
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
-                            {% if item.value != discounted_price %}
+                            {% get_price item.value count as price %}
+                            {% if price != discounted_price %}
                                 <div class="Cart-price discounted_price">
-                                    {{item.value}}&nbsp;&#8381;
+                                    {{price}}&nbsp;&#8381;
                                 </div>
                                 <div class="Cart-price">
                                     {{discounted_price}}&nbsp;&#8381;
                                 </div>
                             {% else %}
                                 <div class="Cart-price">
-                                    {{item.value}}&nbsp;&#8381;
+                                    {{price}}&nbsp;&#8381;
                                 </div>
                             {% endif %}
                         </div>
@@ -173,16 +174,17 @@ Megano
                             </div>
                         </div>
                         <div class="Cart-block Cart-block_price">
-                            {% if item.price != item.discounted_price %}
+                            {% get_price item.price item.quantity as price %}
+                            {% if price != item.discounted_price %}
                                 <div class="Cart-price discounted_price">
-                                    {{item.price}}&nbsp;&#8381;
+                                    {{price}}&nbsp;&#8381;
                                 </div>
                                 <div class="Cart-price">
                                     {{item.discounted_price}}&nbsp;&#8381;
                                 </div>
                             {% else %}
                                 <div class="Cart-price">
-                                    {{item.price}}&nbsp;&#8381;
+                                    {{price}}&nbsp;&#8381;
                                 </div>
                             {% endif %}
                         </div>
