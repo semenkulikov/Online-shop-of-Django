@@ -29,17 +29,23 @@ Megano
             <div class="Cards Cards_blog">
                 {% for object in page_obj %}
                 <div class="Card">
-                    <a class="Card-picture" href="#">
-                        {% if object.type == "cart" %}
+                    {% if object.type == "cart" %}
+                    <a class="Card-picture" href="{% url 'productsapp:discount_cart_detail' object.pk %}">
                         <img src="{% static 'discounts_image/carts_sales.jpg' %}" alt=""/>
-                        {% elif object.type == "set" %}
-                        <img src="{% static 'discounts_image/sets_sales.jpg' %}" alt=""/>
-                        {% elif object.type == "product" %}
-                        <img src="{{object.product_images.first.image.url}}" alt=""/>
-                        {% else %}
-                        <img src="{{object.category_products.first.product_images.last.image.url}}" alt=""/>
-                        {% endif %}
                     </a>
+                    {% elif object.type == "set" %}
+                    <a class="Card-picture" href="{% url 'productsapp:discount_set_detail' object.pk %}">
+                        <img src="{% static 'discounts_image/sets_sales.jpg' %}" alt=""/>
+                    </a>
+                    {% elif object.type == "product" %}
+                    <a class="Card-picture" href="{% url 'productsapp:product_detail' object.pk %}">
+                        <img src="{{object.product_images.first.image.url}}" alt=""/>
+                    </a>
+                    {% else %}
+                    <a class="Card-picture" href="{% url 'productsapp:catalog' %}?category={{object.name}}">
+                        <img src="{{object.category_products.first.product_images.last.image.url}}" alt=""/>
+                    </a>
+                    {% endif %}
                     {% if object.type == "product" or object.type == "category" %}
                     {% get_object_date object.start_date as start_date %}
                     <div class="Card-date">
@@ -68,22 +74,31 @@ Megano
                     {% if object.type == "product" %}
                     <div class="Card-content">
                         <!--                        <div class="Card-pin"></div>-->
-                        <strong class="Card-title"><a href="#">{{object.name}}</a>
+                        <strong class="Card-title"><a href="{% url 'productsapp:product_detail' object.pk %}">{{object.name}}</a>
                         </strong>
                         <div class="Card-description">{% translate 'Discount' %} - {{object.value}} %
                         </div>
                     </div>
                     {% elif object.type == "category" %}
                     <div class="Card-content">
-                        <strong class="Card-title"><a href="#">{% translate 'Category' %} - {{object.name}}</a>
+                        <strong class="Card-title"><a href="{% url 'productsapp:catalog' %}?category={{object.name}}">
+                            {%translate 'Category' %} - {{object.name}}</a>
                         </strong>
                         <div class="Card-description">{% translate 'Discount on product category'%} -
                             {{object.value}} %
                         </div>
                     </div>
+                    {% elif object.type == "set" %}
+                    <div class="Card-content">
+                        <strong class="Card-title"><a
+                                href="{% url 'productsapp:discount_set_detail' object.pk %}">{{object.name}}</a>
+                        </strong>
+                        <div class="Card-description">{{object.description}}</div>
+                    </div>
                     {% else %}
                     <div class="Card-content">
-                        <strong class="Card-title"><a href="#">{{object.name}}</a>
+                        <strong class="Card-title"><a
+                                href="{% url 'productsapp:discount_cart_detail' object.pk %}">{{object.name}}</a>
                         </strong>
                         <div class="Card-description">{{object.description}}</div>
                     </div>
