@@ -8,7 +8,8 @@ from django.template.loader import get_template
 
 
 @shared_task
-def send_verif_link(user, protocol, domain):
+def send_verif_link(protocol, domain, email,
+                    activation_key, first_name, last_name):
     """
     Метод создания и отправки сообщения на e-mail
     :return: send_mail
@@ -16,19 +17,19 @@ def send_verif_link(user, protocol, domain):
     """
     site_name = f'{protocol}://{domain}'
     verif_link = site_name + reverse('authapp:verified',
-                                     kwargs={'email': user.email,
-                                             'key': user.activation_key
+                                     kwargs={'email': email,
+                                             'key': activation_key
                                              }
                                      )  # ссылка для активации
     context = {
-        'first_name': user.first_name,
-        'last_name': user.last_name,
+        'first_name': first_name,
+        'last_name': last_name,
         'link': verif_link,
     }
     message = get_template('authapp/email/email_confirm.html').render(context)
     subject = f'Email confirmation on {site_name}'  # тема
     msg = EmailMessage(
-        subject, message, to=[user.email], from_email=settings.EMAIL_HOST_USER
+        subject, message, to=[email], from_email=settings.EMAIL_HOST_USER
     )
     msg.content_subtype = 'html'
     try:
