@@ -98,23 +98,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="{% url 'productsapp:add_to_comparison' product.pk %}" method="post">
+                             <form action="{% url 'productsapp:add_to_comparison' product.pk %}" method="post">
                                 {% csrf_token %}
-                                <button class="btn btn_primary" type="submit" style="margin-left: 12em; margin-top: 1em">
+                                <button class="btn btn_primary" type="submit" style="margin-left: 11.5em; margin-top: 1em">
                                     {% translate 'Add to comparison' %}
                                 </button>
                             </form>
-                            <div class="ProductCard-text">
-                                {% if error_category %}
+
+                            {% if error_category == True %}
+                                <div class="ProductCard-text" style="color: red">
                                     {% translate 'Adding error! You cannot add products from different categories to the comparison list' %}
-                                {% endif %}
-                            </div>
+                                </div>
+                            {% elif error_category == False %}
+                                <div class="ProductCard-text" style="color: green">
+                                    {% translate 'This product was successfully added to comparison list' %}
+                                </div>
+                            {% endif %}
+
                             <div class="ProductCard-footer">
                                 <div class="ProductCard-tags">
-                                    <strong class="ProductCard-tagsTitle">{% translate 'Tags' %}: {{ product.tags }}</strong>
+                                    <strong class="ProductCard-tagsTitle">{% translate 'Tags' %}: {{ product.get_all_tags }}</strong>
                                 </div>
                             </div>
-                        </div>
+                            </div>
                     </div>
                     <div class="Tabs Tabs_default">
                         <div class="Tabs-links">

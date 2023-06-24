@@ -236,6 +236,8 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+CSRF_TRUSTED_ORIGINS = ["http://0.0.0.0:8000"]
+
 # Задачи, которые Celery будет выполнять
 CELERY_IMPORTS = (
     'shope',  # Здесь myapp.tasks - путь к файлу tasks.py в вашем Django приложении
