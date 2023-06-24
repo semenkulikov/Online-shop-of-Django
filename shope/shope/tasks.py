@@ -1,3 +1,5 @@
+from time import sleep
+
 from celery import shared_task
 from django.core.mail import send_mail
 from django.conf import settings
@@ -49,4 +51,8 @@ def get_processed_image_path(image_path):
 @shared_task
 def import_run():
     """ Функция для фонового импорта файлов """
-    os.system("python manage.py run_imports")
+
+    while True:
+        if os.listdir(os.path.normpath("imports/expected_imports")):
+            os.system("python manage.py run_imports")
+        sleep(10)
