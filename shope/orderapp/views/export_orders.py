@@ -13,15 +13,27 @@ def export_orders_to_xls(request: HttpRequest)\
     orders = _order_repository.get_all()
     excel_file = BytesIO()
     excel_writer = pd.ExcelWriter(excel_file)
+    result = dict()
     for order in orders:
-        df = pd.DataFrame({
-            **{name_field.name: order.__getattribute__(str(name_field.name))
-               for name_field in order._meta.fields}
-        }, index=[order.pk])
-        df['updated_at'] = order.updated_at.isoformat(sep=" ")
-        df['created_at'] = order.created_at.isoformat(sep=" ")
+        for name_field in order._meta.fields:
+            if name_field.name not in result.keys():
+                result[name_field.name] = list()
+            if name_field.name not in (
+                    "created_at",
+                    "updated_at",
+            ):
+                result[name_field.name].append(
+                    order.__getattribute__(str(name_field.name))
+                )
+            else:
+                result[name_field.name].append(order.__getattribute__(
+                    str(name_field.name)).isoformat(sep=" ")
+                                               )
 
-        df.to_excel(excel_writer, sheet_name=f'order_data_{order.id}')
+    df = pd.DataFrame(
+        result
+    )
+    df.to_excel(excel_writer, sheet_name='orders')
 
     excel_writer.close()
     excel_file.seek(0)
