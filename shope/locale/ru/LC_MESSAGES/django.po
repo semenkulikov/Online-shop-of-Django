@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 00:05+0300\n"
+"POT-Creation-Date: 2023-06-25 14:26+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
-"100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\authapp\apps.py:9
 msgid "Users"
@@ -34,7 +34,8 @@ msgstr "Пароль"
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: .\authapp\forms.py:49
+#: .\authapp\forms.py:49 .\templates\productsapp\detailed_discount.html:24
+#: .\templates\productsapp\detailed_discount.html:90
 msgid "Name"
 msgstr "Имя"
 
@@ -58,7 +59,7 @@ msgstr "отчество"
 msgid "email address"
 msgstr "адрес электронной почты"
 
-#: .\authapp\views.py:74
+#: .\authapp\views.py:76
 msgid ""
 "You have successfully registered. \n"
 "The account activation link has been emailed to you.\n"
@@ -68,7 +69,7 @@ msgstr ""
 "Ссылка для активации аккаунта была отправлена вам по электронной почте.\n"
 " Вы должны подтвердить свой аккаунт в течение 72 часов."
 
-#: .\authapp\views.py:105
+#: .\authapp\views.py:107
 msgid ""
 "An error has occurred. The activation period has expired\n"
 "Try registering again."
@@ -141,7 +142,7 @@ msgstr "Не оплачено"
 msgid "Default delivery"
 msgstr "Тип доставки"
 
-#: .\coreapp\enums.py:36 .\templates\productsapp\product.html:169
+#: .\coreapp\enums.py:36 .\templates\productsapp\product.html:189
 msgid "Express delivery"
 msgstr "Экспресс-доставка"
 
@@ -204,11 +205,17 @@ msgstr "продавец"
 msgid "price"
 msgstr "цена"
 
-#: .\orderapp\models.py:119
+#: .\orderapp\models.py:118
+#, fuzzy
+#| msgid "Discounted price"
+msgid "discounted price"
+msgstr "Цена со скидкой"
+
+#: .\orderapp\models.py:124
 msgid "order item"
 msgstr "предмет заказа"
 
-#: .\orderapp\models.py:120
+#: .\orderapp\models.py:125
 msgid "order items"
 msgstr "предметы заказа"
 
@@ -220,7 +227,7 @@ msgstr "предметы заказа"
 #: .\templates\paymentapp\paymentsomeone.html:18
 #: .\templates\paymentapp\paymentsomeone.html:23
 #: .\templates\paymentapp\progressPayment.html:6
-#: .\templates\productsapp\product.html:173
+#: .\templates\productsapp\product.html:193
 #: .\templates\profileapp\account.html:74
 msgid "Payment"
 msgstr "Оплата"
@@ -469,11 +476,11 @@ msgstr "просмотренные продукты"
 msgid "Profile is updated successfully"
 msgstr "Профиль успешно обновлен"
 
-#: .\shope\settings.py:180
+#: .\shope\settings.py:188
 msgid "English"
 msgstr "Английский"
 
-#: .\shope\settings.py:181
+#: .\shope\settings.py:189
 msgid "Russian"
 msgstr "Русский"
 
@@ -561,7 +568,7 @@ msgid "Save password"
 msgstr "Сохранить пароль"
 
 #: .\templates\base.html:93 .\templates\base.html:153
-#: .\templates\profileapp\account.html:25
+#: .\templates\cartapp\cart.html:52 .\templates\profileapp\account.html:25
 #: .\templates\profileapp\profile.html:27
 #: .\templates\profileapp\profileAvatar.html:36
 #: .\templates\profileapp\viewed_products.html:25
@@ -569,6 +576,7 @@ msgid "Private Office"
 msgstr "Личный кабинет"
 
 #: .\templates\base.html:120 .\templates\base.html:736
+#: .\templates\cartapp\cart.html:19
 #: .\templates\paymentapp\paymentsomeone.html:21
 #: .\templates\paymentapp\progressPayment.html:21
 #: .\templates\productsapp\sale.html:19
@@ -577,26 +585,29 @@ msgid "Home"
 msgstr "Главная"
 
 #: .\templates\base.html:122 .\templates\base.html:220
+#: .\templates\cartapp\cart.html:21
 msgid "Discounts"
 msgstr "Скидки"
 
 #: .\templates\base.html:122 .\templates\base.html:738
+#: .\templates\cartapp\cart.html:21
 msgid "Catalog"
 msgstr "Каталог"
 
 #: .\templates\base.html:124 .\templates\base.html:740
+#: .\templates\cartapp\cart.html:23
 msgid "Comparison"
 msgstr "Сравнение"
 
-#: .\templates\base.html:154
+#: .\templates\base.html:154 .\templates\cartapp\cart.html:53
 msgid "Administrative section"
 msgstr "Административный раздел"
 
-#: .\templates\base.html:155
+#: .\templates\base.html:155 .\templates\cartapp\cart.html:54
 msgid "Output"
 msgstr "Выйти"
 
-#: .\templates\base.html:167
+#: .\templates\base.html:167 .\templates\cartapp\cart.html:70
 msgid "Show navigation"
 msgstr "Навигация"
 
@@ -660,15 +671,15 @@ msgstr "Напольные лампы"
 msgid "Search"
 msgstr "Поиск"
 
-#: .\templates\base.html:396 .\templates\index.html:79
+#: .\templates\base.html:396 .\templates\index.html:81
 msgid "LIMITED OFFER"
 msgstr "ОГРАНИЧЕННОЕ ПРЕДЛОЖЕНИЕ"
 
-#: .\templates\base.html:441 .\templates\index.html:124
+#: .\templates\base.html:441 .\templates\index.html:127
 msgid "Popular products"
 msgstr "Популярные товары"
 
-#: .\templates\base.html:566 .\templates\index.html:159
+#: .\templates\base.html:566 .\templates\index.html:171
 msgid "Limited edition"
 msgstr "Ограниченная серия"
 
@@ -680,8 +691,7 @@ msgid "Navigation"
 msgstr "Навигация"
 
 #: .\templates\base.html:742 .\templates\profileapp\account.html:27
-#: .\templates\profileapp\profile.html:5
-#: .\templates\profileapp\profile.html:29
+#: .\templates\profileapp\profile.html:5 .\templates\profileapp\profile.html:29
 #: .\templates\profileapp\profileAvatar.html:14
 #: .\templates\profileapp\profileAvatar.html:19
 #: .\templates\profileapp\profileAvatar.html:38
@@ -693,24 +703,24 @@ msgstr "Профиль"
 msgid "Contact"
 msgstr "Контакты"
 
-#: .\templates\cartapp\cart.html:37 .\templates\cartapp\cart.html:97
+#: .\templates\cartapp\cart.html:102 .\templates\cartapp\cart.html:173
 msgid "Seller"
 msgstr "Продавцы"
 
-#: .\templates\cartapp\cart.html:75 .\templates\cartapp\cart.html:135
-#: .\templates\orderapp\order.html:195
+#: .\templates\cartapp\cart.html:151 .\templates\cartapp\cart.html:222
+#: .\templates\orderapp\order.html:205
 msgid "Total"
 msgstr "Итого"
 
-#: .\templates\cartapp\cart.html:79
+#: .\templates\cartapp\cart.html:155
 msgid "Log in to continue"
 msgstr "Войдите, чтобы продолжить"
 
-#: .\templates\cartapp\cart.html:138
+#: .\templates\cartapp\cart.html:230
 msgid "Place an order"
 msgstr "Разместить заказ"
 
-#: .\templates\cartapp\cart.html:144
+#: .\templates\cartapp\cart.html:236
 msgid "No products in cart"
 msgstr "Нет товаров в корзине"
 
@@ -731,8 +741,7 @@ msgid "from"
 msgstr "от"
 
 #: .\templates\orderapp\historyorder.html:51
-#: .\templates\orderapp\order.html:135
-#: .\templates\productsapp\product.html:167
+#: .\templates\orderapp\order.html:135 .\templates\productsapp\product.html:187
 #: .\templates\profileapp\account.html:68
 msgid "Type of delivery"
 msgstr "Тип доставки"
@@ -747,7 +756,7 @@ msgstr "Общая стоимость"
 msgid "Status"
 msgstr "Статус"
 
-#: .\templates\orderapp\historyorder.html:81
+#: .\templates\orderapp\historyorder.html:82
 #, fuzzy
 #| msgid "orders"
 msgid "Export orders"
@@ -787,11 +796,11 @@ msgstr "Онлайн карта"
 msgid "Step 3: Confirm order"
 msgstr "Шаг 4: Подтвердить заказ"
 
-#: .\templates\orderapp\order.html:182
+#: .\templates\orderapp\order.html:192
 msgid "Remove"
 msgstr "Удалить"
 
-#: .\templates\orderapp\order.html:200 .\templates\paymentapp\payment.html:39
+#: .\templates\orderapp\order.html:210 .\templates\paymentapp\payment.html:39
 #: .\templates\paymentapp\paymentsomeone.html:41
 msgid "Pay"
 msgstr "Оплатить"
@@ -816,6 +825,10 @@ msgstr "Ожидание платежа"
 #: .\templates\paymentapp\progressPayment.html:32
 msgid "Waiting for confirmation of payment by the payment system"
 msgstr "Ожидание подтверждения платежа со стороны платежной системы"
+
+#: .\templates\productsapp\button_to_start_importing.html:5
+msgid "Run a background import of goods"
+msgstr "Запустить фоновый импорт товаров"
 
 #: .\templates\productsapp\catalog.html:22
 #: .\templates\productsapp\catalog.html:58
@@ -846,33 +859,35 @@ msgstr "Со скидкой"
 msgid "Popular tags"
 msgstr "Популярные теги"
 
-#: .\templates\productsapp\catalog.html:79
+#: .\templates\productsapp\catalog.html:80
 msgid "Export of all products"
 msgstr "Экспорт всех продуктов"
 
-#: .\templates\productsapp\catalog.html:86
-msgid "Export product"
-msgstr "Экспорт продукта"
+#: .\templates\productsapp\catalog.html:87
+#, fuzzy
+#| msgid "Export product"
+msgid "Export products"
+msgstr "Экспорт продуктов"
 
-#: .\templates\productsapp\catalog.html:94
+#: .\templates\productsapp\catalog.html:96
 msgid "Sort by"
 msgstr "Сортировать по"
 
-#: .\templates\productsapp\catalog.html:100
+#: .\templates\productsapp\catalog.html:102
 msgid "Popularity"
 msgstr "Популярность"
 
-#: .\templates\productsapp\catalog.html:102
+#: .\templates\productsapp\catalog.html:104
 msgid "Price"
 msgstr "Цена"
 
-#: .\templates\productsapp\catalog.html:104
-#: .\templates\productsapp\product.html:117
-#: .\templates\productsapp\product.html:209
+#: .\templates\productsapp\catalog.html:106
+#: .\templates\productsapp\product.html:137
+#: .\templates\productsapp\product.html:229
 msgid "Reviews"
 msgstr "Отзывы"
 
-#: .\templates\productsapp\catalog.html:106
+#: .\templates\productsapp\catalog.html:108
 msgid "Novelty"
 msgstr "Новизна"
 
@@ -888,45 +903,95 @@ msgstr "Только разные характеристики"
 msgid "Apply"
 msgstr "Применить"
 
-#: .\templates\productsapp\comparison.html:137
+#: .\templates\productsapp\comparison.html:138
 msgid "No common characteristics"
 msgstr "Нет общих характеристик"
 
-#: .\templates\productsapp\comparison.html:140
-#: .\templates\productsapp\product.html:114
-#: .\templates\productsapp\product.html:132
+#: .\templates\productsapp\comparison.html:141
+#: .\templates\productsapp\product.html:134
+#: .\templates\productsapp\product.html:152
 msgid "Characteristic"
 msgstr "Характеристика"
 
-#: .\templates\productsapp\comparison.html:141
-#: .\templates\productsapp\product.html:134
+#: .\templates\productsapp\comparison.html:142
+#: .\templates\productsapp\product.html:154
 msgid "Value"
 msgstr "Значение"
 
-#: .\templates\productsapp\comparison.html:223
-#: .\templates\productsapp\product.html:70
+#: .\templates\productsapp\comparison.html:224
+#: .\templates\productsapp\product.html:84
 msgid "Add to cart"
 msgstr "Добавить в корзину"
 
-#: .\templates\productsapp\comparison.html:230
+#: .\templates\productsapp\comparison.html:231
 #, fuzzy
 #| msgid "Add to comparison"
 msgid "Remove from comparison"
 msgstr "Удалить из сравнения"
 
-#: .\templates\productsapp\product.html:77
+#: .\templates\productsapp\detailed_discount.html:19
+#, fuzzy
+#| msgid "Discount on product category"
+msgid "Discount on a fixed set of products"
+msgstr "Скидка на фиксированный набор продуктов"
+
+#: .\templates\productsapp\detailed_discount.html:28
+#: .\templates\productsapp\detailed_discount.html:94
+#: .\templates\productsapp\sale.html:79
+msgid "Discount"
+msgstr "Скидка"
+
+#: .\templates\productsapp\detailed_discount.html:32
+#: .\templates\productsapp\detailed_discount.html:98
+#, fuzzy
+#| msgid "start date"
+msgid "Discount start date"
+msgstr "Дата начала скидки"
+
+#: .\templates\productsapp\detailed_discount.html:36
+#: .\templates\productsapp\detailed_discount.html:102
+#, fuzzy
+#| msgid "Discounted"
+msgid "Discount end date"
+msgstr "Дата окончания скидки"
+
+#: .\templates\productsapp\detailed_discount.html:40
+#: .\templates\productsapp\detailed_discount.html:106
+#: .\templates\productsapp\product.html:128
+msgid "Description"
+msgstr "Описание"
+
+#: .\templates\productsapp\detailed_discount.html:44
+#, fuzzy
+#| msgid "Export of all products"
+msgid "A set of products"
+msgstr "Набор продуктов"
+
+#: .\templates\productsapp\detailed_discount.html:85
+msgid "Basket discount with these terms and conditions"
+msgstr "Скидка на корзину с учетом данных условий"
+
+#: .\templates\productsapp\detailed_discount.html:110
+msgid "Minimum amount required"
+msgstr "Минимальная требуемая сумма"
+
+#: .\templates\productsapp\detailed_discount.html:114
+msgid "Minimum quantity of goods required"
+msgstr "Минимальное количество требуемых товаров"
+
+#: .\templates\productsapp\product.html:91
 msgid "Congratulations"
 msgstr "Поздравляем"
 
-#: .\templates\productsapp\product.html:81
+#: .\templates\productsapp\product.html:95
 msgid "Product successfully added to cart"
 msgstr "Продукт успешно добавлен в корзину"
 
-#: .\templates\productsapp\product.html:90
+#: .\templates\productsapp\product.html:104
 msgid "Add to comparison"
 msgstr "Добавить в сравнение"
 
-#: .\templates\productsapp\product.html:95
+#: .\templates\productsapp\product.html:110
 msgid ""
 "Adding error! You cannot add products from different categories to the "
 "comparison list"
@@ -934,63 +999,65 @@ msgstr ""
 "Ошибка добавления! Вы не можете добавить в список сравнения товары из разных "
 "категорий"
 
-#: .\templates\productsapp\product.html:100
+#: .\templates\productsapp\product.html:114
+#, fuzzy
+#| msgid "Product successfully added to cart"
+msgid "This product was successfully added to comparison list"
+msgstr "Товар успешно добавлен в список сравнения"
+
+#: .\templates\productsapp\product.html:120
 msgid "Tags"
 msgstr "Теги"
 
-#: .\templates\productsapp\product.html:108
-msgid "Description"
-msgstr "Описание"
-
-#: .\templates\productsapp\product.html:111
+#: .\templates\productsapp\product.html:131
 msgid "Sellers"
 msgstr "Продавцы"
 
-#: .\templates\productsapp\product.html:138
+#: .\templates\productsapp\product.html:158
 msgid "Device type"
 msgstr "Тип устройства"
 
-#: .\templates\productsapp\product.html:140
+#: .\templates\productsapp\product.html:160
 msgid "Notebook"
 msgstr "Ноутбук"
 
-#: .\templates\productsapp\product.html:161
+#: .\templates\productsapp\product.html:181
 msgid "Buy"
 msgstr "Купить"
 
-#: .\templates\productsapp\product.html:169
+#: .\templates\productsapp\product.html:189
 msgid "Ordinary delivery"
 msgstr "Обычная доставка"
 
-#: .\templates\productsapp\product.html:175
+#: .\templates\productsapp\product.html:195
 msgid "Online card"
 msgstr "Онлайн карта"
 
-#: .\templates\productsapp\product.html:179
+#: .\templates\productsapp\product.html:199
 msgid "Cost"
 msgstr "Стоимость"
 
-#: .\templates\productsapp\product.html:248
+#: .\templates\productsapp\product.html:268
 msgid "Show more"
 msgstr "Показать больше"
 
-#: .\templates\productsapp\product.html:256
+#: .\templates\productsapp\product.html:276
 msgid "Add review"
 msgstr "Добавить отзыв"
 
-#: .\templates\productsapp\product.html:262
+#: .\templates\productsapp\product.html:282
 msgid "Review has been successfully added"
 msgstr "Отзыв успешно добавлен"
 
-#: .\templates\productsapp\product.html:274
+#: .\templates\productsapp\product.html:294
 msgid "Send review"
 msgstr "Отправить отзыв"
 
-#: .\templates\productsapp\product.html:281
+#: .\templates\productsapp\product.html:301
 msgid "To leave a review you need to"
 msgstr "Чтобы оставить отзыв, вам необходимо"
 
-#: .\templates\productsapp\product.html:282
+#: .\templates\productsapp\product.html:302
 msgid "log on"
 msgstr "авторизоваться"
 
@@ -998,15 +1065,11 @@ msgstr "авторизоваться"
 msgid "Blog"
 msgstr "Блог"
 
-#: .\templates\productsapp\sale.html:73
-msgid "Discount"
-msgstr "Скидка"
-
-#: .\templates\productsapp\sale.html:78
+#: .\templates\productsapp\sale.html:85
 msgid "Category"
 msgstr "категория"
 
-#: .\templates\productsapp\sale.html:80
+#: .\templates\productsapp\sale.html:87
 msgid "Discount on product category"
 msgstr "Скидка на категорию товаров"
 
@@ -1064,6 +1127,11 @@ msgstr "Выберите аватар"
 #: .\templates\profileapp\profileAvatar.html:93
 msgid "Save"
 msgstr "Сохранить"
+
+#, fuzzy
+#~| msgid "Discounted"
+#~ msgid "Discount end date "
+#~ msgstr "Дата окончания скидки"
 
 #~ msgid "Step 2: Method of delivery"
 #~ msgstr "Шаг 2: Способ доставки"
