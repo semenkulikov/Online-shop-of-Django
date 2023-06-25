@@ -42,3 +42,9 @@ class Product(BaseModel):
 
     def __str__(self):
         return self.name
+
+    def get_all_tags(self) -> str:
+        """ Метод для получения всех тегов продукта """
+        return ", ".join(
+            [str(tag) for tag in self.tags.all()]
+        )
