@@ -6610,10 +6610,11 @@ input[type="radio"] {
 
 
 .modal__content button {
-    width: 80px;
+    min-width: 80px;
     min-height: 30px;
     margin: 0;
-    padding: 3px 20px 0;
+    margin-right: 10px;
+    padding: 3px 5px 0;
     font-size: 14px;
 
 }
@@ -6654,7 +6655,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset;
-    -webkit-text-fill-color: #707070;
+    -webkit-text-fill-color: rgb(0, 99, 209);
 }
 
 .middle_top_oneorder {
@@ -6664,4 +6665,13 @@ input:-webkit-autofill:active{
 .discounted_price {
     text-decoration: line-through;
     color: grey
+}
+
+.Order-block .form-textarea {
+    color: rgb(0, 99, 209);
+}
+
+.Order-block .form-textarea:focus {
+    border: 1px solid rgb(0, 99, 209);
+    box-shadow: none;
 }

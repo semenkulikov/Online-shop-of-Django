@@ -17,7 +17,7 @@
         <div class="Middle-top middle_top_oneorder">
             <div class="wrap">
                 <div class="Middle-header">
-                    <h1 class="Middle-title">Заказ №{{ object.pk }}
+                    <h1 class="Middle-title">{% translate 'Order' %} №{{ object.pk }}
                     </h1>
                 </div>
             </div>
@@ -33,25 +33,25 @@
                                 <div class="row">
                                     <div class="row-block">
                                         <div class="Order-info Order-info_date">
-                                            <div class="Order-infoType">Дата заказа:
+                                            <div class="Order-infoType">{% translate 'Order date' %}:
                                             </div>
                                             <div class="Order-infoContent">{{ object.created_at | date:"d.m.Y"}}
                                             </div>
                                         </div>
                                         <div class="Order-info">
-                                            <div class="Order-infoType">ФИО:
+                                            <div class="Order-infoType">{% translate 'Name' %}:
                                             </div>
                                             <div class="Order-infoContent">{{ object.fio}}
                                             </div>
                                         </div>
                                         <div class="Order-info">
-                                            <div class="Order-infoType">Телефон:
+                                            <div class="Order-infoType">{% translate 'Phone number' %}:
                                             </div>
                                             <div class="Order-infoContent">{{ object.phone_number}}
                                             </div>
                                         </div>
                                         <div class="Order-info">
-                                            <div class="Order-infoType">E-mail:
+                                            <div class="Order-infoType">{% translate 'E-mail' %}:
                                             </div>
                                             <div class="Order-infoContent">{{ object.user.email}}
                                             </div>
@@ -59,31 +59,31 @@
                                     </div>
                                     <div class="row-block">
                                         <div class="Order-info Order-info_delivery">
-                                            <div class="Order-infoType">Тип доставки:
+                                            <div class="Order-infoType">{% translate 'Delivery type' %}:
                                             </div>
                                             <div class="Order-infoContent">{{ object.delivery_type }}
                                             </div>
                                         </div>
                                         <div class="Order-info">
-                                            <div class="Order-infoType">Город:
+                                            <div class="Order-infoType">{% translate 'City' %}:
                                             </div>
                                             <div class="Order-infoContent">{{ object.city }}
                                             </div>
                                         </div>
                                         <div class="Order-info">
-                                            <div class="Order-infoType">Адрес:
+                                            <div class="Order-infoType">{% translate 'Address' %}:
                                             </div>
                                             <div class="Order-infoContent">{{ object.address}}
                                             </div>
                                         </div>
                                         <div class="Order-info Order-info_pay">
-                                            <div class="Order-infoType">Оплата:
+                                            <div class="Order-infoType">{% translate 'Payment' %}:
                                             </div>
-                                            <div class="Order-infoContent">Онлайн картой
+                                            <div class="Order-infoContent">{% translate 'Bank card (online)' %}
                                             </div>
                                         </div>
                                         <div class="Order-info Order-info_status">
-                                            <div class="Order-infoType">Статус:
+                                            <div class="Order-infoType">{% translate 'Status' %}:
                                             </div>
                                             {% if object.status == "paid" %}
                                                 <div class="Order-infoContent">{% translate 'Paid' %}</div>
@@ -93,9 +93,9 @@
                                         </div>
                                         {% if object.status != "paid" %}
                                         <div class="Order-info Order-info_error">
-                                            <div class="Order-infoType">Оплата не прошла:
+                                            <div class="Order-infoType">{% translate 'Payment failed' %}:
                                             </div>
-                                            <div class="Order-infoContent">Оплата не выполнена
+                                            <div class="Order-infoContent">{% translate 'Payment failed' %}
                                             </div>
                                         </div>
                                         {% endif %}
@@ -139,13 +139,13 @@
 
                                 <div class="Cart-total">
                                     <div class="Cart-block Cart-block_total">
-                                        <strong class="Cart-title">Доставка:<span class="Cart-price">{{ order.delivery_price }} &#8381;</span>
+                                        <strong class="Cart-title">{% translate 'Delivery' %}:<span class="Cart-price">{{ order.delivery_price }} &#8381;</span>
                                         </strong>
-                                        <strong class="Cart-title">Итого:<span class="Cart-price">{{ order.total_discounted_price }} &#8381;</span>
+                                        <strong class="Cart-title">{% translate 'Total' %}:<span class="Cart-price">{{ order.total_discounted_price }} &#8381;</span>
                                         </strong>
                                     </div>
                                     {% if object.status != "paid" %}
-                                    <div class="Cart-block"><a class="btn btn_primary btn_lg" href="{% url 'orderapp:edit_order' object.pk %}">Оплатить</a>
+                                    <div class="Cart-block"><a class="btn btn_primary btn_lg" href="{% url 'orderapp:edit_order' object.pk %}">{% translate 'Pay' %}</a>
                                     </div>
                                     {% endif %}
                                 </div>
