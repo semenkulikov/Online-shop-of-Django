@@ -16,32 +16,32 @@
         <div class="Section">
             <div class="wrap">
                 {% if set_discount %}
+                    <h1 style="text-align: center">{% translate 'Discount on a fixed set of products' %}</h1>
                         <div class="Middle Middle_top">
                             <div class="Section">
                                 <div class="wrap">
-                                        <h3 style="text-align: center">Скидка на фиксированный набор продуктов</h3>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Имя:
+                                            <strong class="Cart-title">{% translate 'Name' %}:
                                             </strong><span class="Cart-price">{{ set_discount.name }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Цена:
+                                            <strong class="Cart-title">{% translate 'Discount' %}:
                                             </strong><span class="Cart-price">{{ set_discount.value }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Дата начала скидки:
+                                            <strong class="Cart-title">{% translate 'Discount start date' %}:
                                             </strong><span class="Cart-price">{{ set_discount.start_date }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Дата окончания:
-                                            </strong><span class="Cart-price">{% firstof set_discount.expiration_date "Не указана" %}</span>
+                                            <strong class="Cart-title">{% translate 'Discount end date' %}:
+                                            </strong><span class="Cart-price">{% firstof set_discount.expiration_date "Not specified" %}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Описание:
+                                            <strong class="Cart-title">{% translate 'Description' %}:
                                             </strong><span class="Cart-price">{{ set_discount.description }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title" style="margin-bottom: 2em">Набор продуктов:</strong>
+                                            <strong class="Cart-title" style="margin-bottom: 2em">{% translate 'A set of products' %}:</strong>
                                             {% for product in set_discount.products.all %}
                                                 <div class="Cart-product">
                                                     <div class="Cart-block Cart-block_row">
@@ -78,46 +78,40 @@
                                                     </div>
                                                 </div>
                                             {% endfor %}
-                                        <div class="Cart-total">
-                                            <div class="Cart-block Cart-block_total">
-                                                <strong class="Cart-title">Итого:
-                                                </strong><span class="Cart-price">{{ total_price}}</span>
-                                            </div>
-                                        </div>
                                 </div>
                             </div>
                         </div>
                 {% elif cart_discount %}
+                    <h1 style="text-align: center; margin-top: 0">{% translate 'Basket discount with these terms and conditions' %}</h1>
                         <div class="Middle Middle_top">
                             <div class="Section">
                                 <div class="wrap">
-                                        <h3 style="text-align: center">Скидка на корзину с данными условиями</h3>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Имя:
+                                            <strong class="Cart-title">{% translate 'Name' %}:
                                             </strong><span class="Cart-price">{{ cart_discount.name }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Цена:
+                                            <strong class="Cart-title">{% translate 'Discount' %}:
                                             </strong><span class="Cart-price">{{ cart_discount.value }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Дата начала скидки:
+                                            <strong class="Cart-title">{% translate 'Discount start date' %}:
                                             </strong><span class="Cart-price">{{ cart_discount.start_date }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Дата окончания:
+                                            <strong class="Cart-title">{% translate 'Discount end date' %}:
                                             </strong><span class="Cart-price">{% firstof cart_discount.expiration_date "Не указана" %}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Описание:
+                                            <strong class="Cart-title">{% translate 'Description' %}:
                                             </strong><span class="Cart-price">{{ cart_discount.description }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Необходимая минимальная сумма:
+                                            <strong class="Cart-title">{% translate 'Minimum amount required' %}:
                                             </strong><span class="Cart-price">{{ cart_discount.required_sum }}</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
-                                            <strong class="Cart-title">Необходимое минимальное количество товаров:
+                                            <strong class="Cart-title">{% translate 'Minimum quantity of goods required' %}:
                                             </strong><span class="Cart-price">{{ cart_discount.required_quantity }}</span>
                                         </div></div>
                                 </div>

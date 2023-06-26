@@ -262,7 +262,7 @@
 
                                 {% if amount_review > 1 and not is_show %}
                                     <div class="form-group" style="margin-top: 2em">
-                                        <form method="post" action="{% url 'productsapp:add_review' product_id=product.pk %}">
+                                        <form method="post" action="{% url 'productsapp:product_detail' product_id=product.pk %}">
                                             {% csrf_token %}
                                             <button class="btn btn_primary" type="submit" name="show_more">
                                                 {% translate 'Show more' %}
@@ -276,14 +276,6 @@
                                         <h3 class="Section-title">{% translate 'Add review' %}
                                         </h3>
                                     </header>
-                                    <div class="Tabs-addComment">
-                                        <div>
-                                            {% if result == True %}
-                                                {% translate 'Review has been successfully added' %}
-                                            {% elif result != False %}
-                                                {{ result }}
-                                            {% endif %}
-                                        </div>
                                         <form action="{% url 'productsapp:add_review' product_id=product.pk %}" class="form" method="post">
                                             <div class="form-group">
                                                 {% csrf_token %}
