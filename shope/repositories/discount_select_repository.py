@@ -108,7 +108,7 @@ class DiscountRepository(DiscountInterface):
             product_discounts__start_date__lte=date_now,
             product_discounts__expiration_date__gte=date_now,
             product_discounts__is_active=True
-        ).order_by('updated_at').prefetch_related('product_discounts').first()
+        ).order_by('updated_at').prefetch_related('product_discounts')
         return products
 
     def get_set_discount_by_id(self, set_id: int) -> SetDiscount:

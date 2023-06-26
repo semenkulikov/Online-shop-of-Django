@@ -86,12 +86,15 @@
                         <div class="Card-content">
                           <strong class="Card-title"><a href="#">{{ discounted.name }}</a>
                           </strong>
-                          <div class="Card-description">
-                            <div class="Card-cost"><span class="Card-priceOld">$115.00</span><span class="Card-price">$85.00</span>
-                            </div>
-                            <div class="Card-category">{{ discounted.category.name}}
-                            </div>
-                          </div>
+                            {% with disc_price=discounted|discounted_price:discounted.price %}
+                                            <div class="Card-description">
+                                                <div class="Card-cost"><span class="Card-priceOld">{{discounted.price}} &#8381;</span><span class="Card-price">{{ disc_price }} &#8381;</span>
+                                                </div>
+                                                <div class="Card-category">{{ discounted.category.name}}
+                                                </div>
+                                            </div>
+                            {% endwith %}
+
                           <div class="CountDown" data-date="{{ discounted.product_discounts.first.expiration_date |date:"d.m.Y"}} 00:00">
                             <div class="CountDown-block">
                               <div class="CountDown-wrap">
