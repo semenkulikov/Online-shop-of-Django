@@ -20,7 +20,8 @@ class EditOrderView(LoginRequiredMixin, View):
 
         # Предзаполняем заказ данными из профиля
         if not (order.fio and order.phone_number):
-            order.fio = request.user.profile.fio
+            if request.user.profile.fio.strip():
+                order.fio = request.user.profile.fio
             order.phone_number = request.user.profile.phone_number
 
         order_form = OrderForm(instance=order)
