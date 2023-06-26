@@ -70,10 +70,20 @@ class ProductDetailView(View):
         product_price = _price_repository. \
             get_min_price_object(product=product)
         amount_review = self._service.product_reviews_amount(product=product)
-        reviews_list = self._service.product_reviews_list(product=product)
+        is_show_more = False  # Нажата ли кнопка "Показать еще"
+        if "show_more" in request.POST:
+            reviews_list = self._service.product_reviews_list(product=product)
+            is_show_more = True
+        else:
+            reviews_list = self._service.product_reviews_list(
+                product=product,
+                count=1,
+            )
         return render(request, self.template_name,
                       context={"product": product,
                                "product_images": product_images,
                                "product_price": product_price,
                                "amount_review": amount_review,
-                               "reviews_list": reviews_list})
+                               "reviews_list": reviews_list,
+                               "is_show": is_show_more,
+                               "form": self.form_class})
