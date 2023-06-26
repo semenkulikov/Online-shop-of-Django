@@ -6665,3 +6665,6 @@ input:-webkit-autofill:active{
     text-decoration: line-through;
     color: grey
 }
+.type-discount {
+    color: #913333;
+}

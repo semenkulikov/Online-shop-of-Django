@@ -119,6 +119,7 @@ class UserPassResetView(PasswordResetView):
     template_name = "authapp/forgot_password.html"
     from_email = settings.EMAIL_HOST_USER
     html_email_template_name = "authapp/email/reset_confirm.html"
+    email_template_name = 'authapp/email/reset_confirm.html'
     success_url = reverse_lazy('coreapp:index')
 
 

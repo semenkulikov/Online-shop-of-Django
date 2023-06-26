@@ -248,9 +248,10 @@ class ProductDiscounts:
         экземпляр корзины пользователя - cart, если нет, то словарь
         session_products =
         {'product_id seller_id': count,...}
-        Метод возвращает список цен на товары в корзине
+        Метод возвращает список цен на товары в корзине,
+        и тип применённой скидки
         """
-
+        discount = None
         if cart:  # пользователь авторизован
             products_id = product_repository.get_products_id_from_cart(cart)
             cart_discount = cls. \
@@ -262,30 +263,36 @@ class ProductDiscounts:
             if cart_discount and set_discount:
                 #  имеется скидка и на корзину, и есть набор товаров
                 if cart_discount.priority >= set_discount.priority:
+                    print('скидка на корзину')
                     # приоритет скидки на корзину выше либо равен
                     # приоритету скидки на набор товаров
                     cart_prices_list = cls. \
                         apply_cart_discount(cart_discount, cart_price,
                                             cart=cart)
+                    discount = cart_discount
                     # применение скидки на корзину
                 else:
                     cart_prices_list = cls. \
                         apply_set_discount(set_discount, cart=cart)
+                    discount = set_discount
                     # применение скидки на набор товаров
             elif cart_discount:
                 # имеется только скидка на корзину
                 cart_prices_list = cls. \
                     apply_cart_discount(cart_discount, cart_price,
                                         cart=cart)
+                discount = cart_discount
             elif set_discount:
                 # имеется только скидка на набор товаров
                 cart_prices_list = cls. \
                     apply_set_discount(set_discount, cart=cart)
+                discount = set_discount
             else:
                 # скидки на корзину и набор отсутствуют,
                 # идет подсчет скидки на каждый товар
                 cart_prices_list = cls. \
                     apply_products_discount(cart)
+                discount = cart_discount
         elif session_products:
             # есть товары в сессии(пользователь не авторизован)
             # логика та же, что и при авторизованном
@@ -300,22 +307,26 @@ class ProductDiscounts:
                         apply_cart_discount(cart_discount,
                                             cart_price,
                                             session_products=session_products)
+                    discount = cart_discount
                 else:
                     cart_prices_list = cls. \
                         apply_set_discount(set_discount,
                                            session_products=session_products)
+                    discount = set_discount
             elif cart_discount:
                 cart_prices_list = cls. \
                     apply_cart_discount(cart_discount,
                                         cart_price,
                                         session_products=session_products)
+                discount = cart_discount
             elif set_discount:
                 cart_prices_list = cls. \
                     apply_set_discount(set_discount,
                                        session_products=session_products)
+                discount = set_discount
             else:
                 cart_prices_list = cls. \
                     apply_products_discount(session_products=session_products)
         else:
             cart_prices_list = []
-        return cart_prices_list
+        return cart_prices_list, discount

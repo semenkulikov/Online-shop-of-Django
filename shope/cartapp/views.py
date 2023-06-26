@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
-
+from productsapp.models import CartDiscount
 from coreapp.utils import AddToCart, SelectCart, ProductDiscounts
 from repositories import DiscountRepository, RepCart
 
@@ -131,7 +131,7 @@ class AjaxUpdateCartView(View):
                     cart_all_products_amount(cart=cart)
                 cart_sum = SelectCart. \
                     cart_total_amount(cart=cart)
-                discounted_total_price = ProductDiscounts. \
+                discounted_total_price, discount = ProductDiscounts. \
                     get_prices_discount_on_cart(cart_sum,
                                                 cart_count,
                                                 cart=cart)
@@ -146,14 +146,22 @@ class AjaxUpdateCartView(View):
                     cart_all_products_amount(session_products=products)
                 cart_sum = SelectCart. \
                     cart_total_amount(session_products=products)
-                discounted_total_price = ProductDiscounts. \
+                discounted_total_price, discount = ProductDiscounts. \
                     get_prices_discount_on_cart(cart_sum, cart_count,
                                                 session_products=products)
                 request.session['prices'] = discounted_total_price
                 request.session.modified = True
+            if discount:
+                if isinstance(discount, CartDiscount):
+                    type_discount = 'cart'
+                else:
+                    type_discount = 'set'
+            else:
+                type_discount = ''
             context = {'cart_count': cart_count,
-                       'cart_sum': round(sum(discounted_total_price), 2)
-                       }
+                       'cart_sum': round(sum(discounted_total_price), 2),
+                       'discount': discount,
+                       'type_discount': type_discount}
             return JsonResponse(data=context)
 
 
