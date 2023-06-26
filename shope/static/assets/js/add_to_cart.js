@@ -1,35 +1,37 @@
-function AddToCart(url) {
-    let quantity = 1
-    if (document.getElementById("amount")) {
-        quantity = document.getElementById("amount").value;
-    }
+window.onload = function (){
+    $('.Cart').on('click', 'button[class="Amount-remove"]', function () {
+            let t_href = event.target;
 
-    $.ajax({
-    url: url,
-    type: "GET",
-    data:
-        {
-            'quantity': quantity
-        },
-    dataType: "text",
-    success: (data) => {
-        console.log(url)
-        $("#modal_open").fadeIn(200);
-        let obj =$.parseJSON(data)
-        $(".CartBlock-amount").text(obj['cart_count']);
-        $(".CartBlock-price").text(obj['cart_sum']);
-        document.getElementById("amount").value = 1;
-        },
-     error: (error) => {
-      console.log(error);
-    }
-  });
+        $.ajax(
+            {
+
+                url: t_href.name,
+                success: function (data){
+                    console.log(data)
+                    $('.Cart').html(data.items)
+                }
+            }
+
+        )
+        }
+    )
+
+    $('.Cart').on('click', 'button[class="Amount-add"]', function () {
+            let t_href = event.target;
+
+        $.ajax(
+            {
+
+                url: t_href.name,
+                success: function (data){
+                    console.log(data)
+                    $('.Cart').html(data.items)
+                }
+            }
+
+        )
+        }
+    )
+
+
 }
-
-$("body").click(function () {
-    $("#modal_open").fadeOut(300);
-});
-
-$(".close").click(function () {
-    $("#modal_open").fadeOut(300);
-});

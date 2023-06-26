@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
-
+from django.template.loader import render_to_string
 from coreapp.utils import AddToCart, SelectCart, ProductDiscounts
 from repositories import DiscountRepository, RepCart
 
@@ -135,6 +135,8 @@ class AjaxUpdateCartView(View):
                     get_prices_discount_on_cart(cart_sum,
                                                 cart_count,
                                                 cart=cart)
+                cart_items = SelectCart.cart_items_list(user=request.user)
+
             else:
 
                 kwargs['session_products'] = request.session.get('products')
@@ -151,10 +153,17 @@ class AjaxUpdateCartView(View):
                                                 session_products=products)
                 request.session['prices'] = discounted_total_price
                 request.session.modified = True
+
+            cart_items_html = render_to_string('cartapp/cart_ajax.html',
+                                               context={'items': cart_items},
+                                               request=request)
+            print(cart_items_html)
             context = {'cart_count': cart_count,
+                       'items': cart_items_html,
                        'cart_sum': round(sum(discounted_total_price), 2)
                        }
-            return JsonResponse(data=context)
+            print(context)
+            return JsonResponse(data=context, safe=False)
 
 
 class AddToCartAjaxView(AjaxUpdateCartView):

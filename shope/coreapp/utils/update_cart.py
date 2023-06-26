@@ -72,8 +72,10 @@ class AddToCart:
             cart = rep_cart.get_cart(user)  # корзина пользователя
             cart_item = rep_cart_item. \
                 get_cart_item(cart=cart, product=product, seller=seller)
+            print(cart_item)
             # позиция с товаром в корзине
-            if full or cart_item.quantity == 1:  # удаление товара из корзины
+            if full or cart_item.first().quantity == 1:
+                # удаление товара из корзины
                 rep_cart_item.delete(cart_item)
             else:  # уменьшение количества товара на count
                 cart_item.update(quantity=F('quantity') - count)
