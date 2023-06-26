@@ -37,7 +37,7 @@ class CartItemListView(View):
                     session_products=session_products)
                 cart_price = SelectCart.cart_total_amount(
                     session_products=session_products)
-                discounted_prices_list = ProductDiscounts. \
+                discounted_prices_list, discount = ProductDiscounts. \
                     get_prices_discount_on_cart(
                         cart_price,
                         count,
