@@ -263,7 +263,6 @@ class ProductDiscounts:
             if cart_discount and set_discount:
                 #  имеется скидка и на корзину, и есть набор товаров
                 if cart_discount.priority >= set_discount.priority:
-                    print('скидка на корзину')
                     # приоритет скидки на корзину выше либо равен
                     # приоритету скидки на набор товаров
                     cart_prices_list = cls. \
