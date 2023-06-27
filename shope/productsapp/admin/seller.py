@@ -15,8 +15,9 @@ class SellerAdmin(admin.ModelAdmin):
         """
         Настройка отображения страницы редактирования позиции
         """
-        context['adminform'].form.fields[
-            'owner'].queryset = User.objects.filter(pk=request.user.id)
+        if not request.user.is_superuser:
+            context['adminform'].form.fields[
+                'owner'].queryset = User.objects.filter(pk=request.user.id)
         return super(SellerAdmin, self).render_change_form(
             request, context, *args, **kwargs)
 

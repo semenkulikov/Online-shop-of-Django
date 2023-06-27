@@ -18,8 +18,9 @@ class SlicePriceAdmin(admin.ModelAdmin):
         """
         Настройка отображения страницы редактирования позиции
         """
-        context['adminform'].form.fields[
-            'seller'].queryset = Seller.objects.filter(owner=request.user)
+        if not request.user.is_superuser:
+            context['adminform'].form.fields[
+                'seller'].queryset = Seller.objects.filter(owner=request.user)
         return super(SlicePriceAdmin, self).render_change_form(
             request, context, *args, **kwargs)
 
