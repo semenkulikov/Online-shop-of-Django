@@ -785,8 +785,6 @@ msgid "Status"
 msgstr "Статус"
 
 #: .\templates\orderapp\historyorder.html:82
-#, fuzzy
-#| msgid "orders"
 msgid "Export orders"
 msgstr "Экспорт заказов"
 
@@ -931,8 +929,6 @@ msgid "Export of all products"
 msgstr "Экспорт всех продуктов"
 
 #: .\templates\productsapp\catalog.html:87
-#, fuzzy
-#| msgid "Export product"
 msgid "Export products"
 msgstr "Экспорт продуктов"
 
@@ -1029,8 +1025,6 @@ msgid "Description"
 msgstr "Описание"
 
 #: .\templates\productsapp\detailed_discount.html:44
-#, fuzzy
-#| msgid "Export of all products"
 msgid "A set of products"
 msgstr "Набор продуктов"
 
