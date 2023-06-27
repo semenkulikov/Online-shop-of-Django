@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 00:19+0300\n"
+"POT-Creation-Date: 2023-06-27 11:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,7 +148,6 @@ msgid "Express delivery"
 msgstr "Экспресс-доставка"
 
 #: .\orderapp\models.py:24 .\profileapp\models\profile.py:19
-#: .\templates\orderapp\order.html:52 .\templates\orderapp\order.html:117
 #: .\templates\profileapp\profileAvatar.html:65
 msgid "FIO"
 msgstr "ФИО"
@@ -233,25 +232,29 @@ msgstr "предметы заказа"
 msgid "Payment"
 msgstr "Оплата"
 
-#: .\paymentapp\forms.py:10
-msgid "card number (12-19 digits)"
-msgstr "номер карты (12-19 цифр)"
+#: .\paymentapp\forms.py:10 .\templates\paymentapp\payment.html:34
+msgid "Card number"
+msgstr "Номер карты"
 
 #: .\paymentapp\forms.py:14
-msgid "cardholder name"
-msgstr "держатель карты"
+msgid "Cardholder name"
+msgstr "Держатель карты"
 
 #: .\paymentapp\forms.py:19
-msgid "expiry date"
-msgstr "срок действия"
+msgid "Expiry date"
+msgstr "Срок действия"
 
 #: .\paymentapp\forms.py:24
-msgid "CVV/CVC"
-msgstr "CVV/CVC"
+msgid "Code"
+msgstr "Код"
 
 #: .\paymentapp\forms.py:29
 msgid "total sum (rub.)"
 msgstr "итого (руб.)"
+
+#: .\paymentapp\forms.py:35
+msgid "MM/YY"
+msgstr "ММ/ГГ"
 
 #: .\paymentapp\models.py:20
 msgid "yookassa payment id"
@@ -585,11 +588,8 @@ msgid "Save password"
 msgstr "Сохранить пароль"
 
 #: .\templates\base.html:93 .\templates\base.html:153
-#: .\templates\cartapp\cart.html:52 .\templates\profileapp\account.html:25
 #: .\templates\profileapp\profile.html:27
-#: .\templates\profileapp\profileAvatar.html:36
-#: .\templates\profileapp\viewed_products.html:25
-msgid "Private Office"
+msgid "Personal account"
 msgstr "Личный кабинет"
 
 #: .\templates\base.html:120 .\templates\base.html:736
@@ -620,9 +620,9 @@ msgstr "Сравнение"
 msgid "Administrative section"
 msgstr "Административный раздел"
 
-#: .\templates\base.html:155 .\templates\cartapp\cart.html:54
-msgid "Output"
-msgstr "Выйти"
+#: .\templates\base.html:155
+msgid "Logout"
+msgstr "Выход"
 
 #: .\templates\base.html:167 .\templates\cartapp\cart.html:70
 msgid "Show navigation"
@@ -720,6 +720,16 @@ msgstr "Профиль"
 msgid "Contact"
 msgstr "Контакты"
 
+#: .\templates\cartapp\cart.html:52 .\templates\profileapp\account.html:25
+#: .\templates\profileapp\profileAvatar.html:36
+#: .\templates\profileapp\viewed_products.html:25
+msgid "Private Office"
+msgstr "Личный кабинет"
+
+#: .\templates\cartapp\cart.html:54
+msgid "Output"
+msgstr "Выйти"
+
 #: .\templates\cartapp\cart.html:102 .\templates\cartapp\cart.html:173
 msgid "Seller"
 msgstr "Продавцы"
@@ -747,7 +757,7 @@ msgstr "Нет товаров в корзине"
 #: .\templates\profileapp\viewed_products.html:31
 #: .\templates\profileapp\viewed_products.html:41
 msgid "Viewed products"
-msgstr "просмотренные продукты"
+msgstr "Просмотренные продукты"
 
 #: .\templates\orderapp\historyorder.html:47
 #: .\templates\orderapp\oneorder.html:20
@@ -785,10 +795,8 @@ msgid "Order date"
 msgstr "Дата заказа"
 
 #: .\templates\orderapp\oneorder.html:48
-#, fuzzy
-#| msgid "phone number"
 msgid "Phone number"
-msgstr "номер телефона"
+msgstr "Номер телефона"
 
 #: .\templates\orderapp\oneorder.html:54
 msgid "E-mail"
@@ -803,7 +811,8 @@ msgstr "Способ доставки"
 msgid "City"
 msgstr "Город"
 
-#: .\templates\orderapp\oneorder.html:74
+#: .\templates\orderapp\oneorder.html:74 .\templates\orderapp\order.html:80
+#: .\templates\orderapp\order.html:149
 msgid "Address"
 msgstr "Адрес"
 
@@ -846,14 +855,14 @@ msgstr "Шаг 2: Способ оплаты"
 msgid "Step 3: Confirm order"
 msgstr "Шаг 3: Подтвердить заказ"
 
+#: .\templates\orderapp\order.html:52 .\templates\orderapp\order.html:117
+msgid "Full name"
+msgstr "ФИО"
+
 #: .\templates\orderapp\order.html:58 .\templates\orderapp\order.html:123
 #: .\templates\profileapp\profileAvatar.html:72
 msgid "Phone"
 msgstr "Телефон"
-
-#: .\templates\orderapp\order.html:80 .\templates\orderapp\order.html:149
-msgid "The address is"
-msgstr "Адрес"
 
 #: .\templates\orderapp\order.html:87 .\templates\orderapp\order.html:104
 msgid "Next"
@@ -866,10 +875,6 @@ msgstr "Удалить"
 #: .\templates\orderapp\order.html:219
 msgid "Cancel"
 msgstr "Отмена"
-
-#: .\templates\paymentapp\payment.html:34
-msgid "Card number"
-msgstr "Номер карты"
 
 #: .\templates\paymentapp\paymentsomeone.html:34
 msgid "Account number"
@@ -1164,6 +1169,10 @@ msgstr "Вы еще не сделали ни одного заказа"
 msgid "Recently viewed products"
 msgstr "просмотренные продукты"
 
+#: .\templates\profileapp\profile.html:55
+msgid "Upload a photo"
+msgstr "Загрузить фото"
+
 #: .\templates\profileapp\profile.html:87
 #: .\templates\profileapp\profileAvatar.html:84
 msgid "You can change your password here"
@@ -1189,6 +1198,15 @@ msgstr "Выберите аватар"
 #: .\templates\profileapp\profileAvatar.html:93
 msgid "Save"
 msgstr "Сохранить"
+
+#~ msgid "The address is"
+#~ msgstr "Адрес"
+
+#~ msgid "card number (12-19 digits)"
+#~ msgstr "номер карты (12-19 цифр)"
+
+#~ msgid "CVV/CVC"
+#~ msgstr "CVV/CVC"
 
 #~ msgid "Incorrect data entered!"
 #~ msgstr "Введены неверные данные!"

@@ -915,7 +915,7 @@ cancelBtn.onclick = () => {
 
 $(function(){
     $("#id_card_number").mask("9999 9999 9999 ?9999 999", {autoclear: false, placeholder: " "});
-    $("#id_expiry_date").mask("99/99", {autoclear: false});
+    $("#id_expiry_date").mask("99/99", {placeholder: " "});
     $("#phone_number").mask("+7 (999) 999 99 99", {placeholder: " "});
 });
 
