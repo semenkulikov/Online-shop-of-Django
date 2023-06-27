@@ -4,14 +4,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from coreapp.utils.select_cart import SelectCart
 from repositories.cart_repository import RepCartItem
 from repositories import RepCart
-from repositories import OrderUpdateRepository, OrderItemUpdateRepository
+from repositories import (
+    OrderUpdateRepository,
+    OrderItemUpdateRepository,
+    ConfigSelectRepository)
+
 from coreapp.utils import ProductDiscounts
-from django.conf import settings
+
 
 rep_cart = RepCart()
 rep_cartitem = RepCartItem()
 rep_order = OrderUpdateRepository()
 rep_orderitem = OrderItemUpdateRepository()
+rep_config = ConfigSelectRepository()
 
 
 class AddOrderView(LoginRequiredMixin, View):
@@ -28,10 +33,14 @@ class AddOrderView(LoginRequiredMixin, View):
             cart_price, count, cart=cart))
         sellers = rep_cartitem.sellers_amount(cart.pk)
 
-        delivery_price = settings.DELIVERY_PRICE
+        delivery_price = int(
+            rep_config.get_config_value_by_name('DELIVERY_PRICE')
+        )
         # доставка бесплатная если все товары от одного продавца и
         # сумма заказа больше требуемой
-        if discounted_sum > settings.FREE_DELIVERY_SUM and sellers == 1:
+        if discounted_sum > int(
+                rep_config.get_config_value_by_name('FREE_DELIVERY_SUM')
+        ) and sellers == 1:
             delivery_price = 0
 
         order = rep_order.save(  # создание нового заказа
