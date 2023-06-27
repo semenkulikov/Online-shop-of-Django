@@ -1,7 +1,6 @@
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
-from productsapp.models import CartDiscount
 from coreapp.utils import AddToCart, SelectCart, ProductDiscounts
 from repositories import DiscountRepository, RepCart
 
@@ -53,7 +52,8 @@ class CartItemListView(View):
                            'count_cart': count,
                            'total_amount': round(sum(discounted_prices_list),
                                                  2
-                                                 )
+                                                 ),
+                           'discount': discount
                            }
                 return render(request, self.template_name, context)
             else:
@@ -151,17 +151,9 @@ class AjaxUpdateCartView(View):
                                                 session_products=products)
                 request.session['prices'] = discounted_total_price
                 request.session.modified = True
-            if discount:
-                if isinstance(discount, CartDiscount):
-                    type_discount = 'cart'
-                else:
-                    type_discount = 'set'
-            else:
-                type_discount = ''
             context = {'cart_count': cart_count,
-                       'cart_sum': round(sum(discounted_total_price), 2),
-                       'discount': discount,
-                       'type_discount': type_discount}
+                       'cart_sum': round(sum(discounted_total_price), 2)
+                       }
             return JsonResponse(data=context)
 
 
