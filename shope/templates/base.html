@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
 <!--END-->
 <!--END-->
 <!DOCTYPE html>
@@ -183,7 +185,8 @@
                                 </div>
                             </div>
                             <div class="CategoriesButton-content">
-                                {% for category in categories_list %}
+{#                                {% cache 86400 categories LANGUAGE_CODE %}#}
+                                    {% for category in categories_list %}
                                     <div class="CategoriesButton-link"><a href="{% url 'productsapp:catalog' %}?category={{category.name}}">
                                             <div class="CategoriesButton-icon">
                                                 <img src="{% if category.icon %}{{category.icon.url}}{% endif %}" alt="1.svg" />
@@ -191,7 +194,8 @@
                                             <span class="CategoriesButton-text">{{category.name}}</span>
                                         </a>
                                     </div>
-                                {% endfor %}
+                                    {% endfor %}
+{#                                {% endcache %}#}
                                 <!--<div class="CategoriesButton-link"><a href="#">-->
                                         <!--<div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg" />-->
                                         <!--</div><span class="CategoriesButton-text">{% translate 'Televisions' %}</span>-->
