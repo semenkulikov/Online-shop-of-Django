@@ -1,4 +1,4 @@
-﻿from django.core.management import BaseCommand
+from django.core.management import BaseCommand
 from django.db.utils import IntegrityError
 import os
 
@@ -11,6 +11,7 @@ class Command(BaseCommand):
         self.stdout.write("=" * 40 +
                           "\nApply all fixtures to the database\n\n")
         paths = [
+            "authapp/fixtures/groups-fixtures.json",
             "authapp/fixtures/users-fixtures.json",
             "profileapp/fixtures/profiles-fixtures.json",
             "productsapp/fixtures/productsapp-fixture.json",
@@ -23,6 +24,7 @@ class Command(BaseCommand):
             "productsapp/fixtures/categories-fixtures.json",
             "productsapp/fixtures/discounts_fixtures.json",
             "coreapp/fixtures/configs.json"
+            "productsapp/fixtures/sellers-fixtures.json"
         ]
         for path in paths:
             try:

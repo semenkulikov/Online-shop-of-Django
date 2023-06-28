@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
 <!--END-->
 <!--END-->
 <!DOCTYPE html>
@@ -90,7 +92,7 @@
                                     <a class="ControlPanel-title" href="{% url 'authapp:login' %}">{% translate 'Log in' %}</a>
                                     <a class="ControlPanel-title" href="{% url 'authapp:signup' %}">{% translate 'Registration' %}</a>
                                     {% else %}
-                                    <a class="ControlPanel-title" href="{% url 'profileapp:account' %}">{% translate 'Private Office' %}</a>
+                                    <a class="ControlPanel-title" href="{% url 'profileapp:account' %}">{% translate 'Personal account' %}</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -150,9 +152,11 @@
                                 {% if user.is_authenticated %}
                                 <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                 <div class="dropdown-content">
-                                    <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">{% translate 'Private Office' %}</a>
-                                    <a class="dropdown-content-a" href="#">{% translate 'Administrative section' %}</a>
-                                    <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">{% translate 'Output' %}</a>
+                                    <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">{% translate 'Personal account' %}</a>
+                                    {% if user.is_staff %}
+                                        <a class="dropdown-content-a" href="/admin">{% translate 'Administrative section' %}</a>
+                                    {% endif %}
+                                    <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">{% translate 'Logout' %}</a>
                                 </div>
                                 {% endif %}
                             </div>
@@ -183,7 +187,8 @@
                                 </div>
                             </div>
                             <div class="CategoriesButton-content">
-                                {% for category in categories_list %}
+{#                                {% cache 86400 categories LANGUAGE_CODE %}#}
+                                    {% for category in categories_list %}
                                     <div class="CategoriesButton-link"><a href="{% url 'productsapp:catalog' %}?category={{category.name}}">
                                             <div class="CategoriesButton-icon">
                                                 <img src="{% if category.icon %}{{category.icon.url}}{% endif %}" alt="1.svg" />
@@ -191,7 +196,8 @@
                                             <span class="CategoriesButton-text">{{category.name}}</span>
                                         </a>
                                     </div>
-                                {% endfor %}
+                                    {% endfor %}
+{#                                {% endcache %}#}
                                 <!--<div class="CategoriesButton-link"><a href="#">-->
                                         <!--<div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg" />-->
                                         <!--</div><span class="CategoriesButton-text">{% translate 'Televisions' %}</span>-->

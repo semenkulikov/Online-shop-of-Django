@@ -6567,6 +6567,7 @@ input[type="radio"] {
     background-color: #FFF;
     padding: 20px 40px;
     border-radius: 15px;
+    border: 2px solid rgb(0, 99, 209);
 }
 
 .modal__content ::placeholder {
@@ -6588,7 +6589,7 @@ input[type="radio"] {
     border: 1px solid #d4d4d4;
     text-align: center;
     font-size: 16px;
-    color: #707070;
+    color: rgb(0, 99, 209);
 
 }
 
@@ -6604,7 +6605,6 @@ input[type="radio"] {
 
 .modal__content label {
     font-size: 15px;
-    text-transform: capitalize;
     color: #969696;
 }
 
@@ -6614,9 +6614,15 @@ input[type="radio"] {
     min-height: 30px;
     margin: 0;
     margin-right: 10px;
-    padding: 3px 5px 0;
-    font-size: 14px;
+    padding: 3px 15px 0;
+    font-size: 12px;
 
+}
+
+
+.modal__content input:focus {
+    border: 1px solid rgb(0, 99, 209);
+    box-shadow: none;
 }
 
 .cancel_btn {
@@ -6640,6 +6646,7 @@ input[type="radio"] {
     text-align: right;
     margin: 0;
     font-weight: bold;
+    color: rgb(0, 99, 209);
 }
 
 .payment_bottom {
