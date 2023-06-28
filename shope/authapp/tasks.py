@@ -1,10 +1,9 @@
 from celery import shared_task
-import secrets
-import string
 from django.conf import settings
 from django.urls import reverse
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import get_template
+from django.template import loader
 
 
 @shared_task
@@ -12,6 +11,7 @@ def send_verif_link(protocol, domain, email,
                     activation_key, first_name, last_name):
     """
     Метод создания и отправки сообщения на e-mail
+    для подтверждения регистрации
     :return: send_mail
     :rtype: bool
     """
@@ -41,13 +41,23 @@ def send_verif_link(protocol, domain, email,
 
 
 @shared_task
-def generate_random_string():
+def send_link_for_password(subject,
+                           context,
+                           body,
+                           from_email,
+                           to_email,
+                           html_email_template_name=None, ):
     """
-    Метод, который генерирует случайный ключ активации из 13 символов
-    return: rand_string
-    rtype: string
+    Метод для создания и отправки сообщения на e-mail адрес
+    для смены пароля
     """
-    letters_and_digits = string.ascii_letters + string.digits
-    rand_string = ''.join(secrets.choice(
-        letters_and_digits) for i in range(13))
-    return rand_string
+    # Email subject *must not* contain newlines
+    email_message = EmailMultiAlternatives(subject,
+                                           body,
+                                           from_email,
+                                           [to_email])
+    if html_email_template_name is not None:
+        html_email = loader.render_to_string(html_email_template_name, context)
+        email_message.attach_alternative(html_email, "text/html")
+
+    email_message.send()  # отправка сообщения

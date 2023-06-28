@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm, \
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
+from django.template import loader
+from .tasks import send_link_for_password
 
 
 class UserLoginForm(AuthenticationForm):
@@ -95,6 +97,25 @@ class UserResetPasswordForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['placeholder'] = 'E-mail'
+
+    def send_mail(
+            self,
+            subject_template_name,
+            email_template_name,
+            context,
+            from_email,
+            to_email,
+            html_email_template_name=None,
+    ):
+        subject = loader.render_to_string(subject_template_name, context)
+        # Тема письма не должна содержать новых строк
+        subject = "".join(subject.splitlines())
+        body = loader.render_to_string(email_template_name, context)
+
+        send_link_for_password.delay(
+            subject, context, body,
+            from_email, to_email, html_email_template_name
+        )  # отправка сообщения на e-mail
 
 
 class UserSetPasswordForm(SetPasswordForm):
