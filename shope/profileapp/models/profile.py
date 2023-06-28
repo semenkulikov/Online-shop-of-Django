@@ -23,7 +23,7 @@ class Profile(models.Model):
         upload_to='profile_avatars/',
         verbose_name=_('avatar'),
         null=True,
-        blank=True
+        blank=True,
     )
 
     phone_number = PhoneNumberField(

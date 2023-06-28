@@ -233,9 +233,15 @@
                                     <div class="Comments">
                                         <div class="Comment">
                                             <div class="Comment-column Comment-column_pict">
-                                                <div class="Comment-avatar">
-{#                                                    {{ review.user.avatar_image.url }}#}
-                                                </div>
+
+                                                    {% if review.user.avatar_image.url %}
+                                                   <div class="Account-avatar"><img src="{{ review.user.avatar_image.url }}" alt="card.jpg" />
+                                                    </div>
+                                                    {% else %}
+                                                        <div class="Account-avatar"><img src="{% static 'assets/img/placeholder_profile_image.webp' %}" alt="card.jpg" />
+                                                    </div>
+                                                    {% endif %}
+
                                             </div>
                                             <div class="Comment-column">
                                                 <header class="Comment-header">

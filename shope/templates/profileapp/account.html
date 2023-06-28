@@ -38,12 +38,17 @@
                 <div class="Section-content">
                     <div class="Account">
                         <div class="Account-group">
-                            {% if object.avatar_image %}
                             <div class="Account-column">
+                                {% if object.avatar_image %}
                                <div class="Account-avatar"><img src="{{ object.avatar_image.url }}" alt="card.jpg" />
                                 </div>
+                                {% else %}
+                                    <div class="Account-avatar"><img src="{% static 'assets/img/placeholder_profile_image.webp' %}" alt="card.jpg" />
+                                </div>
+                                {% endif %}
                             </div>
-                            {% endif %}
+
+
                             <div class="Account-column">
                                 <div class="Account-name">{{ object.fio }}</div>
                                 <a class="Account-editLink" href="{% url 'profileapp:profile_update' %}">{% translate 'Edit profile' %}</a>
