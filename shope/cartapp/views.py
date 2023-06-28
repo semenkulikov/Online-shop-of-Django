@@ -1,7 +1,6 @@
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
-
 from coreapp.utils import AddToCart, SelectCart, ProductDiscounts
 from repositories import DiscountRepository, RepCart
 
@@ -37,7 +36,7 @@ class CartItemListView(View):
                     session_products=session_products)
                 cart_price = SelectCart.cart_total_amount(
                     session_products=session_products)
-                discounted_prices_list = ProductDiscounts. \
+                discounted_prices_list, discount = ProductDiscounts. \
                     get_prices_discount_on_cart(
                         cart_price,
                         count,
@@ -53,7 +52,8 @@ class CartItemListView(View):
                            'count_cart': count,
                            'total_amount': round(sum(discounted_prices_list),
                                                  2
-                                                 )
+                                                 ),
+                           'discount': discount
                            }
                 return render(request, self.template_name, context)
             else:
@@ -131,7 +131,7 @@ class AjaxUpdateCartView(View):
                     cart_all_products_amount(cart=cart)
                 cart_sum = SelectCart. \
                     cart_total_amount(cart=cart)
-                discounted_total_price = ProductDiscounts. \
+                discounted_total_price, discount = ProductDiscounts. \
                     get_prices_discount_on_cart(cart_sum,
                                                 cart_count,
                                                 cart=cart)
@@ -146,7 +146,7 @@ class AjaxUpdateCartView(View):
                     cart_all_products_amount(session_products=products)
                 cart_sum = SelectCart. \
                     cart_total_amount(session_products=products)
-                discounted_total_price = ProductDiscounts. \
+                discounted_total_price, discount = ProductDiscounts. \
                     get_prices_discount_on_cart(cart_sum, cart_count,
                                                 session_products=products)
                 request.session['prices'] = discounted_total_price

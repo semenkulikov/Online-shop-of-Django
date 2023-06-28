@@ -6682,3 +6682,6 @@ input:-webkit-autofill:active{
     border: 1px solid rgb(0, 99, 209);
     box-shadow: none;
 }
+.type-discount {
+    color: #913333;
+}

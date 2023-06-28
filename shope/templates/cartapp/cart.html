@@ -82,8 +82,12 @@ Megano
     <div class="Section">
         <div class="wrap">
             {% if items %}
-            <form class="form Cart" action="#" method="post">
-                {% csrf_token %}
+            <form class="form Cart" action="#" method="get">
+                {% if type_discount == "cart" %}
+                <h3 class="type-discount">{% translate 'You have received a' %} {{discount.value|floatformat:"0" }}% {% translate 'discount on your cart' %}</h3>
+                {% elif type_discount == "set" %}
+                <h3 class="type-discount">{% translate 'You have received a' %} {{discount.value|floatformat:"0"}}% {% translate 'discount on a set of products' %}</h3>
+                {% endif %}
                 {% if session %}
                 {% for count, item, discounted_price in items %}
                 <div class="Cart-product">

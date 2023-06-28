@@ -4,6 +4,7 @@ from repositories.product_select_repository import ProductSelectRepository
 from repositories.seller_select_repository import SellerSelectRepository
 from coreapp.utils.select_cart import SelectCart
 from coreapp.utils.product_discounts import ProductDiscounts
+from productsapp.models import CartDiscount
 
 rep_cart = RepCart()
 rep_price = PriceRepository()
@@ -22,29 +23,32 @@ def cart_block(request):
         cart = rep_cart.get_cart(user=user)
         count = SelectCart.cart_all_products_amount(cart=cart)
         cart_price = SelectCart.cart_total_amount(cart=cart)
-        discounted_prices_list = ProductDiscounts. \
+        discounted_prices_list, discount = ProductDiscounts. \
             get_prices_discount_on_cart(cart_price, count, cart=cart)
-        context = {
-            'cart_count': count,
-            'cart_sum': round(sum(discounted_prices_list), 2)
-        }  # словарь с количеством и суммой товаров в корзине
-        return context
-
-        # сюда добавить миниатюру аватарки, если есть. и тоже передать.
-
     else:
         session_products = request.session.get('products')
         count = SelectCart.cart_all_products_amount(
             session_products=session_products)
         cart_price = SelectCart.cart_total_amount(
             session_products=session_products)
-        discounted_prices_list = ProductDiscounts. \
+        discounted_prices_list, discount = ProductDiscounts. \
             get_prices_discount_on_cart(cart_price, count,
                                         session_products=session_products)
         request.session['prices'] = discounted_prices_list
         request.session.modified = True
-        context = {
-            'cart_count': count,
-            'cart_sum': round(sum(discounted_prices_list), 2)
-        }  # словарь с количеством и суммой товаров в корзине
-        return context
+
+    if discount:
+        if isinstance(discount, CartDiscount):
+            type_discount = 'cart'
+        else:
+            type_discount = 'set'
+    else:
+        type_discount = ''
+    context = {
+        'cart_count': count,
+        'cart_sum': round(sum(discounted_prices_list), 2),
+        'discount': discount,
+        'type_discount': type_discount
+    }  # словарь с количеством и суммой товаров в корзине и
+    # применённой скидкой
+    return context
