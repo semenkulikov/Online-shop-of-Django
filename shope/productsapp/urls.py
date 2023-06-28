@@ -1,4 +1,6 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
+
 from productsapp.views import (
     ProductListView,
     AddReviewView,
@@ -15,8 +17,12 @@ from productsapp.views import (
 app_name = 'productsapp'
 
 urlpatterns = [
-    path('catalog/', ProductListView.as_view(), name="catalog"),
-    path('catalog/<int:product_id>/', ProductDetailView.as_view(), name="product_detail"),
+    path('catalog/', cache_page(timeout=86400,
+                                key_prefix="catalog"
+                                )(ProductListView.as_view()), name="catalog"),
+    path('catalog/<int:product_id>/', cache_page(timeout=86400,
+                                                 key_prefix="product_detail"
+                                                 )(ProductDetailView.as_view()), name="product_detail"),
     path('catalog/<int:product_id>/add_review/', AddReviewView.as_view(), name="add_review"),
     path('catalog/<int:product_id>/add_to_comparison/', AddToComparisonView.as_view(), name="add_to_comparison"),
     path('catalog/export/', export_product_to_xls, name="export_product"),
