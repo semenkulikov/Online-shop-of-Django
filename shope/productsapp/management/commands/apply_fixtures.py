@@ -1,4 +1,4 @@
-from django.core.management import BaseCommand
+﻿from django.core.management import BaseCommand
 from django.db.utils import IntegrityError
 import os
 
@@ -23,7 +23,7 @@ class Command(BaseCommand):
             "productsapp/fixtures/products-fixture.json",
             "productsapp/fixtures/categories-fixtures.json",
             "productsapp/fixtures/discounts_fixtures.json",
-            "coreapp/fixtures/configs.json"
+            "coreapp/fixtures/configs.json",
             "productsapp/fixtures/sellers-fixtures.json"
         ]
         for path in paths:
