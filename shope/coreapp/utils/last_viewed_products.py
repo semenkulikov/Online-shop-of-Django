@@ -1,9 +1,9 @@
 from authapp.models import User
 from productsapp.models import Product
-from repositories import ViewedProductsRepository
-from django.conf import settings
+from repositories import ViewedProductsRepository, ConfigSelectRepository
 
 viewed_products_rep = ViewedProductsRepository()
+config_rep = ConfigSelectRepository()
 
 
 class ViewedProductsService:
@@ -39,7 +39,9 @@ class ViewedProductsService:
             )
             return viewed_product
 
-        if viewed_count >= settings.MAX_VIEWED_PRODUCTS:
+        if viewed_count >= config_rep.get_config_value_by_name(
+                'MAX_VIEWED_PRODUCTS'
+        ):
             self._delete_last_for_user(user=user)
             viewed_product = viewed_products_rep.add_product_in_viewed(
                 user=user,
