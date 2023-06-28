@@ -148,6 +148,7 @@ class AjaxUpdateCartView(View):
                                                 cart=cart)
 
                 cart_items = SelectCart.cart_items_list(user=request.user)
+
                 if discount:
                     if isinstance(discount, CartDiscount):
                         type_discount = 'cart'
@@ -155,16 +156,23 @@ class AjaxUpdateCartView(View):
                         type_discount = 'set'
                 else:
                     type_discount = ''
+                if not cart_items:
+                    cart_count = 0
+                    discounted_total_price = [0]
+
                 cart_items_html = render_to_string(
                     'cartapp/cart_ajax.html',
                     context={'items': cart_items,
-                             'cart_sum': round(sum(discounted_total_price), 2)}
+                             'cart_sum': round(sum(discounted_total_price), 2),
+                             'discount': discount,
+                             'type_discount': type_discount
+                             }
+
                 )
+
                 context = {'cart_count': cart_count,
                            'items': cart_items_html,
                            'cart_sum': round(sum(discounted_total_price), 2),
-                           'discount': discount,
-                           'type_discount': type_discount
                            }
 
                 return JsonResponse(data=context, safe=False)
