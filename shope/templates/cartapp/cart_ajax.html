@@ -136,11 +136,9 @@
                                 <div class="Cart-block Cart-block_total">
                                     <strong class="Cart-title">{% translate 'Total' %}:
                                     </strong>
-                                    {% if session %}
-                                    <span  class="Cart-price">{% firstof total_amount '0' %} &#x20bd</span>
-                                    {% else %}
+
                                     <span class="Cart-price">{% firstof cart_sum '0' %} &#x20bd</span>
-                                    {% endif %}
+
                                 </div>
                                 <div class="Cart-block"><button class="btn btn_success btn_lg" type="submit" formmethod="post" formaction="{% url 'orderapp:add_order' %}">{% translate 'Place an order' %}</button>
                                 </div>
