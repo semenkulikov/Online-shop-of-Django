@@ -2,7 +2,9 @@
 {% load i18n %}
 {% load get_price %}
 
+
 {% if items %}
+
     {% if type_discount == "cart" %}
         <h3 class="type-discount">{% translate 'You have received a' %} {{discount.value|floatformat:"0" }}% {% translate 'discount on your cart' %}</h3>
     {% elif type_discount == "set" %}

@@ -45,7 +45,7 @@ def apply_imports(import_paths: List[str]) -> Tuple[bool, list, list]:
     result = True
     for path in import_paths:
         is_error = os.system(f'python manage.py loaddata {path}')
-        if is_error == 0:
+        if not is_error:
             logger.info(f"{os.path.split(path)[1]} - "
                         f"import of this file successfully completed")
             os.rename(path,

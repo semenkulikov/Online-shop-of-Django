@@ -140,15 +140,14 @@ else:
     }
     MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
     INSTALLED_APPS += ['silk']
-    STATICFILES_DIRS = (BASE_DIR / 'static',)
+    STATICFILES_DIRS = (BASE_DIR / '/static',)
 
-
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
-        "LOCATION": "127.0.0.1:11211",
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+            "LOCATION": "localhost:11211",
+        }
     }
-}
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # Password validation

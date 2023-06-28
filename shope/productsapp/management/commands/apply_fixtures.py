@@ -38,7 +38,7 @@ class Command(BaseCommand):
                     f"Fixture {path} applied successfully\n\n"
                 ))
                 total_error.append(path)
-        if len(total_error) == 0:
+        if not len(total_error):
             self.stdout.write(self.style.SUCCESS(
                 "Fixtures applied successfully\n" + "=" * 40))
         else:
