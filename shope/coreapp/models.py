@@ -16,7 +16,7 @@ class BaseModel(models.Model):
 
 class ConfigModel(models.Model):
     """
-    Rласс модели для настроек
+    Класс модели для настроек
     """
     name = models.CharField(
         max_length=100,
