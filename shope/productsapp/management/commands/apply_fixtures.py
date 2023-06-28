@@ -33,11 +33,11 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.ERROR(
                     f"ERROR! Fixture {path} is not loaded\n"
                 ))
+                total_error.append(path)
             else:
                 self.stdout.write(self.style.SUCCESS(
                     f"Fixture {path} applied successfully\n\n"
                 ))
-                total_error.append(path)
         if not len(total_error):
             self.stdout.write(self.style.SUCCESS(
                 "Fixtures applied successfully\n" + "=" * 40))
