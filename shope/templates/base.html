@@ -151,7 +151,9 @@
                                 <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                 <div class="dropdown-content">
                                     <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">{% translate 'Personal account' %}</a>
-                                    <a class="dropdown-content-a" href="#">{% translate 'Administrative section' %}</a>
+                                    {% if user.is_staff %}
+                                        <a class="dropdown-content-a" href="/admin">{% translate 'Administrative section' %}</a>
+                                    {% endif %}
                                     <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">{% translate 'Logout' %}</a>
                                 </div>
                                 {% endif %}

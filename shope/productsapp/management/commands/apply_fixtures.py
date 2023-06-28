@@ -22,6 +22,8 @@ class Command(BaseCommand):
             "productsapp/fixtures/products-fixture.json",
             "productsapp/fixtures/categories-fixtures.json",
             "productsapp/fixtures/discounts_fixtures.json",
+            "authapp/fixtures/groups-fixtures.json",
+            "productsapp/fixtures/sellers-fixtures.json"
         ]
         for path in paths:
             try:
