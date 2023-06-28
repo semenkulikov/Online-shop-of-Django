@@ -1,6 +1,7 @@
 from django.db import models
 
 from coreapp.models import BaseModel
+from authapp.models import User
 from django.utils.translation import gettext_lazy as _
 
 
@@ -12,6 +13,13 @@ class Seller(BaseModel):
         max_length=100,
         verbose_name=_('name')
     )
+
+    owner = models.ForeignKey(
+        User,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name=_('companies'),
+        verbose_name=_('owner'))
 
     def __str__(self):
         return self.name
