@@ -1,6 +1,7 @@
 from typing import List
 
 from interfaces.product_select_interface import ProductSelectInterface
+from productsapp.models import SellerItem
 from productsapp.models.product import Product
 from productsapp.models.price import SlicePrice
 from productsapp.models.specific import Specific
@@ -148,3 +149,6 @@ class ProductSelectRepository(ProductSelectInterface):
         cart_items = cart.items.filter(is_active=True).only('product_id')
         products_id = [item.product_id for item in cart_items]
         return products_id
+
+    def get_products_by_seller_id(self, seller_id: int) -> QuerySet[Product]:
+        return Product.objects.filter(seller_items__seller_id=seller_id)

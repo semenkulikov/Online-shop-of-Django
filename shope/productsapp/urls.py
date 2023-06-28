@@ -12,6 +12,7 @@ from productsapp.views import (
     DiscountsListView,
     DiscountSetDetailView,
     DiscountCartDetailView,
+    seller_detail_view,
 )
 
 app_name = 'productsapp'
@@ -31,4 +32,7 @@ urlpatterns = [
     path('sale/', DiscountsListView.as_view(), name="sales"),
     path('sale/<int:elem_id>/set/', DiscountSetDetailView.as_view(), name="discount_set_detail"),
     path('sale/<int:elem_id>/cart/', DiscountCartDetailView.as_view(), name="discount_cart_detail"),
+    path('sellers/<int:seller_id>/', cache_page(timeout=86400,
+                                                key_prefix="seller_detail"
+                                                )(seller_detail_view), name="seller_detail"),
 ]
