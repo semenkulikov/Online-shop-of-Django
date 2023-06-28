@@ -1,8 +1,10 @@
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
+from django.template.loader import render_to_string
 from coreapp.utils import AddToCart, SelectCart, ProductDiscounts
 from repositories import DiscountRepository, RepCart
+from productsapp.models import CartDiscount
 
 disc_rep = DiscountRepository()
 cart_rep = RepCart()
@@ -45,6 +47,13 @@ class CartItemListView(View):
                 request.session['prices'] = discounted_prices_list
                 request.session.modified = True
                 # список количества для каждого товара
+                if discount:
+                    if isinstance(discount, CartDiscount):
+                        type_discount = 'cart'
+                    else:
+                        type_discount = 'set'
+                else:
+                    type_discount = ''
                 context = {'items': zip(count_list,
                                         items_price,
                                         discounted_prices_list),
@@ -53,7 +62,8 @@ class CartItemListView(View):
                            'total_amount': round(sum(discounted_prices_list),
                                                  2
                                                  ),
-                           'discount': discount
+                           'discount': discount,
+                           'type_discount': type_discount
                            }
                 return render(request, self.template_name, context)
             else:
@@ -119,7 +129,8 @@ class ChangeQuantityCartView(UpdateCartView):
 class AjaxUpdateCartView(View):
     method_service = AddToCart.add_to_cart
 
-    def get(self, request, **kwargs):
+    def post(self, request, **kwargs):
+
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             if request.user.is_authenticated:  # пользователь авторизован
                 # обновляем kwargs
@@ -135,6 +146,28 @@ class AjaxUpdateCartView(View):
                     get_prices_discount_on_cart(cart_sum,
                                                 cart_count,
                                                 cart=cart)
+
+                cart_items = SelectCart.cart_items_list(user=request.user)
+                if discount:
+                    if isinstance(discount, CartDiscount):
+                        type_discount = 'cart'
+                    else:
+                        type_discount = 'set'
+                else:
+                    type_discount = ''
+                cart_items_html = render_to_string(
+                    'cartapp/cart_ajax.html',
+                    context={'items': cart_items,
+                             'cart_sum': round(sum(discounted_total_price), 2)}
+                )
+                context = {'cart_count': cart_count,
+                           'items': cart_items_html,
+                           'cart_sum': round(sum(discounted_total_price), 2),
+                           'discount': discount,
+                           'type_discount': type_discount
+                           }
+
+                return JsonResponse(data=context, safe=False)
             else:
 
                 kwargs['session_products'] = request.session.get('products')
@@ -142,19 +175,51 @@ class AjaxUpdateCartView(View):
                 # есть товары в сессии
                 products = self.method_service(**kwargs)
                 request.session['products'] = products
-                cart_count = SelectCart. \
-                    cart_all_products_amount(session_products=products)
-                cart_sum = SelectCart. \
-                    cart_total_amount(session_products=products)
-                discounted_total_price, discount = ProductDiscounts. \
-                    get_prices_discount_on_cart(cart_sum, cart_count,
-                                                session_products=products)
-                request.session['prices'] = discounted_total_price
+                items_price = SelectCart. \
+                    cart_items_list(session_products=products)
+
+                count_list = [value for value in products.values()]
+                count = SelectCart.cart_all_products_amount(
+                    session_products=products)
+                cart_price = SelectCart.cart_total_amount(
+                    session_products=products)
+                discounted_prices_list, discount = ProductDiscounts. \
+                    get_prices_discount_on_cart(
+                        cart_price,
+                        count,
+                        session_products=products
+                    )
+                request.session['prices'] = discounted_prices_list
                 request.session.modified = True
-            context = {'cart_count': cart_count,
-                       'cart_sum': round(sum(discounted_total_price), 2)
-                       }
-            return JsonResponse(data=context)
+
+                if discount:
+                    if isinstance(discount, CartDiscount):
+                        type_discount = 'cart'
+                    else:
+                        type_discount = 'set'
+                else:
+                    type_discount = ''
+
+                cart_items_html = render_to_string(
+                    'cartapp/cart_ajax.html',
+                    context={
+                        'items': zip(
+                            count_list,
+                            items_price,
+                            discounted_prices_list
+                        ),
+                        'session': True,
+                        'cart_sum': round(sum(discounted_prices_list), 2),
+                        'discount': discount,
+                        'type_discount': type_discount
+                    }
+                )
+                context = {'items': cart_items_html,
+                           'cart_count': count,
+                           'cart_sum': round(sum(discounted_prices_list), 2),
+                           }
+
+                return JsonResponse(data=context, safe=False)
 
 
 class AddToCartAjaxView(AjaxUpdateCartView):
@@ -167,11 +232,6 @@ class RemoveFromCartAjaxView(AjaxUpdateCartView):
 
 class DeleteCartItemAjaxView(AjaxUpdateCartView):
     method_service = AddToCart.delete_from_cart
-
-    def get(self, request, **kwargs):
-        kwargs['full'] = True
-        print(kwargs)
-        super().get(request, **kwargs)
 
 
 class ChangeQuantityCartAjaxView(AjaxUpdateCartView):

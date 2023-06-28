@@ -80,7 +80,8 @@ class RepCartItem(CartItemInterface):
         cart_items = CartItem.objects.\
             filter(cart=cart, is_active=True). \
             annotate(price=subquery[:1]).order_by('-discounted_price'). \
-            prefetch_related('product', 'seller', 'product__category')
+            prefetch_related('product', 'seller', 'product__category').\
+            order_by('updated_at')
         return cart_items
 
     def get_cart_item(self, cart: Cart, product: Product, seller: Seller) \

@@ -29,7 +29,7 @@ urlpatterns = [
          AddToCartAjaxView.as_view(), name='ajax_add_product'),
     path('catalog/ajax_remove/<int:product_id>/<int:seller_id>/',
          RemoveFromCartAjaxView.as_view(), name='ajax_remove_product'),
-    path('catalog/ajax_delete/<int:product_id>/<int:seller_id>/',
+    path('catalog/ajax_delete/<int:product_id>/<int:seller_id>/<int:full>/',
          DeleteCartItemAjaxView.as_view(), name='ajax_delete_product'),
     path('catalog/ajax_change-count/<int:product_id>/<int:seller_id>/<int:count>/',
          ChangeQuantityCartAjaxView.as_view(), name='ajax_change_count'),

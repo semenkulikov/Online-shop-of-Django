@@ -1,28 +1,50 @@
+function CartUpdate() {
+    let t_href = event.target.getAttribute('href');
+    var href =  $(this).data("href");
+
+    console.log(href)
+        $.ajax(
+            {
+                url: href,
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: window.CSRF_TOKEN,
+                },
+                success: function (data){
+                    console.log(data.items)
+                    $(".CartBlock-amount").text(data['cart_count']);
+                    $(".CartBlock-price").text(data['cart_sum']);
+
+                    $('.Cart').html(data.items)
+                }
+            }
+        )
+}
+
+$(document).ready(function(){
+    $('.Cart').on('click', 'button[type="button"]', CartUpdate)
+
+
+}
+)
 function AddToCart(url) {
-    let quantity = 1
-    if (document.getElementById("amount")) {
-        quantity = document.getElementById("amount").value;
-    }
 
     $.ajax({
-    url: url,
-    type: "GET",
-    data:
-        {
-            'quantity': quantity
+        url: url,
+        type: "POST",
+        data: {
+            csrfmiddlewaretoken: window.CSRF_TOKEN,
         },
-    dataType: "text",
-    success: (data) => {
-        console.log(url)
-        $("#modal_open").fadeIn(200);
-        let obj =$.parseJSON(data)
-        $(".CartBlock-amount").text(obj['cart_count']);
-        $(".CartBlock-price").text(obj['cart_sum']);
-        document.getElementById("amount").value = 1;
-        },
-     error: (error) => {
-      console.log(error);
-    }
+
+        success: (data) => {
+            console.log(data.items)
+            $("#modal_open").fadeIn(200);
+
+            $(".CartBlock-amount").text(data['cart_count']);
+            $(".CartBlock-price").text(data['cart_sum']);
+
+            },
+
   });
 }
 
