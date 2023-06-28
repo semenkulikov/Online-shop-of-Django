@@ -90,7 +90,7 @@
                                     <a class="ControlPanel-title" href="{% url 'authapp:login' %}">{% translate 'Log in' %}</a>
                                     <a class="ControlPanel-title" href="{% url 'authapp:signup' %}">{% translate 'Registration' %}</a>
                                     {% else %}
-                                    <a class="ControlPanel-title" href="{% url 'profileapp:account' %}">{% translate 'Private Office' %}</a>
+                                    <a class="ControlPanel-title" href="{% url 'profileapp:account' %}">{% translate 'Personal account' %}</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -150,9 +150,9 @@
                                 {% if user.is_authenticated %}
                                 <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                 <div class="dropdown-content">
-                                    <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">{% translate 'Private Office' %}</a>
+                                    <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">{% translate 'Personal account' %}</a>
                                     <a class="dropdown-content-a" href="#">{% translate 'Administrative section' %}</a>
-                                    <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">{% translate 'Output' %}</a>
+                                    <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">{% translate 'Logout' %}</a>
                                 </div>
                                 {% endif %}
                             </div>
