@@ -59,6 +59,15 @@ services:
       - redis-shop
       - db-shop
       - backend-shop
+  cache:
+    image: memcached
+    expose:
+      - "11211:11211"
+    entrypoint:
+      - memcached
+      - -m 512
+    networks:
+      - live
 volumes:
   postgres_data:
   static_volume:
