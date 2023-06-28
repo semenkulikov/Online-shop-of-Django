@@ -105,3 +105,11 @@ class ProductSelectInterface(ABC):
         Получить все id товаров, которые есть в корзине
         """
         pass
+
+    @abstractmethod
+    def get_products_by_seller_id(self, seller_id: int) -> QuerySet[Product]:
+        """
+        Получить все продукты продавца
+        :param seller_id: id продавца
+        :return: его продукты
+        """

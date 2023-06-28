@@ -42,30 +42,24 @@ def apply_imports(import_paths: List[str]) -> Tuple[bool, list, list]:
     )
     files = list()
     errors = list()
+    result = True
     for path in import_paths:
-        files.append(path)
-        try:
-            os.system(f'python manage.py loaddata {path}')
-        except IntegrityError:
-            logger.warning(f"{os.path.split(path)[1]} - "
-                           f"this file has been partially imported")
-            errors.append(f"{os.path.split(path)[1]} - "
-                          f"this file has been partially imported")
-        except Exception:
+        is_error = os.system(f'python manage.py loaddata {path}')
+        if not is_error:
+            logger.info(f"{os.path.split(path)[1]} - "
+                        f"import of this file successfully completed")
+            os.rename(path,
+                      os.path.join(success_path, os.path.split(path)[1]))
+        else:
             logger.error(f"{os.path.split(path)[1]} - "
                          f"failed to import this file")
             errors.append(f"{os.path.split(path)[1]} - "
                           f"failed to import this file")
             os.rename(path,
                       os.path.join(failed_path, os.path.split(path)[1]))
-            return False, files, errors
-        else:
-            logger.info(f"{os.path.split(path)[1]} - "
-                        f"import of this file successfully completed")
-            os.rename(path,
-                      os.path.join(success_path, os.path.split(path)[1]))
-            ...
-    return True, files, errors
+            result = False
+        files.append(path)
+    return result, files, errors
 
 
 class Command(BaseCommand):
@@ -80,6 +74,21 @@ class Command(BaseCommand):
                             help='You email')
 
     def handle(self, *args, **options):
+        if not os.path.exists(os.path.normpath("imports")):
+            os.makedirs(os.path.normpath("imports/expected_imports"))
+            os.makedirs(os.path.normpath("imports/performed_imports/successfully_completed"))
+            os.makedirs(os.path.normpath("imports/performed_imports/unsuccessfully_completed"))
+            self.stdout.write(self.style.SUCCESS(
+                "The required directories have been successfully created"
+            ))
+            return
+        elif not os.path.exists(os.path.normpath("imports/performed_imports")):
+            os.makedirs(os.path.normpath("imports/performed_imports/successfully_completed"))
+            os.makedirs(os.path.normpath("imports/performed_imports/unsuccessfully_completed"))
+            self.stdout.write(self.style.SUCCESS(
+                "The required directories have been successfully created"
+            ))
+            return
         if options["paths"]:
             paths = [os.path.join(path_to_dir, path)
                      for path in options["paths"]]
