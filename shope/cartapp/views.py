@@ -120,7 +120,7 @@ class ChangeQuantityCartView(UpdateCartView):
 class AjaxUpdateCartView(View):
     method_service = AddToCart.add_to_cart
 
-    def get(self, request, **kwargs):
+    def post(self, request, **kwargs):
 
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             if request.user.is_authenticated:  # пользователь авторизован
@@ -141,7 +141,8 @@ class AjaxUpdateCartView(View):
                 cart_items = SelectCart.cart_items_list(user=request.user)
                 cart_items_html = render_to_string(
                     'cartapp/cart_ajax.html',
-                    context={'items': cart_items}
+                    context={'items': cart_items,
+                             'cart_sum': round(sum(discounted_total_price), 2)}
                 )
                 context = {'cart_count': cart_count,
                            'items': cart_items_html,
@@ -180,7 +181,8 @@ class AjaxUpdateCartView(View):
                             items_price,
                             discounted_prices_list
                         ),
-                        'session': True
+                        'session': True,
+                        'cart_sum': round(sum(discounted_prices_list), 2)
                     }
                 )
                 context = {'items': cart_items_html,

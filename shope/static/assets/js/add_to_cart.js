@@ -1,15 +1,20 @@
 function CartUpdate() {
     let t_href = event.target.getAttribute('href');
     var href =  $(this).data("href");
+
     console.log(href)
         $.ajax(
             {
                 url: href,
-
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: window.CSRF_TOKEN,
+                },
                 success: function (data){
                     console.log(data.items)
                     $(".CartBlock-amount").text(data['cart_count']);
                     $(".CartBlock-price").text(data['cart_sum']);
+
                     $('.Cart').html(data.items)
                 }
             }
@@ -26,6 +31,11 @@ function AddToCart(url) {
 
     $.ajax({
         url: url,
+        type: "POST",
+        data: {
+            csrfmiddlewaretoken: window.CSRF_TOKEN,
+        },
+
         success: (data) => {
             console.log(data.items)
             $("#modal_open").fadeIn(200);
