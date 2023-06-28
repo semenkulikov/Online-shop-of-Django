@@ -2,6 +2,8 @@
 {% load static %}
 {% load i18n %}
 {% load discounted_price %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
 
 
 {% block title %}
@@ -52,23 +54,25 @@
             <div class="wrap">
                 <div class="BannersHome">
 
-                    {% for banner in banners %}
-                        <a class="BannersHomeBlock" href="{% url 'productsapp:catalog' %}?category={{banner.category.name}}">
-                            <div class="BannersHomeBlock-row">
+                    {% cache 600 banners LANGUAGE_CODE %}
+                        {% for banner in banners %}
+                            <a class="BannersHomeBlock" href="{% url 'productsapp:catalog' %}?category={{banner.category.name}}">
+                                <div class="BannersHomeBlock-row">
+
+                                    <div class="BannersHomeBlock-block">
+                                        <strong class="BannersHomeBlock-title">{{ banner.category.name }}</strong>
+                                        <div class="BannersHomeBlock-content">from <span class="BannersHomeBlock-price">{{banner.min_price}} &#8381;</span>
+                                        </div>
+                                    </div>
 
                                 <div class="BannersHomeBlock-block">
-                                    <strong class="BannersHomeBlock-title">{{ banner.category.name }}</strong>
-                                    <div class="BannersHomeBlock-content">from <span class="BannersHomeBlock-price">{{banner.min_price}} &#8381;</span>
+                                    <div class="BannersHomeBlock-img"><img src="{{ banner.image.url }}" alt="videoca.png" />
                                     </div>
                                 </div>
-
-                            <div class="BannersHomeBlock-block">
-                                <div class="BannersHomeBlock-img"><img src="{{ banner.image.url }}" alt="videoca.png" />
-                                </div>
                             </div>
-                        </div>
-                    </a>
-                    {% endfor %}
+                        </a>
+                        {% endfor %}
+                    {% endcache %}
 
                 </div>
             </div>
@@ -132,34 +136,36 @@
                     </header>
                     <div class="Cards">
 
-                        {% for product in populars %}
+                        {% cache 86400 popular_products LANGUAGE_CODE %}
+                            {% for product in populars %}
 
-                            <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' product.id %}"><img src="{{ product.product_images.first.image.url }}" alt="card.jpg" /></a>
-                                <div class="Card-content">
-                                    <strong class="Card-title"><a href="{% url 'productsapp:product_detail' product.id %}">{{ product.name }}</a>
-                                    </strong>
-                                    <div class="Card-description">
-                                        {% with disc_price=product|discounted_price:product.price %}
-                                            {% if disc_price %}
-                                                <div class="Card-cost"><span class="Card-price discounted_price">{{product.price}} &#8381;</span>
-                                                </div>
-                                                <div class="Card-cost"><span class="Card-price">{{ disc_price }} &#8381;</span>
-                                                </div>
-                                            {% else %}
-                                                <div class="Card-cost"><span class="Card-price">{{ product.price }} &#8381;</span>
-                                                </div>
-                                            {% endif %}
-                                        {% endwith %}
-                                        <div class="Card-category">{{ product.category.name }}
-                                        </div>
+                                <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' product.id %}"><img src="{{ product.product_images.first.image.url }}" alt="card.jpg" /></a>
+                                    <div class="Card-content">
+                                        <strong class="Card-title"><a href="{% url 'productsapp:product_detail' product.id %}">{{ product.name }}</a>
+                                        </strong>
+                                        <div class="Card-description">
+                                            {% with disc_price=product|discounted_price:product.price %}
+                                                {% if disc_price %}
+                                                    <div class="Card-cost"><span class="Card-price discounted_price">{{product.price}} &#8381;</span>
+                                                    </div>
+                                                    <div class="Card-cost"><span class="Card-price">{{ disc_price }} &#8381;</span>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="Card-cost"><span class="Card-price">{{ product.price }} &#8381;</span>
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
+                                            <div class="Card-category">{{ product.category.name }}
+                                            </div>
 
-                                        <div class="Card-hover"><a class="Card-btn" onclick="AddToCart('{% url 'cartapp:ajax_add_product' product.pk product.seller_id %}')"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
+                                            <div class="Card-hover"><a class="Card-btn" onclick="AddToCart('{% url 'cartapp:ajax_add_product' product.pk product.seller_id %}')"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="cart.svg" /></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        {% endfor %}
+                            {% endfor %}
+                        {% endcache %}
 
 
                     </div>
