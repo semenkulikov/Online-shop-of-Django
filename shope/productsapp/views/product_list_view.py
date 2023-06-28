@@ -3,6 +3,7 @@ from productsapp.forms.catalog_filter_form import CatalogFilterForm
 from repositories.product_select_repository import ProductSelectRepository
 from repositories.tag_select_repository import TagSelectRepository
 from django.http import HttpResponseRedirect
+from django.core.cache import cache
 
 select_repo = ProductSelectRepository()
 tag_repo = TagSelectRepository()
@@ -25,7 +26,11 @@ class ProductListView(ListView):
         return super().get(request, **kwargs)
 
     def get_queryset(self):
-        queryset = select_repo.get_all_products()
+        if cache.get("catalog"):
+            queryset = cache.get("catalog")
+        else:
+            queryset = select_repo.get_all_products()
+            cache.set("catalog", queryset, 60 * 60 * 24)
 
         form = CatalogFilterForm(self.request.GET)
         if form.is_valid():
