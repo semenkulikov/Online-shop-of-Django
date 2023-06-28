@@ -134,12 +134,7 @@ if os.getenv("DOCKER"):
         }
     }
     STATIC_ROOT = os.path.join(BASE_DIR, '/static')
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
-            "LOCATION": "cache:11211",
-        }
-    }
+
 else:
     DATABASES = {
         'default': {

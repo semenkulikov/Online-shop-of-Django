@@ -10,6 +10,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("=" * 40 +
                           "\nApply all fixtures to the database\n\n")
+        total_error = list()
         paths = [
             "authapp/fixtures/groups-fixtures.json",
             "authapp/fixtures/users-fixtures.json",
@@ -24,19 +25,24 @@ class Command(BaseCommand):
             "productsapp/fixtures/categories-fixtures.json",
             "productsapp/fixtures/discounts_fixtures.json",
             "coreapp/fixtures/configs.json",
-            "productsapp/fixtures/sellers-fixtures.json"
+            "productsapp/fixtures/sellers-fixtures.json",
         ]
         for path in paths:
-            try:
-                os.system(f"python manage.py loaddata {path}")
-            except IntegrityError as error:
+            is_error = os.system(f"python manage.py loaddata {path}")
+            if is_error != 0:
                 self.stdout.write(self.style.ERROR(
-                    f"ERROR! {path} - {error}\n\n"
+                    f"ERROR! Fixture {path} is not loaded\n"
                 ))
             else:
                 self.stdout.write(self.style.SUCCESS(
                     f"Fixture {path} applied successfully\n\n"
                 ))
-
-        self.stdout.write(self.style.SUCCESS(
-            "Fixtures applied successfully\n" + "=" * 40))
+                total_error.append(path)
+        if not len(total_error):
+            self.stdout.write(self.style.SUCCESS(
+                "Fixtures applied successfully\n" + "=" * 40))
+        else:
+            self.stdout.write(self.style.ERROR(
+                "When loading fixtures, the following fell off:\n{errors}\n".format(
+                    errors='\n'.join(total_error)
+                ) + "=" * 40))
