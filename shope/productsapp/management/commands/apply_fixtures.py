@@ -1,4 +1,4 @@
-from django.core.management import BaseCommand
+﻿from django.core.management import BaseCommand
 from django.db.utils import IntegrityError
 import os
 

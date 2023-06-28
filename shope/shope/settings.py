@@ -127,7 +127,12 @@ if os.getenv("DOCKER"):
             'PORT': '5432',
         }
     }
-
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+            "LOCATION": "cache:11211",
+        }
+    }
     STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 
 else:
@@ -227,7 +232,6 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 PHONENUMBER_DEFAULT_FORMAT = 'E164'
 
 MAX_AVATAR_IMAGE_SIZE = 2 * 1024 * 1024
-
 
 MAX_POPULAR_INDEX = 6
 CELERY_BROKER_URL = 'redis://redis:6379/0'
