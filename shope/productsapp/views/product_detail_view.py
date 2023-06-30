@@ -30,12 +30,14 @@ class ProductDetailView(View):
     form_class = AddReviewForm
 
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
-        if cache.get("product_detail"):
-            total_data = cache.get("product_detail")
+        if cache.get(f"product_detail_{product_id}"):
+            total_data = cache.get(f"product_detail_{product_id}")
             product = total_data.get("product")
             product_price = total_data.get("product_price")
-            amount_review = total_data.get("amount_review")
-            reviews_list = total_data.get("reviews_list")
+            amount_review = self._service.product_reviews_amount(product=product)
+            reviews_list = self._service.product_reviews_list(
+                product=product,
+                count=1)
             sellers = total_data.get("sellers")
             specifics = total_data.get("specifics")
             product_images = total_data.get("product_images")
@@ -60,11 +62,9 @@ class ProductDetailView(View):
 
             product_images = _product_image_repo.get_all_images(product=product)
 
-            cache.set("product_detail", {
+            cache.set(f"product_detail_{product_id}", {
                 "product": product,
                 "product_price": product_price,
-                "amount_review": amount_review,
-                "reviews_list": reviews_list,
                 "sellers": sellers,
                 "specifics": specifics,
                 "product_images": product_images
