@@ -4,7 +4,6 @@ from repositories.product_select_repository import ProductSelectRepository
 from repositories.seller_select_repository import SellerSelectRepository
 from coreapp.utils.select_cart import SelectCart
 from coreapp.utils.product_discounts import ProductDiscounts
-from productsapp.models import CartDiscount
 
 rep_cart = RepCart()
 rep_price = PriceRepository()
@@ -36,19 +35,10 @@ def cart_block(request):
                                         session_products=session_products)
         request.session['prices'] = discounted_prices_list
         request.session.modified = True
-
-    if discount:
-        if isinstance(discount, CartDiscount):
-            type_discount = 'cart'
-        else:
-            type_discount = 'set'
-    else:
-        type_discount = ''
     context = {
         'cart_count': count,
         'cart_sum': round(sum(discounted_prices_list), 2),
         'discount': discount,
-        'type_discount': type_discount
     }  # словарь с количеством и суммой товаров в корзине и
     # применённой скидкой
     return context

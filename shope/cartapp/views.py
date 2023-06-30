@@ -1,10 +1,10 @@
 from django.views import View
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 from coreapp.utils import AddToCart, SelectCart, ProductDiscounts
 from repositories import DiscountRepository, RepCart
-from productsapp.models import CartDiscount
+from .forms import InputAmountForm
 
 disc_rep = DiscountRepository()
 cart_rep = RepCart()
@@ -47,13 +47,6 @@ class CartItemListView(View):
                 request.session['prices'] = discounted_prices_list
                 request.session.modified = True
                 # список количества для каждого товара
-                if discount:
-                    if isinstance(discount, CartDiscount):
-                        type_discount = 'cart'
-                    else:
-                        type_discount = 'set'
-                else:
-                    type_discount = ''
                 context = {'items': zip(count_list,
                                         items_price,
                                         discounted_prices_list),
@@ -63,183 +56,123 @@ class CartItemListView(View):
                                                  2
                                                  ),
                            'discount': discount,
-                           'type_discount': type_discount
                            }
                 return render(request, self.template_name, context)
             else:
                 return render(request, self.template_name)
 
 
-class UpdateCartView(View):
-    """
-    Общий класс для выполнения операций с товарами
-    """
-    method_service = AddToCart.add_to_cart
-
-    # метод из сервиса для выполнения нужной операции с корзиной
-    # для работы класса-view обязательно указать метод из сервиса
-    # в противном случае будет ошибка
-
-    def get(self, request, **kwargs):
-        if request.user.is_authenticated:  # пользователь авторизован
-            kwargs['user'] = request.user
-            self.method_service(**kwargs)
-        else:
-            kwargs['session_products'] = request.session.get('products')
-            # есть товары в сессии
-            products = self.method_service(**kwargs)
-            request.session['products'] = products
-            request.session.modified = True
-
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-class AddToCartView(UpdateCartView):
-    """
-    Класс для добавления товара в корзину
-    """
-
-
-class RemoveFromCartView(UpdateCartView):
-    """
-    Класс для удаления товара из корзины
-    """
-    method_service = AddToCart.delete_from_cart
-
-
-class DeleteItemCartView(UpdateCartView):
-    """
-    Класс для удаления позиции с товаром из корзины
-    """
-    method_service = AddToCart.delete_from_cart
-
-    def get(self, request, **kwargs):
-        kwargs['full'] = True
-        super().get(request, **kwargs)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-class ChangeQuantityCartView(UpdateCartView):
-    """
-    Класс для изменения количества товара в корзине
-    """
-    method_service = AddToCart.change_amount
-
-
 class AjaxUpdateCartView(View):
     method_service = AddToCart.add_to_cart
+    full_delete = False  # флаг для удаления всей позиции с товаром
 
     def post(self, request, **kwargs):
-
+        form = InputAmountForm(request.POST)
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            if request.user.is_authenticated:  # пользователь авторизован
-                # обновляем kwargs
-                kwargs['user'] = request.user
-                kwargs['count'] = request.GET.get('quantity', 1)
-                self.method_service(**kwargs)
-                cart = cart_rep.get_cart(user=request.user)
-                cart_count = SelectCart. \
-                    cart_all_products_amount(cart=cart)
-                cart_sum = SelectCart. \
-                    cart_total_amount(cart=cart)
-                discounted_total_price, discount = ProductDiscounts. \
-                    get_prices_discount_on_cart(cart_sum,
-                                                cart_count,
-                                                cart=cart)
+            if form.is_valid():  # передано валидное значение count
+                cleaned_data = {key: val for key, val in
+                                form.cleaned_data.items() if val is not None}
+                if self.full_delete:
+                    cleaned_data['full'] = True
+                # словарь с полями из формы без нулевых значений
+                if request.user.is_authenticated:  # пользователь авторизован
+                    self.method_service(**cleaned_data, user=request.user)
+                    cart = cart_rep.get_cart(user=request.user)  # корзина
+                    cart_count = SelectCart. \
+                        cart_all_products_amount(cart=cart)  # количество
+                    # товаров
+                    cart_sum = SelectCart. \
+                        cart_total_amount(cart=cart)  # сумма без учета скидки
+                    discounted_total_price, discount = ProductDiscounts. \
+                        get_prices_discount_on_cart(cart_sum,
+                                                    cart_count,
+                                                    cart=cart)
+                    # discounted_total_price - список цен со скидкой
+                    # применённый тип скидки или None
+                    cart_items = SelectCart.cart_items_list(user=request.user)
+                    # все позиции с товарами в корзине
+                    cart_items_html = render_to_string(
+                        'cartapp/cart_ajax.html',
+                        context={'items': cart_items,
+                                 'cart_sum': round(sum(discounted_total_price),
+                                                   2
+                                                   ),
+                                 'discount': discount,
+                                 }
 
-                cart_items = SelectCart.cart_items_list(user=request.user)
-
-                if discount:
-                    if isinstance(discount, CartDiscount):
-                        type_discount = 'cart'
-                    else:
-                        type_discount = 'set'
-                else:
-                    type_discount = ''
-                if not cart_items:
-                    cart_count = 0
-                    discounted_total_price = [0]
-
-                cart_items_html = render_to_string(
-                    'cartapp/cart_ajax.html',
-                    context={'items': cart_items,
-                             'cart_sum': round(sum(discounted_total_price), 2),
-                             'discount': discount,
-                             'type_discount': type_discount
-                             }
-
-                )
-
-                context = {'cart_count': cart_count,
-                           'items': cart_items_html,
-                           'cart_sum': round(sum(discounted_total_price), 2),
-                           }
-
-                return JsonResponse(data=context, safe=False)
-            else:
-
-                kwargs['session_products'] = request.session.get('products')
-                kwargs['count'] = int(request.GET.get('quantity', 1))
-                # есть товары в сессии
-                products = self.method_service(**kwargs)
-                request.session['products'] = products
-                items_price = SelectCart. \
-                    cart_items_list(session_products=products)
-
-                count_list = [value for value in products.values()]
-                count = SelectCart.cart_all_products_amount(
-                    session_products=products)
-                cart_price = SelectCart.cart_total_amount(
-                    session_products=products)
-                discounted_prices_list, discount = ProductDiscounts. \
-                    get_prices_discount_on_cart(
-                        cart_price,
-                        count,
-                        session_products=products
                     )
-                request.session['prices'] = discounted_prices_list
-                request.session.modified = True
 
-                if discount:
-                    if isinstance(discount, CartDiscount):
-                        type_discount = 'cart'
-                    else:
-                        type_discount = 'set'
+                    context = {'cart_count': cart_count,
+                               'items': cart_items_html,
+                               'cart_sum': round(sum(discounted_total_price),
+                                                 2
+                                                 ),
+                               }
+
+                    return JsonResponse(data=context, safe=False)
                 else:
-                    type_discount = ''
+                    session_products = request.session.get(
+                        'products'
+                    )
+                    # есть товары в сессии
+                    products = self.\
+                        method_service(**cleaned_data, session_products=session_products)  # noqa
+                    request.session['products'] = products
+                    items_list = SelectCart. \
+                        cart_items_list(session_products=products)
 
-                cart_items_html = render_to_string(
-                    'cartapp/cart_ajax.html',
-                    context={
-                        'items': zip(
-                            count_list,
-                            items_price,
-                            discounted_prices_list
-                        ),
-                        'session': True,
-                        'cart_sum': round(sum(discounted_prices_list), 2),
-                        'discount': discount,
-                        'type_discount': type_discount
-                    }
-                )
-                context = {'items': cart_items_html,
-                           'cart_count': count,
-                           'cart_sum': round(sum(discounted_prices_list), 2),
-                           }
+                    count_list = [value for value in products.values()]
+                    # список с количеством товаров
+                    total_count = sum(count_list)  # общее количество
+                    cart_price = SelectCart.cart_total_amount(
+                        session_products=products)  # общая цена без скидки
+                    discounted_prices_list, discount = ProductDiscounts. \
+                        get_prices_discount_on_cart(
+                            cart_price,
+                            total_count,
+                            session_products=products
+                        )
+                    # discounted_total_price - список цен со скидкой
+                    # применённый тип скидки или None
+                    request.session['prices'] = discounted_prices_list
+                    # обновление сессий новым списком цен со скидками
+                    request.session.modified = True
+                    cart_items_html = render_to_string(
+                        'cartapp/cart_ajax.html',
+                        context={
+                            'items': zip(
+                                count_list,
+                                items_list,
+                                discounted_prices_list
+                            ),
+                            'session': True,
+                            'cart_sum': round(sum(discounted_prices_list),
+                                              2
+                                              ),
+                            'discount': discount
+                        }
+                    )
+                    context = {'items': cart_items_html,
+                               'cart_count': total_count,
+                               'cart_sum': round(sum(discounted_prices_list),
+                                                 2
+                                                 ),
+                               }
 
-                return JsonResponse(data=context, safe=False)
+                    return JsonResponse(data=context, safe=False)
 
 
 class AddToCartAjaxView(AjaxUpdateCartView):
     method_service = AddToCart.add_to_cart
 
 
-class RemoveFromCartAjaxView(AjaxUpdateCartView):
+class ReduceFromCartAjaxView(AjaxUpdateCartView):
     method_service = AddToCart.delete_from_cart
 
 
 class DeleteCartItemAjaxView(AjaxUpdateCartView):
     method_service = AddToCart.delete_from_cart
+    full_delete = True
 
 
 class ChangeQuantityCartAjaxView(AjaxUpdateCartView):

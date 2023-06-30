@@ -4,11 +4,12 @@
 
 
 {% if items %}
-
-    {% if type_discount == "cart" %}
+    {% if discount %}
+    {% if discount.required_sum or discount.required_quantity %}
         <h3 class="type-discount">{% translate 'You have received a' %} {{discount.value|floatformat:"0" }}% {% translate 'discount on your cart' %}</h3>
-    {% elif type_discount == "set" %}
+    {% elif discount.products %}
         <h3 class="type-discount">{% translate 'You have received a' %} {{discount.value|floatformat:"0"}}% {% translate 'discount on a set of products' %}</h3>
+    {% endif %}
     {% endif %}
     {% if session %}
         {% for count, item, discounted_price in items %}
@@ -53,17 +54,18 @@
                         <div class="Cart-block Cart-block_amount">
                             <div class="Cart-amount">
                                 <div class="Amount">
-                                    <button class="Amount-remove" type="button" data-href="{% url 'cartapp:ajax_remove_product' item.product.pk item.seller_id%}">
+                                    <button class="Amount-remove" data-product={{item.product.pk}} data-seller={{item.seller.pk}} type="button" data-href="{% url 'cartapp:ajax_reduce_product'%}">
                                     </button>
                                     <input class="Amount-input form-input" name="amount" type="text"
                                            value={{count}} />
-                                    <button class="Amount-add" type="button" data-href="{% url 'cartapp:ajax_add_product' item.product.pk item.seller_id%}">
+                                    <button class="Amount-add" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_add_product'%}">
 
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="Cart-block Cart-block_delete"><button class="Cart-delete" type="button" data-href="{% url 'cartapp:ajax_delete_product' item.product.pk item.seller_id 1%}"><img
+                        <div class="Cart-block Cart-block_delete">
+                            <button class="Cart-delete" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_delete_product'%}"><img
                                 src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg"/></button>
                         </div>
                     </div>
@@ -123,16 +125,16 @@
                     <div class="Cart-block Cart-block_amount">
                         <div class="Cart-amount">
                             <div class="Amount">
-                                <button class="Amount-remove" type="button" data-href="{% url 'cartapp:ajax_remove_product' item.product.pk item.seller_id%}">
+                                <button class="Amount-remove" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_reduce_product' %}">
                                     </button>
                                 <input class="Amount-input form-input" name="amount" type="text" value="{{ item.quantity }}"  />
-                                <button class="Amount-add" type="button" data-href="{% url 'cartapp:ajax_add_product' item.product.pk item.seller_id%}">
+                                <button class="Amount-add" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_add_product' %}">
                                     </button>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="Cart-block Cart-block_delete"><button class="Cart-delete" type="button" data-href="{% url 'cartapp:ajax_delete_product' item.product.pk item.seller_id 1%}"><img
+                    <div class="Cart-block Cart-block_delete"><button class="Cart-delete" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_delete_product' %}"><img
                             src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg"/></button>
                     </div>
                 </div>

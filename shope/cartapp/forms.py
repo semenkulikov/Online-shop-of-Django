@@ -2,5 +2,11 @@ from django import forms
 
 
 class InputAmountForm(forms.Form):
-    amount = forms.IntegerField(required=False, max_value=100)
-    # поле для ввода количества
+    """
+    Форма, используемая при работе с корзиной
+    """
+    count = forms.IntegerField(required=False, min_value=1, max_value=10)
+    product_id = forms.IntegerField(required=True)
+    seller_id = forms.IntegerField(required=True)
+
+    # count - количество товара

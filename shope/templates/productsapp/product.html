@@ -78,8 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="ProductCard-cartElement">
-
-                                    <a class="btn btn_primary" onclick="AddToCart('{% url 'cartapp:ajax_add_product' product_price.product.pk product_price.seller.pk %}')">
+                                    <a class="btn btn_primary" onclick="AddToCart('{% url 'cartapp:ajax_add_product' %}', {{product_price.product_id}}, {{product_price.seller_id}} )">
                                         <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
                                         <span class="btn-content">{% translate 'Add to cart' %}</span>
                                     </a>
@@ -176,7 +175,7 @@
                                                             {{ seller.name }}
                                                         </a>
                                                         <div class="ProductCard-cartElement" style="margin-top: 10px;">
-                                                            <a class="btn btn_primary" href="{% url 'cartapp:add_product' product.pk seller.pk%}">
+                                                            <a class="btn btn_primary" onclick="AddToCart('{% url 'cartapp:ajax_add_product' %}', {{product.pk}}, {{seller.pk}} )">
                                                                 <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
                                                                 <span class="btn-content">{% translate 'Buy' %}</span>
                                                             </a>
