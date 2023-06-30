@@ -30,7 +30,7 @@ class AddOrderView(LoginRequiredMixin, View):
         cart_price = SelectCart.cart_total_amount(cart=cart)
         total_sum = rep_cart.get_total_amount(cart)
         discounted_sum = sum(ProductDiscounts.get_prices_discount_on_cart(
-            cart_price, count, cart=cart))
+            cart_price, count, cart=cart)[0])
         sellers = rep_cartitem.sellers_amount(cart.pk)
 
         delivery_price = int(
