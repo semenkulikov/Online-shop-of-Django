@@ -4762,7 +4762,7 @@ input[type="radio"] {
     color: #7f8084;
     margin-top: 10px;
     float: right;
-    padding: 10px 30px;
+    padding: 10px 25px;
     cursor: pointer;
 }
 
@@ -4770,7 +4770,7 @@ input[type="radio"] {
     font-size: 0.8em;
     margin-top: 10px;
     float: right;
-    padding: 10px 30px;
+    padding: 10px 25px;
     cursor: pointer;
     color: rgb(0, 99, 209);
 }
@@ -6684,4 +6684,7 @@ input:-webkit-autofill:active{
 }
 .type-discount {
     color: #913333;
+}
+.set-pass {
+    text-align:center;
 }
