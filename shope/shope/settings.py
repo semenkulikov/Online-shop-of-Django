@@ -145,7 +145,7 @@ else:
     }
     MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
     INSTALLED_APPS += ['silk']
-    STATICFILES_DIRS = (BASE_DIR / '/static',)
+    STATICFILES_DIRS = (BASE_DIR / 'static',)
 
     CACHES = {
         "default": {

@@ -12,8 +12,8 @@ from django.urls import reverse_lazy, \
 from authapp.forms import UserLoginForm, UserSignUpForm, \
     UserResetPasswordForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, LogoutView
-from .tasks import send_verif_link, generate_random_string
-from coreapp.utils.update_cart import AddToCart
+from .tasks import send_verif_link
+from coreapp.utils import AddToCart, generate_random_string
 from repositories.cart_repository import RepCart
 from django.utils.translation import gettext as _
 
@@ -120,7 +120,14 @@ class UserPassResetView(PasswordResetView):
     from_email = settings.EMAIL_HOST_USER
     html_email_template_name = "authapp/email/reset_confirm.html"
     email_template_name = 'authapp/email/reset_confirm.html'
-    success_url = reverse_lazy('coreapp:index')
+    success_url = reverse_lazy('authapp:login')
+
+    def form_valid(self, form):
+        messages.success(self.request,
+                         _('Link to change your password '
+                           'was sent to your email address')
+                         )
+        return super().form_valid(form)
 
 
 class UserPassChangeView(PasswordResetConfirmView):
@@ -129,4 +136,10 @@ class UserPassChangeView(PasswordResetConfirmView):
     """
     form_class = UserSetPasswordForm
     template_name = "authapp/set_password.html"
-    success_url = reverse_lazy('coreapp:index')
+    success_url = reverse_lazy('authapp:login')
+
+    def form_valid(self, form):
+        messages.success(self.request,
+                         _('Your password has been successfully changed')
+                         )
+        return super().form_valid(form)
