@@ -5,7 +5,7 @@
   "fields": {
     "user": 1,
     "fio": "Иванов Василий Андреевич",
-    "avatar_image": "123",
+    "avatar_image": "",
     "phone_number": "+79087867654"
   }
 },
