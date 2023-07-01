@@ -2,8 +2,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -233,9 +231,7 @@ msgstr "продавец"
 msgid "price"
 msgstr "цена"
 
-#: .\orderapp\models.py:118
-#, fuzzy
-#| msgid "Discounted price"
+#: .\orderapp\models.py:
 msgid "discounted price"
 msgstr "Цена со скидкой"
 
@@ -453,16 +449,12 @@ msgid "reviews"
 msgstr "отзывы"
 
 #: .\productsapp\models\seller.py:21
-#, fuzzy
-#| msgid "Comparison"
 msgid "companies"
-msgstr "Сравнение"
+msgstr "компании"
 
 #: .\productsapp\models\seller.py:22
-#, fuzzy
-#| msgid "order"
 msgid "owner"
-msgstr "заказ"
+msgstr "владелец"
 
 #: .\productsapp\models\seller.py:29
 msgid "sellers"
@@ -616,10 +608,8 @@ msgid "Register"
 msgstr "Зарегистрироваться"
 
 #: .\templates\authapp\set_password.html:25
-#, fuzzy
-#| msgid "Re-enter the password"
 msgid "Restore password"
-msgstr "Повторно введите пароль"
+msgstr "Восстановление пароля"
 
 #: .\templates\authapp\set_password.html:26
 msgid "Think of a new password for the account"
@@ -1057,14 +1047,10 @@ msgid "Add to cart"
 msgstr "Добавить в корзину"
 
 #: .\templates\productsapp\comparison.html:231
-#, fuzzy
-#| msgid "Add to comparison"
 msgid "Remove from comparison"
 msgstr "Удалить из сравнения"
 
 #: .\templates\productsapp\detailed_discount.html:19
-#, fuzzy
-#| msgid "Discount on product category"
 msgid "Discount on a fixed set of products"
 msgstr "Скидка на фиксированный набор продуктов"
 
@@ -1095,8 +1081,8 @@ msgid "A set of products"
 msgstr "Набор продуктов"
 
 #: .\templates\productsapp\detailed_discount.html:85
-msgid "Basket discount with these terms and conditions"
-msgstr "Скидка на корзину с учетом данных условий"
+msgid "Basket discount"
+msgstr "Скидка на корзину"
 
 #: .\templates\productsapp\detailed_discount.html:110
 msgid "Minimum amount required"
@@ -1265,7 +1251,6 @@ msgstr "Сохранить"
 #~ msgid "Incorrect data entered!"
 #~ msgstr "Введены неверные данные!"
 
-#, fuzzy
 #~| msgid "Discounted"
 #~ msgid "Discount end date "
 #~ msgstr "Дата окончания скидки"
