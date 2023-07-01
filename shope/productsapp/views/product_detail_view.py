@@ -30,8 +30,8 @@ class ProductDetailView(View):
     form_class = AddReviewForm
 
     def get(self, request: HttpRequest, product_id: int) -> HttpResponse:
-        if cache.get(f"product_detail_{product_id}"):
-            total_data = cache.get(f"product_detail_{product_id}")
+        total_data = cache.get(f"product_detail_{product_id}")
+        if total_data is not None:
             product = total_data.get("product")
             product_price = total_data.get("product_price")
             amount_review = self._service.product_reviews_amount(product=product)
