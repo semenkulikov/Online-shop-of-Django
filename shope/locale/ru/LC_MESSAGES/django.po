@@ -1094,7 +1094,7 @@ msgstr "Минимальное количество требуемых това�
 
 #: .\templates\productsapp\detailed_seller.html:33
 msgid "Products"
-msgstr "товары"
+msgstr "Товары"
 
 #: .\templates\productsapp\product.html:91
 msgid "Congratulations"
