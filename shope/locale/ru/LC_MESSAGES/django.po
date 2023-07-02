@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-02 23:34+0300\n"
+"POT-Creation-Date: 2023-07-03 00:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,6 +60,10 @@ msgstr "отчество"
 #: .\authapp\models.py:17
 msgid "email address"
 msgstr "адрес электронной почты"
+
+#: .\authapp\tasks.py:29
+msgid "Email confirmation on"
+msgstr "Подтверждение электронной почты на"
 
 #: .\authapp\views.py:76
 msgid ""
