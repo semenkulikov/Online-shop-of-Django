@@ -6688,3 +6688,7 @@ input:-webkit-autofill:active{
 .set-pass {
     text-align:center;
 }
+.type-discount {
+    margin: 0px;
+    padding: 0px;
+}

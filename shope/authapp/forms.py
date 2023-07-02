@@ -111,10 +111,10 @@ class UserResetPasswordForm(PasswordResetForm):
         # Тема письма не должна содержать новых строк
         subject = "".join(subject.splitlines())
         body = loader.render_to_string(email_template_name, context)
-
+        html_email = loader.render_to_string(html_email_template_name, context)
         send_link_for_password.delay(
-            subject, context, body,
-            from_email, to_email, html_email_template_name
+            subject, body,
+            from_email, to_email, html_email
         )  # отправка сообщения на e-mail
 
 

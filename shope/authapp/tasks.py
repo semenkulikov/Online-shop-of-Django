@@ -3,7 +3,6 @@ from django.conf import settings
 from django.urls import reverse
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import loader
 
 
 @shared_task
@@ -42,11 +41,10 @@ def send_verif_link(protocol, domain, email,
 
 @shared_task
 def send_link_for_password(subject,
-                           context,
                            body,
                            from_email,
                            to_email,
-                           html_email_template_name=None, ):
+                           html_email):
     """
     Метод для создания и отправки сообщения на e-mail адрес
     для смены пароля
@@ -56,8 +54,5 @@ def send_link_for_password(subject,
                                            body,
                                            from_email,
                                            [to_email])
-    if html_email_template_name is not None:
-        html_email = loader.render_to_string(html_email_template_name, context)
-        email_message.attach_alternative(html_email, "text/html")
-
+    email_message.attach_alternative(html_email, "text/html")
     email_message.send()  # отправка сообщения
