@@ -12,6 +12,13 @@ class OrderInterface(ABC):
         pass
 
     @abstractmethod
+    def get_all_by_user(self, user_id):
+        """
+        Получить все заказы пользователя
+        """
+        pass
+
+    @abstractmethod
     def get_last_activ(self, user: User) -> QuerySet[Order]:
         pass
 

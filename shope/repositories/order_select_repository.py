@@ -7,12 +7,27 @@ from django.db.models import QuerySet, Sum, Count, Q
 class OrderRepository(OrderInterface):
 
     def get_all(self) -> QuerySet[Order]:
+        """
+        Получить все заказы
+        """
         return Order.objects.annotate(
             sum_price=Sum('order_items__price',
                           filter=Q(order_items__is_active=True)),
         )
 
+    def get_all_by_user(self, user_id):
+        """
+        Получить все заказы пользователя
+        """
+        return Order.objects.filter(user=user_id).annotate(
+            sum_price=Sum('order_items__price',
+                          filter=Q(order_items__is_active=True)),
+        )
+
     def get_last_activ(self, user: User) -> QuerySet[Order]:
+        """
+        Получить последний активный заказ пользователя
+        """
         return Order.objects.annotate(
             sum_price=Sum('order_items__price',
                           filter=Q(order_items__is_active=True))
