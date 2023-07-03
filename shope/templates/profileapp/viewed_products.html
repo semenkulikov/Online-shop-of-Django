@@ -35,7 +35,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="Section-content">
+            <div class="Section-content">
+                {% if object_list %}
+
 
                     <header class="Section-header">
                         <h2 class="Section-title">{% translate 'Viewed products' %}
@@ -57,8 +59,14 @@
 
 
                     </div>
-                </div>
 
+                    {% else %}
+                    <header class="Section-header">
+                        <h2 class="Section-title">{% translate 'No products viewed yet' %}
+                        </h2>
+                    </header>
+                {% endif %}
+                </div>
             </div>
         </div>
     </div>
