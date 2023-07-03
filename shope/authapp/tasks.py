@@ -3,6 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import get_template
+from django.utils.translation import gettext as _
 
 
 @shared_task
@@ -26,7 +27,7 @@ def send_verif_link(protocol, domain, email,
         'link': verif_link,
     }
     message = get_template('authapp/email/email_confirm.html').render(context)
-    subject = f'Email confirmation on {site_name}'  # тема
+    subject = _('Email confirmation on') + f' {site_name}'  # тема
     msg = EmailMessage(
         subject, message, to=[email], from_email=settings.EMAIL_HOST_USER
     )
@@ -50,9 +51,16 @@ def send_link_for_password(subject,
     для смены пароля
     """
     # Email subject *must not* contain newlines
+    print('subject ', subject)
+    print('from mail ', from_email)
+    print('to mail', to_email)
+    print('html_email', html_email)
     email_message = EmailMultiAlternatives(subject,
                                            body,
                                            from_email,
                                            [to_email])
+    print('сообщение создано')
     email_message.attach_alternative(html_email, "text/html")
+    print('html добавлен')
     email_message.send()  # отправка сообщения
+    print('сообщение отправлено')
