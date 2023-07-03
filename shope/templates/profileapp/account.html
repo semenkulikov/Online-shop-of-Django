@@ -106,30 +106,26 @@
 
                             </div>
                         </div>
-
-                        <div class="Account-group">
+                    {% if viewed %}
+                         <div class="Account-group">
                             <div class="Account-column Account-column_full">
 
                                 <header class="Section-header">
                                 <h2 class="Section-title">{% translate 'Recently viewed products' %}</h2>
                                 </header>
                                 <div class="Cards">
-                                    {% if viewed %}
-                                        {% for product in viewed %}
+                                    {% for product in viewed %}
 
                                         <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' product.product.id %}"><img src="{{ product.product.product_images.first.image.url }}" alt="card.jpg" /></a>
                                         </div>
 
-                                        {% endfor %}
-                                    {% endif %}
-
-
+                                    {% endfor %}
 
                                 </div>
-
-
                             </div>
                         </div>
+                    {% endif %}
+
                     </div>
                 </div>
             </div>
