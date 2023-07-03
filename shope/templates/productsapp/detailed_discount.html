@@ -82,7 +82,7 @@
                             </div>
                         </div>
                 {% elif cart_discount %}
-                    <h1 style="text-align: center; margin-top: 0">{% translate 'Basket discount with these terms and conditions' %}</h1>
+                    <h1 style="text-align: center; margin-top: 0">{% translate 'Basket discount' %}</h1>
                         <div class="Middle Middle_top">
                             <div class="Section">
                                 <div class="wrap">
@@ -92,7 +92,7 @@
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
                                             <strong class="Cart-title">{% translate 'Discount' %}:
-                                            </strong><span class="Cart-price">{{ cart_discount.value }}</span>
+                                            </strong><span class="Cart-price">{{ cart_discount.value }} %</span>
                                         </div></div>
                                         <div class="Cart-total"><div class="Cart-block Cart-block_total">
                                             <strong class="Cart-title">{% translate 'Discount start date' %}:

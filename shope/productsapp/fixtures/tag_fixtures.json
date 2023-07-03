@@ -56,11 +56,35 @@
     }
   },
   {
+    "model": "taggit.tag",
+    "pk": 8,
+    "fields": {
+      "name": "Ноутбуки",
+      "slug": "ноутбуки"
+    }
+  },
+  {
+    "model": "taggit.tag",
+    "pk": 9,
+    "fields": {
+      "name": "Телефоны",
+      "slug": "телефоны"
+    }
+  },
+  {
+    "model": "taggit.tag",
+    "pk": 10,
+    "fields": {
+      "name": "Телевизоры",
+      "slug": "телевизоры"
+    }
+  },
+  {
     "model": "taggit.taggeditem",
     "pk": 1,
     "fields": {
       "tag": 1,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 1
     }
   },
@@ -69,7 +93,7 @@
     "pk": 2,
     "fields": {
       "tag": 2,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 2
     }
   },
@@ -78,7 +102,7 @@
     "pk": 3,
     "fields": {
       "tag": 2,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 3
     }
   },
@@ -87,7 +111,7 @@
     "pk": 4,
     "fields": {
       "tag": 2,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 4
     }
   },
@@ -96,7 +120,7 @@
     "pk": 5,
     "fields": {
       "tag": 2,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 7
     }
   },
@@ -105,7 +129,7 @@
     "pk": 6,
     "fields": {
       "tag": 2,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 5
     }
   },
@@ -114,7 +138,7 @@
     "pk": 7,
     "fields": {
       "tag": 2,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 6
     }
   },
@@ -123,7 +147,7 @@
     "pk": 8,
     "fields": {
       "tag": 3,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 5
     }
   },
@@ -132,7 +156,7 @@
     "pk": 9,
     "fields": {
       "tag": 3,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 4
     }
   },
@@ -141,7 +165,7 @@
     "pk": 10,
     "fields": {
       "tag": 3,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 2
     }
   },
@@ -150,7 +174,7 @@
     "pk": 11,
     "fields": {
       "tag": 4,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 5
     }
   },
@@ -159,7 +183,7 @@
     "pk": 12,
     "fields": {
       "tag": 5,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 4
     }
   },
@@ -168,7 +192,7 @@
     "pk": 13,
     "fields": {
       "tag": 6,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 6
     }
   },
@@ -177,7 +201,7 @@
     "pk": 14,
     "fields": {
       "tag": 6,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 9
     }
   },
@@ -186,7 +210,7 @@
     "pk": 15,
     "fields": {
       "tag": 6,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 8
     }
   },
@@ -195,7 +219,7 @@
     "pk": 16,
     "fields": {
       "tag": 6,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 7
     }
   },
@@ -204,7 +228,7 @@
     "pk": 17,
     "fields": {
       "tag": 7,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 1
     }
   },
@@ -213,7 +237,7 @@
     "pk": 18,
     "fields": {
       "tag": 7,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 3
     }
   },
@@ -222,8 +246,116 @@
     "pk": 19,
     "fields": {
       "tag": 7,
-      "content_type": 8,
+      "content_type": 10,
       "object_id": 10
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 20,
+    "fields": {
+      "tag": 6,
+      "content_type": 10,
+      "object_id": 10
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 21,
+    "fields": {
+      "tag": 10,
+      "content_type": 10,
+      "object_id": 11
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 22,
+    "fields": {
+      "tag": 2,
+      "content_type": 10,
+      "object_id": 11
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 23,
+    "fields": {
+      "tag": 10,
+      "content_type": 10,
+      "object_id": 12
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 24,
+    "fields": {
+      "tag": 1,
+      "content_type": 10,
+      "object_id": 12
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 25,
+    "fields": {
+      "tag": 8,
+      "content_type": 10,
+      "object_id": 13
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 26,
+    "fields": {
+      "tag": 3,
+      "content_type": 10,
+      "object_id": 13
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 27,
+    "fields": {
+      "tag": 9,
+      "content_type": 10,
+      "object_id": 14
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 28,
+    "fields": {
+      "tag": 2,
+      "content_type": 10,
+      "object_id": 14
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 29,
+    "fields": {
+      "tag": 9,
+      "content_type": 10,
+      "object_id": 15
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 30,
+    "fields": {
+      "tag": 3,
+      "content_type": 10,
+      "object_id": 15
+    }
+  },
+  {
+    "model": "taggit.taggeditem",
+    "pk": 30,
+    "fields": {
+      "tag": 10,
+      "content_type": 10,
+      "object_id": 1
     }
   }
 ]

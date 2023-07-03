@@ -96,7 +96,11 @@ class Command(BaseCommand):
             paths = get_paths()
         result, files, errors = apply_imports(paths)
 
-        if result:
+        if len(files) == 0:
+            self.stdout.write(self.style.WARNING(
+                "No data was found"
+            ))
+        elif result:
             self.stdout.write(self.style.SUCCESS(
                 "Data import completed successfully"
             ))

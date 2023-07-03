@@ -2,8 +2,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -237,9 +235,7 @@ msgstr "продавец"
 msgid "price"
 msgstr "цена"
 
-#: .\orderapp\models.py:118
-#, fuzzy
-#| msgid "Discounted price"
+#: .\orderapp\models.py:
 msgid "discounted price"
 msgstr "Цена со скидкой"
 
@@ -457,16 +453,12 @@ msgid "reviews"
 msgstr "отзывы"
 
 #: .\productsapp\models\seller.py:21
-#, fuzzy
-#| msgid "Comparison"
 msgid "companies"
-msgstr "Сравнение"
+msgstr "компании"
 
 #: .\productsapp\models\seller.py:22
-#, fuzzy
-#| msgid "order"
 msgid "owner"
-msgstr "заказ"
+msgstr "владелец"
 
 #: .\productsapp\models\seller.py:29
 msgid "sellers"
@@ -1094,8 +1086,8 @@ msgid "A set of products"
 msgstr "Набор продуктов"
 
 #: .\templates\productsapp\detailed_discount.html:85
-msgid "Basket discount with these terms and conditions"
-msgstr "Скидка на корзину с учетом данных условий"
+msgid "Basket discount"
+msgstr "Скидка на корзину"
 
 #: .\templates\productsapp\detailed_discount.html:110
 msgid "Minimum amount required"
@@ -1107,7 +1099,7 @@ msgstr "Минимальное количество требуемых това�
 
 #: .\templates\productsapp\detailed_seller.html:33
 msgid "Products"
-msgstr "товары"
+msgstr "Товары"
 
 #: .\templates\productsapp\product.html:90
 msgid "Congratulations"
@@ -1264,7 +1256,6 @@ msgstr "Сохранить"
 #~ msgid "Incorrect data entered!"
 #~ msgstr "Введены неверные данные!"
 
-#, fuzzy
 #~| msgid "Discounted"
 #~ msgid "Discount end date "
 #~ msgstr "Дата окончания скидки"

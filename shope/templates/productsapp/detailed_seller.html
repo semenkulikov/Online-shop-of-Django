@@ -1,9 +1,6 @@
 ﻿{% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
-{% load cache %}
-
-{% get_current_language as LANGUAGE_CODE %}
 
 {% block title %}
     Megano
@@ -31,47 +28,45 @@
                             <div class="Cart-block Cart-block_total">
                                 <strong class="Cart-title"
                                         style="margin-bottom: 2em">{% translate 'Products' %}:</strong>
-                                {% cache 3600 products_top LANGUAGE_CODE %}
-                                    {% for product in products %}
-                                        <div class="Cart-product">
-                                            <div class="Cart-block Cart-block_row">
-                                                <div class="Cart-block Cart-block_pict">
-                                                    <a class="Cart-pict"
-                                                       href="{% url 'productsapp:product_detail' product.pk %}">
-                                                        <img class="Cart-img"
-                                                             src="{{ product.product_images.first.image.url }}"
-                                                             alt="card.jpg"/>
-                                                    </a>
-                                                </div>
-                                                <div class="Cart-block Cart-block_info"><a class="Cart-title"
-                                                                                           href="{% url 'productsapp:product_detail' product.pk %}">{{ product.name }}</a>
-                                                    <div class="Cart-desc">{{ product.short_description }}
-                                                    </div>
-                                                </div>
-                                                <div class="Cart-block Cart-block_price">
-                                                    <div class="Cart-price">{{ product.price }}
-                                                    </div>
+                                {% for product in products %}
+                                    <div class="Cart-product">
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_pict">
+                                                <a class="Cart-pict"
+                                                   href="{% url 'productsapp:product_detail' product.pk %}">
+                                                    <img class="Cart-img"
+                                                         src="{{ product.product_images.first.image.url }}"
+                                                         alt="card.jpg"/>
+                                                </a>
+                                            </div>
+                                            <div class="Cart-block Cart-block_info"><a class="Cart-title"
+                                                                                       href="{% url 'productsapp:product_detail' product.pk %}">{{ product.name }}</a>
+                                                <div class="Cart-desc">{{ product.short_description }}
                                                 </div>
                                             </div>
-                                            <div class="Cart-block Cart-block_row">
-                                                <div class="Cart-block Cart-block_seller">
-                                                    <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
-
-                                                </div>
-                                                <div class="Cart-block Cart-block_amount">
-                                                    <div class="Cart-amount">
-                                                        <div class="Amount">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="Cart-block Cart-block_delete">
-
+                                            <div class="Cart-block Cart-block_price">
+                                                <div class="Cart-price">{{ product.price }}
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor %}
-                                {% endcache %}
+                                        <div class="Cart-block Cart-block_row">
+                                            <div class="Cart-block Cart-block_seller">
+                                                <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
+
+                                            </div>
+                                            <div class="Cart-block Cart-block_amount">
+                                                <div class="Cart-amount">
+                                                    <div class="Amount">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="Cart-block Cart-block_delete">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                             <div class="CategoriesButton-content">
-{#                                {% cache 86400 categories LANGUAGE_CODE %}#}
+                                {% cache 86400 categories LANGUAGE_CODE %}
                                     {% for category in categories_list %}
                                     <div class="CategoriesButton-link"><a href="{% url 'productsapp:catalog' %}?category={{category.name}}">
                                             <div class="CategoriesButton-icon">
@@ -197,7 +197,7 @@
                                         </a>
                                     </div>
                                     {% endfor %}
-{#                                {% endcache %}#}
+                                {% endcache %}
                                 <!--<div class="CategoriesButton-link"><a href="#">-->
                                         <!--<div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg" />-->
                                         <!--</div><span class="CategoriesButton-text">{% translate 'Televisions' %}</span>-->
