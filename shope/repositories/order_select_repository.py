@@ -38,3 +38,9 @@ class OrderRepository(OrderInterface):
         #     order.delivery_price = 0
 
         return order
+
+    def get_orders_by_user_id(self, user_id: int) -> QuerySet[Order]:
+        return Order.objects.filter(user_id=user_id).annotate(
+            sum_price=Sum('order_items__price',
+                          filter=Q(order_items__is_active=True)),
+        )

@@ -10,7 +10,9 @@ _order_repository = OrderRepository()
 
 def export_orders_to_xls(request: HttpRequest)\
         -> HttpResponse:
-    orders = _order_repository.get_all()
+    orders = _order_repository.get_orders_by_user_id(
+        user_id=request.user.id
+    )
     excel_file = BytesIO()
     excel_writer = pd.ExcelWriter(excel_file)
     result = dict()
@@ -45,6 +47,6 @@ def export_orders_to_xls(request: HttpRequest)\
     )
     response[
         'Content-Disposition'
-    ] = 'attachment; filename=products.xlsx'
+    ] = 'attachment; filename=orders.xlsx'
     response['Set-Cookie'] = 'fileDownload=true; path=/'
     return response

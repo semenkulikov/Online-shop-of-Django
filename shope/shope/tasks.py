@@ -53,6 +53,8 @@ def import_run():
     """ Функция для фонового импорта файлов """
 
     while True:
-        if os.listdir(os.path.normpath("imports/expected_imports")):
+        if os.path.exists((os.path.normpath("imports/expected_imports"))):
             os.system("python manage.py run_imports")
-        sleep(10)
+            sleep(10)
+        else:
+            os.system("python manage.py run_imports")
