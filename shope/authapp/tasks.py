@@ -51,16 +51,9 @@ def send_link_for_password(subject,
     для смены пароля
     """
     # Email subject *must not* contain newlines
-    print('subject ', subject)
-    print('from mail ', from_email)
-    print('to mail', to_email)
-    print('html_email', html_email)
     email_message = EmailMultiAlternatives(subject,
                                            body,
                                            from_email,
                                            [to_email])
-    print('сообщение создано')
     email_message.attach_alternative(html_email, "text/html")
-    print('html добавлен')
     email_message.send()  # отправка сообщения
-    print('сообщение отправлено')
