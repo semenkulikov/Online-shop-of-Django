@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 00:14+0300\n"
+"POT-Creation-Date: 2023-07-03 21:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr "Подтверждение пароля"
 #: .\authapp\forms.py:83 .\templates\orderapp\oneorder.html:42
 #: .\templates\productsapp\detailed_discount.html:24
 #: .\templates\productsapp\detailed_discount.html:90
-#: .\templates\productsapp\detailed_seller.html:26
+#: .\templates\productsapp\detailed_seller.html:23
 msgid "Name"
 msgstr "Имя"
 
@@ -59,7 +59,7 @@ msgstr "отчество"
 msgid "email address"
 msgstr "адрес электронной почты"
 
-#: .\authapp\tasks.py:29
+#: .\authapp\tasks.py:30
 msgid "Email confirmation on"
 msgstr "Подтверждение электронной почты на"
 
@@ -235,7 +235,7 @@ msgstr "продавец"
 msgid "price"
 msgstr "цена"
 
-#: .\orderapp\models.py:
+#: .\orderapp\models.py:118
 msgid "discounted price"
 msgstr "Цена со скидкой"
 
@@ -805,6 +805,40 @@ msgstr "Войдите, чтобы продолжить"
 msgid "Place an order"
 msgstr "Разместить заказ"
 
+#: .\templates\coreapp\button_to_clear_cache.html:6
+#, fuzzy
+#| msgid "All categories"
+msgid "Full cache reset"
+msgstr "Все категории"
+
+#: .\templates\coreapp\button_to_clear_cache.html:7
+msgid "Categories cache reset"
+msgstr ""
+
+#: .\templates\coreapp\button_to_clear_cache.html:8
+msgid "Banners cache reset"
+msgstr ""
+
+#: .\templates\coreapp\button_to_clear_cache.html:9
+msgid "Catalog cache reset"
+msgstr ""
+
+#: .\templates\coreapp\button_to_clear_cache.html:10
+#, fuzzy
+#| msgid "No products in cart"
+msgid "Top products cache reset"
+msgstr "Нет товаров в корзине"
+
+#: .\templates\index.html:233 .\templates\productsapp\catalog.html:290
+#: .\templates\productsapp\product.html:90
+msgid "Congratulations"
+msgstr "Поздравляем"
+
+#: .\templates\index.html:237 .\templates\productsapp\catalog.html:294
+#: .\templates\productsapp\product.html:94
+msgid "Product successfully added to cart"
+msgstr "Продукт успешно добавлен в корзину"
+
 #: .\templates\orderapp\historyorder.html:31
 #: .\templates\profileapp\account.html:29
 #: .\templates\profileapp\account.html:68
@@ -818,7 +852,7 @@ msgstr "История заказов"
 #: .\templates\profileapp\account.html:31
 #: .\templates\profileapp\profile.html:33
 #: .\templates\profileapp\viewed_products.html:31
-#: .\templates\profileapp\viewed_products.html:41
+#: .\templates\profileapp\viewed_products.html:43
 msgid "Viewed products"
 msgstr "Просмотренные продукты"
 
@@ -1097,17 +1131,9 @@ msgstr "Минимальная требуемая сумма"
 msgid "Minimum quantity of goods required"
 msgstr "Минимальное количество требуемых товаров"
 
-#: .\templates\productsapp\detailed_seller.html:33
+#: .\templates\productsapp\detailed_seller.html:30
 msgid "Products"
 msgstr "Товары"
-
-#: .\templates\productsapp\product.html:90
-msgid "Congratulations"
-msgstr "Поздравляем"
-
-#: .\templates\productsapp\product.html:94
-msgid "Product successfully added to cart"
-msgstr "Продукт успешно добавлен в корзину"
 
 #: .\templates\productsapp\product.html:103
 msgid "Add to comparison"
@@ -1243,6 +1269,12 @@ msgstr "Выберите аватар"
 #: .\templates\profileapp\profileAvatar.html:93
 msgid "Save"
 msgstr "Сохранить"
+
+#: .\templates\profileapp\viewed_products.html:65
+#, fuzzy
+#| msgid "No products in cart"
+msgid "No products viewed yet"
+msgstr "Нет товаров в корзине"
 
 #~ msgid "The address is"
 #~ msgstr "Адрес"
