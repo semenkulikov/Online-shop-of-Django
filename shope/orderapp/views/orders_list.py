@@ -9,5 +9,7 @@ class OrderListView(LoginRequiredMixin, ListView):
     """ Класс-view для заказов """
 
     template_name = 'orderapp/historyorder.html'
-    queryset = order_rep.get_all()
     ordering = '-created_at'
+
+    def get_queryset(self):
+        return order_rep.get_all_by_user(self.request.user.id)
