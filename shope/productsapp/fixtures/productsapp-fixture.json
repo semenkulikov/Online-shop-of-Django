@@ -2087,7 +2087,7 @@
       "created_at": "2023-05-16T17:42:30.882Z",
       "updated_at": "2023-05-16T17:42:30.882Z",
       "is_active": true,
-      "value": "320500.00",
+      "value": "4000.00",
       "product": 9,
       "seller": 2
     }
@@ -2099,7 +2099,7 @@
       "created_at": "2023-05-16T17:42:45.691Z",
       "updated_at": "2023-05-16T17:42:45.691Z",
       "is_active": true,
-      "value": "300000.00",
+      "value": "3000.00",
       "product": 7,
       "seller": 3
     }
@@ -2111,7 +2111,7 @@
       "created_at": "2023-05-16T17:42:58.220Z",
       "updated_at": "2023-05-16T17:42:58.220Z",
       "is_active": true,
-      "value": "150000.00",
+      "value": "1500.00",
       "product": 6,
       "seller": 1
     }
@@ -2123,7 +2123,7 @@
       "created_at": "2023-05-16T17:43:10.052Z",
       "updated_at": "2023-05-16T17:43:10.052Z",
       "is_active": true,
-      "value": "200450.00",
+      "value": "2004.00",
       "product": 6,
       "seller": 2
     }
@@ -2159,7 +2159,7 @@
       "created_at": "2023-05-16T17:45:38.713Z",
       "updated_at": "2023-05-16T17:45:38.713Z",
       "is_active": true,
-      "value": "16820.00",
+      "value": "1682.00",
       "product": 1,
       "seller": 5
     }
@@ -2171,7 +2171,7 @@
       "created_at": "2023-05-16T17:45:52.987Z",
       "updated_at": "2023-05-16T17:45:52.987Z",
       "is_active": true,
-      "value": "20550.00",
+      "value": "2055.00",
       "product": 1,
       "seller": 1
     }
@@ -2183,7 +2183,7 @@
       "created_at": "2023-05-16T17:46:34.210Z",
       "updated_at": "2023-05-16T17:46:34.210Z",
       "is_active": true,
-      "value": "12400.00",
+      "value": "1240.00",
       "product": 3,
       "seller": 6
     }
@@ -2195,7 +2195,7 @@
       "created_at": "2023-05-16T17:46:51.714Z",
       "updated_at": "2023-05-16T17:46:51.714Z",
       "is_active": true,
-      "value": "22000.00",
+      "value": "2200.00",
       "product": 3,
       "seller": 1
     }
@@ -2243,7 +2243,7 @@
       "created_at": "2023-05-16T17:52:38.042Z",
       "updated_at": "2023-05-16T17:52:38.042Z",
       "is_active": true,
-      "value": "420000.00",
+      "value": "4200.00",
       "product": 8,
       "seller": 4
     }
@@ -2255,7 +2255,7 @@
       "created_at": "2023-05-16T17:57:00.560Z",
       "updated_at": "2023-05-16T17:57:00.560Z",
       "is_active": true,
-      "value": "310446.00",
+      "value": "3104.00",
       "product": 10,
       "seller": 8
     }
@@ -2267,7 +2267,7 @@
       "created_at": "2023-06-30T14:26:55.709Z",
       "updated_at": "2023-06-30T14:34:45.679Z",
       "is_active": true,
-      "value": "22990.00",
+      "value": "2299.00",
       "product": 11,
       "seller": 5
     }
@@ -2279,7 +2279,7 @@
       "created_at": "2023-06-30T14:42:19.388Z",
       "updated_at": "2023-06-30T14:42:19.388Z",
       "is_active": true,
-      "value": "33990.00",
+      "value": "3399.00",
       "product": 12,
       "seller": 5
     }
@@ -2291,7 +2291,7 @@
       "created_at": "2023-06-30T15:03:04.029Z",
       "updated_at": "2023-06-30T15:03:04.029Z",
       "is_active": true,
-      "value": "57990.00",
+      "value": "5799.00",
       "product": 13,
       "seller": 2
     }
