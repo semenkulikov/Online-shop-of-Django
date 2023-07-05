@@ -2,9 +2,9 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 from coreapp.utils.products_comparison_list import ProductsComparisonList
+from productsapp.views.support_functions import get_specifics, get_general_characteristics
 from repositories import SpecificSelectRepository
 from repositories.price_repository import PriceRepository
-
 
 _price_repository = PriceRepository()
 _specific_repository = SpecificSelectRepository()
@@ -22,7 +22,7 @@ class ProductComparisonView(View):
         for product in products:
             product_price = _price_repository. \
                 get_min_price_object(product=product)
-            product.product_price_avg = product_price
+            product.price = product_price.value
             specifics = _specific_repository.get_specific_by_product(
                 product=product
             )
@@ -52,62 +52,8 @@ class ProductComparisonView(View):
 
     def post(self, request: HttpRequest):
         products = self._service.get_comparison_list(request) or []
-        for product in products:
-            product_price = _price_repository. \
-                get_min_price_object(product=product)
-            product.product_price_avg = product_price
-            # Усредненная цена
-            specifics = _specific_repository.get_specific_by_product(
-                product=product
-            )
-            # Получаем характеристики для продукта
-            spec_name_list = list()
-            # Список имён характеристик для данного продукта
-            for specific in specifics:
-                # Выделяем цветом характеристики
-                current_name = specific.type_spec.name
-                spec_name_list.append(current_name)
-
-                if current_name in [
-                    "Тип",
-                    "Операционная система",
-                    "Плотность пикселей"
-                ]:
-                    specific.is_comparis = True
-
-            product.specifics = specifics
-            product.spec_names = spec_name_list
-
-        # Список общих имен характеристик
-
-        names = [set(product.spec_names) for product in products]
-        common_names = set()
-        for name_set in names:
-            if common_names:
-                common_names &= name_set  # пересечение множеств
-            else:
-                common_names |= name_set  # объединение множеств
-
-        # Список общих характеристик
-
-        common_spec = [
-            specific
-            for product in products
-            for specific in product.specifics
-            if specific.type_spec.name in common_names
-        ]
-
-        # Словарь, key - имя характеристики, value -
-        # список разных значений данной характеристики
-
-        spec_dict = dict()
-        for spec in common_spec:
-            name = spec.type_spec.name
-            if name in spec_dict.keys():
-                if spec.description not in spec_dict[name]:
-                    spec_dict[name].append(spec.description)
-            else:
-                spec_dict[name] = [spec.description]
+        products = get_specifics(products)
+        spec_dict, common_spec = get_general_characteristics(products)
 
         if "is_different" in request.POST:
             # Только различающиеся характеристики
@@ -117,7 +63,8 @@ class ProductComparisonView(View):
                 for specific in product.specifics:
                     name = specific.type_spec.name
                     if name in spec_dict.keys() \
-                            and specific.description in spec_dict[name]:
+                            and specific.description in spec_dict[name] \
+                            and len(spec_dict[name]) > 1:
                         new_specifics.append(specific)
                         # Отсеиваем характеристики, которых нет в общем списке
                         # и у которых одинаковые характеристики

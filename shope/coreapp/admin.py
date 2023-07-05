@@ -1,11 +1,16 @@
 from django.contrib import admin
 from django.urls import path
 
+from repositories import ProductSelectRepository, SellerSelectRepository
 from .models import ConfigModel
 from django.core.cache import cache
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
+
+
+_product_repo = ProductSelectRepository()
+_seller_repo = SellerSelectRepository()
 
 
 @admin.register(ConfigModel)
@@ -36,4 +41,17 @@ class ConfigModelAdmin(admin.ModelAdmin):
             cache.delete(cache_name)
         elif cache_name == "total":
             cache.clear()
+        elif cache_name == "products":
+            products_count = _product_repo.get_products_count()
+            for product_id in range(1, products_count + 1):
+                if cache.get(f"product_detail_{product_id}", None):
+                    cache.delete(f"product_detail_{product_id}")
+        elif cache_name == "sellers":
+            sellers_count = _seller_repo.get_sellers_count()
+            for seller_id in range(1, sellers_count + 1):
+                if cache.get(f"product_detail_{seller_id}", None):
+                    cache.delete(f"product_detail_{seller_id}")
+                if cache.get(f"products_top_{seller_id}", None):
+                    cache.delete(f"products_top_{seller_id}")
+
         return HttpResponseRedirect("../../")

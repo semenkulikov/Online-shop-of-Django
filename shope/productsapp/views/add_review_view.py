@@ -32,7 +32,7 @@ class AddReviewView(View):
         )
         if request.user.is_authenticated:
             if form.is_valid():
-                # Если форма валидна, берем отзыв и добавляем к продукту
+                # Если форма валидна и юзер авторизован, берем отзыв и добавляем к продукту.
                 text = form.cleaned_data.get("text")
                 self._service.add_product_review(
                     user=_profile_repository.get_profile(request.user),

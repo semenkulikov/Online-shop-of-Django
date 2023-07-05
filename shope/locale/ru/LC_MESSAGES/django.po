@@ -6,17 +6,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-05 14:48+0300\n"
 "POT-Creation-Date: 2023-07-05 13:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
-"100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\authapp\apps.py:9
 msgid "Users"
@@ -249,8 +250,7 @@ msgstr "предметы заказа"
 
 #: .\paymentapp\apps.py:8 .\templates\orderapp\historyorder.html:56
 #: .\templates\orderapp\oneorder.html:80 .\templates\orderapp\order.html:155
-#: .\templates\paymentapp\payment.html:6
-#: .\templates\paymentapp\payment.html:18
+#: .\templates\paymentapp\payment.html:6 .\templates\paymentapp\payment.html:18
 #: .\templates\paymentapp\payment.html:23
 #: .\templates\paymentapp\paymentsomeone.html:6
 #: .\templates\paymentapp\paymentsomeone.html:18
@@ -745,8 +745,7 @@ msgid "Navigation"
 msgstr "Навигация"
 
 #: .\templates\base.html:748 .\templates\orderapp\historyorder.html:29
-#: .\templates\profileapp\account.html:27
-#: .\templates\profileapp\profile.html:5
+#: .\templates\profileapp\account.html:27 .\templates\profileapp\profile.html:5
 #: .\templates\profileapp\profile.html:29
 #: .\templates\profileapp\profileAvatar.html:14
 #: .\templates\profileapp\profileAvatar.html:19
@@ -781,18 +780,15 @@ msgstr "скидку на корзину"
 msgid "discount on a set of products"
 msgstr "скидку на фиксированный набор товаров"
 
-#: .\templates\cartapp\cart_ajax.html:31
-#: .\templates\cartapp\cart_ajax.html:103
+#: .\templates\cartapp\cart_ajax.html:31 .\templates\cartapp\cart_ajax.html:103
 msgid "Seller"
 msgstr "Продавцы"
 
-#: .\templates\cartapp\cart_ajax.html:76
-#: .\templates\cartapp\cart_ajax.html:161
+#: .\templates\cartapp\cart_ajax.html:76 .\templates\cartapp\cart_ajax.html:161
 msgid "No products in cart"
 msgstr "Нет товаров в корзине"
 
-#: .\templates\cartapp\cart_ajax.html:81
-#: .\templates\cartapp\cart_ajax.html:148
+#: .\templates\cartapp\cart_ajax.html:81 .\templates\cartapp\cart_ajax.html:148
 #: .\templates\orderapp\oneorder.html:144 .\templates\orderapp\order.html:207
 msgid "Total"
 msgstr "Итого"
@@ -806,28 +802,34 @@ msgid "Place an order"
 msgstr "Разместить заказ"
 
 #: .\templates\coreapp\button_to_clear_cache.html:6
-#, fuzzy
-#| msgid "All categories"
 msgid "Full cache reset"
-msgstr "Все категории"
+msgstr "Полный сброс кеша"
 
 #: .\templates\coreapp\button_to_clear_cache.html:7
 msgid "Categories cache reset"
-msgstr ""
+msgstr "Сброс кеша категорий"
 
 #: .\templates\coreapp\button_to_clear_cache.html:8
 msgid "Banners cache reset"
-msgstr ""
+msgstr "Сброс кеша баннеров"
 
 #: .\templates\coreapp\button_to_clear_cache.html:9
 msgid "Catalog cache reset"
-msgstr ""
+msgstr "Сброс кеша каталога"
 
 #: .\templates\coreapp\button_to_clear_cache.html:10
-#, fuzzy
-#| msgid "No products in cart"
 msgid "Top products cache reset"
-msgstr "Нет товаров в корзине"
+msgstr "Сброс кеша топа продуктов"
+
+#: .\templates\coreapp\button_to_clear_cache.html:11
+#| msgid "No products in cart"
+msgid "Products cache reset"
+msgstr "Сброс кеша продуктов"
+
+#: .\templates\coreapp\button_to_clear_cache.html:12
+#| msgid "All categories"
+msgid "Sellers cache reset"
+msgstr "Сброс кеша продавцов"
 
 #: .\templates\index.html:233 .\templates\productsapp\catalog.html:290
 #: .\templates\productsapp\product.html:90
@@ -866,8 +868,7 @@ msgid "from"
 msgstr "от"
 
 #: .\templates\orderapp\historyorder.html:51
-#: .\templates\orderapp\order.html:137
-#: .\templates\productsapp\product.html:186
+#: .\templates\orderapp\order.html:137 .\templates\productsapp\product.html:186
 #: .\templates\profileapp\account.html:73
 msgid "Type of delivery"
 msgstr "Тип доставки"
@@ -878,8 +879,7 @@ msgid "Total cost"
 msgstr "Общая стоимость"
 
 #: .\templates\orderapp\historyorder.html:67
-#: .\templates\orderapp\oneorder.html:86
-#: .\templates\profileapp\account.html:91
+#: .\templates\orderapp\oneorder.html:86 .\templates\profileapp\account.html:91
 msgid "Status"
 msgstr "Статус"
 
@@ -1200,8 +1200,8 @@ msgid "To leave a review you need to"
 msgstr "Чтобы оставить отзыв, вам необходимо"
 
 #: .\templates\productsapp\product.html:299
-msgid "log on"
-msgstr "авторизоваться"
+msgid "log in"
+msgstr "Войти"
 
 #: .\templates\productsapp\sale.html:21
 msgid "Blog"
@@ -1271,10 +1271,16 @@ msgid "Save"
 msgstr "Сохранить"
 
 #: .\templates\profileapp\viewed_products.html:65
-#, fuzzy
 #| msgid "No products in cart"
 msgid "No products viewed yet"
-msgstr "Нет товаров в корзине"
+msgstr "Пока нет просмотренных товаров"
+
+#~| msgid "The field must contain at least 1 character"
+#~ msgid "The field must contain at least 50 characters"
+#~ msgstr "Поле должно содержать не менее 1 символа"
+
+#~ msgid "log on"
+#~ msgstr "авторизоваться"
 
 #~ msgid "The address is"
 #~ msgstr "Адрес"
