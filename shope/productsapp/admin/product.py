@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.http import HttpResponseRedirect
 from django.urls import path
 
 from productsapp.models.product import Product
@@ -36,4 +37,5 @@ class ProductAdmin(admin.ModelAdmin):
         return custom_urls + urls
 
     def run_background_imports_view(self, request):
-        import_run().delay()
+        import_run.delay()
+        return HttpResponseRedirect("../")
