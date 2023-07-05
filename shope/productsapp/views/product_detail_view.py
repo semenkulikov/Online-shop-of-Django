@@ -10,13 +10,14 @@ from coreapp.utils.add_product_review import AddProductReview
 from repositories.price_repository import PriceRepository
 from repositories.product_image_repository import ProductImageRepository
 from repositories.profile_repository import ProfileRepository
-from repositories import SellerSelectRepository, SpecificSelectRepository
+from repositories import SellerSelectRepository, SpecificSelectRepository, ProductSelectRepository
 
 _profile_repository = ProfileRepository()
 _select_seller_repo = SellerSelectRepository()
 _select_specifics_repo = SpecificSelectRepository()
 _price_repository = PriceRepository()
 _product_image_repo = ProductImageRepository()
+_product_repository = ProductSelectRepository()
 
 
 class ProductDetailView(View):
@@ -43,7 +44,7 @@ class ProductDetailView(View):
             product_images = total_data.get("product_images")
 
         else:
-            product = Product.objects.get(id=product_id)
+            product = _product_repository.get_product_by_id(product_id=product_id)
             # получаем конкретный продукт
             product_price = _price_repository. \
                 get_min_price_object(product=product)
@@ -89,7 +90,7 @@ class ProductDetailView(View):
                                "user": request.user})
 
     def post(self, request: HttpRequest, product_id: int) -> HttpResponse:
-        product = Product.objects.get(id=product_id)
+        product = _product_repository.get_product_by_id(product_id=product_id)
         product_images = _product_image_repo.get_all_images(product=product)
         product_price = _price_repository. \
             get_min_price_object(product=product)

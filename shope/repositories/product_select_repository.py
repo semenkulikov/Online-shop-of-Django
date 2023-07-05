@@ -1,7 +1,6 @@
 from typing import List
 
 from interfaces.product_select_interface import ProductSelectInterface
-from productsapp.models import SellerItem
 from productsapp.models.product import Product
 from productsapp.models.price import SlicePrice
 from productsapp.models.specific import Specific
@@ -15,6 +14,10 @@ class ProductSelectRepository(ProductSelectInterface):
     def get_all_products(self) -> QuerySet[Product]:
         """Получить все продукты"""
         return Product.objects.all()
+
+    def get_products_count(self) -> int:
+        """ Получить количество продуктов """
+        return Product.objects.count()
 
     def get_product_by_id(self, product_id: int) -> Product:
         """ Получить продукт по id """

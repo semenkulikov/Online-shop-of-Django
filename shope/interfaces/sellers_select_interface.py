@@ -16,3 +16,8 @@ class SellerSelectInterface(ABC):
     def get_seller_by_product(self, product: Product) -> QuerySet[Seller]:
         """ Получить продавцов с определенным продуктом """
         pass
+
+    @abstractmethod
+    def get_sellers_count(self) -> int:
+        """ Получить количество продавцов """
+        pass

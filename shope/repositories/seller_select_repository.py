@@ -26,3 +26,6 @@ class SellerSelectRepository(SellerSelectInterface):
 
     def get_all_sellers(self) -> QuerySet[Seller]:
         pass
+
+    def get_sellers_count(self) -> int:
+        return Seller.objects.count()
