@@ -59,7 +59,7 @@
                                     <button class="Amount-remove" data-product={{item.product.pk}} data-seller={{item.seller.pk}} type="button" data-href="{% url 'cartapp:ajax_reduce_product'%}">
                                     </button>
                                     <input class="Amount-input form-input" name="amount" type="text"
-                                           value={{count}} />
+                                           value={{count}} disabled>
                                     <button class="Amount-add" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_add_product'%}">
 
                                     </button>
@@ -129,7 +129,7 @@
                             <div class="Amount">
                                 <button class="Amount-remove" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_reduce_product' %}">
                                     </button>
-                                <input class="Amount-input form-input" name="amount" type="text" value="{{ item.quantity }}"  />
+                                <input class="Amount-input form-input" name="amount" type="text" value="{{ item.quantity }}" disabled >
                                 <button class="Amount-add" type="button" data-product={{item.product.pk}} data-seller={{item.seller.pk}} data-href="{% url 'cartapp:ajax_add_product' %}">
                                     </button>
                                 </button>

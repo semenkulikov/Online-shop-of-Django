@@ -7,6 +7,9 @@ from repositories.cart_repository import RepCart
 
 @receiver(post_save, sender=User)
 def create_cart(sender, instance, created, **kwargs):
+    """
+    Сигнал для создания корзины после создания пользователя
+    """
     cart_rep = RepCart()
     if created:
         cart_rep.save(user=instance)

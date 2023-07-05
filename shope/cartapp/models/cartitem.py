@@ -48,8 +48,4 @@ class CartItem(BaseModel):
 
     def __str__(self):
         return f'{self.product} ({self.quantity})' \
-            # f' {self.quantity * self.product.price}'
 
-    # @property
-    # def total(self):
-    #     return self.product.price * self.quantity

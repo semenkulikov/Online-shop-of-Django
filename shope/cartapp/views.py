@@ -80,17 +80,13 @@ class AjaxUpdateCartView(View):
                     cart = cart_rep.get_cart(user=request.user)  # корзина
                     cart_count = SelectCart. \
                         cart_all_products_amount(cart=cart)  # количество
-                    # товаров
                     cart_sum = SelectCart. \
                         cart_total_amount(cart=cart)  # сумма без учета скидки
                     discounted_total_price, discount = ProductDiscounts. \
                         get_prices_discount_on_cart(cart_sum,
                                                     cart_count,
                                                     cart=cart)
-                    # discounted_total_price - список цен со скидкой
-                    # применённый тип скидки или None
                     cart_items = SelectCart.cart_items_list(user=request.user)
-                    # все позиции с товарами в корзине
                     cart_items_html = render_to_string(
                         'cartapp/cart_ajax.html',
                         context={'items': cart_items,
@@ -132,8 +128,6 @@ class AjaxUpdateCartView(View):
                             total_count,
                             session_products=products
                         )
-                    # discounted_total_price - список цен со скидкой
-                    # применённый тип скидки или None
                     request.session['prices'] = discounted_prices_list
                     # обновление сессий новым списком цен со скидками
                     request.session.modified = True

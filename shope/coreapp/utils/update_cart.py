@@ -33,25 +33,18 @@ class AddToCart:
             product = rep_prod.get_product_by_id(product_id)  # продукт по id
             cart = rep_cart.get_cart(user)  # корзина пользователя
             seller = rep_seller.get_seller(seller_id)  # продавец по id
-            cart_item = rep_cart_item.get_cart_item(cart=cart,
-                                                    product=product,
-                                                    seller=seller)
-            # позиция с товаром в корзине
+            cart_item = rep_cart_item.get_cart_item(
+                cart=cart, product=product, seller=seller)
             if not cart_item:  # товара нет в корзине
                 rep_cart_item.save(cart=cart, product=product,
                                    seller=seller, quantity=count)
-                # создание позиции с товаром
             else:  # товар есть в корзине
                 cart_item.update(quantity=F('quantity') + count)
-                # добавление товаров
         else:  # анонимный пользователь
             key = f'{product_id} {seller_id}'
-            # определение ключа для работы с сессией
             if session_products:  # если есть товары в сессии
                 if session_products.get(key):
-                    # позиция с товаром от этого продавца уже есть
                     session_products[key] += count
-                    # увеличить количество на count
                 else:  # позиция с товаром отсутствует
                     session_products[key] = count
             else:  # в сессии нет товаров
@@ -67,20 +60,17 @@ class AddToCart:
         то метод вернёт обновлённый словарь для обновления текущей сессии.
         """
         if user:  # если пользователь авторизован
-            product = rep_prod.get_product_by_id(product_id)  # продукт по id
-            seller = rep_seller.get_seller(seller_id)  # продавец по id
-            cart = rep_cart.get_cart(user)  # корзина пользователя
+            product = rep_prod.get_product_by_id(product_id)
+            seller = rep_seller.get_seller(seller_id)
+            cart = rep_cart.get_cart(user)
             cart_item = rep_cart_item. \
                 get_cart_item(cart=cart, product=product, seller=seller)
-            # позиция с товаром в корзине
             if full or cart_item.first().quantity == 1:
-                # удаление товара из корзины
-                rep_cart_item.delete(cart_item)
+                rep_cart_item.delete(cart_item)  # удаление всей позиции
             else:  # уменьшение количества товара на count
                 cart_item.update(quantity=F('quantity') - count)
         else:
             key = f'{product_id} {seller_id}'
-            # определение ключа для работы с сессией
             if session_products:  # если есть товары в сессии
                 if full or session_products[key] == 1:
                     # удаление товара из корзины
@@ -123,21 +113,17 @@ class AddToCart:
         for item in session_products:
             # цикл по ключам в сессии
             product_id, seller_id = item.split()[0], item.split()[1]
-            product = rep_prod.get_product_by_id(product_id)  # товар по id
-            seller = rep_seller. \
-                get_seller(int(seller_id))  # продавец по id
+            product = rep_prod.get_product_by_id(product_id)
+            seller = rep_seller.get_seller(int(seller_id))
             cart_item = rep_cart_item. \
                 get_cart_item(cart=cart, product=product, seller=seller)
             key = f'{product_id} {seller_id}'
-            if cart_item:
-                # позиция с этим товаром от этого продавца в корзине уже есть
+            if cart_item:  # позиция с этим товаром в корзине уже есть
                 count = session_products[key]
                 cart_item.update(quantity=F('quantity') + count)
             else:
                 rep_cart_item.save(
-                    cart=cart,
-                    product=product,
-                    seller=seller,
-                    quantity=session_products[key]
+                    cart=cart, product=product,
+                    seller=seller, quantity=session_products[key]
                 )
             # создание позиций в корзине

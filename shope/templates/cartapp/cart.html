@@ -50,7 +50,9 @@ Megano
                                 <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                 <div class="dropdown-content">
                                     <a class="dropdown-content-a" href="{% url 'profileapp:account' %}">{% translate 'Private Office' %}</a>
+                                    {% if user.is_staff %}
                                     <a class="dropdown-content-a" href="#">{% translate 'Administrative section' %}</a>
+                                    {% endif %}
                                     <a class="dropdown-content-a" href="{% url 'authapp:logout' %}">{% translate 'Output' %}</a>
                                 </div>
                                 {% endif %}
