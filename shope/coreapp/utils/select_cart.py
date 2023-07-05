@@ -27,18 +27,15 @@ class SelectCart:
         """
         items_list = []
         if user:  # пользователь авторизован
-            cart = rep_cart.get_cart(user)
-            # корзина пользователя user
+            cart = rep_cart.get_cart(user)  # корзина
             items_list = rep_cart_item.get_all_items(cart)
             # список товаров в корзине
         else:  # есть товары в сессии
             for item in session_products:
                 # цикл по ключам "product_id" и "seller_id" в сессии
                 product_id, seller_id = item.split()[0], item.split()[1]
-                product = rep_prod. \
-                    get_product_by_id(product_id)  # продукт
-                seller = rep_seller. \
-                    get_seller(seller_id)  # продавец
+                product = rep_prod.get_product_by_id(product_id)
+                seller = rep_seller.get_seller(seller_id)
                 items_list.append(rep_price.get_object_price(product, seller))
         return items_list
 
@@ -50,11 +47,9 @@ class SelectCart:
         session_products =
         {'product_id seller_id': count,...}
         """
-        if cart:
-            # в метод передан экземпляр пользователя(авторизован)
+        if cart:  # передан экземпляр пользователя(авторизован)
             count = rep_cart.count_items(cart)
-        elif session_products:
-            # в метод передан словарь <session_products>
+        elif session_products:  # передан словарь session_products
             count = sum([count for count in
                          session_products.values()])
         else:
@@ -69,11 +64,9 @@ class SelectCart:
         session_products =
         {'product_id seller_id': count,...}
         """
-        if cart:
-            # в метод передан экземпляр пользователя(авторизован)
+        if cart:  # передан экземпляр пользователя(авторизован)
             count = rep_cart_item.get_count_cart_items(cart)
-        elif session_products:
-            # в метод передан словарь <session_products>
+        elif session_products:  # передан словарь session_products
             count = len(session_products)
         else:
             count = 0
@@ -88,25 +81,19 @@ class SelectCart:
         {'product_id seller_id': count,...}
         """
         if cart:
-            # в метод передан экземпляр корзины пользователя(авторизован)
-            total_amount = rep_cart.get_total_amount(cart)
-            # общая сумма
-        elif session_products:
-            # в метод передан словарь <session_products>
+            # передан экземпляр корзины пользователя(авторизован)
+            total_amount = rep_cart.get_total_amount(cart)  # сумма общ
+        elif session_products:  # передан словарь session_products
             cart_sum = []
             for item in session_products:
                 product_id, seller_id = item.split()[0], item.split()[1]
+                product = rep_prod.get_product_by_id(product_id)
+                seller = rep_seller.get_seller(seller_id)
                 cart_sum.append(
-                    rep_price.
-                    get_price(product=rep_prod.
-                              get_product_by_id(product_id),
-                              seller=rep_seller.
-                              get_seller(seller_id))
+                    rep_price.get_price(product, seller)
                     * session_products[f'{product_id} {seller_id}'])
-                #  сумма товаров в корзине,
-                #  с помощью цикла берутся product_id, seller_id, count
-                #  из сессии
-            total_amount = sum(cart_sum)
+                #  цена на каждую позицию с товаром с учетом количества
+            total_amount = sum(cart_sum)  # общая сумма корзины
         else:
             total_amount = 0
         return total_amount

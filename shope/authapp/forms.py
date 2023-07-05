@@ -41,16 +41,12 @@ class UserLoginForm(AuthenticationForm):
         """
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
-
         if username is not None and password:
             self.user_cache = authenticate(
                 self.request, username=username, password=password
             )
-            # если authenticate вернул None
-            # эта функция может вернуть None, если пользователь неактивен
             if self.user_cache is None:
-                try:
-                    # попытка найти пользователя с таким email
+                try:  # попытка найти пользователя с таким email
                     user_not_active = User.objects.get(email=username)
                 except ObjectDoesNotExist:
                     user_not_active = None
@@ -69,11 +65,6 @@ class UserSignUpForm(UserCreationForm):
     Форма для регистрации пользователя
     """
 
-    class Meta:
-        model = User
-        fields = ('email', 'first_name',
-                  'middle_name', 'last_name')
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['placeholder'] = 'E-mail'
@@ -87,6 +78,11 @@ class UserSignUpForm(UserCreationForm):
         self.fields['first_name'].required = True
         for name_field, field in self.fields.items():
             field.widget.attrs['class'] = 'user-input'
+
+    class Meta:
+        model = User
+        fields = ('email', 'first_name',
+                  'middle_name', 'last_name')
 
 
 class UserResetPasswordForm(PasswordResetForm):
@@ -107,6 +103,9 @@ class UserResetPasswordForm(PasswordResetForm):
             to_email,
             html_email_template_name=None,
     ):
+        """
+        Метод для отправки сообщения на e-mail
+        """
         subject = loader.render_to_string(subject_template_name, context)
         # Тема письма не должна содержать новых строк
         subject = "".join(subject.splitlines())

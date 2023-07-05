@@ -22,9 +22,7 @@ def send_verif_link(protocol, domain, email,
                                              }
                                      )  # ссылка для активации
     context = {
-        'first_name': first_name,
-        'last_name': last_name,
-        'link': verif_link,
+        'first_name': first_name, 'last_name': last_name, 'link': verif_link,
     }
     message = get_template('authapp/email/email_confirm.html').render(context)
     subject = _('Email confirmation on') + f' {site_name}'  # тема
@@ -48,7 +46,8 @@ def send_link_for_password(subject,
                            html_email):
     """
     Метод для создания и отправки сообщения на e-mail адрес
-    для смены пароля
+    для смены пароля.
+    :return: None
     """
     # Email subject *must not* contain newlines
     email_message = EmailMultiAlternatives(subject,
