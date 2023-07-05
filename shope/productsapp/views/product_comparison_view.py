@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 from coreapp.utils.products_comparison_list import ProductsComparisonList
-from productsapp.views.core_functions import get_specifics, get_general_characteristics
+from coreapp.utils.working_with_product_characteristics import ProductSpecifics
 from repositories import SpecificSelectRepository
 from repositories.price_repository import PriceRepository
 
@@ -16,6 +16,7 @@ class ProductComparisonView(View):
     """
     template_name = "productsapp/comparison.html"
     _service = ProductsComparisonList()
+    _product_specifics_service = ProductSpecifics()
 
     def get(self, request: HttpRequest) -> HttpResponse:
         products = self._service.get_comparison_list(request) or []
@@ -52,8 +53,9 @@ class ProductComparisonView(View):
 
     def post(self, request: HttpRequest):
         products = self._service.get_comparison_list(request) or []
-        products = get_specifics(products)
-        spec_dict, common_spec = get_general_characteristics(products)
+        products = self._product_specifics_service.get_specifics(products)
+        spec_dict, common_spec = self._product_specifics_service.\
+            get_general_characteristics(products)
 
         if "is_different" in request.POST:
             # Только различающиеся характеристики
