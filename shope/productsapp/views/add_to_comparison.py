@@ -6,7 +6,6 @@ from coreapp.utils import ViewedProductsService
 from coreapp.utils.add_product_review import AddProductReview
 from coreapp.utils.products_comparison_list import ProductsComparisonList
 from productsapp.forms import AddReviewForm
-from productsapp.models import Product
 from repositories import SellerSelectRepository, \
     SpecificSelectRepository, ProductSelectRepository
 from repositories.price_repository import PriceRepository
@@ -25,7 +24,7 @@ class AddToComparisonView(View):
     """
 
     _comparison_service = ProductsComparisonList()
-    _service = AddProductReview()
+    _review_service = AddProductReview()
     _viewed_service = ViewedProductsService()
 
     template_name = "productsapp/product.html"
@@ -36,9 +35,9 @@ class AddToComparisonView(View):
         # получаем конкретный продукт
         product_price = _price_repository. \
             get_min_price_object(product=product)
-        amount_review = self._service.product_reviews_amount(product=product)
+        amount_review = self._review_service.product_reviews_amount(product=product)
         # количество отзывов
-        reviews_list = self._service.product_reviews_list(
+        reviews_list = self._review_service.product_reviews_list(
             product=product,
             count=1)
         # список отзывов
@@ -69,12 +68,12 @@ class AddToComparisonView(View):
 
     def post(self, request: HttpRequest, product_id: int) -> HttpResponse:
 
-        product = Product.objects.get(id=product_id)
+        product = _product_repo.get_product_by_id(product_id)
         product_images = _product_image_repo.get_all_images(product=product)
         product_price = _price_repository. \
             get_min_price_object(product=product)
-        amount_review = self._service.product_reviews_amount(product=product)
-        reviews_list = self._service.product_reviews_list(product=product)
+        amount_review = self._review_service.product_reviews_amount(product=product)
+        reviews_list = self._review_service.product_reviews_list(product=product)
         category_in_comp = self._comparison_service.\
             get_comparison_list(request).first()
         cur_category = _product_repo.get_product_by_id(product_id).category

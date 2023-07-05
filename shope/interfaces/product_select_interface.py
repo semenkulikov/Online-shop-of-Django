@@ -14,6 +14,11 @@ class ProductSelectInterface(ABC):
         """Получить все продукты"""
         pass
 
+    @abstractmethod
+    def get_products_count(self) -> int:
+        """ Получить количество продуктов """
+        pass
+
     def get_product_by_id(self, product_id: int) -> Product:
         """ Получить продукт по id """
         pass
