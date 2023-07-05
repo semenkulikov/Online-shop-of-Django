@@ -4,7 +4,6 @@ from django.views import View
 from django.core.cache import cache
 
 from productsapp.forms import AddReviewForm
-from productsapp.models import Product
 from coreapp.utils import ViewedProductsService
 from coreapp.utils.add_product_review import AddProductReview
 from repositories.price_repository import PriceRepository

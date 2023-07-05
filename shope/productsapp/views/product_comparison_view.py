@@ -22,7 +22,7 @@ class ProductComparisonView(View):
         for product in products:
             product_price = _price_repository. \
                 get_min_price_object(product=product)
-            product.product_price_avg = product_price
+            product.price = product_price.value
             specifics = _specific_repository.get_specific_by_product(
                 product=product
             )
@@ -55,8 +55,8 @@ class ProductComparisonView(View):
         for product in products:
             product_price = _price_repository. \
                 get_min_price_object(product=product)
-            product.product_price_avg = product_price
-            # Усредненная цена
+            product.price = product_price.value
+            # Цена
             specifics = _specific_repository.get_specific_by_product(
                 product=product
             )
