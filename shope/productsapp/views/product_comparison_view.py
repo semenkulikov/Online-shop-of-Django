@@ -63,7 +63,8 @@ class ProductComparisonView(View):
                 for specific in product.specifics:
                     name = specific.type_spec.name
                     if name in spec_dict.keys() \
-                            and specific.description in spec_dict[name]:
+                            and specific.description in spec_dict[name] \
+                            and len(spec_dict[name]) > 1:
                         new_specifics.append(specific)
                         # Отсеиваем характеристики, которых нет в общем списке
                         # и у которых одинаковые характеристики
