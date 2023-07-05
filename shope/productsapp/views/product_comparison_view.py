@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 from coreapp.utils.products_comparison_list import ProductsComparisonList
-from productsapp.views.support_functions import get_specifics, get_general_characteristics
+from productsapp.views.core_functions import get_specifics, get_general_characteristics
 from repositories import SpecificSelectRepository
 from repositories.price_repository import PriceRepository
 

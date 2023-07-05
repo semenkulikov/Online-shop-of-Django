@@ -1,5 +1,4 @@
 ﻿from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from coreapp.utils.products_comparison_list import ProductsComparisonList
