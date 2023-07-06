@@ -17,7 +17,7 @@ from coreapp.utils import AddToCart, generate_random_string
 from repositories.cart_repository import RepCart
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponse
-
+from django.contrib.sites.shortcuts import get_current_site
 messages_dict = {
     'reg_success': _(
         'You have successfully registered. '
@@ -29,6 +29,7 @@ messages_dict = {
     'activate_error': _('An error has occurred. '
                         'The activation period has expired'
                         '\nTry registering again.'),
+    'email_confirm': _('Email confirmation on')
 }
 
 
@@ -87,9 +88,11 @@ class UserSignUpView(CreateView):
             user.is_active = False  # деактивация пользователя
             user.activation_key = generate_random_string()
             user.save()
+            current_site = get_current_site(request)
+            site_name = current_site.name
             protocol = request.scheme
-            domain = request.META['HTTP_HOST']
-            send_verif_link.delay(protocol, domain, user.email,
+            domain = current_site.domain
+            send_verif_link.delay(protocol, domain, site_name, user.email,
                                   user.activation_key,
                                   user.first_name, user.last_name)
             # ссылка создана и отправлено сообщение

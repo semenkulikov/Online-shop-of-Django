@@ -51,7 +51,7 @@ class AddOrderView(LoginRequiredMixin, View):
         )
 
         # перенос позиций из корзины в заказ
-        cart_items = SelectCart.cart_items_list(user=request.user)
+        cart_items = SelectCart.cart_items_list(cart)
         rep_orderitem.create_with_cartitems(
             order=order,
             cart_items=cart_items)
