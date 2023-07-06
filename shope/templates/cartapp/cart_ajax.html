@@ -72,6 +72,10 @@
                         </div>
                     </div>
                 </div>
+        {% empty %}
+            <h2 class="empty-cart">{% translate 'No products in cart' %}</h2>
+            <div></div>
+        {% endfor %}
                     <div class="Cart-total">
                         <div class="Cart-block Cart-block_total">
                             <strong class="Cart-title">{% translate 'Total' %}:</strong>
@@ -81,10 +85,6 @@
                             <a class="btn btn_success btn_lg" href="{% url 'authapp:login' %}?next={% url 'cartapp:cart' %}">{% translate 'Log in to continue' %}</a>
                         </div>
                     </div>
-        {% empty %}
-            <h2 class="empty-cart">{% translate 'No products in cart' %}</h2>
-            <div></div>
-        {% endfor %}
     {% else %}
         {% for item in items %}
             <div class="Cart-product">
