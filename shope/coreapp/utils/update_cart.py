@@ -1,11 +1,12 @@
-from cartapp.models import CartItem
-
+from cartapp.models import CartItem, Cart
+from authapp.models import User
 from django.db.models import F
 
 from repositories.cart_repository import RepCart, RepCartItem
 from repositories.seller_select_repository import SellerSelectRepository
 from repositories.product_select_repository import ProductSelectRepository
 from repositories.price_repository import PriceRepository
+from typing import Union, NoReturn
 
 rep_cart = RepCart()
 rep_cart_item = RepCartItem()
@@ -22,17 +23,17 @@ class AddToCart:
     """
 
     @classmethod
-    def add_to_cart(cls, product_id, seller_id, count=1,
-                    user=None, session_products=None):
+    def add_to_cart(cls, product_id: int, seller_id: int, count: int = 1,
+                    cart: Cart = None, session_products: dict = None) \
+            -> Union[NoReturn, dict]:
         """
         Метод добавления товара в корзину
         Если есть словарь с товарами из сессии <session_products>,
         то метод вернёт обновлённый словарь для обновления текущей сессии.
         """
-        if user:  # если пользователь авторизован
-            product = rep_prod.get_product_by_id(product_id)  # продукт по id
-            cart = rep_cart.get_cart(user)  # корзина пользователя
-            seller = rep_seller.get_seller(seller_id)  # продавец по id
+        if cart:  # если пользователь авторизован
+            product = rep_prod.get_product_by_id(product_id)
+            seller = rep_seller.get_seller(seller_id)
             cart_item = rep_cart_item.get_cart_item(
                 cart=cart, product=product, seller=seller)
             if not cart_item:  # товара нет в корзине
@@ -52,17 +53,17 @@ class AddToCart:
             return session_products
 
     @classmethod
-    def delete_from_cart(cls, product_id, seller_id, count=1,
-                         user=None, session_products=None, full=None):
+    def delete_from_cart(cls, product_id: int, seller_id: int, count: int = 1,
+                         cart: Cart = None, session_products: dict = None,
+                         full=None) -> Union[NoReturn, dict]:
         """
         Удаление товара из корзины
         Если есть словарь с товарами из сессии <session_products>,
         то метод вернёт обновлённый словарь для обновления текущей сессии.
         """
-        if user:  # если пользователь авторизован
+        if cart:  # если пользователь авторизован
             product = rep_prod.get_product_by_id(product_id)
             seller = rep_seller.get_seller(seller_id)
-            cart = rep_cart.get_cart(user)
             cart_item = rep_cart_item. \
                 get_cart_item(cart=cart, product=product, seller=seller)
             if full or cart_item.first().quantity == 1:
@@ -80,17 +81,18 @@ class AddToCart:
                 return session_products
 
     @classmethod
-    def change_amount(cls, product_id, seller_id,
-                      count, user=None, session_products=None):
+    def change_amount(cls, product_id: int, seller_id: int,
+                      count: int, cart: Cart = None,
+                      session_products: dict = None) \
+            -> Union[NoReturn, dict]:
         """
         Изменить количество товара в корзине
         Если есть словарь с товарами из сессии <session_products>,
         то метод вернёт обновлённый словарь для обновления текущей сессии.
         """
-        if user:
-            product = rep_prod.get_product_by_id(product_id)  # продукт по id
-            seller = rep_seller.get_seller(seller_id)  # продавец по id
-            cart = rep_cart.get_cart(user=user)  # корзина пользователя
+        if cart:
+            product = rep_prod.get_product_by_id(product_id)
+            seller = rep_seller.get_seller(seller_id)
             cart_item = CartItem.objects.get(cart=cart,
                                              product=product,
                                              seller=seller)
@@ -104,26 +106,28 @@ class AddToCart:
                 return session_products
 
     @classmethod
-    def move_from_session(cls, user, session_products):
+    def move_from_session(cls, user: User, session_products: dict)\
+            -> NoReturn:
         """
         Добавление товаров в корзину пользователя
         из сессии
         """
         cart = rep_cart.get_cart(user)
-        for item in session_products:
-            # цикл по ключам в сессии
-            product_id, seller_id = item.split()[0], item.split()[1]
-            product = rep_prod.get_product_by_id(product_id)
-            seller = rep_seller.get_seller(int(seller_id))
-            cart_item = rep_cart_item. \
-                get_cart_item(cart=cart, product=product, seller=seller)
-            key = f'{product_id} {seller_id}'
-            if cart_item:  # позиция с этим товаром в корзине уже есть
-                count = session_products[key]
-                cart_item.update(quantity=F('quantity') + count)
-            else:
-                rep_cart_item.save(
-                    cart=cart, product=product,
-                    seller=seller, quantity=session_products[key]
-                )
-            # создание позиций в корзине
+        if session_products:
+            for item in session_products:
+                # цикл по ключам в сессии
+                product_id, seller_id = item.split()[0], item.split()[1]
+                product = rep_prod.get_product_by_id(product_id)
+                seller = rep_seller.get_seller(int(seller_id))
+                cart_item = rep_cart_item. \
+                    get_cart_item(cart=cart, product=product, seller=seller)
+                key = f'{product_id} {seller_id}'
+                if cart_item:  # позиция с этим товаром в корзине уже есть
+                    count = session_products[key]
+                    cart_item.update(quantity=F('quantity') + count)
+                else:
+                    rep_cart_item.save(
+                        cart=cart, product=product,
+                        seller=seller, quantity=session_products[key]
+                    )
+                # создание позиций в корзине
