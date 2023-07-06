@@ -86,9 +86,9 @@
 
                         </strong>
                       </header>
-                      <div class="Card"><a class="Card-picture" href="#"><img src="{{ discounted.product_images.first.image.url }}" alt="card.jpg"/></a>
+                      <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' discounted.id %}"><img src="{{ discounted.product_images.first.image.url }}" alt="card.jpg"/></a>
                         <div class="Card-content">
-                          <strong class="Card-title"><a href="#">{{ discounted.name }}</a>
+                          <strong class="Card-title"><a href="{% url 'productsapp:product_detail' discounted.id %}">{{ discounted.name }}</a>
                           </strong>
                             {% with disc_price=discounted|discounted_price:discounted.price %}
                                             <div class="Card-description">

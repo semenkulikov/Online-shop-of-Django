@@ -76,7 +76,7 @@ class AddToComparisonView(View):
         reviews_list = self._review_service.product_reviews_list(product=product)
         category_in_comp = self._comparison_service.\
             get_comparison_list(request).first()
-        cur_category = _product_repo.get_product_by_id(product_id).category
+        cur_category = product.category
         error_category = False
         if category_in_comp is None or \
                 category_in_comp.category == cur_category:

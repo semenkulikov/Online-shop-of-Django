@@ -1,8 +1,6 @@
 ﻿from io import BytesIO
-
 from django.http import HttpRequest, HttpResponse
 import pandas as pd
-
 from repositories import ProductSelectRepository
 
 _product_repository = ProductSelectRepository()

@@ -1,5 +1,6 @@
 from django.views.generic import View
 from django.shortcuts import render
+from django.conf import settings
 from repositories import (
     SliderRepository,
     BannerRepository,
@@ -32,7 +33,7 @@ class IndexView(View):
         popular = product_rep.sort_by_popular(
             products=products_with_price,
             reverse=True
-        )
+        )[:settings.MAX_POPULAR_INDEX]
 
         limited = products_with_price.filter(is_limited=True)
 

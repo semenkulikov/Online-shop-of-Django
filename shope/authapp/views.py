@@ -15,7 +15,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .tasks import send_verif_link
 from coreapp.utils import AddToCart, generate_random_string
 from repositories.cart_repository import RepCart
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
+from django.http import HttpResponse
 
 messages_dict = {
     'reg_success': _(
@@ -39,7 +40,7 @@ class UserLoginView(LoginView):
     form_class = UserLoginForm
     redirect_authenticated_user = True
 
-    def form_valid(self, form):
+    def form_valid(self, form: UserLoginForm):
         """
         Метод, вызываемый при валидации формы
         """
@@ -69,7 +70,8 @@ class UserSignUpView(CreateView):
     success_url = reverse_lazy('authapp:login')
     rep_cart = RepCart()
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs) \
+            -> HttpResponse:
         """
         Метод для отображения страницы регистрации и формы
         """
@@ -78,7 +80,7 @@ class UserSignUpView(CreateView):
             return HttpResponseRedirect(reverse('coreapp:index'))
         return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs) -> HttpResponse:
         form = self.form_class(data=request.POST)
         if form.is_valid():  # форма прошла валидацию
             user = form.save(commit=False)
@@ -98,7 +100,7 @@ class UserSignUpView(CreateView):
         return render(request, self.template_name, {'form': form})
 
 
-def verify_user(request, **kwargs):
+def verify_user(request, **kwargs) -> HttpResponse:
     """
     Активация учетной записи
     :return: Response
