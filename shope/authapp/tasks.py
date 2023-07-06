@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 @shared_task
-def send_verif_link(protocol, domain, email,
+def send_verif_link(protocol, domain, site_name, email,
                     activation_key, first_name, last_name):
     """
     Метод создания и отправки сообщения на e-mail
@@ -15,12 +15,12 @@ def send_verif_link(protocol, domain, email,
     :return: send_mail
     :rtype: bool
     """
-    site_name = f'{protocol}://{domain}'
-    verif_link = site_name + reverse('authapp:verified',
-                                     kwargs={'email': email,
-                                             'key': activation_key
-                                             }
-                                     )  # ссылка для активации
+    site = f'{protocol}://{domain}'
+    verif_link = site + reverse('authapp:verified',
+                                kwargs={'email': email,
+                                        'key': activation_key
+                                        }
+                                )  # ссылка для активации
     context = {
         'first_name': first_name, 'last_name': last_name, 'link': verif_link,
     }
