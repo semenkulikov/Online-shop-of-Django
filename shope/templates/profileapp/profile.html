@@ -50,7 +50,7 @@
                             <div class="row">
                                <div class="row-block">
                                     <div class="form-group">
-                                        <label class="form-label" for="avatar">{{ profile_form.avatar_image.label_tag }}</label>
+                                        <label class="form-label" for="avatar">{% translate 'Avatar' %}</label>
                                         <div class="Profile-avatar Profile-avatar_noimg">
                                             <label class="Profile-fileLabel" for="avatar_image"><img src="{% static 'assets/img/icons/upload.png' %}"/>{% translate 'Upload a photo' %}
                                             </label>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="row-block">
                                     <div class="form-group" >
-                                        <label class="form-label" for="phone_number">{{ profile_form.phone_number.label_tag }}</label>
+                                        <label class="form-label" for="phone_number">{% translate 'Phone number' %}</label>
                                         {{ profile_form.phone_number }}
                                         <div style="color: red; font-size:50%">{{profile_form.phone_number.errors }}</div>
                                     </div>
@@ -97,7 +97,7 @@
 
                                     <div class="form-group">
                                         <div class="Profile-btn">
-                                            <button class="btn btn_success" type="submit">Update profile
+                                            <button class="btn btn_success" type="submit">{% translate 'Update profile' %}
                                             </button>
                                         </div>
                                         <div class="Profile-success">
