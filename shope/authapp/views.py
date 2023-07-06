@@ -90,7 +90,7 @@ class UserSignUpView(CreateView):
             user.save()
             current_site = get_current_site(request)
             site_name = current_site.name
-            protocol = 'http'
+            protocol = request.scheme
             domain = current_site.domain
             send_verif_link.delay(protocol, domain, site_name, user.email,
                                   user.activation_key,
