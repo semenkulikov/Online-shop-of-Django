@@ -85,11 +85,11 @@ class AjaxUpdateCartView(View):
                     cart_items_html = render_to_string(
                         'cartapp/cart_ajax.html',
                         context={
-                            'items': zip(
+                            'items': list(zip(
                                 dict_params['count_list'],
                                 dict_params['items_list'],
                                 dict_params['prices_list']
-                            ),
+                            )),
                             'session': True, 'discount': dict_params['discount'], # noqa
                             'cart_sum': round(sum(dict_params['prices_list']), 2) # noqa
                         })
