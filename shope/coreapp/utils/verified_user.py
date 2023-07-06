@@ -2,7 +2,7 @@ import secrets
 import string
 
 
-def generate_random_string():
+def generate_random_string() -> str:
     """
     Метод, который генерирует случайный ключ активации из 13 символов
     return: rand_string

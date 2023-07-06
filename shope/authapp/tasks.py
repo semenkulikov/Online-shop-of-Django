@@ -3,7 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import get_template
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 @shared_task
