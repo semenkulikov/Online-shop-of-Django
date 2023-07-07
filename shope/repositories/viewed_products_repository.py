@@ -92,4 +92,4 @@ class ViewedProductsRepository(ViewedProductsInterface):
         return ViewedProduct.objects.filter(
             user=user,
             is_active=is_active
-        ).order_by('updated_at')[:limit]
+        ).order_by('-updated_at')[:limit]

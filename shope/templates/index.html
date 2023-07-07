@@ -25,7 +25,7 @@
                               <div class="row-block">
                                 <strong class="Slider-title">{{ slider.product.name }}</strong>
                                 <div class="Slider-text">{{ slider.description }}</div>
-                                <div class="Slider-footer"><a class="btn btn_primary" href="{% url 'productsapp:product_detail' slider.product.id %}">Get Started</a>
+                                <div class="Slider-footer"><a class="btn btn_primary" href="{% url 'productsapp:product_detail' slider.product.id %}">{% translate 'Get Started' %}</a>
                                 </div>
                               </div>
                               <div class="row-block">
@@ -61,7 +61,7 @@
 
                                     <div class="BannersHomeBlock-block">
                                         <strong class="BannersHomeBlock-title">{{ banner.category.name }}</strong>
-                                        <div class="BannersHomeBlock-content">from <span class="BannersHomeBlock-price">{{banner.min_price}} &#8381;</span>
+                                        <div class="BannersHomeBlock-content">{% translate 'from' %} <span class="BannersHomeBlock-price">{{banner.min_price}} &#8381;</span>
                                         </div>
                                     </div>
 
@@ -103,25 +103,25 @@
                             <div class="CountDown-block">
                               <div class="CountDown-wrap">
                                 <div class="CountDown-days">
-                                </div><span class="CountDown-label">days</span>
+                                </div><span class="CountDown-label">{% translate 'days' %}</span>
                               </div>
                             </div>
                             <div class="CountDown-block">
                               <div class="CountDown-wrap">
                                 <div class="CountDown-hours">
-                                </div><span class="CountDown-label">hours</span>
+                                </div><span class="CountDown-label">{% translate 'hours' %}</span>
                               </div>
                             </div>
                             <div class="CountDown-block">
                               <div class="CountDown-wrap">
                                 <div class="CountDown-minutes">
-                                </div><span class="CountDown-label">mins</span>
+                                </div><span class="CountDown-label">{% translate 'mins' %}</span>
                               </div>
                             </div>
                             <div class="CountDown-block">
                               <div class="CountDown-wrap">
                                 <div class="CountDown-secs">
-                                </div><span class="CountDown-label">secs</span>
+                                </div><span class="CountDown-label">{% translate 'secs' %}</span>
                               </div>
                             </div>
                           </div>

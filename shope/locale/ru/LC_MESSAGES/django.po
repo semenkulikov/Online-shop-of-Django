@@ -7,6 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-06 20:56+0300\n"
+"POT-Creation-Date: 2023-07-06 22:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +60,7 @@ msgstr "отчество"
 msgid "email address"
 msgstr "адрес электронной почты"
 
-#: .\authapp\tasks.py:28
+#: .\authapp\tasks.py:28 .\authapp\views.py:32
 msgid "Email confirmation on"
 msgstr "Подтверждение электронной почты на"
 
@@ -437,7 +438,7 @@ msgstr "бесплатная доставка"
 
 #: .\productsapp\models\product.py:36
 msgid "limited"
-msgstr ""
+msgstr "ограниченный"
 
 #: .\productsapp\models\review.py:21
 msgid "text"
@@ -828,6 +829,30 @@ msgstr "Сброс кеша продуктов"
 msgid "Sellers cache reset"
 msgstr "Сброс кеша продавцов"
 
+#: .\templates\index.html:28
+msgid "Get Started"
+msgstr "Начать покупки"
+
+#: .\templates\index.html:64 .\templates\orderapp\historyorder.html:47
+msgid "from"
+msgstr "от"
+
+#: .\templates\index.html:106
+msgid "days"
+msgstr "дни"
+
+#: .\templates\index.html:112
+msgid "hours"
+msgstr "часы"
+
+#: .\templates\index.html:118
+msgid "mins"
+msgstr "мин"
+
+#: .\templates\index.html:124
+msgid "secs"
+msgstr "сек"
+
 #: .\templates\index.html:233 .\templates\productsapp\catalog.html:290
 #: .\templates\productsapp\product.html:90
 msgid "Congratulations"
@@ -860,10 +885,6 @@ msgstr "Просмотренные продукты"
 msgid "Order"
 msgstr "заказ"
 
-#: .\templates\orderapp\historyorder.html:47
-msgid "from"
-msgstr "от"
-
 #: .\templates\orderapp\historyorder.html:51
 #: .\templates\orderapp\order.html:137 .\templates\productsapp\product.html:186
 #: .\templates\profileapp\account.html:73
@@ -889,6 +910,7 @@ msgid "Order date"
 msgstr "Дата заказа"
 
 #: .\templates\orderapp\oneorder.html:48
+#: .\templates\profileapp\profile.html:72
 msgid "Phone number"
 msgstr "Номер телефона"
 
@@ -1237,6 +1259,12 @@ msgstr "Вы еще не сделали ни одного заказа"
 msgid "Recently viewed products"
 msgstr "просмотренные продукты"
 
+#: .\templates\profileapp\profile.html:53
+#: .\templates\profileapp\profileAvatar.html:54
+#| msgid "Avatar"
+msgid "Avatar"
+msgstr "Аватар"
+
 #: .\templates\profileapp\profile.html:55
 msgid "Upload a photo"
 msgstr "Загрузить фото"
@@ -1251,13 +1279,14 @@ msgstr "Вы можете изменить свой пароль здесь"
 msgid "Re-enter the password"
 msgstr "Повторно введите пароль"
 
+#: .\templates\profileapp\profile.html:100
+#| msgid "Edit profile"
+msgid "Update profile"
+msgstr "Сохранить профиль"
+
 #: .\templates\profileapp\profileAvatar.html:6
 msgid "Change profile"
 msgstr "Изменить профиль"
-
-#: .\templates\profileapp\profileAvatar.html:54
-msgid "Avatar"
-msgstr "Аватар"
 
 #: .\templates\profileapp\profileAvatar.html:59
 msgid "Choose an avatar"
@@ -1270,6 +1299,11 @@ msgstr "Сохранить"
 #: .\templates\profileapp\viewed_products.html:65
 msgid "No products viewed yet"
 msgstr "Пока нет просмотренных товаров"
+
+#, fuzzy
+#~| msgid "Avatar"
+#~ msgid "Avatar image"
+#~ msgstr "Аватар"
 
 #~ msgid "log in"
 #~ msgstr "Войти"
