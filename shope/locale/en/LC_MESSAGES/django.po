@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-05 14:47+0300\n"
+"POT-Creation-Date: 2023-07-06 20:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,28 +22,28 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: .\authapp\forms.py:80 .\authapp\forms.py:128
+#: .\authapp\forms.py:71 .\authapp\forms.py:127
 #: .\templates\profileapp\profileAvatar.html:82
 msgid "Password"
 msgstr ""
 
-#: .\authapp\forms.py:82 .\authapp\forms.py:130
+#: .\authapp\forms.py:73 .\authapp\forms.py:129
 #: .\templates\profileapp\profileAvatar.html:87
 msgid "Password confirmation"
 msgstr ""
 
-#: .\authapp\forms.py:83 .\templates\orderapp\oneorder.html:42
+#: .\authapp\forms.py:74 .\templates\orderapp\oneorder.html:42
 #: .\templates\productsapp\detailed_discount.html:24
 #: .\templates\productsapp\detailed_discount.html:90
 #: .\templates\productsapp\detailed_seller.html:23
 msgid "Name"
 msgstr ""
 
-#: .\authapp\forms.py:84
+#: .\authapp\forms.py:75
 msgid "Surname"
 msgstr ""
 
-#: .\authapp\forms.py:85
+#: .\authapp\forms.py:76
 msgid "Middle name"
 msgstr ""
 
@@ -59,29 +59,29 @@ msgstr ""
 msgid "email address"
 msgstr ""
 
-#: .\authapp\tasks.py:30
+#: .\authapp\tasks.py:28
 msgid "Email confirmation on"
 msgstr ""
 
-#: .\authapp\views.py:76
+#: .\authapp\views.py:23
 msgid ""
 "You have successfully registered. \n"
 "The account activation link has been emailed to you.\n"
 " You must confirm your account within 72 hours."
 msgstr ""
 
-#: .\authapp\views.py:107
-msgid ""
-"An error has occurred. The activation period has expired\n"
-"Try registering again."
-msgstr ""
-
-#: .\authapp\views.py:127
+#: .\authapp\views.py:26
 msgid "Link to change your password was sent to your email address"
 msgstr ""
 
-#: .\authapp\views.py:143
+#: .\authapp\views.py:28
 msgid "Your password has been successfully changed"
+msgstr ""
+
+#: .\authapp\views.py:29
+msgid ""
+"An error has occurred. The activation period has expired\n"
+"Try registering again."
 msgstr ""
 
 #: .\cartapp\models\cart.py:16 .\orderapp\models.py:18
@@ -643,7 +643,7 @@ msgstr ""
 msgid "Comparison"
 msgstr ""
 
-#: .\templates\base.html:157 .\templates\cartapp\cart.html:53
+#: .\templates\base.html:157 .\templates\cartapp\cart.html:54
 msgid "Administrative section"
 msgstr ""
 
@@ -651,7 +651,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: .\templates\base.html:171 .\templates\cartapp\cart.html:70
+#: .\templates\base.html:171 .\templates\cartapp\cart.html:72
 msgid "Show navigation"
 msgstr ""
 
@@ -754,7 +754,7 @@ msgstr ""
 msgid "Private Office"
 msgstr ""
 
-#: .\templates\cartapp\cart.html:54
+#: .\templates\cartapp\cart.html:56
 msgid "Output"
 msgstr ""
 
@@ -1186,7 +1186,7 @@ msgid "To leave a review you need to"
 msgstr ""
 
 #: .\templates\productsapp\product.html:299
-msgid "log in"
+msgid "log on"
 msgstr ""
 
 #: .\templates\productsapp\sale.html:21
