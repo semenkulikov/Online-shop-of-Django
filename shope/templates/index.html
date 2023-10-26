@@ -79,6 +79,7 @@
         </div>
         <div class="Section Section_column Section_columnLeft Section_columnDesktop">
             <div class="wrap">
+            {% if discounted %}
                 <div class="Section-column">
                     <div class="Section-columnSection Section-columnSection_mark">
                       <header class="Section-columnHeader">
@@ -86,6 +87,7 @@
 
                         </strong>
                       </header>
+
                       <div class="Card"><a class="Card-picture" href="{% url 'productsapp:product_detail' discounted.id %}"><img src="{{ discounted.product_images.first.image.url }}" alt="card.jpg"/></a>
                         <div class="Card-content">
                           <strong class="Card-title"><a href="{% url 'productsapp:product_detail' discounted.id %}">{{ discounted.name }}</a>
@@ -127,8 +129,10 @@
                           </div>
                         </div>
                       </div>
+
                     </div>
                 </div>
+            {% endif %}
                 <div class="Section-content">
                     <header class="Section-header">
                         <h2 class="Section-title">{% translate 'Popular products' %}

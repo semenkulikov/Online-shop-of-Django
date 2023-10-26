@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load get_price_a_seller %}
+{% load discounted_price %}
 
 {% block title %}
     Megano
@@ -212,17 +214,30 @@
                             </div>
                             <div class="ProductCard-info">
                                 <div class="ProductCard-cost">
-                                    <div class="ProductCard-price">${{ product.price }}
+                                    <div class="ProductCard-price">${{ product.price.value }}
                                     </div>
                                 </div>
                             </div>
                             <div class="ProductCard-cart">
 
                                 <div class="ProductCard-cartElement">
-                                    <a class="btn btn_primary" href="#">
+                                    <a class="btn btn_primary" onclick="AddToCart('{% url 'cartapp:ajax_add_product' %}', {{product.price.product_id}}, {{product.price.seller_id}} )">
                                         <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg" />
                                         <span class="btn-content">{% translate 'Add to cart' %}</span>
                                     </a>
+                                </div>
+                                <div id="modal_open" class="my_modal">
+                                    <div class="my_modal-dialog">
+                                        <div class="my_modal-content">
+                                            <div class="my_modal-header">
+                                                <p class="my_modal-title">{% translate 'Congratulations' %}!</p>
+                                                <a href="#" title="Закрыть модальное окно" class="close">×</a>
+                                            </div>
+                                            <div class="my_modal-body">
+                                                <p>{% translate 'Product successfully added to cart' %}!</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="ProductCard-cartElement">
                                     <form action="{% url 'productsapp:remove_from_comp' product.pk %}" method="post">

@@ -21,6 +21,9 @@ class BannerRepository(BannerInterface):
         banners = Banner.objects.annotate(
             min_price=Min('category__category_products__product_price__value')
         )
-        rand_banners = sample(list(banners), k=quantity)
+        try:
+            rand_banners = sample(list(banners), k=quantity)
+        except ValueError:
+            rand_banners = ""
 
         return rand_banners
