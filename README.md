@@ -1,35 +1,153 @@
-# ci/cd создание image на гитлабе
+# Интернет магазин на Django
 
-# start project docker-compose.yaml
+## Описание
+Это проект интернет-магазина, разработанный на фреймворке Python Django. Проект включает в себя множество дополнительных инструментов и библиотек для обеспечения высокой производительности, надежности и удобства работы.
+
+## Функциональность
+### Основные страницы
+* **Главная страница:** Отображает основные категории товаров, специальные предложения и новинки.
+* **Каталог товаров:** Фильтрация и поиск товаров по категориям, брендам, ценам и другим характеристикам.
+* **Страница товара:** Подробное описание товара, изображения, отзывы покупателей.
+* **Корзина:** Просмотр добавленных в корзину товаров, изменение количества, удаление товаров.
+* **Оформление заказа:** Форма ввода данных для доставки, выбор способа оплаты.
+* **Личный кабинет:** Управление заказами, изменение личных данных, история заказов.
+* **Система авторизации и регистрации:** Регистрация новых пользователей, вход для зарегистрированных пользователей, восстановление пароля.
+* **Оплата заказов:** Интеграция с платежными системами для онлайн-оплаты заказов.
+
+### Дополнительные функции
+* **Кеширование:** Использование Redis для кеширования запросов и повышения производительности.
+* **Очереди задач:** Celery для обработки фоновых задач, таких как отправка email-уведомлений и генерация отчетов.
+* **Теги и категории:** Использование django-taggit для управления тегами и категориями товаров.
+* **Телефонные номера:** Поддержка валидации и форматирования телефонных номеров с помощью django-phonenumber-field и phonenumbers.
+* **Импорт и экспорт данных:** Поддержка импорта и экспорта данных с использованием pandas, openpyxl, XlsxWriter и xlrd.
+* **Мониторинг производительности:** Django Silk для анализа запросов и улучшения производительности приложения.
+
+### Архитектурные особенности
+* **Промежуточные интерфейсы и репозитории:** Запросы к базе данных осуществляются через промежуточные интерфейсы и репозитории, что позволяет легко модифицировать и тестировать код.
+* **Отклонение от стандартной архитектуры Django:** Использование архитектурных паттернов, таких как репозиторий и сервисы, для улучшения разделения обязанностей и тестируемости кода.
 
 
-# install pre-commit
-    create - .pre-commit-config.yaml
-    pip install pre-commit
-    pre-commit install(устанавливаем нашу настройку)
+## Стек технологий
+* Django (4.2)
+* Pillow (9.3.0)
+* Celery (5.2.7)
+* Redis (4.5.5)
+* Django Silk (5.0.3)
+* Pandas (2.0.2)
+* Requests (2.29.0)
+* Pymemcache (4.0.0)
+* Django Phonenumber Field (7.0.2)
+* Django Taggit (3.1.0)
+* Pytz (2023.3)
+* Pre-commit (3.2.2)
+* Flake8 (6.0.0)
+* Python Dotenv (1.0.0)
+* Openpyxl (3.1.2)
+* XlsxWriter (3.1.2)
+* Xlrd (2.0.1)
+* Psycopg2-binary (2.9.5)
+* Phonenumbers (8.13.11)
+* PostgreSQL: Используется в качестве основной базы данных.
 
-# running Celery
-    pip install -r requirements.txt
-    celery -A shope worker --loglevel=info
+## Развертывание сайта локально
+1. **Клонирование репозитория**
+    ```
+    git clone https://github.com/semenkulikov/Online-shop-of-Django
+    cd Online-shop-of-Django
+    ```
+2. **Создание и активация виртуального окружения**
+    ```
+    python -m venv .venv
+    source .venv/bin/activate  # для Linux/MacOS
+    .\.venv\Scripts\activate   # для Windows
+   ```
+3. **Установка зависимостей**
+    ```
+   pip install -r requirements.txt
+   ```
+4. **Настройка базы данных**
+   * Создайте базу данных PostgreSQL и пользователя, если они еще не созданы.
+   * Переименуйте файл `.env.template` в `.env` и обновите конфигурационные данные, заполнив необходимые поля.
+5. **Применение миграций**
+   ```
+   python shope/manage.py migrate
+   ```
+6. **Применение фикстур**
+   ```
+   python shope/manage.py apply_fixtures
+   ```
+   * В фикстурах есть тестовые данные для всех текущих моделей
+   * Создан суперпользователь (Login: test@test.test, password: 123)
+   * Создан обычный пользователь (Login: yandex@yandex.yandex, password: yandex)
+   * Тестовые данные для оплаты можно взять по [этой](https://yookassa.ru/developers/payment-acceptance/testing-and-going-live/testing) ссылке.
+7. **Запуск кеш сервиса**
+   * На Linux: установите и запустите Redis, отредактируйте файл shope/settings.py под Redis
+      ```
+      sudo apt update
+      sudo apt install redis-server
+      sudo systemctl enable redis-server.service
+      sudo systemctl start redis-server.service
+      ```
+   * На Windows: действуем по [этой](https://stackoverflow.com/questions/64317360/how-to-use-memcached-in-django) статье.
+8. **Запуск Celery**
+   ```
+   celery -A shope worker --loglevel=info
+   ```
+9. **Запуск сервера**
+   ```
+   python shope/manage.py runserver
+   ```
 
-# Website translation
-    python manage.py makemessages -l ru - сгенерировать переводы на русский язык
-    python manage.py makemessages -l en - сгенерировать переводы на English
-    python manage.py compilemessages - скомпиллировать переводы
+## Развертывание сайта с использованием Docker контейнера
+1. **Клонирование репозитория**
+   ```
+   git clone https://github.com/semenkulikov/Online-shop-of-Django
+   cd Online-shop-of-Django
+   ```
+2. **Установите настройки pre-commit**
+   ```
+   pre-commit install  # устанавливаем нашу настройку (по желанию - если хотите встроенный валидатор)
+   ```
+3. **Сборка и запуск контейнеров**
+   ```
+   sudo apt install docker-compose  # установите docker-compose в Linux
+   docker-compose up -d --build  # сборка перед стартом контейнеров
+   docker-compose up -d          # запуск контейнеров (-d для запуска в фоне)
+   ```
+4. **Запуск кеша и Celery внутри контейнера**
+   * Redis контейнер будет запущен автоматически.
+   * Celery контейнер уже указан в docker-compose.yml и будет запущен автоматически.
+5. **Остановка контейнеров**
+   ```
+   docker-compose down
+   ```
 
-# Apply fixtures
-    python manage.py apply_fixtures - применить все фикстуры
 
-# Running imports
-    python manage.py run_imports - запустить импорты всех файлов в директории imports/expected_imports
-    python manage.py run_imports -p <file_1> <file_2> <file_3> -e <email> - запустить импорт указанных файлов и уведомить о завершении по данному email
 
-# Running django-silk
-    pip install -r requirements.txt - для установки пакетов django-silk и gprof2dot
-    python manage.py migrate - для миграций silk
-    http://127.0.0.1:8000/silk/requests/ - url адрес для просмотра запросов
+## Дополнительные команды
 
-# Running docker
-    docker compose up -d --build - сборка перед стартом контейнеров
-    docker compose up -d - запуск контейнеров (-d для запуска в фоне)
-    docker compose down - остановка контейнеров
+### Переводы сайта
+Генерация переводов на русский и английский языки:
+```
+python manage.py makemessages -l ru  # сгенерировать переводы на русский язык
+python manage.py makemessages -l en  # сгенерировать переводы на английский язык
+python manage.py compilemessages     # скомпилировать переводы
+```
+### Применение фикстур
+```
+python manage.py apply_fixtures  # применить все фикстуры
+```
+
+### Импорт данных
+```
+python manage.py run_imports  # запустить импорты всех файлов в директории imports/expected_imports
+python manage.py run_imports -p <file_1> <file_2> <file_3> -e <email>  # запустить импорт указанных файлов и уведомить о завершении по данному email
+```
+
+### Запуск Django Silk
+Django Silk используется для мониторинга производительности.
+```
+pip install -r requirements.txt  # для установки пакетов django-silk и gprof2dot
+python manage.py migrate         # для миграций silk
+```
+Перейдите по адресу http://127.0.0.1:8000/silk/requests/ для просмотра запросов.

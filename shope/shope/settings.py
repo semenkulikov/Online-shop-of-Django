@@ -133,6 +133,18 @@ if os.getenv("DOCKER"):
             "LOCATION": "cache:11211",
         }
     }
+    # CACHES = {
+    #     'default': {
+    #         'BACKEND': 'django_redis.cache.RedisCache',
+    #         'LOCATION': 'redis://localhost:6379/1',
+    #         'OPTIONS': {
+    #             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+    #         }
+    #     }
+    # }
+    # SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+    # SESSION_CACHE_ALIAS = 'default'
+
     STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 
 else:
